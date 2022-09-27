@@ -1,0 +1,23 @@
+.navbar {
+  height: 60px;
+  width: 100vw;
+  background-color: #08246c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  .date-time {
+    font-size: 16px;
+    margin-left: 81px;
+  }
+  .light-text-01 {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+  }
+  .align-right {
+    margin-left: auto;
+    margin-right: 4.32%;
+    .part-01 {
+      margin-right: 28px;
+    }
+  }
+}
