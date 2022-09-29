@@ -1,0 +1,13 @@
+.home {
+  .right-fade {
+    height: 1020px;
+    width: 557px;
+    background: #c1c8da;
+    position: absolute;
+    right: 0;
+  }
+  .menu-navbar {
+    position: fixed;
+    top: calc(36.5px + 60px);
+  }
+}

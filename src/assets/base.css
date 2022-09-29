@@ -13,7 +13,6 @@
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition: all 0.3s linear;
   line-height: 1.6;
   font-family: "Nunito", sans-serif;
   font-size: 15px;
@@ -25,4 +24,5 @@
 body {
   min-height: calc(100vh - (60px + 492px));
   height: 100vh;
+  transition: all 0.4s linear;
 }
