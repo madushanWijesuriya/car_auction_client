@@ -7,12 +7,12 @@ import logoSVG from "@/assets/images/logo.svg";
       <img alt="jamex-main-logo" :src="logoSVG" />
     </div>
     <ul class="menus-group">
-      <li>Option 1</li>
-      <li>Option 2</li>
-      <li>Option 3</li>
-      <li>Option 4</li>
-      <li>Option 5</li>
-      <li>Option 6</li>
+      <li>Home</li>
+      <li>Services</li>
+      <li>Countries</li>
+      <li>How to Order</li>
+      <li>About Us</li>
+      <li>Reach us</li>
     </ul>
     <div class="buttons-group">
       <div class="login button">Log in</div>

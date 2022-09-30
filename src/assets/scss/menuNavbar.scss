@@ -13,11 +13,30 @@
     text-decoration: none;
     list-style-type: none;
     li {
-      margin: 0 2rem;
+      margin: 0 1.7rem;
       font-weight: 500;
       color: #08246c;
       font-size: 20px;
       cursor: pointer;
+    }
+    li:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ce2832;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    li:hover {
+      font-weight: 700;
+    }
+    li:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
   }
   .menus-group li:last-child {
