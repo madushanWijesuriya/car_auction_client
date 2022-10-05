@@ -1,0 +1,10 @@
+.filter-box {
+  width: 1560px;
+  height: 288px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid #e7edff;
+  box-shadow: 0px 0px 10px rgba(117, 117, 117, 0.15);
+  backdrop-filter: blur(8px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 16px;
+}
