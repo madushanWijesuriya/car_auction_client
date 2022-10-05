@@ -1,0 +1,33 @@
+.carousel-type-01 {
+  display: flex;
+  .left-content {
+    margin-left: 181px;
+  }
+
+  .para-text-01 {
+    font-size: 24px;
+  }
+  .para-text-02 {
+    margin-top: 11px;
+    font-size: 56px;
+    line-height: 70px;
+    letter-spacing: -0.02em;
+    .sub-text-one {
+    }
+  }
+  .para-text-03 {
+    margin-top: 31px;
+    max-width: 639px;
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .brands-list {
+    margin-top: 54px;
+  }
+  .brands-list img {
+    margin-right: 39px;
+  }
+  .brands-list img:last-child {
+    margin-left: unset;
+  }
+}

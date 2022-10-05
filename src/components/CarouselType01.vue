@@ -31,9 +31,53 @@ const getImageUrl = (name) => {
     <!-- <div v-for="item in items" :key="item.id">
       <img :src="getImageUrl(item.image)" :alt="item.alt" />
     </div> -->
-    <div>Welcome to Jamex Auction House</div>
-    <div>We are a strong member of 120+ Japanese Auction houses</div>
-    <img :src="getImageUrl(items[0].image)" :alt="items[0].alt" />
+    <div class="left-content">
+      <div class="para-text-01">
+        <span class="color-01 font-weigh-500 sub-text-one">Welcome to </span
+        ><span class="color-02 font-weigh-600">Jamex Auction House</span>
+      </div>
+      <div class="para-text-02 color-03 font-weigh-600">
+        We are a strong member of <br />
+        <span class="sub-text-one color-02">120+</span> Japanese Auction houses
+      </div>
+      <div class="para-text-03">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh malesuada
+        ipsum feugiat quis in. Eros neque purus convallis tellus elementum
+        faucibus lacinia eu integer.
+      </div>
+      <div class="brands-list">
+        <img
+          src="../assets/images/sub-logos/brand-logo-01.svg"
+          alt="logo-01"
+          width="120px"
+        />
+        <img
+          src="../assets/images/sub-logos/brand-logo-02.svg"
+          alt="logo-02"
+          width="120px"
+        />
+        <img
+          src="../assets/images/sub-logos/brand-logo-03.svg"
+          alt="logo-03"
+          width="120px"
+        />
+        <img
+          src="../assets/images/sub-logos/brand-logo-04.svg"
+          alt="logo-04"
+          width="120px"
+        />
+        <img
+          src="../assets/images/sub-logos/brand-logo-05.svg"
+          alt="logo-05"
+          width="120px"
+        />
+      </div>
+    </div>
+    <img
+      class="right-content"
+      :src="getImageUrl(items[0].image)"
+      :alt="items[0].alt"
+    />
   </div>
 </template>
 
