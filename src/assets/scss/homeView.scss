@@ -1,13 +1,18 @@
 .home {
   .right-fade {
-    height: 1020px;
-    width: 557px;
+    height: 1026px;
+    width: 560px;
     background: #c1c8da;
     position: absolute;
     right: 0;
+    top: -97px;
   }
   .menu-navbar {
     position: fixed;
-    top: calc(36.5px + 60px);
+    top: 97px;
+  }
+  .bottom {
+    margin-top: 97px;
+    padding-top: 80px;
   }
 }
