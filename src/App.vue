@@ -2,6 +2,8 @@
 import { RouterLink, RouterView } from "vue-router";
 import Navbar from "@/components/layout/Navbar.vue";
 import Footer from "@/components/layout/Footer.vue";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 </script>
 
 <template>
