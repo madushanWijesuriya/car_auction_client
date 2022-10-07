@@ -4,12 +4,13 @@ import Navbar from "@/components/layout/Navbar.vue";
 import Footer from "@/components/layout/Footer.vue";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import "./assets/tailwind.css";
 </script>
 
 <template>
   <div id="app">
     <header>
-      <Navbar />
+      <!-- <Navbar /> -->
     </header>
     <body>
       <RouterView />
@@ -32,7 +33,7 @@ header {
 }
 
 nav {
-  width: 100%;
+  /* width: 100%; */
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
