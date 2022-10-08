@@ -2,9 +2,20 @@
 module.exports = {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        // Simple 8 row grid
+        7: "repeat(7, minmax(0, 1fr))",
+        8: "repeat(8, minmax(0, 1fr))",
+        9: "repeat(9, minmax(0, 1fr))",
+        10: "repeat(10, minmax(0, 1fr))",
+        11: "repeat(11, minmax(0, 1fr))",
+
+        // Complex site-specific row configuration
+      },
+    },
     screens: {
-      sm: "600px",
+      sm: "360px",
       // => @media (min-width: 640px) { ... }
 
       md: "768px",
