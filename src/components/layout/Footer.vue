@@ -339,18 +339,18 @@
                 <br />
                 <h1 class="text-white footer-contect-text">
                   <div
-                    class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:justify-left xl:justify-left"
+                    class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
                   >
                     <img
                       class="inline mr-2"
                       src="public\footer\logos_whatsapp-icon.svg"
                     />
-                    +81 3 6712 4147
+                    <div class="lg:pt-2">+81 3 6712 4147</div>
                   </div>
                 </h1>
                 <br />
                 <div
-                  class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:justify-left xl:justify-left"
+                  class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
                 >
                   <img
                     class="mr-2"
