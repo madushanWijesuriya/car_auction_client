@@ -39,3 +39,6 @@ body {
 .color-03 {
   color: var(--primary-black);
 }
+.color-04 {
+  color: #393939;
+}

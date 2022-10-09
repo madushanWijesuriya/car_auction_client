@@ -6,6 +6,13 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    letterSpacing: {
+      1: "0em",
+      2: "0.025em",
+      3: "0.05em",
+      4: "0.1em",
+      5: "1em",
+    },
     extend: {},
     screens: {
       sm: "600px",
