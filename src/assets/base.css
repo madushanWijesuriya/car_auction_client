@@ -29,10 +29,7 @@
 
 body {
   min-height: calc(100vh - (60px + 492px));
-  height: 100vh;
-  transition: all 0.4s linear;
 }
-
 .color-01 {
   color: var(--primary-blue);
 }
@@ -41,31 +38,4 @@ body {
 }
 .color-03 {
   color: var(--primary-black);
-}
-.font-weigh-100 {
-  font-weight: 100;
-}
-.font-weigh-200 {
-  font-weight: 200;
-}
-.font-weigh-300 {
-  font-weight: 300;
-}
-.font-weigh-400 {
-  font-weight: 400;
-}
-.font-weigh-500 {
-  font-weight: 500;
-}
-.font-weigh-600 {
-  font-weight: 600;
-}
-.font-weigh-700 {
-  font-weight: 700;
-}
-.font-weigh-800 {
-  font-weight: 800;
-}
-.font-weigh-900 {
-  font-weight: 900;
 }

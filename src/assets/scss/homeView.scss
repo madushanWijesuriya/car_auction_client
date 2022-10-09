@@ -1,26 +1,19 @@
 .home {
   .main-section-01 {
     .right-fade {
-      height: 1026px;
-      width: 560px;
+      min-height: 1026px;
       background: #c1c8da;
       position: absolute;
       right: 0;
-      top: -97px;
-    }
-    .menu-navbar {
-      position: fixed;
-      top: 97px;
-    }
-    .bottom {
-      margin-top: 97px;
-      padding-top: 80px;
-    }
-    .content-02 {
-      margin-left: 181px;
     }
   }
   .main-section-02 {
     background-color: #ffffff;
+  }
+
+  @media (max-width: 600px) {
+    .right-fade {
+      display: none;
+    }
   }
 }
