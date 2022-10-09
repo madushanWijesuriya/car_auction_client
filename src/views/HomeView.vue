@@ -9,19 +9,19 @@ import FilterBox from "../components/FilterBox.vue";
     <div class="main-section-01">
       <div class="top">
         <div class="right-fade"></div>
-        <MenuNavbar class="menu-navbar" />
+        <!-- <MenuNavbar class="menu-navbar" /> -->
       </div>
       <div class="bottom">
         <div class="content-01">
           <CarouselType01 />
         </div>
-        <div class="content-02">
-          <FilterBox />
+        <div class="content-02 mt-2 sm:mt-20">
+          <!-- <FilterBox /> -->
         </div>
         <div class="content-03"></div>
       </div>
     </div>
-    <div class="main-section-02">
+    <!-- <div class="main-section-02">
       <h1>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet,
         necessitatibus.
@@ -52,7 +52,7 @@ import FilterBox from "../components/FilterBox.vue";
         pariatur consequatur blanditiis, doloribus expedita, laudantium labore!
         Dolorum, odio! Omnis mollitia necessitatibus commodi qui?
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 

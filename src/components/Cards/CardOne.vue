@@ -1,14 +1,19 @@
-<script setup></script>
+<script setup>
+defineProps({
+  price: {
+    type: Number,
+    required: false,
+  },
+});
+</script>
 <template>
   <div class="card">
-    <div class="cardBatch"></div>
-
-    <!-- <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div> -->
+    <img class="cardOneImg" src="../../../public/2.png" alt="Card image cap" />
+    <span class="cardBatch"
+      ><h1 class="text-center text-white text-lg">Now on Sale</h1></span
+    >
+    <h2 class="text-center cardTitleText">Starting at</h2>
+    <h1 class="text-center cardTitlePrice">¥{{ price }}</h1>
   </div>
 </template>
 <style scoped lang="scss">

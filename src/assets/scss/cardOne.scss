@@ -1,6 +1,5 @@
 .card {
-  position: absolute;
-  left: 0%;
+  left: 2.5%;
   right: 0%;
   top: 0%;
   bottom: 0%;
@@ -30,5 +29,37 @@
   top: inherit;
   bottom: inherit;
   background: #ce2832;
-  border-radius: 0px 0px 0px 12px;
+  border-radius: 0px 8px 0px 12px;
+}
+.cardOneImg {
+  max-height: 330px;
+  height: 330px;
+  max-width: 300px;
+  width: 300px;
+}
+.cardTitleText {
+  bottom: 30px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  /* Primary Blue */
+  color: #08246c;
+}
+.cardTitlePrice {
+  bottom: 30px;
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  /* Primary Blue */
+  color: #08246c;
+}
+.bottom-space {
+  margin-bottom: 20px;
+}
+img {
+  border-radius: 8px;
 }
