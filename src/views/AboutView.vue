@@ -1,7 +1,7 @@
 <template>
 
   <div class="text-white text-sm">
-    <div class="flex flex-row p-3 px-2 md:px-5 lg:px-10 justify-between item-center w-full text-[#08246C]">
+    <div class="flex flex-row p-10 px-2 md:px-5 lg:px-10 justify-between item-center w-full text-[#08246C]">
       <div class="visible md:hidden lg:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
              width="24" height="24"
@@ -12,7 +12,10 @@
         </svg>
       </div>
       <div class="flex items-center">
-        logo
+        <img
+            class="w-full"
+            src="@/assets/images/logo.svg"
+        />
       </div>
       <div class="hidden md:flex lg:flex flex-row gap-10 items-center">
         <div class="font-semibold text-[20px]">
@@ -162,9 +165,9 @@
         </div>
       </div>
 
-      <div class="md:grid grid-rows-3 md:grid-cols-4 gap-3 md:mt-10">
+      <div class="md:grid grid-rows-3 md:grid-cols-4 gap-5 p-5 md:p-0 md:mt-10">
         <div class="md:col-start-2 md:col-span-3 md:row-span-2 p-4">
-          <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-10">
             <div class="text-[#08246C] md:text-[36px] font-bold ">
               President’s Message
             </div>
@@ -181,13 +184,13 @@
         <div class="md:row-span-3 md:row-start-1">
 
           <img
-              class="md:lg:rounded-[15px] object-contain"
+              class="md:lg:rounded-[15px] w-full p-5 md:p-0 object-contain"
               src="../assets/images/aboutus/president-image.svg"
           />
 
         </div>
         <div class="p-4 md:col-span-3 md:relative ">
-          <div class="md:absolute bottom-0 flex flex-col gap-2">
+          <div class="md:absolute bottom-0 flex w-full justify-center md:justify-start items-center md:items-start flex-col gap-2">
             <div class="md:text-[36px] text-black">
               Sajjad Akbar
             </div>
