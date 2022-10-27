@@ -15,35 +15,35 @@
         logo
       </div>
       <div class="hidden md:flex lg:flex flex-row gap-10 items-center">
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           Home
         </div>
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           Service
         </div>
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           Countries
         </div>
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           How to Order
         </div>
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           About Us
         </div>
-        <div class="font-semibold">
+        <div class="font-semibold text-[20px]">
           Reach Us
         </div>
       </div>
-      <div class="hidden md:flex lg:flex flex-row gap-2 items-center justify-center">
-        <div class="flex flex-row justify-center font-semibold items-center">
+      <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
+        <div class="flex flex-row justify-center text-[20px] font-semibold items-center">
           Log in
         </div>
-        <div class="rounded bg-[#08246C] text-white p-1 px-3">
+        <div class="rounded bg-[#08246C] text-[20px] text-white p-3 px-10">
           Register
         </div>
       </div>
     </div>
-    <div class="flex flex-col justify-center items-centers w-full md:lg:px-20 md:mt-10">
+    <div class="flex flex-col justify-center items-centers w-full md:lg:px-[180px] md:mt-10">
       <div class="relative w-full">
         <img
             class="md:lg:rounded-[15px] w-full"
@@ -53,35 +53,36 @@
           <div class="text-white text-xs">
             <div class="flex flex-col md:flex-row lg:flex-row md:gap-2 lg:gap-2">
               <div>
-                <h1 class="text-lg md:text-2xl lg:text-7xl">Corporate </h1>
+                <h1 class="text-lg md:text-2xl lg:text-7xl font-Nunito">Corporate </h1>
               </div>
               <div>
-                <h1 class="text-lg md:lg:text-7xl">Philosophy</h1>
+                <h1 class="text-lg md:lg:text-7xl font-Nunito">Philosophy</h1>
               </div>
             </div>
-            <p class="md:lg:text-lg text-xs">Our company strives to assure the provision of affordable and good quality
+            <p class="md:lg:text-lg text-xs font-Nunito">Our company strives to assure the provision of affordable and good quality
               cars to our</p>
-            <p class="md:lg:text-lg text-xs"> customers all over the world.</p>
+            <p class="md:lg:text-lg text-xs font-Nunito"> customers all over the world.</p>
           </div>
         </div>
       </div>
-      <div class="mt-5 md:px-20 p-5 md:lg:p-0">
+      <div class="mt-5 md:lg:mt-[120px] md:px-20 p-5 md:lg:p-0">
         <div class="flex flex-col text-black gap-5 md:gap-10 ">
 
           <div
-              class="flex flex-col gap-3 border border-[#E7E7E7] rounded-md p-3 md:lg:p-0 md:border-0">
+              class="flex flex-col gap-8 border border-[#E7E7E7] rounded-md p-3 md:lg:p-0 md:border-0">
             <div
-                class="flex justify-start md:lg:justify-center text-lg md:text-xl font-bold text-bold text-[#08246C] items-center">
+                class="flex justify-start md:justify-center text-lg md:text-xl font-nunito font-bold text-bold text-[#08246C] md:text-[36px] items-center">
               Vision Statement
             </div>
-            <div class="flex justify-start items-center text-black">
+            <div class="flex justify-start items-center font-nunito leading-normal text-black md:text-[24px]">
               Jamex Auction House has the vision to create awareness about the used cars and their affordability to
               assure access of customers to these vehicles. We intend to improve our market share in the automobile
               industry and make our company the market leader.
             </div>
           </div>
 
-          <div class="hidden md:flex justify-start md:lg:justify-center text-xl font-bold text-bold text-[#08246C] p-3 items-center">
+          <div
+              class="hidden md:flex justify-start md:justify-center text-xl font-bold text-bold text-[#08246C] md:text-[36px] p-3 items-center">
             Core Values
           </div>
 
@@ -93,10 +94,10 @@
                     fill="#CE2832"/>
               </svg>
               <div
-                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] items-center">
+                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] items-center md:text-[32px]">
                 Gratitude
               </div>
-              <div class="text-start  text-black">
+              <div class="text-start text-black font-nunito md:text-[20px] text-[#393939] font-nunito leading-normal">
                 We consider our customers as an asset and strive hard to keep them satisfied with our services. Our
                 customers come at the top of our priority list and for that purpose, AHJ team has always promoted
                 customer-driven corporate environment.
@@ -111,10 +112,10 @@
                     fill="#CE2832"/>
               </svg>
               <div
-                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] ">
+                  class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] md:text-[32px]">
                 Integrity
               </div>
-              <div class="text-start text-black">
+              <div class="text-start text-black md:text-[20px] text-[#393939] font-nunito leading-normal">
                 The values of honesty, morality, and suitability are kept forward and we assure to make them evident in
                 all of our corporate operations.
               </div>
@@ -128,10 +129,10 @@
                     fill="#CE2832"/>
               </svg>
               <div
-                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] items-center">
+                  class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] items-center md:text-[32px]">
                 Collaboration
               </div>
-              <div class="text-start text-black">
+              <div class="text-start text-black md:text-[20px] text-[#393939] font-nunito leading-normal">
                 We believe in creating strong business networks. Our quality of maintaining strong ties with other
                 business partners has always brought exceptional corporate benefits to us.
               </div>
@@ -145,10 +146,10 @@
                     fill="#CE2832"/>
               </svg>
               <div
-                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] items-center">
+                  class="flex justify-start text-lg font-bold text-bold text-[#08246C] md:text-[32px] items-center">
                 Accountability
               </div>
-              <div class="text-start items-center text-black">
+              <div class="text-start items-center text-black md:text-[20px] text-[#393939] font-nunito leading-normal">
                 Jamex Auction House has the vision to create awareness about the used cars and their affordability to
                 assure access of customers to these vehicles. We intend to improve our market share in the automobile
                 industry and make our company the market leader.
@@ -158,6 +159,42 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="grid grid-rows-2 md:grid-cols-4 gap-3 md:mt-10">
+        <div class="md:col-start-2 md:col-span-3 p-4">
+          <div class="flex flex-col gap-2">
+            <div class="text-[#08246C] md:text-[36px] font-bold ">
+              President’s Message
+            </div>
+            <p class="text-black text-[24px] font-nunito leading-normal">
+              The aim of our company since its inception has been the provision of affordability and exceptional
+              services to gain a leading position in the market. In pursuit of these objects we always keep our
+              customers at the top. We have come across several challenges but our team’s capabilities have always
+              benefitted us. Our corporate culture, positive environment and sustainable efforts have given us various
+              chances to improve. Our team is our proud and we can confidently say that our customers can expect bigger
+              things from us.
+            </p>
+          </div>
+        </div>
+        <div class="md:row-span-2 md:row-start-1 bg-red-500">
+
+          <img
+              class="md:lg:rounded-[15px] w-full"
+              src="../assets/images/aboutus/president-image.svg"
+          />
+
+        </div>
+        <div class="p-4 md:col-span-3 ">
+          <div class="flex flex-col gap-2">
+            <div class="md:text-[36px] text-black">
+              Sajjad Akbar
+            </div>
+            <div class="text-black">
+              CEO
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
