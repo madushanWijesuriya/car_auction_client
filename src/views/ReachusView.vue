@@ -32,19 +32,47 @@ import { ref, reactive, computed } from "vue";
             of the world.
           </div>
         </div>
-        <div class="row-span-5 lg:row-span-5">
+        <div class="row-span-5 lg:row-span-4">
           <img
             class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
             src="../assets/images/services/main.svg"
           />
         </div>
-        <div class="row-span-3 lg:row-span-3 lg:mt-10">
+        <div class="row-span-3 lg:row-span-1 lg:mt-10">
           <button
             type="button"
             class="w-full lg:w-fit py-2 lg:px-10 lg:py-3 readmore text-white"
           >
             Read more
           </button>
+        </div>
+        <div
+          class="col-span-full mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-y-0 px-5 md:gap-x-32"
+        >
+          <div>
+            <div class="title text-black font-bold text-xl md:text-2xl">
+              JAMEX Co., LTD
+            </div>
+            <div class="content font-medium text-base md:text-xl mt-2">
+              1-3-6 Minami-Shinagawa, Shinagawaku, Tokyo 140-0004 Japan
+            </div>
+          </div>
+          <div>
+            <div class="title text-black font-bold text-xl md:text-2xl">
+              Contact Info
+            </div>
+            <div class="content font-medium text-base md:text-xl mt-2">
+              Open a chat or give us call at +81-3-6712-4147
+            </div>
+          </div>
+          <div>
+            <div class="title text-black font-bold text-xl md:text-2xl">
+              Email ID
+            </div>
+            <div class="content font-medium text-base md:text-xl mt-2">
+              info@japanautoauctons.jp
+            </div>
+          </div>
         </div>
       </div>
     </div>
