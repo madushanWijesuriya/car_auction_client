@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div class="hidden md:flex justify-start md:lg:justify-center text-xl font-bold text-bold text-[#08246C] items-center">
+          <div class="hidden md:flex justify-start md:lg:justify-center text-xl font-bold text-bold text-[#08246C] p-3 items-center">
             Core Values
           </div>
 
