@@ -41,7 +41,7 @@
 
   opacity: 0.9;
 }
-@media (max-width: 360px) {
+@media (max-width: 640px) {
   .topic-price-01 {
     font-weight: 700;
     font-size: 32px;
@@ -66,6 +66,16 @@
 
     opacity: 0.8;
   }
+  .contact-text-01 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .contact-text-02 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 .contact-text-01 {
   font-weight: 500;
@@ -76,4 +86,18 @@
   /* Gray 2 */
 
   color: #a098ae;
+}
+.svg-icon {
+  height: 20px;
+  width: 16px;
+}
+.contact-text-02 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
+  /* identical to box height, or 222% */
+
+  /* Black */
+
+  color: #171616;
 }
