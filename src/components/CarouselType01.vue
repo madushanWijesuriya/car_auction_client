@@ -68,7 +68,7 @@ const getImageUrl = (name) => {
           elementum faucibus lacinia eu integer.
         </div>
         <img
-          class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
+          class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
           :src="getImageUrl(activeImageObj.image || '')"
           :alt="items[0].alt"
         />
