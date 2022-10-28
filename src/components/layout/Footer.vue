@@ -10,7 +10,10 @@
             class="col-span-2 pt-12 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2"
           >
             <div class="flex xs:justify-center sm:justify-center">
-              <img class="mb-10" src="/public/footer-image-1.svg" />
+              <img
+                class="mb-10"
+                src="@/assets\images\footer\footer-image-1.svg"
+              />
             </div>
             <h1
               class="text-left xs:text-center sm:text-center md:text-left lg:text-left xl:text-left text-white footer-contect-text"
@@ -159,7 +162,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\twemoji_flag-bangladesh.svg"
+                            src="@\assets\images\footer\flags\twemoji_flag-bangladesh.svg"
                           />Bangladesh
                         </h1>
                       </div>
@@ -167,7 +170,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-malawi.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-malawi.svg"
                           />Malawi
                         </h1>
                       </div>
@@ -175,7 +178,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-trinidad-and-tobago.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-trinidad-and-tobago.svg"
                           />Trinidad & Tobago
                         </h1>
                       </div>
@@ -183,7 +186,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-botswana.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-botswana.svg"
                           />Botswana
                         </h1>
                       </div>
@@ -191,7 +194,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-malta.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-malta.svg"
                           />Malta
                         </h1>
                       </div>
@@ -199,7 +202,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-tanzania.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-tanzania.svg"
                           />Tanzania
                         </h1>
                       </div>
@@ -207,7 +210,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-congo-brazzaville.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-congo-brazzaville.svg"
                           />DR Congo
                         </h1>
                       </div>
@@ -215,7 +218,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-new-zealand.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-new-zealand.svg"
                           />New Zealand
                         </h1>
                       </div>
@@ -223,7 +226,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-turkey.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-turkey.svg"
                           />Turkey
                         </h1>
                       </div>
@@ -231,7 +234,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\twemoji_flag-cyprus.svg"
+                            src="@\assets\images\footer\flags\twemoji_flag-cyprus.svg"
                           />Cyprus
                         </h1>
                       </div>
@@ -239,7 +242,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-pakistan.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-pakistan.svg"
                           />Pakistan
                         </h1>
                       </div>
@@ -247,7 +250,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-myanmar.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-myanmar.svg"
                           />Myanmar
                         </h1>
                       </div>
@@ -255,7 +258,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-fiji.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-fiji.svg"
                           />Fiji
                         </h1>
                       </div>
@@ -263,7 +266,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-russia.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-russia.svg"
                           />Russia
                         </h1>
                       </div>
@@ -271,7 +274,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-uganda.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-uganda.svg"
                           />Uganda
                         </h1>
                       </div>
@@ -279,7 +282,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-jamaica.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-jamaica.svg"
                           />Jamaica
                         </h1>
                       </div>
@@ -287,7 +290,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-sri-lanka.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-sri-lanka.svg"
                           />Srilanka
                         </h1>
                       </div>
@@ -295,7 +298,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-united-kingdom.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-united-kingdom.svg"
                           />United Kingdom
                         </h1>
                       </div>
@@ -303,7 +306,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-kenya.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-kenya.svg"
                           />Kenya
                         </h1>
                       </div>
@@ -311,7 +314,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-haiti.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-haiti.svg"
                           />Haiti
                         </h1>
                       </div>
@@ -319,7 +322,7 @@
                         <h1 class="text-white footer-contect-text">
                           <img
                             class="inline mr-2"
-                            src="public\footer\flags\emojione-v1_flag-for-zambia.svg"
+                            src="@\assets\images\footer\flags\emojione-v1_flag-for-zambia.svg"
                           />Zambia
                         </h1>
                       </div>
@@ -343,7 +346,7 @@
                   >
                     <img
                       class="inline mr-2"
-                      src="public\footer\logos_whatsapp-icon.svg"
+                      src="@\assets\images\footer\logos_whatsapp-icon.svg"
                     />
                     <div class="lg:pt-2">+81 3 6712 4147</div>
                   </div>
@@ -354,7 +357,7 @@
                 >
                   <img
                     class="mr-2"
-                    src="public\footer\QR_code_for_mobile_English_Wikipedia 1.svg"
+                    src="@\assets\images\footer\QR_code_for_mobile_English_Wikipedia1.svg"
                   />
                 </div>
               </div>
