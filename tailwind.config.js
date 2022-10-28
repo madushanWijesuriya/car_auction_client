@@ -24,6 +24,15 @@ module.exports = {
 
         // Complex site-specific row configuration
       },
+      colors: {
+        "color-01": "#08246c",
+        "color-02": "#ce2832",
+        "color-03": "#000000",
+        "color-04": "#393939",
+        "color-05": "#c1c8da",
+        "color-06": "#202020",
+        "color-07": "#A098AE",
+      },
     },
     screens: {
       xs: "360px",
