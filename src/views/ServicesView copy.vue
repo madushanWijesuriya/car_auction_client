@@ -41,7 +41,7 @@ import { ref, reactive, computed } from "vue";
             <div>
               <img
                 class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
-                src="../assets/images/reachus/main.svg"
+                src="@/assets/images/reachus/main.svg"
               />
             </div>
           </div>

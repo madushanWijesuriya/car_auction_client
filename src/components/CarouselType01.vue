@@ -3,7 +3,7 @@ import { ref, reactive, computed } from "vue";
 const items = reactive([
   {
     id: 1,
-    image: "../assets/images/carousel/car02.svg",
+    image: "@/assets/images/carousel/car02.svg",
     order: 1,
     alt: "image-1",
     selected: false,
@@ -76,27 +76,27 @@ const getImageUrl = (name) => {
           class="mt-4 grid grid-cols-5 gap-6 order-3 sm:order-3 sm:col-span-5 col-span-full"
         >
           <img
-            src="../assets/images/sub-logos/brand-logo-01.svg"
+            src="@/assets/images/sub-logos/brand-logo-01.svg"
             alt="logo-01"
             class=""
           />
           <img
-            src="../assets/images/sub-logos/brand-logo-02.svg"
+            src="@/assets/images/sub-logos/brand-logo-02.svg"
             alt="logo-02"
             class=""
           />
           <img
-            src="../assets/images/sub-logos/brand-logo-03.svg"
+            src="@/assets/images/sub-logos/brand-logo-03.svg"
             alt="logo-03"
             class=""
           />
           <img
-            src="../assets/images/sub-logos/brand-logo-04.svg"
+            src="@/assets/images/sub-logos/brand-logo-04.svg"
             alt="logo-04"
             class=""
           />
           <img
-            src="../assets/images/sub-logos/brand-logo-05.svg"
+            src="@/assets/images/sub-logos/brand-logo-05.svg"
             alt="logo-05"
             class=""
           />
