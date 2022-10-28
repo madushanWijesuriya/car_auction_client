@@ -1,0 +1,103 @@
+.topic-text-01 {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 96.9%;
+  /* or 35px */
+
+  /* Primary Blue */
+
+  color: #08246c;
+
+  opacity: 0.8;
+}
+.topic-text-03 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 55px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.topic-price-01 {
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 93.02px;
+  /* or 35px */
+
+  /* Primary Blue */
+
+  color: #08246c;
+
+  opacity: 0.8;
+}
+.topic-text-02 {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 96.9%;
+  /* identical to box height, or 39px */
+
+  color: #ffffff;
+
+  opacity: 0.9;
+}
+@media (max-width: 640px) {
+  .topic-price-01 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 31.01px;
+    /* or 35px */
+
+    /* Primary Blue */
+
+    color: #08246c;
+
+    opacity: 0.8;
+  }
+  .topic-text-01 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15.5px;
+    /* or 35px */
+
+    /* Primary Blue */
+
+    color: #08246c;
+
+    opacity: 0.8;
+  }
+  .contact-text-01 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .contact-text-02 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+.contact-text-01 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 40px;
+  /* identical to box height, or 222% */
+
+  /* Gray 2 */
+
+  color: #a098ae;
+}
+.svg-icon {
+  height: 20px;
+  width: 16px;
+}
+.contact-text-02 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
+  /* identical to box height, or 222% */
+
+  /* Black */
+
+  color: #171616;
+}

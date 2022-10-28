@@ -29,7 +29,7 @@
   top: inherit;
   bottom: inherit;
   background: #ce2832;
-  border-radius: 0px 0px 0px 12px;
+  border-radius: 0px 8px 0px 12px;
 }
 .cardOneImg {
   max-height: 330px;
@@ -59,4 +59,7 @@
 }
 .bottom-space {
   margin-bottom: 20px;
+}
+img {
+  border-radius: 8px;
 }

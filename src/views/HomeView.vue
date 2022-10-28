@@ -4,6 +4,7 @@ import CarouselType01 from "../components/CarouselType01.vue";
 import FilterBox from "../components/FilterBox.vue";
 import CardTwo from "../components/Cards/CardTwo.vue";
 import CardOne from "../components/Cards/CardOne.vue";
+import ButtoneTwo from "../components/Buttons/ButtonTwo.vue";
 
 const getImageUrl = (name) => {
   if (!name) return "";
@@ -114,12 +115,44 @@ const getImageUrl = (name) => {
           New Arrival
         </div>
         <div
-          class="grid gap-6 sm:gap-20 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-8 mt-7 sm:mt-20"
+          class="grid gap-6 sm:gap-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-6 sm:mt-12 place-items-center"
         >
           <CardOne />
           <CardOne />
           <CardOne />
           <CardOne />
+        </div>
+      </div>
+      <div class="content-05 container mt-9 px-4 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16">
+          <div
+            class="color-01 text-2xl text-center font-bold leading-6 mb-10 md:col-span-2"
+          >
+            Biggest Vehicle Trading company of Japan
+          </div>
+          <div>
+            <div class="shade-window bg-color-05"></div>
+            <img
+              :src="getImageUrl('../assets/images/home/asset_001.jpg')"
+              alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
+            />
+          </div>
+          <div>
+            <div
+              class="leading-5 mt-9 text-sm md:text-2xl md:leading-8 color-04"
+            >
+              Jamex Co LTD is the leading auto trading company of Japan that is
+              working in the same niche for over 10 years. We have satisfied
+              customers in different parts of the world including Europe
+              Oceania, Caribbean, Asia and Africa. <br /><br />
+              Our diversified team for automobile auction suppliers make us the
+              best reputed company for the supply of good quality vehicles in
+              different parts of the world
+            </div>
+            <div class="mt-6 text-center md:text-left">
+              <ButtoneTwo text="Read More" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
