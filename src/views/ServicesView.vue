@@ -37,7 +37,7 @@ import { ref, reactive, computed } from "vue";
         <div class="row-span-1 lg:row-span-3">
           <img
             class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
-            src="../assets/images/reachus/main.svg"
+            src="@/assets/images/reachus/main.svg"
           />
         </div>
         <div class="row-span-1 mt-20 lg:row-span-1">
@@ -45,7 +45,7 @@ import { ref, reactive, computed } from "vue";
             <div class="contact-text-01">Office</div>
             <img
               class="svg-icon inline m-3"
-              src="../assets/images/services/Location.svg"
+              src="@/assets/images/services/Location.svg"
             />
             <div class="contact-text-02 inline">
               123 Anywhere St., Any City, ST 12345
@@ -58,7 +58,7 @@ import { ref, reactive, computed } from "vue";
               <div class="contact-text-01">Phone Number</div>
               <img
                 class="svg-icon lg:inline m-3"
-                src="../assets/images/services/Call.svg"
+                src="@/assets/images/services/Call.svg"
               />
               <div class="contact-text-02 inline">+123-456-789 0</div>
             </div>
@@ -67,7 +67,7 @@ import { ref, reactive, computed } from "vue";
 
               <img
                 class="svg-icon lg:inline m-3"
-                src="../assets/images/services/Email.svg"
+                src="@/assets/images/services/Email.svg"
               />
               <div class="contact-text-02 inline">
                 hello@reallygreatsite.com
