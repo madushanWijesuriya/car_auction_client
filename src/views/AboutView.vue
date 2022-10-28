@@ -165,13 +165,13 @@
         </div>
       </div>
 
-      <div class="relative md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[300px] xl:h-[500px] md:gap-10 xl:gap-20 md:mt-10 ">
-        <div class="md:col-span-5 md:col-start-4 px-5 md:px-0">
+      <div class="md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[300px] xl:h-[450px] md:gap-10 xl:gap-20 md:mt-10 ">
+        <div class="md:col-span-5 md:col-start-4 px-7 md:px-0">
           <div class="flex flex-col gap-2 md:gap-5 ">
             <div class="text-[#08246C] lg:text-2xl xl:text-4xl text-[20px] font-bold ">
               President’s Message
             </div>
-            <p class="text-black text-[12px] md:text-[15px] xl:text-[22px] font-nunito md:leading-2 xl:leading-8">
+            <p class="text-black text-[12px] md:text-[15px] xl:text-[22px] font-nunito leading-6 md:leading-2 xl:leading-7">
               The aim of our company since its inception has been the provision of affordability and exceptional
               services to gain a leading position in the market. In pursuit of these objects we always keep our
               customers at the top. We have come across several challenges but our team’s capabilities have always
@@ -182,9 +182,9 @@
           </div>
         </div>
 
-        <div class="md:row-span-2 col-span-3 md:row-start-1 px-6 md:px-0">
+        <div class="md:row-span-2 col-span-3 md:row-start-1 px-7 md:px-0">
           <div class="md:row-span-2 md:col-span-3 md:row-start-1 ">
-            <img class="pt-3 w-full md:p-0 object-fill md:h-[300px] xl:h-[500px]"
+            <img class="pt-3 w-full md:p-0 object-fill md:h-[300px] xl:h-[450px]"
               src="../assets/images/aboutus/president-image.svg" />
           </div>
         </div>
