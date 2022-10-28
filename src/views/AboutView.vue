@@ -165,8 +165,8 @@
         </div>
       </div>
 
-      <div class="md:grid-col-8 md:grid md:grid-rows-2 md:gap-5 md:mt-4">
-        <div class="md:col-span-5 md:col-start-3 px-6 md:px-0">
+      <div class="relative md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[270px] xl:h-[400px] md:gap-10 xl:gap-20 md:mt-4">
+        <div class="md:col-span-5 md:col-start-4 px-5 md:px-0">
           <div class="flex flex-col gap-2 md:gap-5 ">
             <div class="text-[#08246C] lg:text-2xl xl:text-4xl text-[20px] font-bold ">
               President’s Message
@@ -182,19 +182,22 @@
           </div>
         </div>
 
-        <div class="md:row-span-2 col-span-2 md:row-start-1 px-6 md:px-0">
-          <div class="md:row-span-2 md:col-span-1 md:row-start-1">
-            <img class="pt-3 w-full md:p-0 object-fill"
+        <div class="md:row-span-2 col-span-3 md:row-start-1 px-6 md:px-0">
+          <div class="md:row-span-2 md:col-span-3 md:row-start-1 ">
+            <img class="pt-3 w-full md:p-0 object-fill md:h-[270px] xl:h-[400px]"
               src="../assets/images/aboutus/president-image.svg" />
           </div>
         </div>
-        <div class="md:col-span-5 md:col-start-3 px-6 md:px-0 pt-2 text-center ">
-          <div class="text-lg font-semibold text-black lg:text-2xl xl:text-4xl">
+        <div class="md:col-span-5 md:col-start-4 px-6 md:px-0 pt-2 text-center">
+          <div class="md:flex md:flex-col md:h-[100%] justify-end items-start">
+            <div class="text-lg font-semibold text-black lg:text-2xl xl:text-4xl">
               Sajjad Akbar
             </div>
             <div class="text-black">
               CEO
             </div>
+          </div>
+          
         </div>
       </div>
 
