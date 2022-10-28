@@ -35,7 +35,7 @@ import { ref, reactive, computed } from "vue";
         <div class="row-span-5 lg:row-span-5">
           <img
             class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
-            src="../assets/images/services/main.svg"
+            src="@/assets/images/services/main.svg"
           />
         </div>
         <div class="row-span-3 lg:row-span-3 lg:mt-10">
