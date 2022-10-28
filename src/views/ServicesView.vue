@@ -40,15 +40,41 @@ import { ref, reactive, computed } from "vue";
             src="../assets/images/reachus/main.svg"
           />
         </div>
-        <div class="row-span-1 lg:row-span-1">
-          <div class="contact-text-01">Office</div>
-          <div class="contact-text-01 inline mr-5">Phone Number</div>
-
-          <div class="contact-text-01 inline">Email</div>
+        <div class="row-span-1 mt-20 lg:row-span-1">
+          <div>
+            <div class="contact-text-01">Office</div>
+            <img
+              class="svg-icon inline m-3"
+              src="../assets/images/services/Location.svg"
+            />
+            <div class="contact-text-02 inline">
+              123 Anywhere St., Any City, ST 12345
+            </div>
+          </div>
         </div>
-        <!-- <div class="row-span-3 lg:row-span-3">wwwwwwwwwwwwwwwwwwwwww</div>
-        <div class="row-span- lg:row-span-5">aaaaaaaaaaaaaaaaaaaa</div>
-        <div class="row-span-3 lg:row-span-3 lg:mt-10">ssssssssssssss</div> -->
+        <div class="flex row-span-1 lg:row-span-1">
+          <div class="grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2">
+            <div>
+              <div class="contact-text-01">Phone Number</div>
+              <img
+                class="svg-icon lg:inline m-3"
+                src="../assets/images/services/Call.svg"
+              />
+              <div class="contact-text-02 inline">+123-456-789 0</div>
+            </div>
+            <div>
+              <div class="contact-text-01">Email</div>
+
+              <img
+                class="svg-icon lg:inline m-3"
+                src="../assets/images/services/Email.svg"
+              />
+              <div class="contact-text-02 inline">
+                hello@reallygreatsite.com
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
