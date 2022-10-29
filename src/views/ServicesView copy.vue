@@ -1,51 +1,36 @@
-<script setup>
-import { ref, reactive, computed } from "vue";
-</script>
+<script setup></script>
 
 <template>
-  <div
-    class="container mx-auto carousel-type-01 sm:px-3 md:px-12 lg:px-12 xl:px-12"
-  >
+  <div class="container mx-auto carousel-type-01 px-4 m-20">
+    <!-- <div v-for="item in items" :key="item.id">
+      <img :src="getImageUrl(item.image)" :alt="item.alt" />
+    </div> -->
     <div class="">
       <div
-        class="grid grid-cols-10 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-10 xl:grid-cols-10 gap-7"
+        class="left-content grid grid-cols-1 sm:grid-cols-8 gap-3 sm:gap-y-0"
       >
-        <div
-          class="col-span-5 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-5 xl:col-span-5"
-        >
-          <div class="para-text-02 color-03 font-semibold">
-            Japan
-            <span class="sub-text-one color-02"> Auction</span>
-            Calendar
-          </div>
-          <div class="para-text-03 order-1 sm:col-span-5">
-            Major auction houses in japan can be easily accessed from all over
-            the world. We add used cars in good condition for auction process
-            each week. We provide 145,000 cars weekly to our esteemed customers.
-            The process of auction is performed each week. We have highly
-            skilled workforce and an efficient management system that can help
-            in providing you support with a well-developed system for vehicle
-            purchase.
-          </div>
+        <div class="para-text-01 col-span-full">
+          <span class="color-01 font-medium sub-text-one">Welcome to </span
+          ><span class="color-02">Jamex Auction House</span>
         </div>
         <div
-          class="col-span-5 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-5 xl:col-span-5"
+          class="para-text-02 color-03 font-semibold col-span-full sm:col-span-5"
         >
-          <div class="grid grid-cols-1 pt-12">
-            <div class="topic-text-01">We Provide</div>
-            <div>
-              <div class="topic-price-01 inline">145,000</div>
-              <div class="topic-text-02 inline">Cars Weekly</div>
-            </div>
-
-            <div>
-              <img
-                class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto"
-                src="@/assets/images/reachus/main.svg"
-              />
-            </div>
-          </div>
+          We are a strong member of
+          <span class="sub-text-one color-02">120+</span> Japanese Auction
+          houses
         </div>
+        <div
+          class="para-text-03 order-1 sm:order-2 sm:pr-24 sm:pt-9 sm:col-span-5 col-span-full"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
+          malesuada ipsum feugiat quis in. Eros neque purus convallis tellus
+          elementum faucibus lacinia eu integer.
+        </div>
+        <img
+          class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
+          src="@/assets/images/services/main01.svg"
+        />
       </div>
     </div>
   </div>
@@ -53,5 +38,4 @@ import { ref, reactive, computed } from "vue";
 
 <style scoped lang="scss">
 @import "@/assets/scss/carouselType01.scss";
-@import "@/assets/scss/reachus.scss";
 </style>
