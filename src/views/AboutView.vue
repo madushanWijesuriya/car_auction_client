@@ -82,7 +82,7 @@
             Core Values
           </div>
 
-          <div class="flex flex-col md:flex-row justify-between md:gap-5">
+          <div class="flex flex-col md:flex-row justify-between md:gap-5 xl:gap-[7%]">
             <div class="flex flex-col flex-1 gap-3 p-3 md:p-0">
               <div class="w-[20px] h-[20px] md:w-[34px] md:h-[34px]">
                 <svg width="100%" height="100%" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +92,7 @@
                 </svg>
               </div>
 
-              <div class="flex justify-start text-lg font-bold text-bold text-[#08246C] lg:text-2xl xl:text-4xl">
+              <div class="flex justify-start text-lg font-bold text-bold text-[#08246C] lg:text-2xl xl:text-[32px]">
                 Gratitude
               </div>
               <div class="text-start font-nunito md:text-md xl:text-[20px] text-[#393939] font-nunito leading-normal">
@@ -114,7 +114,7 @@
                 </svg>
               </div>
 
-              <div class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] lg:text-2xl xl:text-4xl">
+              <div class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] lg:text-2xl xl:text-[32px]">
                 Integrity
               </div>
               <div class="text-start md:text-md xl:text-[20px] text-[#393939] font-nunito leading-normal">
@@ -133,7 +133,7 @@
               </div>
 
               <div
-                class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] items-center lg:text-2xl xl:text-4xl">
+                class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] items-center lg:text-2xl xl:text-[32px]">
                 Collaboration
               </div>
               <div class="text-start md:text-md xl:text-[20px] text-[#393939] font-nunito leading-normal">
@@ -151,7 +151,7 @@
                 </svg>
               </div>
 
-              <div class="flex justify-start text-lg font-bold text-[#08246C] lg:text-2xl xl:text-4xl items-center">
+              <div class="flex justify-start text-lg font-bold text-[#08246C] lg:text-2xl xl:text-[32px] items-center">
                 Accountability
               </div>
               <div
@@ -165,13 +165,13 @@
         </div>
       </div>
 
-      <div class="md:grid-col-8 md:grid md:grid-rows-2 md:gap-5 md:mt-4">
-        <div class="md:col-span-5 md:col-start-3 px-6 md:px-0">
+      <div class="md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[300px] xl:h-[450px] md:gap-10 xl:gap-20 md:mt-10 ">
+        <div class="md:col-span-5 md:col-start-4 px-7 md:px-0">
           <div class="flex flex-col gap-2 md:gap-5 ">
             <div class="text-[#08246C] lg:text-2xl xl:text-4xl text-[20px] font-bold ">
               President’s Message
             </div>
-            <p class="text-black text-[12px] md:text-md xl:text-[20px] font-nunito leading-normal">
+            <p class="text-black text-[12px] md:text-[15px] xl:text-[22px] font-nunito leading-6 md:leading-2 xl:leading-7">
               The aim of our company since its inception has been the provision of affordability and exceptional
               services to gain a leading position in the market. In pursuit of these objects we always keep our
               customers at the top. We have come across several challenges but our team’s capabilities have always
@@ -182,55 +182,24 @@
           </div>
         </div>
 
-        <div class="md:row-span-2 col-span-2 md:row-start-1 px-6 md:px-0">
-          <div class="md:row-span-2 md:col-span-1 md:row-start-1">
-            <img class="pt-3 w-full md:p-0 object-fill"
+        <div class="md:row-span-2 col-span-3 md:row-start-1 px-7 md:px-0">
+          <div class="md:row-span-2 md:col-span-3 md:row-start-1 ">
+            <img class="pt-3 w-full md:p-0 object-fill md:h-[300px] xl:h-[450px]"
               src="../assets/images/aboutus/president-image.svg" />
           </div>
         </div>
-        <div class="md:col-span-5 md:col-start-3 px-6 md:px-0 pt-2 text-center ">
-          <div class="text-lg font-semibold text-black lg:text-2xl xl:text-4xl">
+        <div class="md:col-span-5 md:col-start-4 px-6 md:px-0 pt-2 text-center">
+          <div class="md:flex md:flex-col md:h-[100%] justify-end items-start">
+            <div class="text-lg font-semibold text-black lg:text-2xl xl:text-4xl">
               Sajjad Akbar
             </div>
             <div class="text-black">
               CEO
             </div>
+          </div>
+          
         </div>
       </div>
-
-      <!-- <div class="md:grid grid-rows-3 md:grid-cols-4 gap-5 pl-8 pr-8 md:p-0 md:mt-10">
-        <div class="md:col-start-2 md:col-span-3 md:row-span-2 ">
-          <div class="flex flex-col gap-2 md:gap-10 ">
-            <div class="text-[#08246C] md:text-[36px] text-[20px] font-bold ">
-              President’s Message
-            </div>
-            <p class="text-black text-[12px] md:text-[24px] font-nunito leading-normal">
-              The aim of our company since its inception has been the provision of affordability and exceptional
-              services to gain a leading position in the market. In pursuit of these objects we always keep our
-              customers at the top. We have come across several challenges but our team’s capabilities have always
-              benefitted us. Our corporate culture, positive environment and sustainable efforts have given us various
-              chances to improve. Our team is our proud and we can confidently say that our customers can expect bigger
-              things from us.
-            </p>
-          </div>
-        </div>
-        <div class="md:row-span-3 md:col-span-1 md:row-start-1">
-          <img
-              class="md:lg:rounded-[15px] pt-3 w-full md:p-0 object-contain"
-              src="../assets/images/aboutus/president-image.svg"
-          />
-        </div>
-        <div class="p-4 md:col-span-3 md:relative ">
-          <div class="md:absolute bottom-0 flex w-full justify-center md:justify-start items-center md:items-start flex-col gap-2">
-            <div class="md:text-[36px] text-black">
-              Sajjad Akbar
-            </div>
-            <div class="text-black">
-              CEO
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </div>
   </div>
