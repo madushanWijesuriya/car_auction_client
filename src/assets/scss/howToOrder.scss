@@ -1,0 +1,26 @@
+.how-to-ordering {
+  .car-prices-table {
+    td,
+    th {
+      border: 1px solid #08246c;
+      padding-left: 16px;
+      padding-right: 36px;
+    }
+    tr {
+      background: rgba(8, 36, 108, 0.05);
+    }
+    th {
+      padding-top: 20px;
+    }
+    td {
+      padding-top: 8px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    td,
+    th {
+      padding-right: 64px;
+    }
+  }
+}
