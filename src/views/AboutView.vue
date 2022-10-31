@@ -16,7 +16,8 @@
         </div>
 
       </div>
-      <div class="hidden md:flex flex-row md:gap-7 xl:gap-13 items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
+      <div
+        class="hidden md:flex flex-row md:gap-7 xl:gap-13 items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
         <div class="font-semibold">
           Home
         </div>
@@ -37,15 +38,18 @@
         </div>
       </div>
       <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
-        <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center">
+        <div
+          class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center">
           Log in
         </div>
-        <div class="rounded bg-[#08246C] px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] text-white lg:p-2 lg:px-8 xl:px-10">
+        <div
+          class="rounded bg-[#08246C] px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] text-white lg:p-2 lg:px-8 xl:px-10">
           Register
         </div>
       </div>
     </div>
-    <div class="flex flex-col justify-center items-centers w-full md:px-[60px] lg:px-[80px] xl:px-[180px] md:mt-2 xl:mt-2">
+    <div
+      class="flex flex-col justify-center items-centers w-full md:px-[60px] lg:px-[80px] xl:px-[180px] md:mt-2 xl:mt-2">
       <div class="relative w-full">
         <img class="lg:rounded-[15px] md:rounded-[10px] w-full" src="@/assets/images/aboutus/aboutus-img-1.svg" />
         <div class="absolute text-white top-1/2 left-1/4 -translate-x-1/4 -translate-y-1/2">
@@ -58,7 +62,8 @@
                 <h1 class="text-3xl lg:text-5xl xl:text-7xl font-Nunito">Philosophy</h1>
               </div>
             </div>
-            <p class="mt-1 text-[12px] md:text-sm md:mt-3 font-Nunito">Our company strives to assure the provision of affordable and
+            <p class="mt-1 text-[12px] md:text-sm md:mt-3 font-Nunito">Our company strives to assure the provision of
+              affordable and
               good quality cars to our customers all over the world.</p>
           </div>
         </div>
@@ -114,7 +119,8 @@
                 </svg>
               </div>
 
-              <div class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] lg:text-2xl xl:text-[32px]">
+              <div
+                class="flex justify-start text-lg font-nunito font-bold text-bold text-[#08246C] lg:text-2xl xl:text-[32px]">
                 Integrity
               </div>
               <div class="text-start md:text-md xl:text-[20px] text-[#393939] font-nunito leading-normal">
@@ -165,13 +171,15 @@
         </div>
       </div>
 
-      <div class="md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[300px] xl:h-[450px] md:gap-10 xl:gap-20 md:mt-10 ">
+      <div
+        class="md:grid-col-8 md:grid md:grid-rows-2 md:place-items-stretch md:h-[300px] xl:h-[450px] md:gap-10 xl:gap-20 md:mt-10 ">
         <div class="md:col-span-5 md:col-start-4 px-7 md:px-0">
           <div class="flex flex-col gap-2 md:gap-5 ">
             <div class="text-[#08246C] lg:text-2xl xl:text-4xl text-[20px] font-bold ">
               President’s Message
             </div>
-            <p class="text-black text-[12px] md:text-[15px] xl:text-[22px] font-nunito leading-6 md:leading-2 xl:leading-7">
+            <p
+              class="text-black text-[12px] md:text-[15px] xl:text-[22px] font-nunito leading-6 md:leading-2 xl:leading-7">
               The aim of our company since its inception has been the provision of affordability and exceptional
               services to gain a leading position in the market. In pursuit of these objects we always keep our
               customers at the top. We have come across several challenges but our team’s capabilities have always
@@ -197,7 +205,7 @@
               CEO
             </div>
           </div>
-          
+
         </div>
       </div>
 
