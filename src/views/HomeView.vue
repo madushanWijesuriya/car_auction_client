@@ -64,7 +64,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-01.svg')"
+                  src="@/assets/images/icons/card-icon-01.svg"
                   alt="icon-01"
                 />
               </template>
@@ -76,7 +76,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-02.svg')"
+                  src="@/assets/images/icons/card-icon-02.svg"
                   alt="icon-02"
                 />
               </template>
@@ -88,7 +88,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-03.svg')"
+                  src="@/assets/images/icons/card-icon-03.svg"
                   alt="icon-03"
                 />
               </template>
@@ -100,7 +100,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-04.svg')"
+                  src="@/assets/images/icons/card-icon-04.svg"
                   alt="icon-04"
                 />
               </template>
@@ -133,7 +133,7 @@ const getImageUrl = (name) => {
           <div>
             <div class="shade-window bg-color-05"></div>
             <img
-              :src="getImageUrl('../assets/images/home/asset_001.jpg')"
+              src="@/assets/images/home/asset_001.jpg"
               alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
             />
           </div>

@@ -31,11 +31,7 @@ const getImageUrl = (name) => {
       >
         <img
           class="rounded-md shadow"
-          :src="
-            getImageUrl(
-              '../assets/images/countries-details/car-01-counties.jpg'
-            )
-          "
+          src="@/assets/images/countries-details/car-01-counties.jpg"
           alt="car-01-counties-details"
         />
       </div>
@@ -67,7 +63,7 @@ const getImageUrl = (name) => {
         class="flex justify-center mt-6 order-6 sm:absolute sm:right-2/4 sm:bottom-0"
       >
         <img
-          :src="getImageUrl('../assets/images/countries-details/QR-code.jpg')"
+          src="@/assets/images/countries-details/QR-code.jpg"
           alt="QR-CODE"
         />
       </div>

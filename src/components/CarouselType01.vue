@@ -3,28 +3,28 @@ import { ref, reactive, computed } from "vue";
 const items = reactive([
   {
     id: 1,
-    image: "@/assets/images/carousel/car02.svg",
+    image: "/src/assets/images/carousel/car02.svg",
     order: 1,
     alt: "image-1",
     selected: false,
   },
   {
     id: 2,
-    image: "../assets/images/carousel/car03.svg",
+    image: "/src/assets/images/carousel/car03.svg",
     order: 2,
     alt: "image-2",
     selected: false,
   },
   {
     id: 3,
-    image: "../assets/images/carousel/car01.svg",
+    image: "/src/assets/images/carousel/car01.svg",
     order: 3,
     alt: "image-3",
     selected: false,
   },
   {
     id: 4,
-    image: "../assets/images/carousel/car04.svg",
+    image: "/src/assets/images/carousel/car04.svg",
     order: 4,
     alt: "image-4",
     selected: true,
@@ -69,8 +69,8 @@ const getImageUrl = (name) => {
         </div>
         <img
           class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
-          :src="getImageUrl(activeImageObj.image || '')"
-          :alt="items[0].alt"
+          src="@/assets/images/carousel/car02.svg"
+          alt="logo-01"
         />
         <div
           class="mt-4 grid grid-cols-5 gap-6 order-3 sm:order-3 sm:col-span-5 col-span-full"

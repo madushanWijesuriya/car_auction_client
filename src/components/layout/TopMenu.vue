@@ -27,16 +27,14 @@
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//"
+        <a class="font-semibold" href="https://car-auction-staging.netlify.app/"
           >Home</a
         >
       </div>
       <div class="flex items-center gap-2">
         <a
           class="font-semibold"
-          href="https://car-auction-staging.netlify.app//service"
+          href="https://car-auction-staging.netlify.app/service"
           >Services</a
         >
         <div class="w-[10px] h-[10px]">
@@ -59,7 +57,7 @@
       <div class="font-semibold">
         <a
           class="font-semibold"
-          href="https://car-auction-staging.netlify.app//countries-vehicle-details"
+          href="https://car-auction-staging.netlify.app/countries-vehicle-details"
           >Countries</a
         >
       </div>
@@ -67,7 +65,7 @@
       <div class="flex items-center gap-2">
         <a
           class="font-semibold"
-          href="https://car-auction-staging.netlify.app//about"
+          href="https://car-auction-staging.netlify.app/about"
           >About Us</a
         >
         <div class="w-[10px] h-[10px]">
@@ -90,7 +88,7 @@
       <div class="font-semibold">
         <a
           class="font-semibold"
-          href="https://car-auction-staging.netlify.app//reachus"
+          href="https://car-auction-staging.netlify.app/reachus"
           >Reach Us</a
         >
       </div>
