@@ -92,25 +92,51 @@ var base_url = window.location.origin;
                 </div>
             </div>
             <div class="mx-16">
-               <p class="text-center text-[20px] font-nunito font-bold text-[#08246C]">Loved by businesses, and individuals across the globe.</p> 
+                <p class="text-center text-[20px] font-nunito font-bold text-[#08246C]">Loved by businesses, and
+                    individuals across the globe.</p>
             </div>
-            <div class="border border-[#08246C] py-5 px-3 ">
+            <div class="border border-[#08246C] mx-4 py-5 px-3 rounded-sm">
                 <div>
                     *****
                 </div>
-                <p class="text-[#333333]">
-                    I bought this car from Jamex Auction House at a very low price. The quality and service are satisfying and the process of shipping is safe. My account was well-managed by the account officer of the company I am glad that I have chosen this company. Thank you very much Jamex Auto Auctions for providing me with the wonderful service and a perfect car. 
+                <p class="text-[#333333] ">
+                    I bought this car from Jamex Auction House at a very low price. The quality and service are
+                    satisfying and the process of shipping is safe. My account was well-managed by the account officer
+                    of the company I am glad that I have chosen this company. Thank you very much Jamex Auto Auctions
+                    for providing me with the wonderful service and a perfect car.
                 </p>
             </div>
             <div class="text-gray-900">
-                a
+                <el-avatar :size="50" :src="circleUrl" />
             </div>
             <div class="text-gray-900">
-                a
+                <div class="flex gap-2">
+                    <div>
+                                
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import { reactive, toRefs } from 'vue'
+
+const state = reactive({
+    circleUrl:
+        'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+    squareUrl:
+        'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+    sizeList: ['small', '', 'large'] as const,
+})
+
+const { circleUrl, squareUrl, sizeList } = toRefs(state)
+</script>
 
 <style>
 @media (min-width: 1024px) {
