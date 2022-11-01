@@ -4,19 +4,19 @@
     <div class="container mx-auto">
       <div class="flex justify-center">
         <div
-          class="grid grid-cols-10 grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-10 xl:grid-cols-10 gap-7 m-12 m-2 sm:m-2 md:m-10"
+          class="grid grid-cols-10 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-10 xl:grid-cols-10 gap-7 m-12 xs:m-2 sm:m-2 md:m-10"
         >
           <div
-            class="col-span-2 pt-12 col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2"
+            class="col-span-2 pt-12 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2"
           >
-            <div class="flex justify-center sm:justify-center">
+            <div class="flex xs:justify-center sm:justify-center">
               <img
                 class="mb-10"
                 src="@/assets\images\footer\footer-image-1.svg"
               />
             </div>
             <h1
-              class="text-left text-center sm:text-center md:text-left lg:text-left xl:text-left text-white footer-contect-text"
+              class="text-left xs:text-center sm:text-center md:text-left lg:text-left xl:text-left text-white footer-contect-text"
             >
               Jamex Auction House will give you due assistance regarding the
               procedure with which you can place your bids and control them for
@@ -24,13 +24,13 @@
             </h1>
           </div>
           <div
-            class="col-span-8 col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-8 xl:col-span-8"
+            class="col-span-8 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-8 xl:col-span-8"
           >
             <div
-              class="grid grid-cols-8 grid-cols-10 sm:grid-cols-10 md:grid-cols-10 lg:grid-cols-8 xl:grid-cols-8 gap-7"
+              class="grid grid-cols-8 xs:grid-cols-10 sm:grid-cols-10 md:grid-cols-10 lg:grid-cols-8 xl:grid-cols-8 gap-7"
             >
               <div
-                class="col-span-1 md:col-start-2 sm:col-start-2 col-span-5 sm:col-span-4 md:col-span-5 lg:col-span-1 xl:col-span-1 pt-12"
+                class="col-span-1 md:col-start-2 sm:col-start-2 xs:col-span-5 sm:col-span-4 md:col-span-5 lg:col-span-1 xl:col-span-1 pt-12"
               >
                 <h1 class="text-left footer-topic">About Us</h1>
                 <br />
@@ -84,7 +84,7 @@
                 </div>
               </div>
               <div
-                class="col-span-2 md:col-start-7 col-span-5 sm:col-span-5 md:col-span-3 lg:col-span-1 xl:col-span-2 pt-12 sm:pl-5 md:pl-5 lg:pl-0 xl:pl-20"
+                class="col-span-2 md:col-start-7 xs:col-span-5 sm:col-span-5 md:col-span-3 lg:col-span-1 xl:col-span-2 pt-12 sm:pl-5 md:pl-5 lg:pl-0 xl:pl-20"
               >
                 <h1 class="text-left footer-topic">Auctions</h1>
                 <br />
@@ -145,18 +145,18 @@
                 </div>
               </div>
               <div
-                class="col-span-3 md:col-start-3 col-start-2 sm:col-start-2 col-span-9 sm:col-span-9 md:col-span-10 lg:col-span-3 xl:col-span-3 xl:pt-12 lg:pt-12 md:pt-0 pt-0 sm:pt-0"
+                class="col-span-3 md:col-start-3 xs:col-start-2 sm:col-start-2 xs:col-span-9 sm:col-span-9 md:col-span-10 lg:col-span-3 xl:col-span-3 xl:pt-12 lg:pt-12 md:pt-0 xs:pt-0 sm:pt-0"
               >
                 <div class="justify-center">
                   <h1
-                    class="footer-topic text-center sm:text-center md:text-left lg:text-left lx:text-left"
+                    class="footer-topic xs:text-center sm:text-center md:text-left lg:text-left lx:text-left"
                   >
                     Support over the world
                   </h1>
                   <br />
                   <div>
                     <div
-                      class="grid grid-rows-7 grid-rows-11 sm:grid-rows-11 md:grid-rows-11 lg:grid-rows-7 xl:grid-rows-7 grid-flow-col gap-4"
+                      class="grid grid-rows-7 xs:grid-rows-11 sm:grid-rows-11 md:grid-rows-11 lg:grid-rows-7 xl:grid-rows-7 grid-flow-col gap-4"
                     >
                       <div>
                         <h1 class="text-white footer-contect-text">
@@ -332,17 +332,17 @@
               </div>
 
               <div
-                class="col-span-2 col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2 pt-12 pt-12 sm:pt-12 pb-12 sm:pb-12 ml-10 ml-10 sm:ml-10 md:ml-10"
+                class="col-span-2 xs:col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2 pt-12 xs:pt-12 sm:pt-12 xs:pb-12 sm:pb-12 ml-10 xs:ml-10 sm:ml-10 md:ml-10"
               >
                 <h1
-                  class="footer-topic text-center sm:text-center md:text-center lg:text-left xl:text-left"
+                  class="footer-topic xs:text-center sm:text-center md:text-center lg:text-left xl:text-left"
                 >
                   Reach us
                 </h1>
                 <br />
                 <h1 class="text-white footer-contect-text">
                   <div
-                    class="flex sm:flex justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
+                    class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
                   >
                     <img
                       class="inline mr-2"
@@ -353,7 +353,7 @@
                 </h1>
                 <br />
                 <div
-                  class="flex sm:flex justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
+                  class="xs:flex sm:flex xs:justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
                 >
                   <img
                     class="mr-2"
