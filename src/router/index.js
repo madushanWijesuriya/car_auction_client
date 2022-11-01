@@ -32,6 +32,11 @@ const router = createRouter({
       name: "test",
       component: () => import("../views/TestView.vue"),
     },
+    {
+      path: "/customer-feedback",
+      name: "customerFeedBack",
+      component: () => import("../views/aboutUsCusFeedback.vue"),
+    },
   ],
 });
 
