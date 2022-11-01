@@ -27,10 +27,16 @@
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <a class="font-semibold" href="http://127.0.0.1:5173/">Home</a>
+        <a
+          class="font-semibold"
+          href="https://car-auction-staging.netlify.app//"
+          >Home</a
+        >
       </div>
       <div class="flex items-center gap-2">
-        <a class="font-semibold" href="http://127.0.0.1:5173/service"
+        <a
+          class="font-semibold"
+          href="https://car-auction-staging.netlify.app//service"
           >Services</a
         >
         <div class="w-[10px] h-[10px]">
@@ -53,13 +59,17 @@
       <div class="font-semibold">
         <a
           class="font-semibold"
-          href="http://127.0.0.1:5173/countries-vehicle-details"
+          href="https://car-auction-staging.netlify.app//countries-vehicle-details"
           >Countries</a
         >
       </div>
       <div class="font-semibold">How to Order</div>
       <div class="flex items-center gap-2">
-        <a class="font-semibold" href="http://127.0.0.1:5173/about">About Us</a>
+        <a
+          class="font-semibold"
+          href="https://car-auction-staging.netlify.app//about"
+          >About Us</a
+        >
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -78,7 +88,9 @@
         </div>
       </div>
       <div class="font-semibold">
-        <a class="font-semibold" href="http://127.0.0.1:5173/reachus"
+        <a
+          class="font-semibold"
+          href="https://car-auction-staging.netlify.app//reachus"
           >Reach Us</a
         >
       </div>
