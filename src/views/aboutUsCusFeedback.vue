@@ -27,7 +27,7 @@ var base_url = window.location.origin;
                 <p class="text-center text-[20px] font-nunito font-bold text-[#08246C]">Loved by businesses, and
                     individuals across the globe.</p>
             </div>
-            <div class="border border-[#08246C] space-y-3 mx-4 py-5 px-3 rounded-md">
+            <div class="border-[1px] border-[#08246C] space-y-5 mx-4 py-5 px-3 rounded-lg">
                 <div class="flex gap-1">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -60,17 +60,18 @@ var base_url = window.location.origin;
                     of the company I am glad that I have chosen this company. Thank you very much Jamex Auto Auctions
                     for providing me with the wonderful service and a perfect car.
                 </p>
-            </div>
-            <div class="text-gray-900">
+                <div class="text-gray-900">
                 <div class="flex gap-2">
-                    <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] object-cover"
+                    <img class="lg:rounded-[15px] md:rounded-[10px] h-[40px] w-[40px] object-cover"
                     src="@/assets/images/customer-feedback/avatar.svg" />
                     <div>
-                        <p>Christina</p>
-                        <p>Los Angeles, CA</p>
+                        <p class="text-[16px] font-bold font-nunito">Christina</p>
+                        <p class="text-[14px] font-nunito">Los Angeles, CA</p>
                     </div>
                 </div>
             </div>
+            </div>
+        
         </div>
     </div>
 </template>
