@@ -4,9 +4,9 @@ var base_url = window.location.origin;
 <template>
     <div class="text-white text-sm">
         <div
-            class="flex flex-col gap-10 justify-center items-center w-full md:px-[60px] lg:px-[80px] xl:px-[180px] md:mt-2 xl:mt-3">
+            class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3">
             <div class="relative w-full">
-                <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] object-cover"
+                <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/customer-feedback/cus-feedback.svg" />
                 <div class="absolute text-white top-1/2 left-1/4 -translate-x-1/4 -translate-y-1/2">
                     <div class="text-white">
@@ -23,14 +23,14 @@ var base_url = window.location.origin;
                     </div>
                 </div>
             </div>
-            <div class="mx-16">
-                <p class="text-center text-[20px] font-nunito font-bold text-[#08246C]">Loved by businesses, and
+            <div class="mx-16 md:mt-10 xl:mt-20">
+                <p class="text-center text-[20px] xl:text-[36px] xl:leading-normal font-nunito font-bold text-[#08246C]">Loved by businesses, and
                     individuals across the globe.</p>
             </div>
 
-            <div class="md:flex flex-row gap-[3vw]">
+            <div class="md:flex md:w-full md:px-10 lg:px-20 flex-row justify-between">
                 <div
-                    class="border-[1px] border-[#08246C] w-[355px] md:w-[50%] h-[350px] md:h-[60%] flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
+                    class="border-[1px] border-[#08246C] w-[355px] md:w-[30vw] xl:w-[20vw] h-[350px] md:h-[30vw]  xl:h-[20vw] flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
                     <div class="flex gap-1">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -78,7 +78,7 @@ var base_url = window.location.origin;
                 </div>
 
                 <div
-                    class="hidden border-[1px] border-[#08246C] w-[355px] md:w-[50%] h-[350px] md:h-[60%] md:flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
+                    class="hidden border-[1px] border-[#08246C] w-[355px] md:w-[30vw] xl:w-[20vw] h-[350px] md:h-[30vw]  xl:h-[20vw] md:flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
                     <div class="flex gap-1">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -126,7 +126,7 @@ var base_url = window.location.origin;
                 </div>
                 
                 <div
-                    class="hidden border-[1px] border-[#08246C] w-[355px] md:w-[50%] h-[350px] md:h-[60%] xl:flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
+                    class="hidden border-[1px] border-[#08246C] w-[355px] md:w-[30vw] xl:w-[20vw] h-[350px] md:h-[30vw]  xl:h-[20vw] xl:flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
                     <div class="flex gap-1">
                         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
