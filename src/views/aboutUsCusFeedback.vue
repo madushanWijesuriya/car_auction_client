@@ -4,7 +4,7 @@ var base_url = window.location.origin;
 <template>
     <div class="text-white text-sm">
         <div
-            class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3">
+            class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/customer-feedback/cus-feedback.svg" />
