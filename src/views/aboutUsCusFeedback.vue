@@ -3,8 +3,7 @@ var base_url = window.location.origin;
 </script>
 <template>
     <div class="text-white text-sm">
-        <div
-            class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
+        <div class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/customer-feedback/cus-feedback.svg" />
@@ -24,7 +23,9 @@ var base_url = window.location.origin;
                 </div>
             </div>
             <div class="mx-16 md:mt-10 xl:mt-20">
-                <p class="text-center text-[20px] xl:text-[36px] xl:leading-normal font-nunito font-bold text-[#08246C]">Loved by businesses, and
+                <p
+                    class="text-center text-[20px] xl:text-[36px] xl:leading-normal font-nunito font-bold text-[#08246C]">
+                    Loved by businesses, and
                     individuals across the globe.</p>
             </div>
 
@@ -124,7 +125,7 @@ var base_url = window.location.origin;
                         </div>
                     </div>
                 </div>
-                
+
                 <div
                     class="hidden border-[1px] border-[#08246C] w-[355px] md:w-[30vw] xl:w-[20vw] h-[350px] md:h-[30vw]  xl:h-[20vw] xl:flex flex-col gap-2 space-y-5 py-7 px-5 rounded-lg">
                     <div class="flex gap-1">
@@ -185,7 +186,8 @@ var base_url = window.location.origin;
                 </svg>
             </div>
 
-            <div class="md:hidden text-white text-center font-bold font-Nunito rounded-md text-md bg-[#08246C] w-[350px] py-4">
+            <div
+                class="md:hidden text-white text-center font-bold font-Nunito rounded-md text-md bg-[#08246C] w-[350px] py-4">
                 See More
             </div>
 
@@ -202,3 +204,4 @@ var base_url = window.location.origin;
     }
 }
 </style>
+  
