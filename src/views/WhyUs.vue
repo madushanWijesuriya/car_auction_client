@@ -27,8 +27,8 @@ var base_url = window.location.origin;
 
             <div class="border border-[#E7E7E7] font-Nunito p-2 rounded-md mx-4">
                 <h1 class="text-left mt-2 ml-3 text-[20px] text-[#08246C] font-bold">
-                                Process of Ordering
-                            </h1>
+                    Process of Ordering
+                </h1>
                 <div class="flex justify-start gap-3 mt-4">
                     <div class="flex w-5 flex-col items-center ml-3">
                         <div class="flex flex-col items-center justify-center text-white">
@@ -41,11 +41,25 @@ var base_url = window.location.origin;
                     </div>
 
                     <div>
-                        <div
-                            class="">
+                        <div class="text-Nunito">
                             <div class="text-[#333333] text-left text-[16px] font-bold">
                                 Transparent vehicle inspection with physical visit
                             </div>
+                            <p class="text-[12px] text-black mt-1 font-medium leading-4">
+                                Our staff members take the responsibility to visit the vehicle for physical inspection
+                                before placing bids on your behalf. During this visit complete inspection of the car is
+                                performed regarding the condition of the car. The parts of the car that are looked at
+                                for their condition and functionality
+                            </p>
+                            <p class="text-[12px] text-black mt-1 font-medium leading-4">
+                                Include :  
+                            </p>
+                                <ul class="text-black">
+                                    <li>
+                                        Transmission and engine 
+                                    </li>
+                                </ul>
+                           
                         </div>
                     </div>
                 </div>
