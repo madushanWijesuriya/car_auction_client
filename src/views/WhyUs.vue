@@ -7,14 +7,17 @@ var base_url = window.location.origin;
             <div class="relative w-full md:px-[5%]">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/why-us/why-us-1.svg" />
-                <div class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
+                <div
+                    class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
                     <div class="flex flex-col text-white">
                         <div class="flex flex-col md:gap-2 lg:gap-2 w-full">
                             <div>
-                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">The Reason to choose</h1>
+                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">The Reason to choose
+                                </h1>
                             </div>
                             <div>
-                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">Jamex Auction House.</h1>
+                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">Jamex Auction House.
+                                </h1>
                             </div>
                         </div>
                         <p class="mt-1 text-[12px] md:text-sm md:mt-3 font-Nunito">To assure an outstanding experience
@@ -25,7 +28,7 @@ var base_url = window.location.origin;
                 </div>
             </div>
 
-            <div class="border md:border-none border-[#E7E7E7] font-Nunito p-2 rounded-md mx-4 md:mx-0">
+            <div class="border md:border-none border-[#E7E7E7] font-Nunito p-2 rounded-md mx-2 md:ml-[2%] md:mr-[5%]">
                 <h1 class="text-left mt-2 ml-3 text-[20px] text-[#08246C] font-bold md:hidden">
                     Process of Ordering
                 </h1>
@@ -42,11 +45,13 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3 xl:mb-6">
-                                <div class="text-[#333333] text-left text-[16px] lg:text-[20px] xl:text-[24px] font-bold">
+                            <div class="text-Nunito mb-5 xl:mb-6 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] lg:text-[20px] xl:text-[24px] font-bold">
                                     Transparent vehicle inspection with physical visit
                                 </div>
-                                <p class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 font-medium leading-4 lg:leading-5 xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 font-medium leading-4 lg:leading-5 xl:leading-7">
                                     Our staff members take the responsibility to visit the vehicle for physical
                                     inspection
                                     before placing bids on your behalf. During this visit complete inspection of the car
@@ -55,11 +60,13 @@ var base_url = window.location.origin;
                                     at
                                     for their condition and functionality
                                 </p>
-                                <p class="text-[12px] lg:text-[16px] xl:text-[20px]  text-black mt-1 xl:mt-8 font-medium leading-4 lg:leading-5 xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px]  text-black mt-1 xl:mt-8 font-medium leading-4 lg:leading-5 xl:leading-7">
                                     Include :
                                 </p>
                                 <div class="pl-6">
-                                    <ul class="list-disc text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 font-medium leading-4 lg:md:leading-7 lg:leading-5 xl:leading-7">
+                                    <ul
+                                        class="list-disc text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 font-medium leading-4 lg:md:leading-7 lg:leading-5 xl:leading-7">
                                         <li>Transmission and engine</li>
                                         <li>Bushes and suspensions</li>
                                         <li>Power window CV Joint rubbers and central locks</li>
@@ -68,6 +75,12 @@ var base_url = window.location.origin;
                                         <li>Wipers Steering racks and horns</li>
                                     </ul>
                                 </div>
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-4 xl:mt-8 font-medium leading-4 lg:md:leading-7 lg:leading-5 xl:leading-7">
+                                    When the car has passed the process of inspection, we hand over it to our
+                                    professionals who will undertake its cleaning and maintenance in order to assure on-
+                                    road safety
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -84,26 +97,32 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3">
-                                <div class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
+                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
                                     Process of Maintenance
                                 </div>
-                                <p class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
                                     We undertake appropriate checks to check the vehicle condition and then prepare it
                                     for appropriate function to make it reliable for long-term use. If any malfunction
                                     is seen in the vehicle, the shipment is done right after that.
                                 </p>
                                 <div class="pl-6">
-                                    <ul class="list-[upper-alpha] text-black mt-1 xl:mt-4 ">
+                                    <ul class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold list-[upper-alpha] text-black mt-1 xl:mt-4 ">
                                         <li>
-                                            <p class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7"> Cleaning and Coating of
+                                            <p
+                                                class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7">
+                                                Cleaning and Coating of
                                                 Vehicle</p>
-                                            <p class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] lg:leading-5 xl:leading-7">
+                                            <p
+                                                class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] lg:leading-5 xl:leading-7">
                                                 Cleaning and coating of the car are done property from inside out. Each
                                                 and every section of the car is inspected for its looks and functioning.
                                                 Following areas are undertaken
                                             </p>
-                                            <ul class="list-disc ml-4 text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 lg:leading-5 xl:leading-7">
+                                            <ul
+                                                class="list-disc ml-4 text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 lg:leading-5 xl:leading-7">
                                                 <li class="">
                                                     Wax coating of the dashboard plus engine room with a clear spray
                                                 </li>
@@ -115,15 +134,19 @@ var base_url = window.location.origin;
                                                 </li>
 
                                             </ul>
-                                            <p class="mt-3 xl:mt-4 text-[12px] lg:text-[16px] xl:text-[20px] xl:leading-7">
+                                            <p
+                                                class="mt-3 xl:mt-4 text-[12px] lg:text-[16px] xl:text-[20px] xl:leading-7">
                                                 Maintenance and cleaning are done to assure that the car reaches the end
                                                 customer in the best condition without any issues. Also, it protects the
                                                 car from the threat of corrosion during the process of shipment.
                                             </p>
                                         </li>
-                                        <li class="mt-2 xl:m-4">
-                                            <p class="text-[16px] lg:text-[20px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7"> Battery and tires </p>
-                                            <p class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] leading-4 lg:leading-5 xl:leading-7">
+                                        <li class="mt-2">
+                                            <p
+                                                class="text-[16px] lg:text-[20px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7">
+                                                Battery and tires </p>
+                                            <p
+                                                class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] leading-4 lg:leading-5 xl:leading-7">
                                                 Replacement of tires and batteries is done to assure the good condition
                                                 of the vehicle that can be derived on road safely.
                                             </p>
@@ -146,11 +169,13 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3">
-                                <div class="text-[#333333] text-left text-[16px] lg:text-[24px] xl:text-[20px] font-bold ">
+                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
                                     Low charges
                                 </div>
-                                <p class="text-[12px] text-black mt-2 leading-4 lg:text-[16px] xl:text-[20px] lg:leading-5 xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
                                     We always assure cost-saving at every step of bidding till delivery. This
                                     cost-saving reaches customers with the help of our cost-effective operations. We try
                                     to improve the capacity of our system by improving our networks. New buying sources
@@ -173,11 +198,13 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3">
-                                <div class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px]  font-bold">
+                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
                                     Location of yards
                                 </div>
-                                <p class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-2 leading-4 lg:leading-5 xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
                                     Yards for Auction House Japan are placed at strategic positions that allow
                                     convenient and safe access to the major ports from where export is done. As a
                                     result, it becomes possible to reduce inland transport costs that also allows
@@ -200,11 +227,13 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3">
-                                <div class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
+                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold">
                                     Easy and safe delivery
                                 </div>
-                                <p class="text-[12px] text-black mt-2 leading-4 lg:leading-5 lg:text-[16px] xl:text-[20px] xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
                                     We make the process of delivery easy by streamlining the operation at the desired
                                     port. The vehicle reaches the desired port at the most affordable rates. We choose
                                     shipping companies that offer affordability and safety. Duration of shipping is kept
@@ -226,11 +255,13 @@ var base_url = window.location.origin;
                         </div>
 
                         <div>
-                            <div class="text-Nunito mb-3">
-                                <div class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
+                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
+                                <div
+                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold">
                                     Network of Auction Houses
                                 </div>
-                                <p class="text-[12px] text-black mt-2 leading-4 lg:leading-5 lg:text-[16px] xl:text-[20px] xl:leading-7">
+                                <p
+                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
                                     Jamex auto auction make you get the most appropriate and valuable cars from japan.
                                     It is made possible with the help of the network of auction houses we have here.
                                     More than 140 auction houses are working with us that making it possible to have
