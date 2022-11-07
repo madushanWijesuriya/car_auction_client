@@ -6,15 +6,22 @@ import Footer from "@/components/layout/Footer.vue";
 
 <template>
   <div id="app">
-    <header v-if="!this.$route.meta.layout">
-      <Navbar />
-    </header>
-    <body>
-      <RouterView />
-    </body>
-    <footer v-if="!this.$route.meta.layout">
-      <Footer />
-    </footer>
+    <div v-if="this.$route.meta.layout">
+      <body>
+        <RouterView />
+      </body>
+    </div>
+    <div v-else>
+      <header>
+        <Navbar />
+      </header>
+      <body>
+        <RouterView />
+      </body>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   </div>
 </template>
 
