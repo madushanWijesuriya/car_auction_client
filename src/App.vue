@@ -6,13 +6,13 @@ import Footer from "@/components/layout/Footer.vue";
 
 <template>
   <div id="app">
-    <header>
+    <header v-if="!this.$route.meta.layout">
       <Navbar />
     </header>
     <body>
       <RouterView />
     </body>
-    <footer>
+    <footer v-if="!this.$route.meta.layout">
       <Footer />
     </footer>
   </div>
