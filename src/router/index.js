@@ -38,10 +38,20 @@ const router = createRouter({
       component: () => import("../views/TestView.vue"),
     },
     {
+      path: "/customer-feedback",
+      name: "customerFeedBack",
+      component: () => import("../views/aboutUsCusFeedback.vue"),
+    },
+    {
+      path: "/why-us",
+      name: "whyus",
+      component: () => import("../views/WhyUs.vue"),
+    },
+    {
       path: "/countries-vehicle-details",
       name: "countriesVehicleDetails",
       component: () => import("../views/CountriesVehicleDetailsView.vue"),
-    },
+    }
   ],
 });
 
