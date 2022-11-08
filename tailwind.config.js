@@ -6,6 +6,13 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    letterSpacing: {
+      1: "0em",
+      2: "0.025em",
+      3: "0.05em",
+      4: "0.1em",
+      5: "1em",
+    },
     extend: {
       gridTemplateRows: {
         // Simple 8 row grid
@@ -16,6 +23,18 @@ module.exports = {
         11: "repeat(11, minmax(0, 1fr))",
 
         // Complex site-specific row configuration
+      },
+      colors: {
+        "color-01": "#08246c",
+        "color-02": "#ce2832",
+        "color-03": "#000000",
+        "color-04": "#393939",
+        "color-05": "#c1c8da",
+        "color-06": "#202020",
+        "color-07": "#A098AE",
+        blue: {
+          1000: "#08246C",
+        },
       },
     },
     screens: {
