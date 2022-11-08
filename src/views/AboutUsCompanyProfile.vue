@@ -3,10 +3,10 @@
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full md:px-[5%]">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
-                    src="@/assets/images/why-us/why-us-1.svg" />
+                    src="@/assets/images/company-profile/company-profile.svg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
-                    <div class="flex flex-col gap-3 text-white w-full xl:w-[50%]">
+                    <div class="flex flex-col gap-3 xl:gap-4 text-white w-full xl:w-[60%]">
                         <div class="">
                             <div>
                                 <h1 class="font-baner-h1">Biggest Vehicle
@@ -14,12 +14,12 @@
                                 </h1>
                             </div>
                         </div>
-                        <p class=".font-baner-h2 mt-1 md:text-sm md:mt-3 font-Nunito">In Japan we have access to most of
+                        <p class="font-baner-h2 mt-1 md:mt-3">In Japan we have access to most of
                             the auction houses including those located in Yokohama, Tokyo, Chubu Industrial Region and
                             Nagoya.</p>
-                        <p class="font-baner-number">
+                        <p class="font-baner-number mt-5 md:mt-5">
                             5</p>
-                        <p class=".font-baner-h2 mt-1 md:text-sm md:mt-3 font-Nunito">
+                        <p class="font-baner-number mt-1">
                             Cars in Stock</p>
                     </div>
                 </div>
@@ -308,6 +308,28 @@
         line-height: 115%;
         color: white;
     }
+}
+
+@media only screen and (min-width: 1300px) {
+
+/* For mobile phones: */
+[class*="font-baner-h1"] {
+    font-size: 64px;
+    line-height: 73.6px;
+    color: white;
+}
+
+[class*="font-baner-h2"] {
+    font-size: 20px;
+    line-height: 20px;
+    color: white;
+}
+
+[class*="font-baner-number"] {
+    font-size: 75px;
+    line-height: 90px;
+    color: white;
+}
 }
 </style>
   
