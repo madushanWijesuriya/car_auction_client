@@ -6,21 +6,21 @@
                     src="@/assets/images/why-us/why-us-1.svg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
-                    <div class="flex flex-col text-white">
-                        <div class="flex flex-col md:gap-2 lg:gap-2 w-full">
+                    <div class="flex flex-col gap-3 text-white w-full xl:w-[50%]">
+                        <div class="">
                             <div>
-                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">The Reason to choose
-                                </h1>
-                            </div>
-                            <div>
-                                <h1 class="text-3xl lg:text-3xl xl:text-7xl font-bold font-Nunito">Jamex Auction House.
+                                <h1 class="font-baner-h1">Biggest Vehicle
+                                    trading company of Japan.
                                 </h1>
                             </div>
                         </div>
-                        <p class="mt-1 text-[12px] md:text-sm md:mt-3 font-Nunito">To assure an outstanding experience
-                            of car purchase we provide you professional assistance for bid
-                            placing. You do not need to be an expert bidder for this purpose.
-                            We will guide you for the bidding procedure. Below are the steps to guide you.</p>
+                        <p class=".font-baner-h2 mt-1 md:text-sm md:mt-3 font-Nunito">In Japan we have access to most of
+                            the auction houses including those located in Yokohama, Tokyo, Chubu Industrial Region and
+                            Nagoya.</p>
+                        <p class="font-baner-number">
+                            5</p>
+                        <p class=".font-baner-h2 mt-1 md:text-sm md:mt-3 font-Nunito">
+                            Cars in Stock</p>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,8 @@
                                     is seen in the vehicle, the shipment is done right after that.
                                 </p>
                                 <div class="pl-6">
-                                    <ul class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold list-[upper-alpha] text-black mt-1 xl:mt-4 ">
+                                    <ul
+                                        class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold list-[upper-alpha] text-black mt-1 xl:mt-4 ">
                                         <li>
                                             <p
                                                 class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7">
@@ -270,6 +271,15 @@
                             </div>
                         </div>
                     </div>
+                    <p class="font-x3">
+                        Jamex auto auction make you get the most appropriate and valuable cars from japan.
+                        It is made possible with the help of the network of auction houses we have here.
+                        More than 140 auction houses are working with us that making it possible to have
+                        access to around 145,000 automobiles on weekly basis. Some are connected to famous
+                        auction houses including AAA MIRIVE, USS KCAA HAA JU AUCNET, and NAA. All these
+                        auction houses are well-known for the provision of Japanese cars for the auction
+                        process.
+                    </p>
 
                 </div>
             </div>
@@ -279,12 +289,24 @@
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+@import "@/assets/scss/companyProfile.scss";
+
 @media (min-width: 1024px) {
     .about {
         min-height: 100vh;
         display: flex;
         align-items: center;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+
+    /* For mobile phones: */
+    [class*="font-baner-h1"] {
+        font-size: 50px;
+        line-height: 115%;
+        color: white;
     }
 }
 </style>
