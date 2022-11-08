@@ -51,7 +51,12 @@ const router = createRouter({
       path: "/countries-vehicle-details",
       name: "countriesVehicleDetails",
       component: () => import("../views/CountriesVehicleDetailsView.vue"),
-    }
+    },
+    {
+      path: "/how-to-ordering",
+      name: "HowToOrdering",
+      component: () => import("../views/HowToOrderingView.vue"),
+    },
   ],
 });
 
