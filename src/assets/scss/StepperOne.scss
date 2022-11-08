@@ -1,0 +1,46 @@
+.stepper-one {
+  ::v-deep(.el-step__icon) {
+    background-color: var(--primary-blue);
+    color: #fff;
+  }
+  ::v-deep(.el-step__icon-inner) {
+    font-weight: 600;
+  }
+  ::v-deep(.el-step__head) {
+    border-color: var(--primary-blue);
+  }
+  ::v-deep(.el-step__line) {
+    background-color: var(--primary-blue);
+  }
+  ::v-deep(.el-step__title) {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333333;
+  }
+  ::v-deep(.el-step__description) {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    margin-bottom: 12px;
+  }
+
+  @media (min-width: 640px) {
+    ::v-deep(.el-step__title) {
+      font-size: 24px;
+    }
+    ::v-deep(.el-step__description) {
+      font-size: 20px;
+      line-height: 27px;
+      margin-bottom: 28px;
+    }
+    ::v-deep(.el-step__icon) {
+      width: 32px;
+      height: 32px;
+      right: 4px;
+    }
+    ::v-deep(.el-step__main) {
+      padding-left: 20px;
+    }
+  }
+}
