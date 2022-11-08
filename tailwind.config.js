@@ -32,6 +32,9 @@ module.exports = {
         "color-05": "#c1c8da",
         "color-06": "#202020",
         "color-07": "#A098AE",
+        blue: {
+          1000: "#08246C",
+        },
       },
     },
     screens: {
