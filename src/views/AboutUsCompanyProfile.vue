@@ -24,12 +24,12 @@
                     </div>
                 </div>
             </div>
-            <div class="px-3 md:px-[5%]">
-                <div class="border space-y-3 p-5 border-color-[#E7E7E7]">
+            <div class="px-3 md:px-[5%] lg:mt-14 xl:mt-20">
+                <div class="border md:border-0 p-5 border-color-[#E7E7E7]">
                     <div class="font-h2">
                         Company Profile
                     </div>
-                    <p class="font-para">
+                    <p class="font-para mt-3">
                         Jamex Auction House is the leading auto trading company of Japan that is working in the same
                         niche
                         for over 10 year. We have satisfied customers in different parts of the world including Europe
@@ -62,8 +62,9 @@
                         our
                         vehicle trading business.
                     </p>
-                    <div class="space-y-3">
-                        <div class="">
+                    <div
+                        class="mt-8 md:mt-10 xl:mt-20 space-y-4 md:space-y-0 md:gap-2 w-full md:flex flex-row items-start">
+                        <div class="flex-1">
                             <p class="font-contact-details-headers">
                                 Company Name
 
@@ -72,7 +73,7 @@
                                 JAMEX CO., LTD
                             </p>
                         </div>
-                        <div class="">
+                        <div class="flex-1">
                             <p class="font-contact-details-headers">
                                 MEMBER
 
@@ -81,7 +82,7 @@
                                 Tokyo Chamber Of Commerce Industry (C2725053).
                             </p>
                         </div>
-                        <div class="">
+                        <div class="flex-1">
                             <p class="font-contact-details-headers">
                                 EXPORTING AREA
                             </p>
@@ -89,7 +90,7 @@
                                 AFRICA, ASIA, EUROPE, CARIBBEAN, OCEANIA, & CIS
                             </p>
                         </div>
-                        <div class="">
+                        <div class="flex-1">
                             <p class="font-contact-details-headers">
                                 LOCATION
                             </p>
@@ -102,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 w-fit lg:flex-row items-center lg:h-[70vh] justify-center md:px-[5%]">
+            <div class="flex flex-wrap gap-3 w-fit lg:flex-row items-center lg:h-[70vh] justify-center px-3 md:px-[5%]">
                 <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
@@ -174,7 +175,7 @@
                         <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">MHCBJPJT</span>
                         </p>
                     </div>
-                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
                         <p class="font-card-line-title">Account No: <span class="font-card-line-content">147XXXX</span>
                         </p>
                     </div>
@@ -215,11 +216,11 @@
                         <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">BOTKJPJT</span>
                         </p>
                     </div>
-                    <div class=" border-t border-[#E7E7E7] mx-3 p-2">
+                    <div class=" border-b border-[#E7E7E7] mx-3 p-2">
                         <p class="font-card-line-title">Account Type: <span
                                 class="font-card-line-content">ORDINARY</span></p>
                     </div>
-                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
                         <p class="font-card-line-title">Bank Address: <span class="font-card-line-content">2-16-2
                                 Kounan Minato-ku, Tokyo 108-0075 Japan</span></p>
                     </div>
@@ -229,13 +230,13 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4 md:px-[5%]">
+            <div class="p-4 md:px-[5%] xl:space-y-6 lg:space-y-4">
                 <p class="font-license-title">
                     LICENSE
                 </p>
-                <p class="font-license-title">
+                <p class="font-license-content">
                     Licensed as "USED ITEMS DEALER" under license no. 301111707379 by tokyo public safety commission
-                    (東京都公安委員会)
+                    (<span class="font-license-japan">東京都公安委員会</span>)
                 </p>
             </div>
         </div>
@@ -282,6 +283,68 @@
         font-size: 50px;
         line-height: 40px;
         color: white;
+    }
+
+    [class*="font-h2"] {
+        font-size: 36px;
+        line-height: 49.1px;
+    }
+
+    [class*="font-para"] {
+        font-size: 20px;
+        line-height: 27.28px;
+    }
+
+    [class*="font-contact-details-headers"] {
+        font-size: 24px;
+        line-height: 32.74px;
+        font-weight: 700;
+    }
+
+    [class*="font-contact-details-line"] {
+        font-size: 24px;
+        line-height: 32.74px;
+        font-weight: 500;
+
+    }
+
+    [class*="font-card-details-headers"] {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    [class*="font-card-line-title"] {
+        font-size: 20px;
+        line-height: 27.28px;
+        font-weight: 700;
+    }
+
+    [class*="font-card-line-content"] {
+        font-size: 20px;
+        line-height: 27.28px;
+        font-weight: 400;
+    }
+
+    [class*="font-card-line-title"] {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    [class*="font-license-content"] {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    [class*="font-license-title"] {
+        font-size: 20px;
+        line-height: 32.74px;
+        font-weight: 700;
+    }
+
+    [class*="font-license-japan"] {
+        font-size: 20px;
+        line-height: 32.74px;
+        font-weight: 500;
     }
 }
 </style>
