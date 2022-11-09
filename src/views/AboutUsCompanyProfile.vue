@@ -24,267 +24,79 @@
                     </div>
                 </div>
             </div>
+            <div class="p-3">
+                <div class="border space-y-3 p-5 border-color-[#E7E7E7]">
+                    <div class="font-h2">
+                        Company Profile
+                    </div>
+                    <div class="font-para">
+                        Jamex Auction House is the leading auto trading company of Japan that is working in the same
+                        niche
+                        for over 10 year. We have satisfied customers in different parts of the world including Europe
+                        Oceania, Caribbean, Asia and Africa. The used car are provided at very competitive cost. Our
+                        access
+                        to all auction houses in Japan make us the most reliable and successful auto trading company. In
+                        Japan we have access to most of the auction houses including those located in Yokohama, Tokyo,
+                        Chubu
+                        Industrial Region and Nagoya.
 
-            <div class="border md:border-none border-[#E7E7E7] font-Nunito p-2 rounded-md mx-2 md:ml-[2%] md:mr-[5%]">
-                <h1 class="text-left mt-2 ml-3 text-[20px] text-[#08246C] font-bold md:hidden">
-                    Process of Ordering
-                </h1>
-                <div class="xl:mt-28">
-                    <div class="flex justify-start gap-3 mt-4">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    1</div>
-                            </div>
-                            <div class="h-[230px] flex-auto border-l-2 border-[#08246C]">
-                            </div>
+                        At Auction House Japan we have always explored and found export quality vehicles that are
+                        properly
+                        reconditioned. Our diversified team for automobile auction suppliers make us the best reputed
+                        company for the supply of good quality vehicles in different parts of the world.
+
+                        We can fulfill the needs of fully reconditioned cars with fit tires, replaced defective parts
+                        and
+                        new batteries. To improve the condition upholstery and engine are properly cleaned. Painting and
+                        spraying are done. Although Sedans are well-maintained by their previous owners, we make sure to
+                        perform reconditioning work as per the demand of the customers.
+
+                        To get full knowledge of our services we will ask you to browse through the list of the cars in
+                        our
+                        auction house after which you will feel confident to peruse business and create an alliance with
+                        us.
+                        You can contact us anytime via phone calls. Emails and fax to gain additional information about
+                        our
+                        vehicle trading business.
+                    </div>
+                    <div class="space-y-3">
+                        <div class="">
+                            <p class="font-contact-details-headers">
+                                Company Name
+
+                            </p>
+                            <p class="font-contact-details-line">
+                                JAMEX CO., LTD
+                            </p>
                         </div>
+                        <div class="">
+                            <p class="font-contact-details-headers">
+                                MEMBER 
 
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-6 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] lg:text-[20px] xl:text-[24px] font-bold">
-                                    Transparent vehicle inspection with physical visit
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 font-medium leading-4 lg:leading-5 xl:leading-7">
-                                    Our staff members take the responsibility to visit the vehicle for physical
-                                    inspection
-                                    before placing bids on your behalf. During this visit complete inspection of the car
-                                    is
-                                    performed regarding the condition of the car. The parts of the car that are looked
-                                    at
-                                    for their condition and functionality
-                                </p>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px]  text-black mt-1 xl:mt-8 font-medium leading-4 lg:leading-5 xl:leading-7">
-                                    Include :
-                                </p>
-                                <div class="pl-6">
-                                    <ul
-                                        class="list-disc text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 font-medium leading-4 lg:md:leading-7 lg:leading-5 xl:leading-7">
-                                        <li>Transmission and engine</li>
-                                        <li>Bushes and suspensions</li>
-                                        <li>Power window CV Joint rubbers and central locks</li>
-                                        <li>winkers, lens and indicators</li>
-                                        <li>Driveshaft</li>
-                                        <li>Wipers Steering racks and horns</li>
-                                    </ul>
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-4 xl:mt-8 font-medium leading-4 lg:md:leading-7 lg:leading-5 xl:leading-7">
-                                    When the car has passed the process of inspection, we hand over it to our
-                                    professionals who will undertake its cleaning and maintenance in order to assure on-
-                                    road safety
-                                </p>
-                            </div>
+                            </p>
+                            <p class="font-contact-details-line">
+                                Tokyo Chamber Of Commerce Industry (C2725053).
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="font-contact-details-headers">
+                                EXPORTING AREA 
+                            </p>
+                            <p class="font-contact-details-line">
+                                AFRICA, ASIA, EUROPE, CARIBBEAN, OCEANIA, & CIS
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="font-contact-details-headers">
+                                LOCATION 
+                            </p>
+                            <p class="font-contact-details-line">
+                                140-0004 TOKYO, SHINAGAWAKU, MINAMI SHINAGAWA 1-3-6 JAPAN
+                            </p>
                         </div>
                     </div>
-
-                    <div class="flex justify-start gap-3">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    2</div>
-                            </div>
-                            <div class="flex-auto border-l-2 border-[#08246C]">
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
-                                    Process of Maintenance
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
-                                    We undertake appropriate checks to check the vehicle condition and then prepare it
-                                    for appropriate function to make it reliable for long-term use. If any malfunction
-                                    is seen in the vehicle, the shipment is done right after that.
-                                </p>
-                                <div class="pl-6">
-                                    <ul
-                                        class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold list-[upper-alpha] text-black mt-1 xl:mt-4 ">
-                                        <li>
-                                            <p
-                                                class="text-[16px] lg:text-[16px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7">
-                                                Cleaning and Coating of
-                                                Vehicle</p>
-                                            <p
-                                                class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] lg:leading-5 xl:leading-7">
-                                                Cleaning and coating of the car are done property from inside out. Each
-                                                and every section of the car is inspected for its looks and functioning.
-                                                Following areas are undertaken
-                                            </p>
-                                            <ul
-                                                class="list-disc ml-4 text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 lg:leading-5 xl:leading-7">
-                                                <li class="">
-                                                    Wax coating of the dashboard plus engine room with a clear spray
-                                                </li>
-                                                <li>
-                                                    Cleaning and steaming of the engine underframe and body
-                                                </li>
-                                                <li>
-                                                    Black paint on the chassis underbody and frame area
-                                                </li>
-
-                                            </ul>
-                                            <p
-                                                class="mt-3 xl:mt-4 text-[12px] lg:text-[16px] xl:text-[20px] xl:leading-7">
-                                                Maintenance and cleaning are done to assure that the car reaches the end
-                                                customer in the best condition without any issues. Also, it protects the
-                                                car from the threat of corrosion during the process of shipment.
-                                            </p>
-                                        </li>
-                                        <li class="mt-2">
-                                            <p
-                                                class="text-[16px] lg:text-[20px] xl:text-[24px] font-semibold leading-4 lg:leading-5 xl:leading-7">
-                                                Battery and tires </p>
-                                            <p
-                                                class="mt-3 text-[12px] lg:text-[16px] xl:text-[20px] leading-4 lg:leading-5 xl:leading-7">
-                                                Replacement of tires and batteries is done to assure the good condition
-                                                of the vehicle that can be derived on road safely.
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-start gap-3">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    3</div>
-                            </div>
-                            <div class="flex-auto border-l-2 border-[#08246C]">
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
-                                    Low charges
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
-                                    We always assure cost-saving at every step of bidding till delivery. This
-                                    cost-saving reaches customers with the help of our cost-effective operations. We try
-                                    to improve the capacity of our system by improving our networks. New buying sources
-                                    have been added with the expansion of business. Finally lowest charges are assured
-                                    for customers all over the world.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-start gap-3">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    4</div>
-                            </div>
-                            <div class="flex-auto border-l-2 border-[#08246C]">
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold ">
-                                    Location of yards
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
-                                    Yards for Auction House Japan are placed at strategic positions that allow
-                                    convenient and safe access to the major ports from where export is done. As a
-                                    result, it becomes possible to reduce inland transport costs that also allows
-                                    performing economical transfer of cars. Top-quality services are assured with the
-                                    lowest and more competitive rates in the market.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-start gap-3">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    5</div>
-                            </div>
-                            <div class="flex-auto border-l-2 border-[#08246C]">
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold">
-                                    Easy and safe delivery
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
-                                    We make the process of delivery easy by streamlining the operation at the desired
-                                    port. The vehicle reaches the desired port at the most affordable rates. We choose
-                                    shipping companies that offer affordability and safety. Duration of shipping is kept
-                                    low and shipping is made convenient for you.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-start gap-3">
-                        <div class="flex w-5 flex-col items-center ml-3">
-                            <div class="flex flex-col items-center justify-center text-white">
-                                <div
-                                    class="font-Nunito flex h-5 w-5 lg:h-7 lg:w-7 items-center justify-center rounded-full border-2 border-[#08246C] bg-[#08246C]  text-[12px] lg:text-[13px]">
-                                    6</div>
-                            </div>
-                            <div class="flex-auto border-l-2 border-[#08246C]">
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-Nunito mb-5 xl:mb-10 lg:mt-1">
-                                <div
-                                    class="text-[#333333] text-left text-[16px] xl:text-[24px] lg:text-[20px] font-bold">
-                                    Network of Auction Houses
-                                </div>
-                                <p
-                                    class="text-[12px] lg:text-[16px] xl:text-[20px] text-black mt-1 xl:mt-4 leading-4 lg:leading-5 xl:leading-7">
-                                    Jamex auto auction make you get the most appropriate and valuable cars from japan.
-                                    It is made possible with the help of the network of auction houses we have here.
-                                    More than 140 auction houses are working with us that making it possible to have
-                                    access to around 145,000 automobiles on weekly basis. Some are connected to famous
-                                    auction houses including AAA MIRIVE, USS KCAA HAA JU AUCNET, and NAA. All these
-                                    auction houses are well-known for the provision of Japanese cars for the auction
-                                    process.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-x3">
-                        Jamex auto auction make you get the most appropriate and valuable cars from japan.
-                        It is made possible with the help of the network of auction houses we have here.
-                        More than 140 auction houses are working with us that making it possible to have
-                        access to around 145,000 automobiles on weekly basis. Some are connected to famous
-                        auction houses including AAA MIRIVE, USS KCAA HAA JU AUCNET, and NAA. All these
-                        auction houses are well-known for the provision of Japanese cars for the auction
-                        process.
-                    </p>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </template>
@@ -312,24 +124,24 @@
 
 @media only screen and (min-width: 1300px) {
 
-/* For mobile phones: */
-[class*="font-baner-h1"] {
-    font-size: 64px;
-    line-height: 73.6px;
-    color: white;
-}
+    /* For mobile phones: */
+    [class*="font-baner-h1"] {
+        font-size: 64px;
+        line-height: 73.6px;
+        color: white;
+    }
 
-[class*="font-baner-h2"] {
-    font-size: 20px;
-    line-height: 20px;
-    color: white;
-}
+    [class*="font-baner-h2"] {
+        font-size: 20px;
+        line-height: 20px;
+        color: white;
+    }
 
-[class*="font-baner-number"] {
-    font-size: 75px;
-    line-height: 90px;
-    color: white;
-}
+    [class*="font-baner-number"] {
+        font-size: 75px;
+        line-height: 90px;
+        color: white;
+    }
 }
 </style>
   

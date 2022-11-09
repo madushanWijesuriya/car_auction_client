@@ -20,6 +20,38 @@
     font-weight: 600;
 }
 
+.font-h2 {
+    font-size: 20px;
+    line-height: 27px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-para {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 500    ;
+}
+
+.font-contact-details-headers {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:black;
+    font-family: 'Nunito';
+    font-weight: 600    ;
+}
+
+.font-contact-details-line {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 600    ;
+}
+
 
 
 //if request.auth != null
