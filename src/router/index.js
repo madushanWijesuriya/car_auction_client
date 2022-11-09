@@ -60,7 +60,7 @@ const router = createRouter({
     {
       path: "/certifications-eaa",
       name: "CertificationsEaa",
-      component: () => import("../views/HowToOrderingView.vue"),
+      component: () => import("../views/CertificationsEaaView.vue"),
     },
   ],
 });
