@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3">
+            <div class="p-3 lg:mx-8">
                 <div class="border space-y-3 p-5 border-color-[#E7E7E7]">
                     <div class="font-h2">
                         Company Profile
@@ -102,8 +102,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 items-center justify-center p-3">
-                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+            <div class="flex flex-wrap gap-3 lg:flex-row items-center lg:h-[70vh] justify-center p-3 lg:mx-8">
+                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -188,7 +188,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%]  rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -257,7 +257,7 @@
 
     /* For mobile phones: */
     [class*="font-baner-h1"] {
-        font-size: 50px;
+        font-size: 40px;
         line-height: 115%;
         color: white;
     }
