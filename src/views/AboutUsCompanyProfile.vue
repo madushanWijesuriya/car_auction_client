@@ -6,7 +6,7 @@
                     src="@/assets/images/company-profile/company-profile.svg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
-                    <div class="flex flex-col gap-3 xl:gap-4 text-white w-full xl:w-[60%]">
+                    <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[45%]">
                         <div class="">
                             <div>
                                 <h1 class="font-baner-h1">Biggest Vehicle
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3 lg:mx-8">
+            <div class="px-3 md:px-[5%]">
                 <div class="border space-y-3 p-5 border-color-[#E7E7E7]">
                     <div class="font-h2">
                         Company Profile
@@ -102,8 +102,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 lg:flex-row items-center lg:h-[70vh] justify-center p-3 lg:mx-8">
-                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+            <div class="flex flex-wrap gap-3 w-fit lg:flex-row items-center lg:h-[70vh] justify-center md:px-[5%]">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -151,7 +151,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -188,7 +188,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[96vw] lg:w-[26vw] h-[100%]  rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%]  rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -229,7 +229,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4">
+            <div class="p-4 md:px-[5%]">
                 <p class="font-license-title">
                     LICENSE
                 </p>
@@ -267,8 +267,8 @@
 
     /* For mobile phones: */
     [class*="font-baner-h1"] {
-        font-size: 64px;
-        line-height: 73.6px;
+        font-size: 50px;
+        line-height: 65.6px;
         color: white;
     }
 
@@ -279,8 +279,8 @@
     }
 
     [class*="font-baner-number"] {
-        font-size: 75px;
-        line-height: 90px;
+        font-size: 50px;
+        line-height: 40px;
         color: white;
     }
 }
