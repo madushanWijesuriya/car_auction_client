@@ -29,7 +29,7 @@
                     <div class="font-h2">
                         Company Profile
                     </div>
-                    <div class="font-para">
+                    <p class="font-para">
                         Jamex Auction House is the leading auto trading company of Japan that is working in the same
                         niche
                         for over 10 year. We have satisfied customers in different parts of the world including Europe
@@ -39,18 +39,21 @@
                         Japan we have access to most of the auction houses including those located in Yokohama, Tokyo,
                         Chubu
                         Industrial Region and Nagoya.
-
+                        <br>
+                        <br>
                         At Auction House Japan we have always explored and found export quality vehicles that are
                         properly
                         reconditioned. Our diversified team for automobile auction suppliers make us the best reputed
                         company for the supply of good quality vehicles in different parts of the world.
-
+                        <br>
+                        <br>
                         We can fulfill the needs of fully reconditioned cars with fit tires, replaced defective parts
                         and
                         new batteries. To improve the condition upholstery and engine are properly cleaned. Painting and
                         spraying are done. Although Sedans are well-maintained by their previous owners, we make sure to
                         perform reconditioning work as per the demand of the customers.
-
+                        <br>
+                        <br>
                         To get full knowledge of our services we will ask you to browse through the list of the cars in
                         our
                         auction house after which you will feel confident to peruse business and create an alliance with
@@ -58,7 +61,7 @@
                         You can contact us anytime via phone calls. Emails and fax to gain additional information about
                         our
                         vehicle trading business.
-                    </div>
+                    </p>
                     <div class="space-y-3">
                         <div class="">
                             <p class="font-contact-details-headers">
@@ -71,7 +74,7 @@
                         </div>
                         <div class="">
                             <p class="font-contact-details-headers">
-                                MEMBER 
+                                MEMBER
 
                             </p>
                             <p class="font-contact-details-line">
@@ -80,7 +83,7 @@
                         </div>
                         <div class="">
                             <p class="font-contact-details-headers">
-                                EXPORTING AREA 
+                                EXPORTING AREA
                             </p>
                             <p class="font-contact-details-line">
                                 AFRICA, ASIA, EUROPE, CARIBBEAN, OCEANIA, & CIS
@@ -88,10 +91,47 @@
                         </div>
                         <div class="">
                             <p class="font-contact-details-headers">
-                                LOCATION 
+                                LOCATION
                             </p>
                             <p class="font-contact-details-line">
                                 140-0004 TOKYO, SHINAGAWAKU, MINAMI SHINAGAWA 1-3-6 JAPAN
+                            </p>
+                        </div>
+                    </div>
+                    <div class="border-[#08246C] rounded-lg border-2">
+                        <div class="font-card-details-headers text-center bottom-0 bg-[#08246C] p-5">
+                            Bank Detail / 口座情報
+                        </div>
+                        <div class="flex text-center bottom-b-1 p-5">
+                            <p class="font-card-line-title">
+                                Name of Account: 
+                            </p>
+                            <p class="font-card-line-content">
+                                JAMEX CO., LTD
+                            </p>
+                        </div>
+                        <div class="flex text-center bottom-b-1 p-5">
+                            <p class="font-card-line-title">
+                                Name of Account: 
+                            </p>
+                            <p class="font-card-line-content">
+                                JAMEX CO., LTD
+                            </p>
+                        </div>
+                        <div class="flex text-center bottom-b-1 p-5">
+                            <p class="font-card-line-title">
+                                Name of Account: 
+                            </p>
+                            <p class="font-card-line-content">
+                                JAMEX CO., LTD
+                            </p>
+                        </div>
+                        <div class="flex text-center bottom-b-1 p-5">
+                            <p class="font-card-line-title">
+                                Name of Account: 
+                            </p>
+                            <p class="font-card-line-content">
+                                JAMEX CO., LTD
                             </p>
                         </div>
                     </div>
