@@ -338,13 +338,13 @@
     [class*="font-license-title"] {
         font-size: 20px;
         line-height: 32.74px;
-        font-weight: 700;
+        font-weight: 500;
     }
 
     [class*="font-license-japan"] {
         font-size: 20px;
         line-height: 32.74px;
-        font-weight: 500;
+        font-weight: 700;
     }
 }
 </style>
