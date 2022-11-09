@@ -98,44 +98,145 @@
                             </p>
                         </div>
                     </div>
-                    <div class="border-[#08246C] rounded-lg border-2">
-                        <div class="font-card-details-headers text-center bottom-0 bg-[#08246C] p-5">
-                            Bank Detail / 口座情報
-                        </div>
-                        <div class="flex text-center bottom-b-1 p-5">
-                            <p class="font-card-line-title">
-                                Name of Account: 
-                            </p>
-                            <p class="font-card-line-content">
-                                JAMEX CO., LTD
-                            </p>
-                        </div>
-                        <div class="flex text-center bottom-b-1 p-5">
-                            <p class="font-card-line-title">
-                                Name of Account: 
-                            </p>
-                            <p class="font-card-line-content">
-                                JAMEX CO., LTD
-                            </p>
-                        </div>
-                        <div class="flex text-center bottom-b-1 p-5">
-                            <p class="font-card-line-title">
-                                Name of Account: 
-                            </p>
-                            <p class="font-card-line-content">
-                                JAMEX CO., LTD
-                            </p>
-                        </div>
-                        <div class="flex text-center bottom-b-1 p-5">
-                            <p class="font-card-line-title">
-                                Name of Account: 
-                            </p>
-                            <p class="font-card-line-content">
-                                JAMEX CO., LTD
-                            </p>
-                        </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 items-center justify-center p-3">
+                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+                    <div
+                        class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
+                        Bank Detail / 口座情報
+                    </div>
+                    <div class="flex text-center gap-3 border-b border-[#E7E7E7] mx-3 pt-5 p-2">
+                        <p class="font-card-line-title">Name of Account: <span class="font-card-line-content">
+                                JAMEX
+                                CO., LTD</span></p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Bank Name: <span class="font-card-line-content">MUFG
+                                Bank,
+                                Ltd</span></p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Branch: <span class="font-card-line-content">SHINAGAWA
+                                EKIMAE</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">BOTKJPJT</span>
+                        </p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title"> Account No: <span class="font-card-line-content">0337099</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">BOTKJPJT</span>
+                        </p>
+                    </div>
+                    <div class=" border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Account Type: <span
+                                class="font-card-line-content">ORDINARY</span></p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Bank Address: <span class="font-card-line-content">2-16-2
+                                Kounan Minato-ku, Tokyo 108-0075 Japan</span></p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Beneficiary Address: <span class="font-card-line-content">1-3-6
+                                Minami-Shinagawa,Shinagawaku, Tokyo
+                                140-0004
+                                Japan</span></p>
                     </div>
                 </div>
+
+                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+                    <div
+                        class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
+                        Bank Detail / 口座情報
+                    </div>
+                    <div class="flex text-center gap-3 border-b border-[#E7E7E7] mx-3 pt-5 p-2">
+                        <p class="font-card-line-title">Name of Account: <span class="font-card-line-content">
+                                JAMEX
+                                CO., LTD</span></p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Bank Name: <span class="font-card-line-content">MIZUHO BANK
+                            </span></p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Branch: <span class="font-card-line-content">SHINAGAWA
+                                (195)</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">MHCBJPJT</span>
+                        </p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Account No: <span class="font-card-line-content">147XXXX</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">BOTKJPJT</span>
+                        </p>
+                    </div>
+                    <div class=" border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Account Type: <span
+                                class="font-card-line-content">ORDINARY</span></p>
+                    </div>
+                </div>
+
+                <div class="border-[#08246C] w-[96vw] rounded-[12px] p-0 border-2">
+                    <div
+                        class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
+                        Bank Detail / 口座情報
+                    </div>
+                    <div class="flex text-center gap-3 border-b border-[#E7E7E7] mx-3 pt-5 p-2">
+                        <p class="font-card-line-title">Tel No: <span class="font-card-line-content">
+                                03-6712-4147</span></p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Fax No: <span class="font-card-line-content">03-6712-4148</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Email: <span
+                                class="font-card-line-content">info@jamex.co.jp</span>
+                        </p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title"> Address: <span class="font-card-line-content">JAMEX Co., LTD
+                                1-3-6 Minami-Shinagawa Shinagawaku, Tokyo 140-0004 Japan</span>
+                        </p>
+                    </div>
+                    <div class="border-b border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">SWIFT Code: <span class="font-card-line-content">BOTKJPJT</span>
+                        </p>
+                    </div>
+                    <div class=" border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Account Type: <span
+                                class="font-card-line-content">ORDINARY</span></p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">Bank Address: <span class="font-card-line-content">2-16-2
+                                Kounan Minato-ku, Tokyo 108-0075 Japan</span></p>
+                    </div>
+                    <div class="border-t border-[#E7E7E7] mx-3 p-2">
+                        <p class="font-card-line-title">〒140-0004<span class="font-card-line-content">1-3-6
+                                東京都品川区南品川１丁目３−6</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4">
+                <p class="font-license-title">
+                    LICENSE
+                </p>
+                <p class="font-license-title">
+                    Licensed as "USED ITEMS DEALER" under license no. 301111707379 by tokyo public safety commission
+                    (東京都公安委員会)
+                </p>
             </div>
         </div>
     </div>
