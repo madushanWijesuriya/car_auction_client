@@ -57,6 +57,11 @@ const router = createRouter({
       name: "HowToOrdering",
       component: () => import("../views/HowToOrderingView.vue"),
     },
+    {
+      path: "/certifications-eaa",
+      name: "CertificationsEaa",
+      component: () => import("../views/HowToOrderingView.vue"),
+    },
   ],
 });
 
