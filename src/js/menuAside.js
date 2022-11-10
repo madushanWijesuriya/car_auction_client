@@ -11,6 +11,7 @@ import {
   mdiResponsive,
   mdiPalette,
   mdiReact,
+  mdiCarEstate,
 } from "@mdi/js";
 
 export default [
@@ -19,10 +20,15 @@ export default [
     icon: mdiMonitor,
     label: "Dashboard",
   },
+  // {
+  //   to: "/admin/tables",
+  //   label: "Tables",
+  //   icon: mdiTable,
+  // },
   {
-    to: "/admin/tables",
-    label: "Tables",
-    icon: mdiTable,
+    to: "/admin/add-car",
+    label: "Add car",
+    icon: mdiCarEstate,
   },
   {
     to: "/admin/forms",

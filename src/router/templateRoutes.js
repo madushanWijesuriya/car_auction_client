@@ -22,14 +22,23 @@ const templateRoutes = [
     name: "dashboard",
     component: Home,
   },
+  // {
+  //   meta: {
+  //     title: "Tables",
+  //     layout: "LayoutAdmin",
+  //   },
+  //   path: "/admin/tables",
+  //   name: "tables",
+  //   component: () => import("@/views/admin/TablesView.vue"),
+  // },
   {
     meta: {
-      title: "Tables",
+      title: "Add car",
       layout: "LayoutAdmin",
     },
-    path: "/admin/tables",
-    name: "tables",
-    component: () => import("@/views/admin/TablesView.vue"),
+    path: "/admin/add-car",
+    name: "add car",
+    component: () => import("@/views/admin/AddCarView.vue"),
   },
   {
     meta: {
