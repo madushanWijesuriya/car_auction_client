@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import Navbar from "@/components/layout/Navbar.vue";
+import Menubar from "@/components/layout/TopMenu.vue";
 import Footer from "@/components/layout/Footer.vue";
 import AdminAuthenticated from "./components/layout/admin/LayoutAuthenticated.vue";
 </script>
