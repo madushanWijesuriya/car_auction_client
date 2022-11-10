@@ -30,9 +30,29 @@ const router = createRouter({
       component: () => import("../views/ServicesView.vue"),
     },
     {
+      path: "/shipment-service",
+      name: "ShipmentService",
+      component: () => import("../views/ShipmentServiceView.vue"),
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("../views/TestView.vue"),
+    },
+    {
+      path: "/customer-feedback",
+      name: "customerFeedBack",
+      component: () => import("../views/aboutUsCusFeedback.vue"),
+    },
+    {
+      path: "/why-us",
+      name: "whyus",
+      component: () => import("../views/WhyUs.vue"),
+    },
+    {
+      path: "/company-profile",
+      name: "companyProfile",
+      component: () => import("../views/AboutUsCompanyProfile.vue"),
     },
     {
       path: "/countries-vehicle-details",
