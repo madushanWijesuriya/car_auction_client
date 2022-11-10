@@ -7,16 +7,22 @@ import Footer from "@/components/layout/Footer.vue";
 
 <template>
   <div id="app">
-    <header>
-      <Navbar />
-      <Menubar />
-    </header>
-    <body>
-      <RouterView />
-    </body>
-    <footer>
-      <Footer />
-    </footer>
+  <div v-if="this.$route.meta.layout">
+      <body>
+        <RouterView />
+      </body>
+    </div>
+    <div v-else>
+      <header>
+        <Navbar />
+      </header>
+      <body>
+        <RouterView />
+      </body>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   </div>
 </template>
 

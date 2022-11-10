@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import authRoutesAdmin from "./authRoutesAdmin";
+import { getAuthenticatedUser } from "../util/utils";
+import { useAuthStore } from "../stores/auth";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
+    ...authRoutesAdmin,
     {
       path: "/",
       name: "home",
@@ -12,9 +17,6 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/AboutView.vue"),
     },
     {
@@ -63,6 +65,25 @@ const router = createRouter({
       component: () => import("../views/HowToOrderingView.vue"),
     },
   ],
+});
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+  if (
+    to.meta.requiresAuth &&
+    to.path !== "/login" &&
+    !authStore.getIsAuthenticated
+  ) {
+    try {
+      const status = await getAuthenticatedUser(authStore);
+      if (status !== 200) next("/login");
+      else next();
+    } catch (error) {
+      next("/login");
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
