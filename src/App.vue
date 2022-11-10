@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer.vue";
 
 <template>
   <div id="app">
-  <div v-if="this.$route.meta.layout">
+    <div v-if="this.$route.meta.layout">
       <body>
         <RouterView />
       </body>
@@ -15,6 +15,7 @@ import Footer from "@/components/layout/Footer.vue";
     <div v-else>
       <header>
         <Navbar />
+        <Menubar />
       </header>
       <body>
         <RouterView />
