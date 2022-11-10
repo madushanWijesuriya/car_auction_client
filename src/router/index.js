@@ -1,14 +1,19 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import authRoutesAdmin from "./authRoutesAdmin";
 import { getAuthenticatedUser } from "../util/utils";
 import { useAuthStore } from "../stores/auth";
+import templateRoutes from "./templateRoutes";
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
   history: createWebHistory(),
+  // history: createWebHashHistory(),
   routes: [
-    ...authRoutesAdmin,
     {
       path: "/",
       name: "home",
@@ -44,6 +49,8 @@ const router = createRouter({
       name: "HowToOrdering",
       component: () => import("../views/HowToOrderingView.vue"),
     },
+    ...authRoutesAdmin,
+    ...templateRoutes,
   ],
 });
 

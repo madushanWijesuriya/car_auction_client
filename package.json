@@ -17,10 +17,16 @@
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "@mdi/js": "^7.0.96",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "chart.js": "^3.6.0",
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
+    "@tailwindcss/forms": "^0.5.1",
+    "@tailwindcss/line-clamp": "^0.4.0",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/eslint-config-prettier": "^7.0.0",
@@ -32,6 +38,7 @@
     "eslint-plugin-vue": "^9.3.0",
     "jsdom": "^20.0.0",
     "postcss": "^8",
+    "postcss-import": "^14.0.2",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "start-server-and-test": "^1.14.0",
