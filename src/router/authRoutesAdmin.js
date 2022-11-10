@@ -1,14 +1,14 @@
 const authRoutesAdmin = [
   {
     path: "/login",
-    name: "login",
-    component: () => import("../views/Admin/LoginIn.vue"),
+    name: "login-admin",
+    component: () => import("../views/admin/LoginIn.vue"),
     meta: { requiresAuth: false, layout: "LayoutAdmin" },
   },
   {
     path: "/secured-route",
     name: "securedRoute",
-    component: () => import("../views/Admin/TestSecured.vue"),
+    component: () => import("../views/admin/TestSecured.vue"),
     meta: { requiresAuth: true, layout: "LayoutAdmin" },
   },
 ];

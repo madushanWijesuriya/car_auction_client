@@ -27,7 +27,7 @@
   --primary-black: #000000;
 }
 
-body.layout-01 {
+.layout-01 body {
   min-height: calc(100vh - (60px + 492px));
 }
 .color-01 {
