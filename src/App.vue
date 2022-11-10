@@ -16,6 +16,7 @@ import AdminAuthenticated from "./components/layout/admin/LayoutAuthenticated.vu
     <div v-else class="layout-01">
       <header>
         <Navbar />
+        <Menubar />
       </header>
       <body>
         <RouterView />
