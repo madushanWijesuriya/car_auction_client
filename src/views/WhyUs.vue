@@ -1,6 +1,3 @@
-<script>
-var base_url = window.location.origin;
-</script>
 <template>
     <div class="text-white text-sm">
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
