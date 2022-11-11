@@ -2,7 +2,7 @@
 var base_url = window.location.origin;
 </script>
 <template>
-  <div class="text-white text-sm">
+  <div>
     <div
       class="flex flex-col justify-center items-lcenters w-full md:px-[60px] lg:px-[80px] xl:px-[180px] md:mt-2 xl:mt-3"
     >
