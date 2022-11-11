@@ -76,128 +76,66 @@
     font-weight: 700    ;
 }
 
-.font-license-title {
+.font-freight-lable {
     font-size: 16px;
     line-height: 21.82px;
-    color:#000000;
+    color:#08246C;
     font-family: 'Nunito';
     font-weight: 700    ;
 }
 
-.font-license-content {
-    font-size: 14px;
-    line-height: 19.1px;
+.font-total-price {
+    font-size: 20px;
+    line-height: 27.28px;
     color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-total-price-label {
+    font-size: 10px;
+    line-height: 13.64px;
+    color:black;
     font-family: 'Nunito';
     font-weight: 400    ;
 }
 
-.font-license-japan {
+.font-down-image {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:white;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-quote-title {
+    font-size: 20px;
+    line-height: 27.28px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700 ;
+}
+
+.font-quote-form-label {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:black;
+    font-family: 'Nunito';
+    font-weight: 600 ;
+}
+
+.font-button-reset {
     font-size: 16px;
     line-height: 21.82px;
     color:#08246C;
     font-family: 'Nunito';
-    font-weight: 500    ;
+    font-weight: 600 ;
 }
 
-@media (min-width: 1024px) {
-    .about {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-}
-
-@media only screen and (min-width: 640px) {
-
-    /* For mobile phones: */
-    [class*="font-baner-h1"] {
-        font-size: 40px;
-        line-height: 115%;
-        color: white;
-    }
-}
-
-@media only screen and (min-width: 1300px) {
-
-    /* For mobile phones: */
-    [class*="font-baner-h1"] {
-        font-size: 50px;
-        line-height: 65.6px;
-        color: white;
-    }
-
-    [class*="font-baner-h2"] {
-        font-size: 20px;
-        line-height: 20px;
-        color: white;
-    }
-
-    [class*="font-baner-number"] {
-        font-size: 50px;
-        line-height: 40px;
-        color: white;
-    }
-
-    [class*="font-h2"] {
-        font-size: 36px;
-        line-height: 49.1px;
-    }
-
-    [class*="font-para"] {
-        font-size: 20px;
-        line-height: 27.28px;
-    }
-
-    [class*="font-contact-details-headers"] {
-        font-size: 24px;
-        line-height: 32.74px;
-        font-weight: 700;
-    }
-
-    [class*="font-contact-details-line"] {
-        font-size: 24px;
-        line-height: 32.74px;
-        font-weight: 500;
-
-    }
-
-    [class*="font-card-details-headers"] {
-        font-size: 24px;
-        font-weight: 700;
-    }
-
-    [class*="font-card-line-title"] {
-        font-size: 20px;
-        line-height: 27.28px;
-        font-weight: 700;
-    }
-
-    [class*="font-card-line-content"] {
-        font-size: 20px;
-        line-height: 27.28px;
-        font-weight: 400;
-    }
-
-    [class*="font-card-line-title"] {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    [class*="font-license-content"] {
-        font-size: 20px;
-        font-weight: 400;
-    }
-
-    [class*="font-license-title"] {
-        font-size: 20px;
-        line-height: 32.74px;
-        font-weight: 500;
-    }
-
-    [class*="font-license-japan"] {
-        font-size: 20px;
-        line-height: 32.74px;
-        font-weight: 700;
-    }
+.font-button-send {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:white;
+    font-family: 'Nunito';
+    font-weight: 600 ;
 }

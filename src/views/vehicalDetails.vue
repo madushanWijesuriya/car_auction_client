@@ -27,32 +27,32 @@
             </div>
         </div>
 
-        <div class="flex gap-3 items-start justify-center">
-            <div class="flex flex-col gap-4 xl:flex-1">
+        <div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-3 justify-center">
+            <div class="flex flex-col gap-4 lg:w-[50%]">
 
                 <div class="w-full">
                     <img class="rounded-lg w-full h-[300px] lg:h-[400px]  object-cover"
                         src="@/assets/images/vehicalDetails/car-1.svg" />
                 </div>
-                <div class=" w-full">
+                <div class="w-full">
                     <div class="flex w-full gap-3">
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw]" src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh]" src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw]" src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh] " src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw]" src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh]" src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw]" src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh]" src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw]" src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh]" src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
                         <div>
-                            <img class="rounded-lg  w-full h-[20vw] " src="@/assets/images/vehicalDetails/car-2.svg" />
+                            <img class="rounded-lg  w-full h-[20vh]" src="@/assets/images/vehicalDetails/car-2.svg" />
                         </div>
 
                     </div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="border border-[#E7E7E7] p-3 xl:flex-1">
+            <div class="border w-full border-[#E7E7E7] p-4 rounded-md lg:flex-1">
                 <div class="flex justify-between items-center ">
                     <p class="font-card-title-1">
                         Specifications
@@ -252,9 +252,8 @@
 
                     </div>
 
-
-                    <div class="flex flex-col w-full gap-2 justify-center">
-                        <p class="text-black">
+                    <div class="flex flex-col w-full gap-2 justify-center mt-5">
+                        <p class="text-black font-freight-lable">
                             Freight Calculator
                         </p>
                         <el-dropdown class="w-full">
@@ -275,12 +274,12 @@
                         </el-dropdown>
                     </div>
 
-                    <div class="flex w-full justify-between items-end">
-                        <div class="">
+                    <div class="flex w-full justify-between items-end mt-5">
+                        <div class="font-total-price">
                             <p>
                                 ¥ 176,230.00
                             </p>
-                            <p class=" text-right">
+                            <p class="font-total-price-label">
                                 Total Price with Shipping
                             </p>
                         </div>
@@ -289,50 +288,56 @@
                         </div>
                     </div>
 
-                    <div class="w-full text-center bg-[#08246C] rounded-md text-white py-1 px-2">
+                    <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
                         Download Images
                     </div>
 
                 </div>
             </div>
 
-            <div class="border space-y-3 border-[#E7E7E7] p-3 xl:flex-1">
-                <p>
+            <div class="border w-full rounded-md space-y-3 border-[#E7E7E7] p-4 lg:flex-1">
+                <p class="font-quote-title">
                     Get Free Quote
                 </p>
                 <div>
-                    <p>
+                    <p class="font-quote-form-label">
                         Search using Keyword
                     </p>
                     <el-input v-model="input" placeholder="Please input" />
                 </div>
                 <div>
-                    <p>
+                    <p class="font-quote-form-label">
                         Select Country
                     </p>
                     <el-input v-model="input" placeholder="Please input" />
                 </div>
                 <div>
-                    <p>
+                    <p class="font-quote-form-label">
                         E-mail ID
                     </p>
                     <el-input v-model="input" placeholder="Please input" />
                 </div>
                 <div>
-                    <p>
+                    <p class="font-quote-form-label">
                         Phone/Cell Number
                     </p>
                     <el-input v-model="input" placeholder="Please input" />
                 </div>
                 <div>
-                    <p>
+                    <p class="font-quote-form-label">
                         Message (0 / 250)
                     </p>
-                    <el-input :autosize="{ minRows: 2, maxRows: 4 }" type="textarea"
-                        placeholder="Please input" />
+                    <el-input :autosize="{ minRows: 5, maxRows: 5 }" type="textarea" placeholder="Please input" />
+                </div>
+                <div class="flex gap-2 w-full">
+                <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+                    Reset
+                </div>
+                <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+                    Send Inquiry
                 </div>
             </div>
-
+            </div>
         </div>
 
     </div>
