@@ -103,8 +103,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 w-fit lg:flex-row items-center lg:h-[70vh] justify-center px-3 md:px-[5%]">
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+            <div class="flex flex-wrap gap-3 w-fit lg:flex-row lg:h-[70vh] justify-center px-3 md:px-[5%]">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%]  rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報

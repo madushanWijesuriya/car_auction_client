@@ -12,7 +12,7 @@
 
         <div class="flex flex-col gap-2">
 
-        <div class="flex justify-between">
+            <div class="flex justify-between">
                 <div class=" bg-blue-800 rounded-[19px] font-now-on-sales px-3 py-1">
                     Now on Sale
                 </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="xl:flex xl:gap-10">
+        <div class="flex gap-3 items-start justify-center">
             <div class="flex flex-col gap-4 xl:flex-1">
 
                 <div class="w-full">
@@ -158,7 +158,7 @@
                                 2WD/4WD
                             </p>
                             <p class="flex-1 font-card-line-content">
-                                4
+                                2
                             </p>
                         </div>
                         <div class="flex gap-3">
@@ -166,12 +166,170 @@
                                 Exterior Cond.
                             </p>
                             <p class="flex-1 font-card-line-content">
+                                3.5
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Year/Month
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                2018/08
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Model
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                Ajdkls
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Model Code
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                GH-BMW-7830i
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Engine
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                3,000 CC
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Odometer
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                Normal
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Fuel
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                Hybrid
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Doors
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                Right Hand
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Fuel
+                            </p>
+                            <p class="flex-1 font-card-line-content">
                                 2
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Color
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                White
+                            </p>
+                        </div>
+                        <div class="flex gap-3">
+                            <p class="flex-1 font-card-line-title">
+                                Interior Cond.
+                            </p>
+                            <p class="flex-1 font-card-line-content">
+                                D
                             </p>
                         </div>
 
                     </div>
 
+
+                    <div class="flex flex-col w-full gap-2 justify-center">
+                        <p class="text-black">
+                            Freight Calculator
+                        </p>
+                        <el-dropdown class="w-full">
+                            <el-button class="w-full">
+                                Sri Lanka-Hambantota<el-icon class="el-icon--right">
+                                    <ArrowRight />
+                                </el-icon>
+                            </el-button>
+                            <template #dropdown>
+                                <el-dropdown-menu>
+                                    <el-dropdown-item>Action 1</el-dropdown-item>
+                                    <el-dropdown-item>Action 2</el-dropdown-item>
+                                    <el-dropdown-item>Action 3</el-dropdown-item>
+                                    <el-dropdown-item>Action 4</el-dropdown-item>
+                                    <el-dropdown-item>Action 5</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
+                        </el-dropdown>
+                    </div>
+
+                    <div class="flex w-full justify-between items-end">
+                        <div class="">
+                            <p>
+                                ¥ 176,230.00
+                            </p>
+                            <p class=" text-right">
+                                Total Price with Shipping
+                            </p>
+                        </div>
+                        <div>
+                            Japan > Yokohama
+                        </div>
+                    </div>
+
+                    <div class="w-full text-center bg-[#08246C] rounded-md text-white py-1 px-2">
+                        Download Images
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="border space-y-3 border-[#E7E7E7] p-3 xl:flex-1">
+                <p>
+                    Get Free Quote
+                </p>
+                <div>
+                    <p>
+                        Search using Keyword
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p>
+                        Select Country
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p>
+                        E-mail ID
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p>
+                        Phone/Cell Number
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p>
+                        Message (0 / 250)
+                    </p>
+                    <el-input :autosize="{ minRows: 2, maxRows: 4 }" type="textarea"
+                        placeholder="Please input" />
                 </div>
             </div>
 
@@ -183,3 +341,25 @@
 <style>
 @import "@/assets/scss/vehicalDetails.scss";
 </style>
+
+<script lang="ts" setup>
+import {
+    ArrowLeft,
+    ArrowRight,
+    Delete,
+    Edit,
+    ArrowDown,
+    Share,
+} from '@element-plus/icons-vue'
+
+import { ref } from 'vue'
+const textarea1 = ref('')
+const textarea2 = ref('')
+const input = ref('')
+
+
+const handleClick = () => {
+    // eslint-disable-next-line no-alert
+    alert('button click')
+}
+</script>
