@@ -1,90 +1,84 @@
-import Style from "@/views/admin/StyleView.vue";
-import Home from "@/views/admin/HomeView.vue";
+import Style from '@/views/admin/StyleView.vue'
 
 const templateRoutes = [
   {
     meta: {
-      title: "Select style",
-      layout: "LayoutAdmin",
+      title: 'Select style',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin",
-    name: "style",
+    path: '/admin',
+    name: 'style',
     component: Style,
   },
   {
-    // Document title tag
-    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
-      title: "Dashboard",
-      layout: "LayoutAdmin",
+      title: 'Tables',
+      layout: 'LayoutAdmin',
     },
-    path: "/admin/dashboard",
-    name: "dashboard",
-    component: Home,
+    path: '/admin/tables',
+    name: 'tables',
+    component: () => import('@/views/admin/TablesView.vue'),
   },
   {
     meta: {
-      title: "Tables",
-      layout: "LayoutAdmin",
+      title: 'Forms',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin/tables",
-    name: "tables",
-    component: () => import("@/views/admin/TablesView.vue"),
+    path: '/admin/forms',
+    name: 'forms',
+    component: () => import('@/views/admin/FormsView.vue'),
   },
   {
     meta: {
-      title: "Forms",
-      layout: "LayoutAdmin",
+      title: 'Profile',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin/forms",
-    name: "forms",
-    component: () => import("@/views/admin/FormsView.vue"),
+    path: '/admin/profile',
+    name: 'profile',
+    component: () => import('@/views/admin/ProfileView.vue'),
   },
   {
     meta: {
-      title: "Profile",
-      layout: "LayoutAdmin",
+      title: 'Ui',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin/profile",
-    name: "profile",
-    component: () => import("@/views/admin/ProfileView.vue"),
+    path: '/admin/ui',
+    name: 'ui',
+    component: () => import('@/views/admin/UiView.vue'),
   },
   {
     meta: {
-      title: "Ui",
-      layout: "LayoutAdmin",
+      title: 'Responsive layout',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin/ui",
-    name: "ui",
-    component: () => import("@/views/admin/UiView.vue"),
+    path: '/admin/responsive',
+    name: 'responsive',
+    component: () => import('@/views/admin/ResponsiveView.vue'),
   },
   {
     meta: {
-      title: "Responsive layout",
-      layout: "LayoutAdmin",
+      title: 'Login',
+      layout: 'LayoutAdmin',
+      requiresAuth: true,
     },
-    path: "/admin/responsive",
-    name: "responsive",
-    component: () => import("@/views/admin/ResponsiveView.vue"),
+    path: '/admin/login',
+    name: 'login',
+    component: () => import('@/views/admin/LoginView.vue'),
   },
   {
     meta: {
-      title: "Login",
-      layout: "LayoutAdmin",
+      title: 'Error',
+      layout: 'LayoutAdmin',
     },
-    path: "/admin/login",
-    name: "login",
-    component: () => import("@/views/admin/LoginView.vue"),
+    path: '/admin/error',
+    name: 'error',
+    component: () => import('@/views/admin/ErrorView.vue'),
   },
-  {
-    meta: {
-      title: "Error",
-      layout: "LayoutAdmin",
-    },
-    path: "/admin/error",
-    name: "error",
-    component: () => import("@/views/admin/ErrorView.vue"),
-  },
-];
+]
 
-export default templateRoutes;
+export default templateRoutes

@@ -1,20 +1,22 @@
 <script setup>
-import { useAuthStore } from "../../stores/auth";
-import { reactive, onMounted } from "vue";
-import httpResource from "../../http/httpResource";
-import { cloneDeep } from "lodash-es";
+import { useAuthStore } from '../../stores/auth'
+import { reactive, onMounted } from 'vue'
+import httpResource from '../../http/httpResource'
+import { cloneDeep } from 'lodash-es'
+import { useRouter } from 'vue-router'
 
-const authStore = useAuthStore();
-const { setIsAuthenticated, setCurrentUser } = authStore;
+const authStore = useAuthStore()
+const router = useRouter()
+const { setIsAuthenticated, setCurrentUser } = authStore
 
 let loginUser = reactive({
   email: {
-    value: "",
+    value: '',
     error: false,
     messages: [],
   },
   password: {
-    value: "",
+    value: '',
     error: false,
     messages: [],
   },
@@ -23,30 +25,33 @@ let loginUser = reactive({
     error: false,
     messages: [],
   },
-});
+})
 
 const validateRequest = () => {
-  loginUser.email.error = loginUser.email.value.trim() === "";
-  loginUser.password.error = loginUser.password.value.trim() === "";
+  loginUser.email.error = loginUser.email.value.trim() === ''
+  loginUser.password.error = loginUser.password.value.trim() === ''
 
   if (!loginUser.email.error && !loginUser.password.error) {
-    login();
+    login()
   }
-};
+}
 
 const login = async () => {
-  const response = await httpResource.post("/api/staff/auth/login", {
+  const response = await httpResource.post('/api/staff/auth/login', {
     email: loginUser.email.value,
     password: loginUser.password.value,
-  });
+  })
   if (response.status === 200) {
     const {
       data: { data },
-    } = await httpResource.get("/api/auth/checkLogin");
-    setCurrentUser(data);
-    setIsAuthenticated(true);
+    } = await httpResource.get('/api/auth/checkLogin')
+    setCurrentUser(data)
+    setIsAuthenticated(true)
+    router.push({
+      name: 'dashboard',
+    })
   }
-};
+}
 </script>
 
 <template>

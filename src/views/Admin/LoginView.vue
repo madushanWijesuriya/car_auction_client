@@ -1,27 +1,27 @@
 <script setup>
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
-import { mdiAccount, mdiAsterisk } from "@mdi/js";
-import SectionFullScreen from "@/components/admin/SectionFullScreen.vue";
-import CardBox from "@/components/admin/CardBox.vue";
-import FormCheckRadio from "@/components/admin/FormCheckRadio.vue";
-import FormField from "@/components/admin/FormField.vue";
-import FormControl from "@/components/admin/FormControl.vue";
-import BaseButton from "@/components/admin/BaseButton.vue";
-import BaseButtons from "@/components/admin/BaseButtons.vue";
-import LayoutGuest from "@/components/layout/admin/LayoutGuest.vue";
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { mdiAccount, mdiAsterisk } from '@mdi/js'
+import SectionFullScreen from '@/components/admin/SectionFullScreen.vue'
+import CardBox from '@/components/admin/CardBox.vue'
+import FormCheckRadio from '@/components/admin/FormCheckRadio.vue'
+import FormField from '@/components/admin/FormField.vue'
+import FormControl from '@/components/admin/FormControl.vue'
+import BaseButton from '@/components/admin/BaseButton.vue'
+import BaseButtons from '@/components/admin/BaseButtons.vue'
+import LayoutGuest from '@/components/layout/admin/LayoutGuest.vue'
 
 const form = reactive({
-  login: "john.doe",
-  pass: "highly-secure-password-fYjUw-",
+  login: 'john.doe',
+  pass: 'highly-secure-password-fYjUw-',
   remember: true,
-});
+})
 
-const router = useRouter();
+const router = useRouter()
 
 const submit = () => {
-  router.push("/admin/dashboard");
-};
+  router.push('/admin/dashboard')
+}
 </script>
 
 <template>
