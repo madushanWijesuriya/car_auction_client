@@ -15,9 +15,9 @@ export const useMainStore = defineStore('main', {
     clients: [
       {
         name: 'Thenuka',
-        company: 'Platform One',
+        company: 'IBM',
         city: 'Colombo',
-        progress: '70',
+        progress: 70,
         created: `${new Date().getFullYear()}`,
       },
     ],
