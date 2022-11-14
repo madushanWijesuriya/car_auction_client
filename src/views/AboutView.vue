@@ -1,6 +1,3 @@
-<script>
-var base_url = window.location.origin;
-</script>
 <template>
   <div>
     <div
