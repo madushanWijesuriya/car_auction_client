@@ -13,6 +13,10 @@
     font-weight: 600;
 }
 
+.font-card-line-content-spec {
+    color:#FE0000 !important;
+}
+
 .font-print-share {
     font-size: 14px;
     line-height:19.1px;
@@ -204,6 +208,11 @@
     [class*="font-print-share"] {
         font-size:18px;
         line-height: 24.55px;
+    }
+
+    [class*="font-card-title-1"] {
+        font-size:24px;
+        line-height: 32.74px;
     }
 
 
