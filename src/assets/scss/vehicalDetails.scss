@@ -1,6 +1,6 @@
 .font-vehical-name {
     font-size: 16px;
-    line-height: 43.65px;
+    line-height: 21.82px;
     color:#08246C;
     font-family: 'Nunito';
     font-weight: 700;
@@ -151,7 +151,6 @@
 
 @media only screen and (min-width: 640px) {
 
-    /* For mobile phones: */
     [class*="font-baner-h1"] {
         font-size: 40px;
         line-height: 115%;
@@ -161,7 +160,6 @@
 
 @media only screen and (min-width: 1300px) {
 
-    /* For mobile phones: */
     [class*="font-now-on-sales"] {
         font-size: 16px;
         line-height: 21.82px;
