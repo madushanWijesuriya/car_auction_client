@@ -7,6 +7,12 @@
         class="lg:rounded-[15px] md:rounded-[10px] w-full"
         src="@/assets/images/shipmentService/main.svg"
       />
+      <div
+        class="absolute left-1/2 top-1/2 lg:left-1/3 -translate-x-1/2 -translate-y-1/2"
+      >
+        <p class="main-text-01 text-white">Shipment</p>
+        <p class="main-text text-white">Service</p>
+      </div>
     </div>
   </div>
   <div class="m-6 lg:m-28">

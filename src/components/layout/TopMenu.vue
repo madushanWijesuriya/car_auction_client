@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import { computed } from "@vue/runtime-core";
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT;
+});
+</script>
 <template>
   <div
     class="flex flex-row md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]"
@@ -27,18 +32,10 @@
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//"
-          >Home</a
-        >
+        <a class="font-semibold" :href="url">Home</a>
       </div>
       <div class="flex items-center gap-2">
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//service"
-          >Services</a
-        >
+        <a class="font-semibold" :href="url + 'service'">Services</a>
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -57,19 +54,17 @@
         </div>
       </div>
       <div class="font-semibold">
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//countries-vehicle-details"
+        <a class="font-semibold" :href="url + 'countries-vehicle-details'"
           >Countries</a
         >
       </div>
-      <div class="font-semibold">How to Order</div>
-      <div class="flex items-center gap-2">
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//about"
-          >About Us</a
+      <div class="font-semibold">
+        <a class="font-semibold" :href="url + 'how-to-ordering'"
+          >How to Order</a
         >
+      </div>
+      <div class="flex items-center gap-2">
+        <a class="font-semibold" :href="url + 'about'">About Us</a>
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -88,11 +83,7 @@
         </div>
       </div>
       <div class="font-semibold">
-        <a
-          class="font-semibold"
-          href="https://car-auction-staging.netlify.app//reachus"
-          >Reach Us</a
-        >
+        <a class="font-semibold" :href="url + 'reachus'">Reach Us</a>
       </div>
     </div>
     <div
