@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col  justify-center items-lcenters gap-2 w-full  px-5 md:px-[60px] lg:px-[80px] xl:px-[180px]">
+        class="flex flex-col  justify-center items-lcenters gap-2 w-full  px-5 md:px-[60px] lg:px-[80px] xl:px-[120px]">
 
         <div class="font-vehical-name flex gap-3 items-center">
             <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,8 +274,9 @@
                         </el-dropdown>
                     </div>
 
-                    <div class="flex w-full justify-between items-end mt-5">
-                        <div class="font-total-price">
+                    <div
+                        class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5">
+                        <div class="font-total-price  lg:flex lg:flex-col lg:items-end">
                             <p>
                                 ¥ 176,230.00
                             </p>
@@ -295,7 +296,7 @@
                 </div>
             </div>
 
-            <div class="border w-full rounded-md space-y-3 border-[#E7E7E7] p-4 lg:flex-1">
+            <div class="lg:relative border w-full rounded-md space-y-3 lg:space-y-5 border-[#E7E7E7] p-4 lg:flex-1">
                 <p class="font-quote-title">
                     Get Free Quote
                 </p>
@@ -325,18 +326,30 @@
                 </div>
                 <div>
                     <p class="font-quote-form-label">
+                        Port Name
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p class="font-quote-form-label">
+                        Mobile/Whatsapp/Viber No
+                    </p>
+                    <el-input v-model="input" placeholder="Please input" />
+                </div>
+                <div>
+                    <p class="font-quote-form-label">
                         Message (0 / 250)
                     </p>
                     <el-input :autosize="{ minRows: 5, maxRows: 5 }" type="textarea" placeholder="Please input" />
                 </div>
-                <div class="flex gap-2 w-full">
-                <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
-                    Reset
+                <div class="flex lg:absolute bottom-0 gap-2 w-full lg:right-2 lg:left-0 lg:p-4">
+                    <div class="lg:hidden w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+                        Reset
+                    </div>
+                    <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+                        Send Inquiry
+                    </div>
                 </div>
-                <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
-                    Send Inquiry
-                </div>
-            </div>
             </div>
         </div>
 
