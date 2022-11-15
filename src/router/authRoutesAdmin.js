@@ -1,5 +1,3 @@
-import Home from '@/views/admin/HomeView.vue'
-
 const authRoutesAdmin = [
   {
     path: '/login',
@@ -23,7 +21,7 @@ const authRoutesAdmin = [
     },
     path: '/admin/dashboard',
     name: 'dashboard',
-    component: Home,
+    component: () => import('@/views/admin/HomeView.vue'),
   },
   {
     meta: {
