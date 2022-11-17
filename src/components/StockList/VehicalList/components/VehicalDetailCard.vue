@@ -43,21 +43,24 @@
             </div>
         </div>
         <div class="w-full px-2 md:w-[25%] space-y-2">
-            <div class="flex w-full">
-                <div class="flex flex-col w-full justify-between">
-                    <p class="">
-                        Car Price :
-                    </p>
-                    <p class="">
-                        ¥ 147,500.00
-                    </p>
-                    <div class="flex">
+            <div class="flex md:flex-col w-full justify-between md:items-end">
+                <div class="w-full flex-col md:items-end">
+                    <div class="flex flex-col md:flex-row md:justify-between">
+                        <p class="">
+                            Car Price :
+                        </p>
+                        <p class="">
+                            ¥ 147,500.00
+                        </p>
+                    </div>
+
+                    <div class="flex w-full md: justify-end">
 
                         Sri Lanka-Hambantota
                     </div>
 
                 </div>
-                <div class="flex flex-col">
+                <div class="flex w-full flex-col md:items-end">
                     <p class="">
                         ¥ 176,230.00
                     </p>
@@ -67,8 +70,8 @@
                 </div>
 
             </div>
-            <div class="bg-[#08246C] text-center py-2 text-white rounded-md px-4">
-                +  Add to Wishlist
+            <div class="bg-[#08246C] mt-14 text-center py-2  text-white rounded-md px-4 ">
+                + Add to Wishlist
             </div>
         </div>
     </div>
