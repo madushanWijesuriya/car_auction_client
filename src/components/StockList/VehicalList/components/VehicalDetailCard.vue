@@ -5,7 +5,7 @@
         <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[25%] object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
-        <div class="px-2 py-2 space-y-3 ">
+        <div class="px-2 py-2 space-y-3 w-full">
             <div class=" text-center">
                 Toyota Mark II E-JZX100 1997/08
             </div>
@@ -27,17 +27,17 @@
                     <p>2,490 CC</p>
                 </div>
             </div>
-            <div class="flex justify-between text-white text-[10px] gap-2 items-stretch">
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center">
+            <div class="flex w-full text-white text-[10px] gap-2 items-stretch">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
                     Petrol
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
                     Auto Gear
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
                     Right Hand
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
                     4WD
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         </p>
                     </div>
 
-                    <div class="flex w-full md: justify-end">
+                    <div class="flex w-full md:justify-end items-start">
 
                         Sri Lanka-Hambantota
                     </div>
