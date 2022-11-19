@@ -69,3 +69,43 @@
         border-radius: 0px;
     }
 }
+
+@media only screen and (max-width: 678px) {
+    .certification-list ul li {
+        font-size: 16px;
+    }
+    .certification-para-text {
+        font-size: 14px;
+        padding: 0px 18px 0px 18px;
+    }
+    .img-on-para img {
+        position: relative;        
+        margin: auto;
+        margin-top: 8px;
+    }
+    .ship-service-card h1, span {
+        font-size: 20px;
+        padding-top: 18px;
+        padding-left: 18px;
+
+    }
+    .country h1 {
+        font-size: 16px;
+    }
+    .certificate-heading h2 {
+        font-size: 32px;
+        line-height: 32px;
+    }
+    .certificate-heading h4 {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .certificate-heading {
+        position: absolute;
+        left: 55px;
+        font-size:32px;
+        line-height: 32px;
+        font-weight: 700;
+        color: #fff;
+    }
+}

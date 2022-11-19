@@ -1,0 +1,50 @@
+.cardThreeImg {
+    border-radius: 2px;
+}
+
+.cardTitle {
+    position: relative;
+    bottom: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background: #fff;
+    width: 298px;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #08246C;
+    font-weight: 700;
+}
+
+.cardDescText {
+    bottom: 50px;
+    width: 330px;
+    height: 167px;
+    display: flex;
+    margin: auto;
+    position: relative;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 22px;
+    color: #fff;
+    background: #08246C;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+@media only screen and (min-width: 667px) {
+    .cardTitle {
+        width: 400px;
+        height: 47px;
+    }
+
+    .cardDescText {
+        width: 425px;
+        // height: 106px;
+    }
+}

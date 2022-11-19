@@ -62,6 +62,16 @@ const router = createRouter({
       name: "CertificationsEaa",
       component: () => import("../views/CertificationsEaaView.vue"),
     },
+    {
+      path: "/services-quality-control",
+      name: "ServicesQualityControl",
+      component: () => import("../views/ServicesQualityControlView.vue"),
+    },
+    {
+      path: "/services-auction-vs-stock",
+      name: "ServicesAuctionVsStock",
+      component: () => import("../views/ServicesAuctionVsStock.vue"),
+    },
   ],
 });
 

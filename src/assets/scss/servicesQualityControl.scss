@@ -1,0 +1,9 @@
+.car-image img {
+    max-width: none !important;
+}
+
+@media only screen and (max-width: 667px) {
+    .car-image img {
+        max-width: 100% !important;
+    }
+}

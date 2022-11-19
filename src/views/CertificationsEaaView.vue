@@ -3,7 +3,7 @@
 <template>
   <div class="grid place-items-center">
     <div class="lg:mx-28 lg:mt-10">
-      <img class="lg:rounded-[15px] md:rounded-[10px] w-full" src="@/assets/images/shipmentService/main.svg" />
+      <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-full " src="@/assets/images/shipmentService/main.svg" />
     </div>
     <div class="certificate-heading">
       <h2>Jamex Auto Auction</h2>
@@ -30,7 +30,7 @@
         process of inspection as per the given requirements. It is assured that the given car matches the standards of
         conformity. At EAA services that are offered include:
       </div>
-      <div class="p-4 text-2xl columns-2">
+      <div class="certification-list p-4 text-2xl columns-sm columns-2">
         <ul class="list-none">
           <li class="flex justify-start items-center"><img class="p-2"
               src="@/assets/images/certifications/icons/charm_circle-tick.svg" alt=""> Verification of Document</li>
