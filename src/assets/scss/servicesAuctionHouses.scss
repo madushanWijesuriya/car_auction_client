@@ -1,0 +1,14 @@
+.btn-primary {
+    padding: 15px 30px;
+    background: #08246C;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+}
+
+.btn-primary::after {
+    content: url(/src/assets/images/icons/Vector.png);
+    position: relative;
+    top: 2px;
+    padding: 0px 10px;
+}

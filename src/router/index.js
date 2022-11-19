@@ -72,6 +72,11 @@ const router = createRouter({
       name: "ServicesAuctionVsStock",
       component: () => import("../views/ServicesAuctionVsStock.vue"),
     },
+    {
+      path: "/services-auction-houses",
+      name: "ServicesAuctionHouses",
+      component: () => import("../views/ServicesAuctionHouses.vue"),
+    },
   ],
 });
 
