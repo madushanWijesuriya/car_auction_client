@@ -18,7 +18,7 @@ import ButtonTwo from "../components/Buttons/ButtonTwo.vue";
           <!-- ... -->
           <div>
             <div class="car-image mt-15 mb-10 lg:mb-2">
-              <img class="" src="@/assets/images/services-auction-houses/image 59.png" />
+              <img class="" src="@/assets/images/services-auction-houses/image-59.png" />
             </div>
           </div>
         </div>

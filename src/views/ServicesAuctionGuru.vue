@@ -18,7 +18,7 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
           <!-- ... -->
           <div>
             <div class="car-image mt-15 mb-10 lg:mb-2">
-              <img class="" src="@/assets/images/services-auction-guru/jamex-auto-auction-guide 1.png" />
+              <img class="" src="@/assets/images/services-auction-guru/jamex-auto-auction-guide1.png" />
             </div>
           </div>
         </div>
@@ -74,44 +74,44 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
         <div class="auction-sheet mt-10 mb-10">
           <div class="grid grid-cols-3 gap-2 md:grid-cols-5 mt-4 mb-4">
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <!--  -->
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
             <div class="acution-sheet-content">
-              <img src="@/assets/images/services-auction-guru/image 58.png" alt="">
+              <img src="@/assets/images/services-auction-guru/image58.png" alt="">
               <h4 class="text-xl font-bold text-center mt-2">HAA KOBE</h4>
             </div>
           </div>

@@ -20,7 +20,7 @@
 
         EAA Company limited also maintains a presence in other counties such as Tanzania, the UK, and Dubai.
         <div class="img-on-para">
-          <img src="@/assets/images/certifications/image 62.png" alt="">
+          <img src="@/assets/images/certifications/image-62.png" alt="">
         </div>
       </div>
       <div class="certification-para-text pt-1 pb-2">
@@ -60,19 +60,19 @@
     </div>
     <div class="countries justify-items-center columns-4 pt-10">
       <div class="country text-center w-full">
-        <img src="@/assets/images/certifications/image 64.png" alt="">
+        <img src="@/assets/images/certifications/image-64.png" alt="">
         <h1 class="pt-5 font-bold leading-10 text-3xl text-center">Tanzania</h1>
       </div>
       <div class="country">
-        <img src="@/assets/images/certifications/image 65.png" alt="">
+        <img src="@/assets/images/certifications/image-65.png" alt="">
         <h1 class="pt-5 font-bold leading-10 text-3xl text-center">Uganda</h1>
       </div>
       <div class="country">
-        <img src="@/assets/images/certifications/image 66.png" alt="">
+        <img src="@/assets/images/certifications/image-66.png" alt="">
         <h1 class="pt-5 font-bold leading-10 text-3xl text-center">Zambia</h1>
       </div>
       <div class="country">
-        <img src="@/assets/images/certifications/image 67.png" alt="">
+        <img src="@/assets/images/certifications/image-67.png" alt="">
         <h1 class="pt-5 font-bold leading-10 text-3xl text-center">Zanzibar</h1>
       </div>
 

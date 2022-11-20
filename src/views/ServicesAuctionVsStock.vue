@@ -13,7 +13,7 @@ import CardThree from "../components/Cards/CardThree.vue";
         </h1>
       </div>
       <div class="car-image mt-4">
-        <img class="" src="@/assets/images/services-quality-control/image 60.png" />
+        <img class="" src="@/assets/images/services-quality-control/image-60.png" />
       </div>
     </div>
     <div class="features">
