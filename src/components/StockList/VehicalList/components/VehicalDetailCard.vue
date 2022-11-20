@@ -1,43 +1,43 @@
 <script setup>
 </script>
 <template>
-    <div class="w-full text-black p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:gap-2">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[25%] object-cover"
+    <div class="w-full text-black p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
+        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[25vw] object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
         <div class="px-2 py-2 space-y-3 w-full">
             <div class=" text-center">
                 Toyota Mark II E-JZX100 1997/08
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div>
+            <div class="flex flex-wrap gap-4 w-full justify-between md:justify-start">
+                <div class="">
                     <p>Engine Capacity</p>
                     <p>2,490 CC</p>
                 </div>
-                <div>
+                <div class="">
                     <p>Engine Capacity</p>
                     <p>2,490 CC</p>
                 </div>
-                <div>
+                <div class="">
                     <p>Engine Capacity</p>
                     <p>2,490 CC</p>
                 </div>
-                <div>
+                <div class="">
                     <p>Engine Capacity</p>
                     <p>2,490 CC</p>
                 </div>
             </div>
-            <div class="flex w-full text-white text-[10px] gap-2 items-stretch">
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
+            <div class="flex flex-wrap text-white text-[10px] gap-2 mb-auto">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow md:flex-none">
                     Petrol
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow md:flex-none">
                     Auto Gear
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow md:flex-none">
                     Right Hand
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow md:flex-none">
                     4WD
                 </div>
             </div>
