@@ -1,11 +1,11 @@
-import LoginIn from '../views/admin/LoginIn.vue'
+// import LoginIn from '../views/admin/LoginIn.vue'
 const authRoutesAdmin = [
-  {
-    path: '/login',
-    name: 'login-admin',
-    component: LoginIn,
-    meta: { requiresAuth: false, layout: 'LayoutAdmin' },
-  },
+  // {
+  //   path: '/login',
+  //   name: 'login-admin',
+  //   component: LoginIn,
+  //   meta: { requiresAuth: false, layout: 'LayoutAdmin' },
+  // },
   {
     path: '/secured-route',
     name: 'securedRoute',
