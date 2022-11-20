@@ -1,8 +1,9 @@
+import LoginIn from '../views/admin/LoginIn.vue'
 const authRoutesAdmin = [
   {
     path: '/login',
     name: 'login-admin',
-    component: () => import('../views/admin/LoginIn.vue'),
+    component: LoginIn,
     meta: { requiresAuth: false, layout: 'LayoutAdmin' },
   },
   {
