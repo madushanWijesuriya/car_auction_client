@@ -1,48 +1,60 @@
 <script setup>
-import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import menuAside from "@/js/menuAside.js";
-import menuNavBar from "@/js/menuNavBar.js";
-import { useMainStore } from "@/stores/main.js";
-import { useStyleStore } from "@/stores/style.js";
-import BaseIcon from "@/components/admin/BaseIcon.vue";
-import FormControl from "@/components/admin/FormControl.vue";
-import NavBar from "@/components/admin/NavBar.vue";
-import NavBarItemPlain from "@/components/admin/NavBarItemPlain.vue";
-import AsideMenu from "@/components/admin/AsideMenu.vue";
-import FooterBar from "@/components/admin/FooterBar.vue";
+import { mdiForwardburger, mdiBackburger, mdiMenu } from '@mdi/js'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import menuAside from '@/js/menuAside.js'
+import menuNavBar from '@/js/menuNavBar.js'
+import { useMainStore } from '@/stores/main.js'
+import { useStyleStore } from '@/stores/style.js'
+import BaseIcon from '@/components/admin/BaseIcon.vue'
+import FormControl from '@/components/admin/FormControl.vue'
+import NavBar from '@/components/admin/NavBar.vue'
+import NavBarItemPlain from '@/components/admin/NavBarItemPlain.vue'
+import AsideMenu from '@/components/admin/AsideMenu.vue'
+import FooterBar from '@/components/admin/FooterBar.vue'
+import { useAuthStore } from '../../../stores/auth'
+import httpResource from '@/http/httpResource'
 
 useMainStore().setUser({
-  name: "John Doe",
-  email: "john@example.com",
+  name: 'John Doe',
+  email: 'john@example.com',
   avatar:
-    "https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93",
-});
+    'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93',
+})
 
-const layoutAsidePadding = "xl:pl-60";
+const layoutAsidePadding = 'xl:pl-60'
 
-const styleStore = useStyleStore();
+const styleStore = useStyleStore()
 
-const router = useRouter();
+const router = useRouter()
 
-const isAsideMobileExpanded = ref(false);
-const isAsideLgActive = ref(false);
+const { setIsAuthenticated, setCurrentUser } = useAuthStore()
+
+const isAsideMobileExpanded = ref(false)
+const isAsideLgActive = ref(false)
 
 router.beforeEach(() => {
-  isAsideMobileExpanded.value = false;
-  isAsideLgActive.value = false;
-});
+  isAsideMobileExpanded.value = false
+  isAsideLgActive.value = false
+})
 
 const menuClick = (event, item) => {
   if (item.isToggleLightDark) {
-    styleStore.setDarkMode();
+    styleStore.setDarkMode()
   }
 
   if (item.isLogout) {
-    //
+    try {
+      setIsAuthenticated(false)
+      httpResource.post('/api/staff/auth/logout', {})
+      router.push({
+        name: 'login-admin',
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
-};
+}
 </script>
 
 <template>
