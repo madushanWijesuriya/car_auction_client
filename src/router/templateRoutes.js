@@ -1,4 +1,4 @@
-import Style from '@/views/admin/StyleView.vue'
+import Style from '../views/admin/StyleView.vue'
 
 const templateRoutes = [
   {
@@ -18,7 +18,7 @@ const templateRoutes = [
     },
     path: '/admin/tables',
     name: 'tables',
-    component: () => import('@/views/admin/TablesView.vue'),
+    component: () => import('../views/admin/TablesView.vue'),
   },
   {
     meta: {
@@ -28,7 +28,7 @@ const templateRoutes = [
     },
     path: '/admin/forms',
     name: 'forms',
-    component: () => import('@/views/admin/FormsView.vue'),
+    component: () => import('../views/admin/FormsView.vue'),
   },
   {
     meta: {
@@ -38,7 +38,7 @@ const templateRoutes = [
     },
     path: '/admin/profile',
     name: 'profile',
-    component: () => import('@/views/admin/ProfileView.vue'),
+    component: () => import('../views/admin/ProfileView.vue'),
   },
   {
     meta: {
@@ -48,7 +48,7 @@ const templateRoutes = [
     },
     path: '/admin/ui',
     name: 'ui',
-    component: () => import('@/views/admin/UiView.vue'),
+    component: () => import('../views/admin/UiView.vue'),
   },
   {
     meta: {
@@ -58,7 +58,7 @@ const templateRoutes = [
     },
     path: '/admin/responsive',
     name: 'responsive',
-    component: () => import('@/views/admin/ResponsiveView.vue'),
+    component: () => import('../views/admin/ResponsiveView.vue'),
   },
   {
     meta: {
@@ -68,7 +68,7 @@ const templateRoutes = [
     },
     path: '/admin/login',
     name: 'login',
-    component: () => import('@/views/admin/LoginView.vue'),
+    component: () => import('../views/admin/LoginView.vue'),
   },
   {
     meta: {
@@ -77,7 +77,7 @@ const templateRoutes = [
     },
     path: '/admin/error',
     name: 'error',
-    component: () => import('@/views/admin/ErrorView.vue'),
+    component: () => import('../views/admin/ErrorView.vue'),
   },
 ]
 

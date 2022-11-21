@@ -4,11 +4,16 @@ import Navbar from '@/components/layout/Navbar.vue'
 import Menubar from '@/components/layout/TopMenu.vue'
 import Footer from '@/components/layout/Footer.vue'
 import AdminAuthenticated from './components/layout/admin/LayoutAuthenticated.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
+const pathMeta = computed(() => route.meta)
 </script>
 
 <template>
   <div id="app">
-    <div v-if="this.$route.meta.layout" class="layout-02">
+    <div v-if="pathMeta.layout" class="layout-02">
       <body>
         <RouterView />
       </body>
