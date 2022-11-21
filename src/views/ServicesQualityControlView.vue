@@ -22,7 +22,7 @@ import CardThree from "../components/Cards/CardThree.vue";
       </div>
     </div>
     <div class="features">
-      <div class="columns-1 md:columns-3">
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         <CardThree title="Seamless Selection Process"
           desc="Japan's Auto Auction process of delivery allows easy selection of new cars in Japan. Regular listing of cars is performed. In contrast to this, the quality of the car might not be assured when the car is bought from the stock. Japan Auto Auction Agents allow you to get used cars and new cars in japan with a hassle-free system"
           src="../../assets/images/card-three/photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake.png">
@@ -33,8 +33,6 @@ import CardThree from "../components/Cards/CardThree.vue";
         <CardThree title="Chassis / Cleaning"
           desc="Used cars in the japan auction house are sent to the workshop where the process of maintenance and servicing is done. Vehicle parts are steam cleaned and washed. Special attention is given to every part including parts under the chassis. Used Japanese cars are sometimes given special treatment when needed.">
         </CardThree>
-      </div>
-      <div class="columns-1 md:columns-3">
         <CardThree title="Maintenance Work"
           desc="Japan auto auction assures that if customers need specific work before shipment it is done with full care. For that purpose, Japan auto auction agents will perform the process of maintenance with customers that will be hare to the end-user with our customer care team members.">
         </CardThree>
