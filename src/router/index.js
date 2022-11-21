@@ -3,10 +3,11 @@ import {
   createWebHistory,
   createWebHashHistory,
 } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import { getAuthenticatedUser } from '../util/utils'
-import { useAuthStore } from '../stores/auth'
-import LoginIn from '../views/AdminLoginIn.vue'
+import { useAuthStore } from '@/stores/auth'
+import LoginIn from '@/views/AdminLoginIn.vue'
+import Style from '@/views/AdminStyleView.vue'
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
