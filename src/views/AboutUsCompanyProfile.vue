@@ -103,8 +103,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-3 w-fit lg:flex-row items-center lg:h-[70vh] justify-center px-3 md:px-[5%]">
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+            <div class="flex flex-wrap gap-3 w-fit lg:flex-row justify-center px-3 md:px-[5%]">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%] rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="border-[#08246C] w-[100%] lg:w-[26vw] h-[100%]  rounded-[12px] p-0 border-2">
+                <div class="border-[#08246C] w-[100%] lg:w-[26vw] rounded-[12px] p-0 border-2">
                     <div
                         class="font-card-details-headers object-cover rounded-t-[8px] text-center m-0 border-t border-[#08246C] bg-[#08246C] p-5">
                         Bank Detail / 口座情報
@@ -246,106 +246,6 @@
 <style lang="scss" scoped>
 @import "@/assets/scss/companyProfile.scss";
 
-@media (min-width: 1024px) {
-    .about {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-}
 
-@media only screen and (min-width: 640px) {
-
-    /* For mobile phones: */
-    [class*="font-baner-h1"] {
-        font-size: 40px;
-        line-height: 115%;
-        color: white;
-    }
-}
-
-@media only screen and (min-width: 1300px) {
-
-    /* For mobile phones: */
-    [class*="font-baner-h1"] {
-        font-size: 50px;
-        line-height: 65.6px;
-        color: white;
-    }
-
-    [class*="font-baner-h2"] {
-        font-size: 20px;
-        line-height: 20px;
-        color: white;
-    }
-
-    [class*="font-baner-number"] {
-        font-size: 50px;
-        line-height: 40px;
-        color: white;
-    }
-
-    [class*="font-h2"] {
-        font-size: 36px;
-        line-height: 49.1px;
-    }
-
-    [class*="font-para"] {
-        font-size: 20px;
-        line-height: 27.28px;
-    }
-
-    [class*="font-contact-details-headers"] {
-        font-size: 24px;
-        line-height: 32.74px;
-        font-weight: 700;
-    }
-
-    [class*="font-contact-details-line"] {
-        font-size: 24px;
-        line-height: 32.74px;
-        font-weight: 500;
-
-    }
-
-    [class*="font-card-details-headers"] {
-        font-size: 24px;
-        font-weight: 700;
-    }
-
-    [class*="font-card-line-title"] {
-        font-size: 20px;
-        line-height: 27.28px;
-        font-weight: 700;
-    }
-
-    [class*="font-card-line-content"] {
-        font-size: 20px;
-        line-height: 27.28px;
-        font-weight: 400;
-    }
-
-    [class*="font-card-line-title"] {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    [class*="font-license-content"] {
-        font-size: 20px;
-        font-weight: 400;
-    }
-
-    [class*="font-license-title"] {
-        font-size: 20px;
-        line-height: 32.74px;
-        font-weight: 500;
-    }
-
-    [class*="font-license-japan"] {
-        font-size: 20px;
-        line-height: 32.74px;
-        font-weight: 700;
-    }
-}
 </style>
   
