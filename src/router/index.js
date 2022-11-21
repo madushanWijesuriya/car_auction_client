@@ -82,7 +82,7 @@ const router = createRouter({
     {
       path: '/secured-route',
       name: 'securedRoute',
-      component: () => import('../views/admin/TestSecured.vue'),
+      component: () => import('../views/AdminTestSecured.vue'),
       meta: { requiresAuth: true, layout: 'LayoutAdmin' },
     },
     {
@@ -95,7 +95,7 @@ const router = createRouter({
       },
       path: '/admin/dashboard',
       name: 'dashboard',
-      component: () => import('../views/admin/HomeView.vue'),
+      component: () => import('../views/AdminHomeView.vue'),
     },
     {
       meta: {
@@ -105,7 +105,7 @@ const router = createRouter({
       },
       path: '/admin/add-car',
       name: 'add-car',
-      component: () => import('../views/admin/AddCarView.vue'),
+      component: () => import('../views/AdminAddCarView.vue'),
     },
     {
       meta: {
@@ -115,7 +115,7 @@ const router = createRouter({
       },
       path: '/admin/all-cars',
       name: 'all-cars',
-      component: () => import('../views/admin/AllCarsView.vue'),
+      component: () => import('../views/AdminAllCarsView.vue'),
     },
     {
       meta: {
@@ -134,7 +134,7 @@ const router = createRouter({
       },
       path: '/admin/tables',
       name: 'tables',
-      component: () => import('../views/admin/TablesView.vue'),
+      component: () => import('../views/AdminTablesView.vue'),
     },
     {
       meta: {
@@ -144,7 +144,7 @@ const router = createRouter({
       },
       path: '/admin/forms',
       name: 'forms',
-      component: () => import('../views/admin/FormsView.vue'),
+      component: () => import('../views/AdminFormsView.vue'),
     },
     {
       meta: {
@@ -154,7 +154,7 @@ const router = createRouter({
       },
       path: '/admin/profile',
       name: 'profile',
-      component: () => import('../views/admin/ProfileView.vue'),
+      component: () => import('../views/AdminProfileView.vue'),
     },
     {
       meta: {
@@ -164,7 +164,7 @@ const router = createRouter({
       },
       path: '/admin/ui',
       name: 'ui',
-      component: () => import('../views/admin/UiView.vue'),
+      component: () => import('../views/AdminUiView.vue'),
     },
     {
       meta: {
@@ -174,7 +174,7 @@ const router = createRouter({
       },
       path: '/admin/responsive',
       name: 'responsive',
-      component: () => import('../views/admin/ResponsiveView.vue'),
+      component: () => import('../views/AdminResponsiveView.vue'),
     },
     {
       meta: {
@@ -184,7 +184,7 @@ const router = createRouter({
       },
       path: '/admin/login',
       name: 'login',
-      component: () => import('../views/admin/LoginView.vue'),
+      component: () => import('../views/AdminLoginView.vue'),
     },
     {
       meta: {
@@ -193,7 +193,7 @@ const router = createRouter({
       },
       path: '/admin/error',
       name: 'error',
-      component: () => import('../views/admin/ErrorView.vue'),
+      component: () => import('../views/AdminErrorView.vue'),
     },
   ],
 })
