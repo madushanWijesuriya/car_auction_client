@@ -6,6 +6,7 @@ import {
 import HomeView from '../views/HomeView.vue'
 import { getAuthenticatedUser } from '../util/utils'
 import { useAuthStore } from '../stores/auth'
+import LoginIn from '../views/admin/LoginIn.vue'
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
