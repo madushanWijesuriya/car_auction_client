@@ -34,7 +34,8 @@ const getImageUrl = (name) => {
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col lg:flex-row gap-2 lg:px-[2vw] w-full">
+            <p class="font-main-title text-center">Search Japan Used Vehicles</p>
+            <div class="flex flex-col xl:flex-row gap-2 xl:px-[2vw] w-full">
                 <Filter />
                 <VehicalList />
                 <CustomerFeedback />
@@ -44,5 +45,5 @@ const getImageUrl = (name) => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/companyProfile.scss";
+@import "@/assets/scss/stock-list/vehicalDetailsCard.scss";
 </style>

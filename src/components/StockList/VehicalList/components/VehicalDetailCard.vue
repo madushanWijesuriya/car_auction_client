@@ -1,77 +1,85 @@
 <script setup>
+
 </script>
 <template>
-    <div class="w-full text-black p-2 rounded-md border space-y-3 border-[#E7E7E7] lg:flex lg:justify-between lg:gap-2">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[25vw] object-cover"
+    <div class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
+        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw]  object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
-        <div class="px-2 py-2 space-y-3 w-full">
-            <div class=" text-center">
+        <div class="px-2 py-2 space-y-3 w-full md:relative">
+            <div class="text-center font-vehical-name">
                 Toyota Mark II E-JZX100 1997/08
             </div>
-            <div class="flex flex-wrap gap-4 w-full justify-between lg:justify-start">
-                <div class="">
-                    <p>Engine Capacity</p>
-                    <p>2,490 CC</p>
+            <div class="grid grid-cols-2 gap-5 lg:grid-cols-4 w-full">
+                <div class="w-f21">
+                    <p class="font-vehical-details-title">Engine Capacity</p>
+                    <p class="font-vehical-details-content">2,490 CC</p>
                 </div>
-                <div class="">
-                    <p>Engine Capacity</p>
-                    <p>2,490 CC</p>
+                <div class="w-full">
+                    <p class="font-vehical-details-title">Mileage</p>
+                    <p class="font-vehical-details-content">81,000 KM</p>
                 </div>
-                <div class="">
-                    <p>Engine Capacity</p>
-                    <p>2,490 CC</p>
+                <div class="w-full">
+                    <p class="font-vehical-details-title">Chassis No.</p>
+                    <p class="font-vehical-details-content">JZX100-6036994</p>
                 </div>
-                <div class="">
-                    <p>Engine Capacity</p>
-                    <p>2,490 CC</p>
+                <div class="w-full">
+                    <p class="font-vehical-details-title">Now On Sale</p>
+                    <p class="font-vehical-details-content">Ref# 22830T</p>
                 </div>
             </div>
-            <div class="flex flex-wrap text-white text-[10px] gap-2 mb-auto">
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow lg:flex-none">
+            <div class="lg:flex">
+                <div class="flex font-button-row flex-wrap gap-2 justify-start">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
                     Petrol
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow lg:flex-none">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
                     Auto Gear
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow lg:flex-none">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
                     Right Hand
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow lg:flex-none">
+                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
                     4WD
                 </div>
             </div>
+            </div>
         </div>
-        <div class="w-full px-2 lg:w-[25%] space-y-2">
-            <div class="flex lg:flex-col w-full justify-between lg:items-end">
-                <div class="w-full flex-col md:items-end">
-                    <div class="flex flex-col md:flex-row lg:justify-between">
-                        <p class="">
+        <div class="md:w-[55vw] px-2 space-y-2">
+            <div class="flex flex-row md:flex-wrap justify-between">
+                <div class="w-full flex-col">
+                    <div class="flex flex-col md:items-end lg:flex-row lg:justify-end lg:gap-3">
+                        <p class="font-car-price-1">
                             Car Price :
                         </p>
-                        <p class="">
+                        <p class="font-car-price-3">
                             ¥ 147,500.00
                         </p>
                     </div>
 
-                    <div class="flex w-full lg:justify-end items-start">
-
+                    <div class="flex w-full items-start md:justify-end">
                         Sri Lanka-Hambantota
                     </div>
 
                 </div>
-                <div class="flex w-full flex-col lg:items-end">
-                    <p class="">
+                <div class="flex w-full flex-col md: items-end">
+                    <p class="font-car-price-2 ">
                         ¥ 176,230.00
                     </p>
-                    <p class="">
+                    <p class="font-shipping-price">
                         Total Price with Shipping
                     </p>
                 </div>
             </div>
-            <div class="bg-[#08246C] mt-auto text-center py-2  text-white rounded-md px-4 ">
-                + Add to Wishlist
+            <div class="w-full lg:flex lg:justify-end">
+                <div class="bg-[#08246C] items-center font-add text-center py-2 rounded-md px-4 ">
+                    + Add to Wishlist
+                </div>
             </div>
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/stock-list/vehicalDetailsCard.scss";
+</style>

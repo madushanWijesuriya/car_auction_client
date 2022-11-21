@@ -9,3 +9,7 @@ import VehicalDetailCardVue from './components/VehicalDetailCard.vue';
         <VehicalDetailCardVue />
     </div>
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/stock-list/vehicalDetailsCard.scss";
+</style>
