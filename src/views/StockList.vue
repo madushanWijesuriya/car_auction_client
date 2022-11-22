@@ -35,7 +35,7 @@ const getImageUrl = (name) => {
                 </div>
             </div>
             <p class="font-main-title text-center">Search Japan Used Vehicles</p>
-            <div class="flex flex-col xl:flex-row gap-2 xl:px-[2vw] w-full">
+            <div class="flex flex-col lg:flex-row gap-2 xl:px-[2vw] w-full">
                 <Filter />
                 <VehicalList />
                 <CustomerFeedback />
