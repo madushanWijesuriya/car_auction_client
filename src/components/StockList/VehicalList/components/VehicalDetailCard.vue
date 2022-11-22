@@ -3,7 +3,7 @@
 </script>
 <template>
     <div class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw]  object-cover"
+        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[15vw] object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
         <div class="px-2 py-2 space-y-3 w-full md:relative">
@@ -45,7 +45,7 @@
             </div>
             </div>
         </div>
-        <div class="md:w-[55vw] px-2 space-y-2">
+        <div class="md:w-[35vw] lg:w-[55%] px-2 space-y-2">
             <div class="flex flex-row md:flex-wrap justify-between">
                 <div class="w-full flex-col">
                     <div class="flex flex-col md:items-end lg:flex-row lg:justify-end lg:gap-3">
