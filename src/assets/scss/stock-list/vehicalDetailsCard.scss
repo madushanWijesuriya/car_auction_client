@@ -6,6 +6,24 @@
     font-weight: 700;
 }
 
+
+
+.font-header-photo {
+    font-size: 64px;
+    line-height: 87.3px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 800;
+}
+
+.font-header-photo-2 {
+    font-size: 32px;
+    line-height: 43.65px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 500;
+}
+
 .font-vehical-name {
     font-size: 16px;
     line-height: 21.82px;
@@ -275,14 +293,20 @@
         font-weight: 700;
     }
 
-    [class*="font-print-share"] {
-        font-size:18px;
-        line-height: 24.55px;
+    [class="font-header-photo"] {
+        font-size: 129px;
+        line-height: 175.96px;
+        color:#FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
     }
-
-    [class*="font-card-title-1"] {
-        font-size:24px;
-        line-height: 32.74px;
+    
+    [class="font-header-photo-2"] {
+        font-size: 64px;
+        line-height: 87.3px;
+        color:#FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
     }
 
 

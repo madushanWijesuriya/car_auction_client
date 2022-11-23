@@ -10,8 +10,8 @@
             <div class="text-center font-vehical-name">
                 Toyota Mark II E-JZX100 1997/08
             </div>
-            <div class="grid grid-cols-2 gap-5 lg:grid-cols-4 w-full">
-                <div class="w-f21">
+            <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
+                <div class="w-full">
                     <p class="font-vehical-details-title">Engine Capacity</p>
                     <p class="font-vehical-details-content">2,490 CC</p>
                 </div>
