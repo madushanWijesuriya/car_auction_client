@@ -82,6 +82,11 @@ const router = createRouter({
       name: "ServicesAuctionGuru",
       component: () => import("../views/ServicesAuctionGuru.vue"),
     },
+    {
+      path: "/blank-page",
+      name: "BlankPage",
+      component: () => import("../views/BlankPage.vue"),
+    },
   ],
 });
 
