@@ -213,42 +213,66 @@
         line-height: 21.82px;
     }
 
-    // [class*="font-vehical-name"] {
-    //     font-size: 24px;
-    //     line-height: 32.74px;
-    //     font-weight: 700;
-    // }
+    [class*="font-main-title"] {
+        font-size: 36px;
+        line-height: 49.1px;
+        font-weight: 700;
+    }
 
-    [class*="font-para-1"] {
-        font-size: 18px;
-        line-height: 24.55px;
+    [class*="font-vehical-name"] {
+        font-size: 24px;
+        line-height: 32.74px;
+        font-weight: 700;
+    }
+
+    [class*="font-vehical-details-title"] {
+        font-size: 16px;
+        line-height: 21.82px;
+        color: #08246C;;
+        font-weight: 600;
+    }
+
+    [class*="font-vehical-details-content"] {
+        font-size: 16px;
+        line-height: 21.82px;
         color:black;
+        font-weight: 700;
     }
 
-    [class*="font-freight-lable"] {
+    [class*="font-button-row"] {
+        font-size: 14px;
+        line-height: 19.1px;
+        font-weight: 400;
+    }
+
+    [class*="font-car-price-1"] {
+        font-size: 16px;
+        line-height: 21.82px;
+        font-weight: 400;
+    }
+
+    [class*="font-car-price-3"] {
         font-size: 20px;
-        line-height: 27.28px;
+        line-height: 20px;
+        font-weight: 700;
     }
 
-    [class*="font-total-price"] {
-        font-size: 32px;
+    [class*="font-car-price-2"] {
+        font-size:32px;
         line-height: 43.65px;
         font-weight: 700;
     }
 
-    [class*="font-total-price-label"] {
+    [class*="font-shipping-price"] {
         font-size:12px;
         line-height: 16.37px;
+        font-weight: 400;
     }
 
-    [class*="font-quote-title"] {
-        font-size:24px;
-        line-height: 32.74px;
-    }
-
-    [class*="font-quote-form-label"] {
+    [class*="font-add"] {
         font-size:16px;
         line-height: 21.82px;
+        font-weight: 700;
     }
 
     [class*="font-print-share"] {
@@ -263,3 +287,4 @@
 
 
 }
+

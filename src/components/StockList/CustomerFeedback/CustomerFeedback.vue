@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-    <div class="w-full lg:w-[30%] text-black border border-[#E7E7E7] p-3">
+    <div class="w-full lg:w-[30%] xl:w-[20%] h-fit rounded-md text-black border border-[#E7E7E7] p-3">
         <p class="text-center main-title">
             Customer Feedback
         </p>

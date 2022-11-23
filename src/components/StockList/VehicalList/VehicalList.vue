@@ -12,6 +12,8 @@ import Pagination from '../pagination/pagination.vue';
         <VehicalDetailCardVue />
         <VehicalDetailCardVue />
         <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
         <Pagination />
     </div>
 </template>

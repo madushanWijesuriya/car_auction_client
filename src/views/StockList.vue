@@ -12,7 +12,7 @@ const getImageUrl = (name) => {
     <div class="text-white text-sm p-2">
         <div class="flex flex-col gap-5 justify-center items-center w-full m">
             <div class="relative w-full md:px-[5%]">
-                <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
+                <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/company-profile/company-profile.svg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">

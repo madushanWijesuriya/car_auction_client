@@ -1,8 +1,8 @@
 <script setup>
 </script>
 <template>
-    <div class="w-full lg:flex space-y-4 text-gray-600">
-        <div class="flex justify-between">
+    <div class="w-full lg:flex text-gray-600">
+        <div class="flex w-full justify-between">
             <div>
                 Showing 1 to 40 of 5 entries
             </div>
@@ -19,7 +19,7 @@
             </div>
 
         </div>
-        <div class="flex gap-3 justify-center items-center">
+        <div class="flex gap-3 justify-center">
             <div>
 
             </div>
