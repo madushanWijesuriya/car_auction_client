@@ -4,11 +4,11 @@
    <div class="hidden xl:flex w-full lg:w-[30%] xl:w-[20%] h-fit text-blackborder border-[#E7E7E7]">
       <div class="filter-box">
          <div class="filter-heading flex flex-row items-center">
-            <div class="heading basis-1/2">
-               <h2 class="text-xl font-semibold">Filters</h2>
+            <div class="heading basis-1/3">
+               <h2 class="text-[20px] font-semibold text-black">Filters</h2>
             </div>
-            <div class="filter-result basis-1/2">
-               <h2 class="text-sm font-semibold text-end">Show Results <span class="primary-blue">245</span></h2>
+            <div class="filter-result basis-2/3">
+               <h2 class="text-sm font-semibold text-end  text-black">Show Results <span class="primary-blue">245</span></h2>
             </div>
          </div>
          <div class="filter-form mt-5">
