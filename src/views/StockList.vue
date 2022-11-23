@@ -9,7 +9,7 @@ const getImageUrl = (name) => {
 };
 </script>
 <template>
-    <div class="text-white text-sm">
+    <div class="text-white text-sm p-2">
         <div class="flex flex-col gap-5 justify-center items-center w-full m">
             <div class="relative w-full md:px-[5%]">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
@@ -35,7 +35,7 @@ const getImageUrl = (name) => {
                 </div>
             </div>
             <p class="font-main-title text-center">Search Japan Used Vehicles</p>
-            <div class="flex flex-col lg:flex-row gap-2 xl:px-[2vw] w-full">
+            <div class="flex flex-col px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
                 <Filter />
                 <VehicalList />
                 <CustomerFeedback />

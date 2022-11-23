@@ -3,7 +3,7 @@
 </script>
 <template>
     <div class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[15vw] object-cover"
+        <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[18vw] object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
         <div class="px-2 py-2 space-y-3 w-full md:relative">

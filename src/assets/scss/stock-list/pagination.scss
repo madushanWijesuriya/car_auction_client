@@ -1,0 +1,265 @@
+.font-main-title {
+    font-size: 24px;
+    line-height: 32.74px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-vehical-name {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#08246C;
+    font-weight: 700;
+}
+
+.font-vehical-details-title {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#08246C;
+    font-weight: 600;
+}
+
+.font-vehical-details-content {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-weight: 700;
+}
+
+
+.font-button-row {
+    font-size: 10px;
+    line-height:13.64px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 400;
+    text-align: center;
+}
+
+.font-car-price-1 {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-car-price-2 {
+    font-size: 20px;
+    line-height: 27.28px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-car-price-3 {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-shipping-price {
+    font-size: 8px;
+    line-height: 10.91px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-direction {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-add {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:white;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-card-title-1 {
+    font-size: 16px;
+    line-height: 27.28px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-car-price-title {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400    ;
+}
+
+.font-car-price {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-card-line-title-1 {
+    font-size: 16px;
+    line-height: 32px;
+    color:black;
+    font-family: 'Nunito';
+    font-weight: 500    ;
+}
+
+.font-card-line-content {
+    font-size: 16px;
+    line-height: 32px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-freight-lable {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-total-price {
+    font-size: 20px;
+    line-height: 27.28px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-total-price-label {
+    font-size: 10px;
+    line-height: 13.64px;
+    color:black;
+    font-family: 'Nunito';
+    font-weight: 400    ;
+}
+
+.font-down-image {
+    font-size: 14px;
+    line-height: 19.1px;
+    color:white;
+    font-family: 'Nunito';
+    font-weight: 700    ;
+}
+
+.font-quote-title {
+    font-size: 20px;
+    line-height: 27.28px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700 ;
+}
+
+.font-quote-form-label {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:black;
+    font-family: 'Nunito';
+    font-weight: 600 ;
+}
+
+.font-button-reset {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 600 ;
+}
+
+.font-button-send {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:white;
+    font-family: 'Nunito';
+    font-weight: 600 ;
+}
+
+@media (min-width: 1024px) {
+    .about {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+
+    [class*="font-baner-h1"] {
+        font-size: 40px;
+        line-height: 115%;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+
+    [class*="font-now-on-sales"] {
+        font-size: 16px;
+        line-height: 21.82px;
+    }
+
+    // [class*="font-vehical-name"] {
+    //     font-size: 24px;
+    //     line-height: 32.74px;
+    //     font-weight: 700;
+    // }
+
+    [class*="font-para-1"] {
+        font-size: 18px;
+        line-height: 24.55px;
+        color:black;
+    }
+
+    [class*="font-freight-lable"] {
+        font-size: 20px;
+        line-height: 27.28px;
+    }
+
+    [class*="font-total-price"] {
+        font-size: 32px;
+        line-height: 43.65px;
+        font-weight: 700;
+    }
+
+    [class*="font-total-price-label"] {
+        font-size:12px;
+        line-height: 16.37px;
+    }
+
+    [class*="font-quote-title"] {
+        font-size:24px;
+        line-height: 32.74px;
+    }
+
+    [class*="font-quote-form-label"] {
+        font-size:16px;
+        line-height: 21.82px;
+    }
+
+    [class*="font-print-share"] {
+        font-size:18px;
+        line-height: 24.55px;
+    }
+
+    [class*="font-card-title-1"] {
+        font-size:24px;
+        line-height: 32.74px;
+    }
+
+
+}

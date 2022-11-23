@@ -1,12 +1,18 @@
 <script setup>
 import VehicalDetailCardVue from './components/VehicalDetailCard.vue';
+import Pagination from '../pagination/pagination.vue';
 </script>
 
 <template>
-    <div class="w-full flex flex-col gap-3 text-black p-3">
+    <div class="w-full flex flex-col gap-3 text-black">
         <VehicalDetailCardVue />
         <VehicalDetailCardVue />
         <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
+        <VehicalDetailCardVue />
+        <Pagination />
     </div>
 </template>
 
