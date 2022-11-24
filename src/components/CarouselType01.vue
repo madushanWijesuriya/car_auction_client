@@ -1,43 +1,43 @@
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed } from 'vue'
 const items = reactive([
   {
     id: 1,
-    image: "@/assets/images/carousel/car02.svg",
+    image: '@/assets/images/carousel/car02.svg',
     order: 1,
-    alt: "image-1",
+    alt: 'image-1',
     selected: false,
   },
   {
     id: 2,
-    image: "../assets/images/carousel/car03.svg",
+    image: '../assets/images/carousel/car03.svg',
     order: 2,
-    alt: "image-2",
+    alt: 'image-2',
     selected: false,
   },
   {
     id: 3,
-    image: "../assets/images/carousel/car01.svg",
+    image: '../assets/images/carousel/car01.svg',
     order: 3,
-    alt: "image-3",
+    alt: 'image-3',
     selected: false,
   },
   {
     id: 4,
-    image: "../assets/images/carousel/car04.svg",
+    image: '../assets/images/carousel/car04.svg',
     order: 4,
-    alt: "image-4",
+    alt: 'image-4',
     selected: true,
   },
-]);
+])
 const activeImageObj = computed(() => {
-  const activeObj = items.find((i) => i.selected);
-  return activeObj || "";
-});
+  const activeObj = items.find((i) => i.selected)
+  return activeObj || ''
+})
 const getImageUrl = (name) => {
-  if (!name) return "";
-  return new URL(name, import.meta.url).href;
-};
+  if (!name) return ''
+  return new URL(name).href
+}
 </script>
 
 <template>
@@ -107,5 +107,5 @@ const getImageUrl = (name) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/scss/carouselType01.scss";
+@import '@/assets/scss/carouselType01.scss';
 </style>
