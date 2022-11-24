@@ -36,7 +36,7 @@ const activeImageObj = computed(() => {
 })
 const getImageUrl = (name) => {
   if (!name) return ''
-  return new URL(name, import.meta.url).href
+  return new URL(name, import.meta.url)
 }
 </script>
 
