@@ -1,0 +1,61 @@
+.stepper-service {
+    ::v-deep(.el-step__icon) {
+        color: #fff;
+        background: var(--primary-blue);
+        width: 100%;
+    }
+
+    ::v-deep(.el-step__icon-inner) {
+        font-weight: 600;
+    }
+
+    ::v-deep(.icon-class) {
+        font-size: 10px;
+    }
+
+    ::v-deep(.el-step__head) {
+        border-color: var(--primary-blue);
+    }
+
+    ::v-deep(.el-step__line) {
+        background-color: var(--primary-blue);
+    }
+
+    ::v-deep(.el-step__title) {
+        font-weight: 700;
+        font-size: 16px;
+        color: #333333;
+    }
+
+    ::v-deep(.el-step__head) {
+        background: var(--primary-blue);
+    }
+    ::v-deep(.el-step.is-vertical .el-step__head){
+        width: 18px;
+    }
+
+    @media (min-width: 640px) {
+        ::v-deep(.el-step__title) {
+            font-size: 20px;
+        }
+
+        ::v-deep(.el-step__icon) {
+            right: 0;
+            width: 100%;
+            background: var(--primary-blue);
+            color: aliceblue;
+            border-radius: none;
+        }
+
+        ::v-deep(.el-step__main) {
+            padding-left: 20px;
+        }
+
+        ::v-deep(.el-step__icon.is-text) {
+            border: 0;
+        }
+        ::v-deep(.el-step.is-vertical .el-step__head){
+            width: 50px;
+        }
+    }
+}

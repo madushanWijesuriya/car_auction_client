@@ -1,0 +1,29 @@
+.service-tab {
+    ::v-deep(.is-active) {
+        background-color: var(--primary-blue);
+        color: #fff;
+        border: 0;
+    }
+
+    ::v-deep(.el-tabs__active-bar) {
+        background-color: var(--primary-blue);
+    }
+
+    ::v-deep(.el-tabs__item) {
+        font-size: 16px;
+    }
+
+    ::v-deep(.el-tabs__item:hover) {
+        color: var(--primary-blue);
+    }
+
+    ::v-deep(.is-active:hover) {
+        color: #fff;
+    }
+    ::v-deep(.el-tabs__content) {
+        padding: 10px;
+    }
+    ::v-deep(.el-tabs__active-bar) {
+        transition: none;
+    }
+}

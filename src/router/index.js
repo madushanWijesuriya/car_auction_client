@@ -196,6 +196,36 @@ const router = createRouter({
       name: 'error',
       component: () => import('../views/AdminErrorView.vue'),
     },
+    {
+      path: "/certifications-eaa",
+      name: "CertificationsEaa",
+      component: () => import("../views/CertificationsEaaView.vue"),
+    },
+    {
+      path: "/services-quality-control",
+      name: "ServicesQualityControl",
+      component: () => import("../views/ServicesQualityControlView.vue"),
+    },
+    {
+      path: "/services-auction-vs-stock",
+      name: "ServicesAuctionVsStock",
+      component: () => import("../views/ServicesAuctionVsStock.vue"),
+    },
+    {
+      path: "/services-auction-houses",
+      name: "ServicesAuctionHouses",
+      component: () => import("../views/ServicesAuctionHouses.vue"),
+    },
+    {
+      path: "/services-auction-guru",
+      name: "ServicesAuctionGuru",
+      component: () => import("../views/ServicesAuctionGuru.vue"),
+    },
+    {
+      path: "/blank-page",
+      name: "BlankPage",
+      component: () => import("../views/BlankPage.vue"),
+    },
   ],
 })
 
