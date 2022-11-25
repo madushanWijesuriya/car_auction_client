@@ -1,9 +1,41 @@
 .filter-box {
-  height: 288px;
+  height: auto;
   background: rgba(255, 255, 255, 0.75);
   border: 2px solid #e7edff;
   box-shadow: 0px 0px 10px rgba(117, 117, 117, 0.15);
   // backdrop-filter: blur(8px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 16px;
+}
+
+.btn-search {
+  width: 100%;
+  margin-top: 20px;
+  background: #08246C;
+  color: #e7edff;
+  border-radius: 8px;
+  border: 1px solid #08246C;
+  padding: 10px 30px 10px 30px;
+
+}
+
+.btn-clear {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 8px;
+  padding: 10px 30px 10px 30px;
+  background: #fff;
+  color: #08246C;
+  border: 1px solid #08246C;
+}
+
+.filter-box {
+  ::v-deep(.el-input__inner) {
+    // height: calc(var(--el-input-height, 50px) - -10px)
+  }
+
+  ::v-deep(.el-form-item__label) {
+    font-size: 20px;
+    // height: calc(var(--el-input-height, 50px) - -10px)
+  }
 }

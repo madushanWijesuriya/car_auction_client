@@ -8,7 +8,7 @@ defineProps({
 </script>
 <template>
   <div class="card">
-    <img class="cardOneImg" src="../../../public/2.png" alt="Card image cap" />
+    <img class="cardOneImg" src="../../../src/assets/images/card-one/2.png" alt="Card image cap" />
     <span class="cardBatch"
       ><h1 class="text-center text-white text-lg">Now on Sale</h1></span
     >

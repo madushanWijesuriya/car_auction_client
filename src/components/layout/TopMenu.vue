@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import { computed } from "@vue/runtime-core";
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT;
+});
+</script>
 <template>
   <div
     class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]">
@@ -18,103 +23,7 @@
     <div
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
       <div>
-        <a class="font-semibold" href="https://car-auction-staging.netlify.app/">Home</a>
-      </div>
-      <div class="flex items-center gap-2">
-        <a class="font-semibold" href="https://car-auction-staging.netlify.app/stock-list">Stock List</a>
-      </div>
-      <div class="">
-        <el-dropdown class="w-full flex text-[#08246C] border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            Services
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/countries-vehicle-details">Action Calender</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/services-auction-guru">Action Guide</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/services-auction-vs-stock">Action vs Stock</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/services-auction-houses">Action Houses</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/services-quality-control">Quality Control</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/countries-vehicle-details">Shipment Schedule</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/shipment-service">Shipment Schedule</a>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <div class="font-semibold">
-        <el-dropdown class="w-full flex text-[#08246C] font-semibold border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            Certifications
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app//countries-vehicle-details">EAA</a>
-              </el-dropdown-item>
-              <el-dropdown-item></el-dropdown-item>
-              <el-dropdown-item>Intertek</el-dropdown-item>
-              <el-dropdown-item>JAAI</el-dropdown-item>
-              <el-dropdown-item>JEVIC</el-dropdown-item>
-              <el-dropdown-item>VCA</el-dropdown-item>
-              <el-dropdown-item>QISJ</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <a class="font-semibold" href="https://car-auction-staging.netlify.app/how-to-ordering">How to Order</a>
-      <div class="flex items-center gap-2">
-        <el-dropdown class="w-full flex text-[#08246C] font-semibold border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            About Us
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold" href="https://car-auction-staging.netlify.app/why-us">Why
-                  Us</a></el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/company-profile">Company Profile</a></el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" href="https://car-auction-staging.netlify.app/about">Corparate
-                  Philosophy</a></el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app/customer-feedback">Customer's Feedback</a>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <div class="font-semibold">
-        <a class="font-semibold" href="https://car-auction-staging.netlify.app//reachus">Reach Us</a>
-      </div>
-    </div>
+ </div>
     <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
       <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center">
         Log in

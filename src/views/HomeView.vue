@@ -1,15 +1,10 @@
 <script setup>
-import MenuNavbar from "../components/MenuNavbar.vue";
-import CarouselType01 from "../components/CarouselType01.vue";
-import FilterBox from "../components/FilterBox.vue";
-import CardTwo from "../components/Cards/CardTwo.vue";
-import CardOne from "../components/Cards/CardOne.vue";
-import ButtoneTwo from "../components/Buttons/ButtonTwo.vue";
-
-const getImageUrl = (name) => {
-  if (!name) return "";
-  return new URL(name, import.meta.url).href;
-};
+import MenuNavbar from '../components/MenuNavbar.vue'
+import CarouselType01 from '../components/CarouselType01.vue'
+import FilterBox from '../components/FilterBox.vue'
+import CardTwo from '../components/Cards/CardTwo.vue'
+import CardOne from '../components/Cards/CardOne.vue'
+import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
 </script>
 
 <template>
@@ -64,7 +59,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-01.svg')"
+                  src="@/assets/images/icons/card-icon-01.svg"
                   alt="icon-01"
                 />
               </template>
@@ -76,7 +71,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-02.svg')"
+                  src="@/assets/images/icons/card-icon-02.svg"
                   alt="icon-02"
                 />
               </template>
@@ -88,7 +83,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-03.svg')"
+                  src="@/assets/images/icons/card-icon-03.svg"
                   alt="icon-03"
                 />
               </template>
@@ -100,7 +95,7 @@ const getImageUrl = (name) => {
             >
               <template v-slot:icon>
                 <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-04.svg')"
+                  src="@/assets/images/icons/card-icon-04.svg"
                   alt="icon-04"
                 />
               </template>
@@ -117,10 +112,10 @@ const getImageUrl = (name) => {
         <div
           class="grid gap-6 sm:gap-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-6 sm:mt-12 place-items-center"
         >
+          <!-- <CardOne />
           <CardOne />
           <CardOne />
-          <CardOne />
-          <CardOne />
+          <CardOne /> -->
         </div>
       </div>
       <div class="content-05 container mt-9 px-4 md:px-20">
@@ -133,7 +128,7 @@ const getImageUrl = (name) => {
           <div>
             <div class="shade-window bg-color-05"></div>
             <img
-              :src="getImageUrl('../assets/images/home/asset_001.jpg')"
+              src="@/assets/images/home/asset_001.jpg"
               alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
             />
           </div>
@@ -160,5 +155,5 @@ const getImageUrl = (name) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/scss/homeView.scss";
+@import '@/assets/scss/homeView.scss';
 </style>
