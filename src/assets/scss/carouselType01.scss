@@ -27,4 +27,44 @@
       margin-top: 13px;
     }
   }
+
+  .slide-fade-enter-active {
+    transition: all 2s ease;
+  }
+
+  .slide-fade-enter-active img {
+    transition: all 2s ease;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 2s ease;
+  }
+
+  .slide-fade-leave-active img {
+    transition: all 2s ease;
+  }
+
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    opacity: 0;
+  }
+
+  .slide-fade-enter img,
+  .slide-fade-leave-to img {
+    filter: blur(10px);
+    transform: scale(1.2) rotate(3deg);
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 640px;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .slider-wrapper img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 }
