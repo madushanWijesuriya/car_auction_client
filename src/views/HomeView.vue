@@ -1,15 +1,10 @@
 <script setup>
-import MenuNavbar from "../components/MenuNavbar.vue";
-import CarouselType01 from "../components/CarouselType01.vue";
-import FilterBox from "../components/FilterBox.vue";
-import CardTwo from "../components/Cards/CardTwo.vue";
-import CardOne from "../components/Cards/CardOne.vue";
-import ButtoneTwo from "../components/Buttons/ButtonTwo.vue";
-
-const getImageUrl = (name) => {
-  if (!name) return "";
-  return new URL(name, import.meta.url).href;
-};
+import MenuNavbar from '../components/MenuNavbar.vue'
+import CarouselType01 from '../components/CarouselType01.vue'
+import FilterBox from '../components/FilterBox.vue'
+import CardTwo from '../components/Cards/CardTwo.vue'
+import CardOne from '../components/Cards/CardOne.vue'
+import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
 </script>
 
 <template>
@@ -63,10 +58,7 @@ const getImageUrl = (name) => {
               :content="'Japanese cars from Auction House Japan are cheaper as compared to the other exporters as we do not take a huge cost of car keeping in the yard.'"
             >
               <template v-slot:icon>
-                <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-01.svg')"
-                  alt="icon-01"
-                />
+                <img src="icons/card-icon-01.svg" alt="icon-01" />
               </template>
             </CardTwo>
             <CardTwo
@@ -75,10 +67,7 @@ const getImageUrl = (name) => {
               :content="'The vehicle trading market in Japan is the most trustworthy all over the world because exporters are accountable for their trading'"
             >
               <template v-slot:icon>
-                <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-02.svg')"
-                  alt="icon-02"
-                />
+                <img src="icons/card-icon-02.svg" alt="icon-02" />
               </template>
             </CardTwo>
             <CardTwo
@@ -87,10 +76,7 @@ const getImageUrl = (name) => {
               :content="'You will get the auction and inspection sheet before placing the bid to assure maximum transparency'"
             >
               <template v-slot:icon>
-                <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-03.svg')"
-                  alt="icon-03"
-                />
+                <img src="icons/card-icon-03.svg" alt="icon-03" />
               </template>
             </CardTwo>
             <CardTwo
@@ -99,10 +85,7 @@ const getImageUrl = (name) => {
               :content="'Duis aute irure dolor reprehen derit in voluptat velit.'"
             >
               <template v-slot:icon>
-                <img
-                  :src="getImageUrl('../assets/images/icons/card-icon-04.svg')"
-                  alt="icon-04"
-                />
+                <img src="icons/card-icon-04.svg" alt="icon-04" />
               </template>
             </CardTwo>
           </div>
@@ -133,7 +116,7 @@ const getImageUrl = (name) => {
           <div>
             <div class="shade-window bg-color-05"></div>
             <img
-              :src="getImageUrl('../assets/images/home/asset_001.jpg')"
+              src="home/asset_001.jpg"
               alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
             />
           </div>
@@ -160,5 +143,5 @@ const getImageUrl = (name) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/scss/homeView.scss";
+@import '@/assets/scss/homeView.scss';
 </style>
