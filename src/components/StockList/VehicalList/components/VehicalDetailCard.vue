@@ -2,7 +2,7 @@
 
 </script>
 <template>
-    <div class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
+    <div @click="$router.push('/vehical-details')" class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2">
         <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[18vw] object-cover"
             src="@/assets/images/stock-list/vehical-list/list-car-1.svg" />
 
@@ -30,19 +30,19 @@
             </div>
             <div class="lg:flex">
                 <div class="flex font-button-row flex-wrap gap-2 justify-start">
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-                    Petrol
+                    <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
+                        Petrol
+                    </div>
+                    <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
+                        Auto Gear
+                    </div>
+                    <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
+                        Right Hand
+                    </div>
+                    <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
+                        4WD
+                    </div>
                 </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
-                    Auto Gear
-                </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
-                    Right Hand
-                </div>
-                <div class=" px-5 py-1 bg-[#08246C] rounded-lg text-center grow ">
-                    4WD
-                </div>
-            </div>
             </div>
         </div>
         <div class="md:w-[35vw] lg:w-[55%] px-2 space-y-2">

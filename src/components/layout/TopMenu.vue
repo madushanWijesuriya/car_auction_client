@@ -18,15 +18,10 @@
     <div
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
       <div>
-        <a class="font-semibold" href="https://car-auction-staging.netlify.app//">Home</a>
+        <a class="font-semibold" href="https://car-auction-staging.netlify.app/">Home</a>
       </div>
       <div class="flex items-center gap-2">
-        <a class="font-semibold" href="https://car-auction-staging.netlify.app//service">Stock List</a>
-        <div class="w-[10px] h-[10px]">
-          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
-        </div>
+        <a class="font-semibold" href="https://car-auction-staging.netlify.app/stock-list">Stock List</a>
       </div>
       <div class="">
         <el-dropdown class="w-full flex text-[#08246C] border-b-1 text-xl hover:border-red-600">
@@ -41,15 +36,26 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app//countries-vehicle-details">Countries</a>
+                  href="https://car-auction-staging.netlify.app/countries-vehicle-details">Action Calender</a>
               </el-dropdown-item>
-              <el-dropdown-item>Action Calender</el-dropdown-item>
-              <el-dropdown-item>Action Guide</el-dropdown-item>
-              <el-dropdown-item>Action vs Stock</el-dropdown-item>
-              <el-dropdown-item>Action Houses</el-dropdown-item>
-              <el-dropdown-item>Quality Control</el-dropdown-item>
-              <el-dropdown-item>Shipment schedule</el-dropdown-item>
-              <el-dropdown-item>Action Houses</el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/services-auction-guru">Action Guide</a>
+              </el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/services-auction-vs-stock">Action vs Stock</a>
+              </el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/services-auction-houses">Action Houses</a>
+              </el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/services-quality-control">Quality Control</a>
+              </el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/countries-vehicle-details">Shipment Schedule</a>
+              </el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/shipment-service">Shipment Schedule</a>
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -67,9 +73,9 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app//countries-vehicle-details">Countries</a>
+                  href="https://car-auction-staging.netlify.app//countries-vehicle-details">EAA</a>
               </el-dropdown-item>
-              <el-dropdown-item>EAA</el-dropdown-item>
+              <el-dropdown-item></el-dropdown-item>
               <el-dropdown-item>Intertek</el-dropdown-item>
               <el-dropdown-item>JAAI</el-dropdown-item>
               <el-dropdown-item>JEVIC</el-dropdown-item>
@@ -79,10 +85,8 @@
           </template>
         </el-dropdown>
       </div>
-      <div class="font-semibold">How to Order</div>
+      <a class="font-semibold" href="https://car-auction-staging.netlify.app/how-to-ordering">How to Order</a>
       <div class="flex items-center gap-2">
-        <!-- <a class="font-semibold" href="https://car-auction-staging.netlify.app//about">About Us</a> -->
-
         <el-dropdown class="w-full flex text-[#08246C] font-semibold border-b-1 text-xl hover:border-red-600">
           <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
             About Us
@@ -94,13 +98,15 @@
           </div>
           <template #dropdown>
             <el-dropdown-menu>
+              <el-dropdown-item><a class="font-semibold" href="https://car-auction-staging.netlify.app/why-us">Why
+                  Us</a></el-dropdown-item>
               <el-dropdown-item><a class="font-semibold"
-                  href="https://car-auction-staging.netlify.app//countries-vehicle-details">Countries</a>
+                  href="https://car-auction-staging.netlify.app/company-profile">Company Profile</a></el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold" href="https://car-auction-staging.netlify.app/about">Corparate
+                  Philosophy</a></el-dropdown-item>
+              <el-dropdown-item><a class="font-semibold"
+                  href="https://car-auction-staging.netlify.app/customer-feedback">Customer's Feedback</a>
               </el-dropdown-item>
-              <el-dropdown-item>Why Us</el-dropdown-item>
-              <el-dropdown-item>Company Profile</el-dropdown-item>
-              <el-dropdown-item>Corparate Philosophy</el-dropdown-item>
-              <el-dropdown-item>Customer's Feedback</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
