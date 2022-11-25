@@ -58,7 +58,10 @@ import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
               :content="'Japanese cars from Auction House Japan are cheaper as compared to the other exporters as we do not take a huge cost of car keeping in the yard.'"
             >
               <template v-slot:icon>
-                <img src="icons/card-icon-01.svg" alt="icon-01" />
+                <img
+                  src="@/assets/images/icons/card-icon-01.svg"
+                  alt="icon-01"
+                />
               </template>
             </CardTwo>
             <CardTwo
@@ -67,7 +70,10 @@ import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
               :content="'The vehicle trading market in Japan is the most trustworthy all over the world because exporters are accountable for their trading'"
             >
               <template v-slot:icon>
-                <img src="icons/card-icon-02.svg" alt="icon-02" />
+                <img
+                  src="@/assets/images/icons/card-icon-02.svg"
+                  alt="icon-02"
+                />
               </template>
             </CardTwo>
             <CardTwo
@@ -76,7 +82,10 @@ import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
               :content="'You will get the auction and inspection sheet before placing the bid to assure maximum transparency'"
             >
               <template v-slot:icon>
-                <img src="icons/card-icon-03.svg" alt="icon-03" />
+                <img
+                  src="@/assets/images/icons/card-icon-03.svg"
+                  alt="icon-03"
+                />
               </template>
             </CardTwo>
             <CardTwo
@@ -85,7 +94,10 @@ import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
               :content="'Duis aute irure dolor reprehen derit in voluptat velit.'"
             >
               <template v-slot:icon>
-                <img src="icons/card-icon-04.svg" alt="icon-04" />
+                <img
+                  src="@/assets/images/icons/card-icon-04.svg"
+                  alt="icon-04"
+                />
               </template>
             </CardTwo>
           </div>
