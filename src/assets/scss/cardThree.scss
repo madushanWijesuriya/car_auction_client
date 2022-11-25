@@ -1,0 +1,86 @@
+.cardThreeImg {
+    border-radius: 2px;
+    width: 100%;
+}
+
+.cardTitle {
+    position: relative;
+    bottom: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background: #fff;
+    width: 90%;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #08246C;
+    font-weight: 700;
+}
+
+.cardDescText {
+    bottom: 50px;
+    width: 95%;
+    height: 167px;
+    display: flex;
+    margin: auto;
+    position: relative;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: justify;
+    line-height: 22px;
+    color: #fff;
+    background: #08246C;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+@media only screen and (min-width: 667px) {
+    .cardTitle {
+        width: 90%;
+        height: 72px;
+        line-height: 22px;
+    }
+
+    .cardDescText {
+        width: 95%;
+        // height: 106px;
+    }
+}
+
+@media (min-width: 678px) and (max-width: 999px) {
+
+    .cardTitle {
+        width: 90%;
+        height: 75px;
+        line-height: 20px;
+    }
+
+    .cardDescText {
+        width: 95%;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1299px) {
+    .cardTitle {
+        width: 225px;
+        height: 75px;
+        line-height: 20px;
+    }
+
+    .cardDescText {
+        width: 255px;
+        height: 325px;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1599px) {
+
+    .cardDescText {
+        width: 95%;
+        height: 225px;
+    }
+}

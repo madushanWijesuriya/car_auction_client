@@ -103,11 +103,11 @@
           </div>
           <div class="hidden lg:flex">Copy to Clipboard</div>
         </div>
-        <div class="flex flex-col w-full mt-2">
+        <div class="flex flex-col w-full mt-2 lg:p-4">
           <div>
             <div class="flex gap-3 justify-between w-full">
               <p class="flex-1 font-card-line-title">Stock No.</p>
-              <p class="flex-1">22857T</p>
+              <p class="flex-1 font-card-line-content font-card-line-content-spec">22857T</p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Type</p>
@@ -208,7 +208,17 @@
               <p>¥ 176,230.00</p>
               <p class="font-total-price-label">Total Price with Shipping</p>
             </div>
-            <div>Japan > Yokohama</div>
+            <div class="flex items-center gap-2">
+              <div>
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 0C3.25267 0 0.214844 3.03781 0.214844 6.78516C0.214844 8.03836 0.460138 9.33272 1.16406 10.2656L7 18L12.8359 10.2656C13.4753 9.41827 13.7851 7.92028 13.7851 6.78516C13.7852 3.03781 10.7473 0 7 0ZM7 3.9298C8.57674 3.9298 9.85534 5.20842 9.85534 6.78514C9.85534 8.3619 8.57674 9.6405 7 9.6405C5.42326 9.6405 4.14466 8.3619 4.14466 6.78516C4.14466 5.20842 5.42326 3.9298 7 3.9298Z"
+                    fill="#08246C" />
+                </svg>
+
+              </div>
+              Japan > Yokohama
+            </div>
           </div>
 
           <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
@@ -247,7 +257,11 @@
           <p class="font-quote-form-label">Message (0 / 250)</p>
           <el-input :autosize="{ minRows: 5, maxRows: 5 }" type="textarea" placeholder="Please input" />
         </div>
-        <div class="flex lg:absolute bottom-0 gap-2 w-full lg:right-2 lg:left-0 lg:p-4">
+
+        <div class="hidden lg:flex">
+          <img class="rounded-lg w-full" src="@/assets/images/vehicalDetails/not-robot.svg" />
+        </div>
+        <div class="flex lg:absolute bottom-4 gap-2 w-full lg:right-2 lg:left-0 lg:p-4">
           <div class="lg:hidden w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
             Reset
           </div>

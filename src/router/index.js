@@ -75,6 +75,11 @@ const router = createRouter({
       component: () => import('../views/HowToOrderingView.vue'),
     },
     {
+      path: '/stock-list',
+      name: 'StockList',
+      component: () => import('../views/StockList.vue'),
+    },
+    {
       path: '/login',
       name: 'login-admin',
       component: LoginIn,
@@ -195,6 +200,36 @@ const router = createRouter({
       path: '/admin/error',
       name: 'error',
       component: () => import('../views/AdminErrorView.vue'),
+    },
+    {
+      path: '/certifications-eaa',
+      name: 'CertificationsEaa',
+      component: () => import('../views/CertificationsEaaView.vue'),
+    },
+    {
+      path: '/services-quality-control',
+      name: 'ServicesQualityControl',
+      component: () => import('../views/ServicesQualityControlView.vue'),
+    },
+    {
+      path: '/services-auction-vs-stock',
+      name: 'ServicesAuctionVsStock',
+      component: () => import('../views/ServicesAuctionVsStock.vue'),
+    },
+    {
+      path: '/services-auction-houses',
+      name: 'ServicesAuctionHouses',
+      component: () => import('../views/ServicesAuctionHouses.vue'),
+    },
+    {
+      path: '/services-auction-guru',
+      name: 'ServicesAuctionGuru',
+      component: () => import('../views/ServicesAuctionGuru.vue'),
+    },
+    {
+      path: '/blank-page',
+      name: 'BlankPage',
+      component: () => import('../views/BlankPage.vue'),
     },
   ],
 })
