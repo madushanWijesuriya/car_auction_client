@@ -1,14 +1,15 @@
+import LoginIn from '../views/admin/LoginIn.vue'
 const authRoutesAdmin = [
   {
     path: '/login',
     name: 'login-admin',
-    component: () => import('@/views/admin/LoginIn.vue'),
+    component: LoginIn,
     meta: { requiresAuth: false, layout: 'LayoutAdmin' },
   },
   {
     path: '/secured-route',
     name: 'securedRoute',
-    component: () => import('@/views/admin/TestSecured.vue'),
+    component: () => import('../views/admin/TestSecured.vue'),
     meta: { requiresAuth: true, layout: 'LayoutAdmin' },
   },
   {
@@ -21,7 +22,7 @@ const authRoutesAdmin = [
     },
     path: '/admin/dashboard',
     name: 'dashboard',
-    component: () => import('@/views/admin/HomeView.vue'),
+    component: () => import('../views/admin/HomeView.vue'),
   },
   {
     meta: {
@@ -31,7 +32,7 @@ const authRoutesAdmin = [
     },
     path: '/admin/add-car',
     name: 'add-car',
-    component: () => import('@/views/admin/AddCarView.vue'),
+    component: () => import('../views/admin/AddCarView.vue'),
   },
   {
     meta: {
@@ -41,7 +42,7 @@ const authRoutesAdmin = [
     },
     path: '/admin/all-cars',
     name: 'all-cars',
-    component: () => import('@/views/admin/AllCarsView.vue'),
+    component: () => import('../views/admin/AllCarsView.vue'),
   },
 ]
 

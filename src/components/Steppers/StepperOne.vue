@@ -9,5 +9,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/stepperOne.scss";
+@import '@/assets/scss/StepperOne.scss';
 </style>

@@ -27,3 +27,5 @@ coverage
 *.sln
 *.sw?
 .history/*
+# Local Netlify folder
+.netlify

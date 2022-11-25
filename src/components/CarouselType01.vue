@@ -1,43 +1,72 @@
 <script setup>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, Transition } from 'vue'
 const items = reactive([
   {
     id: 1,
-    image: "@/assets/images/carousel/car02.svg",
+    image: 'carousel/car02.svg',
     order: 1,
-    alt: "image-1",
+    alt: 'image-1',
     selected: false,
   },
   {
     id: 2,
-    image: "../assets/images/carousel/car03.svg",
+    image: 'carousel/car03.svg',
     order: 2,
-    alt: "image-2",
+    alt: 'image-2',
     selected: false,
   },
   {
     id: 3,
-    image: "../assets/images/carousel/car01.svg",
+    image: 'carousel/car01.svg',
     order: 3,
-    alt: "image-3",
+    alt: 'image-3',
     selected: false,
   },
   {
     id: 4,
-    image: "../assets/images/carousel/car04.svg",
+    image: 'carousel/car04.svg',
     order: 4,
-    alt: "image-4",
+    alt: 'image-4',
     selected: true,
   },
-]);
+])
 const activeImageObj = computed(() => {
-  const activeObj = items.find((i) => i.selected);
-  return activeObj || "";
-});
+  const activeObj = items.find((i) => i.selected)
+  return activeObj || ''
+})
 const getImageUrl = (name) => {
-  if (!name) return "";
-  return new URL(name, import.meta.url).href;
-};
+  if (!name) return ''
+  return name
+}
+
+setInterval(() => {
+  changeImageTimer()
+}, 3000)
+
+const changeImageTimer = () => {
+  const selectedItem = items.find((i) => i.selected)
+  let selIndex = -1
+  if (selectedItem) {
+    selIndex = items.indexOf(selectedItem)
+  }
+  if (items.length - 1 === selIndex) {
+    items.forEach((item, index) => {
+      if (index === 0) {
+        item.selected = true
+      } else {
+        item.selected = false
+      }
+    })
+  } else {
+    items.forEach((item, index) => {
+      if (index === selIndex + 1) {
+        item.selected = true
+      } else {
+        item.selected = false
+      }
+    })
+  }
+}
 </script>
 
 <template>
@@ -67,11 +96,13 @@ const getImageUrl = (name) => {
           malesuada ipsum feugiat quis in. Eros neque purus convallis tellus
           elementum faucibus lacinia eu integer.
         </div>
-        <img
-          class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
-          :src="getImageUrl(activeImageObj.image || '')"
-          :alt="items[0].alt"
-        />
+        <Transition appear name="slide-fade" mode="in-out">
+          <img
+            class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
+            :src="getImageUrl(activeImageObj.image || '')"
+            :alt="items[0].alt"
+          />
+        </Transition>
         <div
           class="mt-4 grid grid-cols-5 gap-6 order-3 sm:order-3 sm:col-span-5 col-span-full"
         >
@@ -107,5 +138,5 @@ const getImageUrl = (name) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/scss/carouselType01.scss";
+@import '@/assets/scss/carouselType01.scss';
 </style>

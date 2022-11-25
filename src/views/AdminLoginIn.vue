@@ -1,7 +1,7 @@
 <script setup>
-import { useAuthStore } from '../../stores/auth'
+import { useAuthStore } from '@/stores/auth'
 import { reactive, onMounted } from 'vue'
-import httpResource from '../../http/httpResource'
+import httpResource from '@/http/httpResource'
 import { cloneDeep } from 'lodash-es'
 import { useRouter } from 'vue-router'
 

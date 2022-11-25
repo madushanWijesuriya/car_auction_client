@@ -3,11 +3,11 @@ import {
   createWebHistory,
   createWebHashHistory,
 } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import authRoutesAdmin from './authRoutesAdmin'
+import HomeView from '@/views/HomeView.vue'
 import { getAuthenticatedUser } from '../util/utils'
-import { useAuthStore } from '../stores/auth'
-import templateRoutes from './templateRoutes'
+import { useAuthStore } from '@/stores/auth'
+import LoginIn from '@/views/AdminLoginIn.vue'
+import Style from '@/views/AdminStyleView.vue'
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,8 +74,128 @@ const router = createRouter({
       name: 'HowToOrdering',
       component: () => import('../views/HowToOrderingView.vue'),
     },
-    ...authRoutesAdmin,
-    ...templateRoutes,
+    {
+      path: '/login',
+      name: 'login-admin',
+      component: LoginIn,
+      meta: { requiresAuth: false, layout: 'LayoutAdmin' },
+    },
+    {
+      path: '/secured-route',
+      name: 'securedRoute',
+      component: () => import('../views/AdminTestSecured.vue'),
+      meta: { requiresAuth: true, layout: 'LayoutAdmin' },
+    },
+    {
+      // Document title tag
+      // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
+      meta: {
+        title: 'Dashboard',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/dashboard',
+      name: 'dashboard',
+      component: () => import('../views/AdminHomeView.vue'),
+    },
+    {
+      meta: {
+        title: 'Add car',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/add-car',
+      name: 'add-car',
+      component: () => import('../views/AdminAddCarView.vue'),
+    },
+    {
+      meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/all-cars',
+      name: 'all-cars',
+      component: () => import('../views/AdminAllCarsView.vue'),
+    },
+    {
+      meta: {
+        title: 'Select style',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin',
+      name: 'style',
+      component: Style,
+    },
+    {
+      meta: {
+        title: 'Tables',
+        layout: 'LayoutAdmin',
+      },
+      path: '/admin/tables',
+      name: 'tables',
+      component: () => import('../views/AdminTablesView.vue'),
+    },
+    {
+      meta: {
+        title: 'Forms',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/forms',
+      name: 'forms',
+      component: () => import('../views/AdminFormsView.vue'),
+    },
+    {
+      meta: {
+        title: 'Profile',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/profile',
+      name: 'profile',
+      component: () => import('../views/AdminProfileView.vue'),
+    },
+    {
+      meta: {
+        title: 'Ui',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/ui',
+      name: 'ui',
+      component: () => import('../views/AdminUiView.vue'),
+    },
+    {
+      meta: {
+        title: 'Responsive layout',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/responsive',
+      name: 'responsive',
+      component: () => import('../views/AdminResponsiveView.vue'),
+    },
+    {
+      meta: {
+        title: 'Login',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/login',
+      name: 'login',
+      component: () => import('../views/AdminLoginView.vue'),
+    },
+    {
+      meta: {
+        title: 'Error',
+        layout: 'LayoutAdmin',
+      },
+      path: '/admin/error',
+      name: 'error',
+      component: () => import('../views/AdminErrorView.vue'),
+    },
   ],
 })
 
