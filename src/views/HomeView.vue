@@ -128,7 +128,7 @@ import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
           <div>
             <div class="shade-window bg-color-05"></div>
             <img
-              src="home/asset_001.jpg"
+              src="@/assets/images/home/asset_001.jpg"
               alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
             />
           </div>
