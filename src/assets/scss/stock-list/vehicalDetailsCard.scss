@@ -1,44 +1,104 @@
+.font-main-title {
+    font-size: 24px;
+    line-height: 32.74px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-header-photo {
+    font-size: 64px;
+    line-height: 87.3px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 800;
+}
+
+.font-header-photo-2 {
+    font-size: 32px;
+    line-height: 43.65px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 500;
+}
+
 .font-vehical-name {
     font-size: 16px;
     line-height: 21.82px;
     color:#08246C;
-    font-family: 'Nunito';
     font-weight: 700;
 }
 
-.font-now-on-sales {
+.font-vehical-details-title {
     font-size: 12px;
     line-height: 16.37px;
-    color:white;
-    font-weight: 600;
-}
-
-.font-card-line-content-spec {
-    color:#FE0000 !important;
-}
-
-.font-print-share {
-    font-size: 14px;
-    line-height:19.1px;
     color:#08246C;
-    font-family: 'Nunito';
     font-weight: 600;
 }
 
-.font-title-1 {
+.font-vehical-details-content {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-weight: 700;
+}
+
+
+.font-button-row {
+    font-size: 10px;
+    line-height:13.64px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 400;
+    text-align: center;
+}
+
+.font-car-price-1 {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-car-price-2 {
     font-size: 20px;
     line-height: 27.28px;
-    color:#08246C;
+    color:#000000;
     font-family: 'Nunito';
     font-weight: 700;
 }
 
-.font-para-1 {
+.font-car-price-3 {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-shipping-price {
+    font-size: 8px;
+    line-height: 10.91px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-direction {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-add {
     font-size: 14px;
     line-height: 19.1px;
-    color:black;
+    color:white;
     font-family: 'Nunito';
-    font-weight: 500    ;
+    font-weight: 700    ;
 }
 
 .font-card-title-1 {
@@ -168,52 +228,85 @@
         font-size: 16px;
         line-height: 21.82px;
     }
+
+    [class*="font-main-title"] {
+        font-size: 36px;
+        line-height: 49.1px;
+        font-weight: 700;
+    }
+
     [class*="font-vehical-name"] {
-        font-size: 32px;
+        font-size: 24px;
+        line-height: 32.74px;
+        font-weight: 700;
+    }
+
+    [class*="font-vehical-details-title"] {
+        font-size: 16px;
         line-height: 21.82px;
+        color: #08246C;;
+        font-weight: 600;
     }
 
-    [class*="font-para-1"] {
-        font-size: 18px;
-        line-height: 24.55px;
+    [class*="font-vehical-details-content"] {
+        font-size: 16px;
+        line-height: 21.82px;
         color:black;
+        font-weight: 700;
     }
 
-    [class*="font-freight-lable"] {
+    [class*="font-button-row"] {
+        font-size: 14px;
+        line-height: 19.1px;
+        font-weight: 400;
+    }
+
+    [class*="font-car-price-1"] {
+        font-size: 16px;
+        line-height: 21.82px;
+        font-weight: 400;
+    }
+
+    [class*="font-car-price-3"] {
         font-size: 20px;
-        line-height: 27.28px;
+        line-height: 20px;
+        font-weight: 700;
     }
 
-    [class*="font-total-price"] {
-        font-size: 32px;
+    [class*="font-car-price-2"] {
+        font-size:32px;
         line-height: 43.65px;
         font-weight: 700;
     }
 
-    [class*="font-total-price-label"] {
+    [class*="font-shipping-price"] {
         font-size:12px;
         line-height: 16.37px;
+        font-weight: 400;
     }
 
-    [class*="font-quote-title"] {
-        font-size:24px;
-        line-height: 32.74px;
-    }
-
-    [class*="font-quote-form-label"] {
+    [class*="font-add"] {
         font-size:16px;
         line-height: 21.82px;
+        font-weight: 700;
     }
 
-    [class*="font-print-share"] {
-        font-size:18px;
-        line-height: 24.55px;
+    [class="font-header-photo"] {
+        font-size: 129px;
+        line-height: 175.96px;
+        color:#FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
     }
-
-    [class*="font-card-title-1"] {
-        font-size:24px;
-        line-height: 32.74px;
+    
+    [class="font-header-photo-2"] {
+        font-size: 64px;
+        line-height: 87.3px;
+        color:#FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
     }
 
 
 }
+

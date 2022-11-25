@@ -1,44 +1,88 @@
+.font-main-title {
+    font-size: 24px;
+    line-height: 32.74px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
 .font-vehical-name {
     font-size: 16px;
     line-height: 21.82px;
     color:#08246C;
-    font-family: 'Nunito';
     font-weight: 700;
 }
 
-.font-now-on-sales {
+.font-vehical-details-title {
     font-size: 12px;
     line-height: 16.37px;
-    color:white;
-    font-weight: 600;
-}
-
-.font-card-line-content-spec {
-    color:#FE0000 !important;
-}
-
-.font-print-share {
-    font-size: 14px;
-    line-height:19.1px;
     color:#08246C;
-    font-family: 'Nunito';
     font-weight: 600;
 }
 
-.font-title-1 {
+.font-vehical-details-content {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-weight: 700;
+}
+
+
+.font-button-row {
+    font-size: 10px;
+    line-height:13.64px;
+    color:#FFFFFF;
+    font-family: 'Nunito';
+    font-weight: 400;
+    text-align: center;
+}
+
+.font-car-price-1 {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-car-price-2 {
     font-size: 20px;
     line-height: 27.28px;
-    color:#08246C;
+    color:#000000;
     font-family: 'Nunito';
     font-weight: 700;
 }
 
-.font-para-1 {
+.font-car-price-3 {
+    font-size: 16px;
+    line-height: 21.82px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 700;
+}
+
+.font-shipping-price {
+    font-size: 8px;
+    line-height: 10.91px;
+    color:#000000;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-direction {
+    font-size: 12px;
+    line-height: 16.37px;
+    color:#08246C;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.font-add {
     font-size: 14px;
     line-height: 19.1px;
-    color:black;
+    color:white;
     font-family: 'Nunito';
-    font-weight: 500    ;
+    font-weight: 700    ;
 }
 
 .font-card-title-1 {
@@ -168,10 +212,12 @@
         font-size: 16px;
         line-height: 21.82px;
     }
-    [class*="font-vehical-name"] {
-        font-size: 32px;
-        line-height: 21.82px;
-    }
+
+    // [class*="font-vehical-name"] {
+    //     font-size: 24px;
+    //     line-height: 32.74px;
+    //     font-weight: 700;
+    // }
 
     [class*="font-para-1"] {
         font-size: 18px;

@@ -1,0 +1,46 @@
+.main-title {
+    font-size: 20px;
+    line-height: 27.28px;
+    color: #000000;
+    font-family: 'Nunito';
+    font-weight: 600;
+}
+
+.first-card-1 {
+    font-size: 14px;
+    line-height: 19.1px;
+    color: #000000;
+    font-weight: 400;
+}
+
+.view-all {
+    font-size: 14px;
+    line-height: 19.1px;
+    color: #08246C;
+    font-weight: 700;
+}
+
+
+
+@media (min-width: 1024px) {
+    .about {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+
+    [class*="font-baner-h1"] {
+        font-size: 40px;
+        line-height: 115%;
+        color: white;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+
+
+
+}
