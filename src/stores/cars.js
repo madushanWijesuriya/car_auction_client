@@ -1,23 +1,14 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 export const useCarsStore = defineStore('cars', () => {
-  const cars = reactive([
+  const cars = ref([
     {
       no: 100,
       photo: 'https://picsum.photos/200/200',
       make: 'Audi',
       model: 'A5',
       FOB: 'Test',
-      Status: 'Active',
-      Inquiry: '-',
-    },
-    {
-      no: 200,
-      photo: 'https://picsum.photos/200/200',
-      make: 'Audi',
-      model: 'A2',
-      FOB: 'Test 2',
       Status: 'Active',
       Inquiry: '-',
     },
