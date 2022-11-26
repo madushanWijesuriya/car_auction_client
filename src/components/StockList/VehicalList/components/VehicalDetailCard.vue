@@ -5,6 +5,7 @@ const { vehicle } = toRefs(props)
 </script>
 <template>
   <div
+    @click="$router.push('/vehical-details')"
     class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2"
   >
     <img
@@ -19,11 +20,16 @@ const { vehicle } = toRefs(props)
             vehicle?.make_at
           ).getFullYear()}`
         }}
+        <div></div>
       </div>
       <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
         <div class="w-full">
           <p class="font-vehical-details-title">Engine Capacity</p>
           <p class="font-vehical-details-content">2,490 CC</p>
+        </div>
+        <div class="w-full">
+          <p class="font-vehical-details-title">Mileage</p>
+          <p class="font-vehical-details-content">81,000 KM</p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Mileage</p>
