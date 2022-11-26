@@ -3,7 +3,7 @@ import Filter from '../components/StockList/Filter/Filter.vue'
 import CustomerFeedback from '../components/StockList/CustomerFeedback/CustomerFeedback.vue'
 import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 
 const carsStore = useCarsStore()
@@ -35,27 +35,37 @@ const getAllCars = async () => {
   }
 }
 
-const getBrands = async () => {
+let makersList = ref([])
+const getMakers = async () => {
   try {
     const response = await httpResource.get('/api/resources/maker')
-    console.log(response.data.data)
+    makersList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+
+let modelsList = ref([])
+const getModels = async (moakerId) => {
+  try {
+    const response = await httpResource.get('/api/resources/model/' + moakerId)
+    modelsList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
   } catch (error) {
     console.error(error)
   }
 }
 
-const getModels = async (brandId) => {
-  try {
-    const response = await httpResource.get('/api/resources/model/' + brandId)
-    console.log(response.data.data)
-  } catch (error) {
-    console.error(error)
-  }
+const changeMaker = (e) => {
+  getModels(e)
 }
 
 onMounted(async () => {
   await getAllCars()
-  await getBrands()
+  await getMakers()
 })
 </script>
 <template>
@@ -81,10 +91,13 @@ onMounted(async () => {
       </div>
       <p class="font-main-title text-center lg:text-start lg:pl-[16%]">
         Search Japan Used Vehicles
-        <!-- <pre>{{ items }}</pre> -->
       </p>
       <div class="flex flex-col px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
-        <Filter />
+        <Filter
+          :makers="makersList"
+          :models="modelsList"
+          @maker-changed="changeMaker"
+        />
         <VehicalList :indexingDetails="indexingDetails" />
         <CustomerFeedback />
       </div>
