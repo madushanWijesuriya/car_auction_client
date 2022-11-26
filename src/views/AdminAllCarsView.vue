@@ -21,7 +21,7 @@ const decoratedItems = computed(() => {
       make: i?.make_id?.name,
       model: i?.model_id?.name,
       fob: i?.fob_price,
-      status: i?.status_id,
+      status: i?.status_id?.name,
       inquery: '-',
     }
   })

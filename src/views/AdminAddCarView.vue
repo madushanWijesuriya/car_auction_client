@@ -35,9 +35,6 @@ export default {
     }
 
     const resetForm = () => {
-      notify({
-        title: 'form reseted',
-      })
       Object.assign(form, initialState)
       uploaderKey.value += uploaderKey.value + 1
     }
@@ -55,7 +52,7 @@ export default {
           driver_type_id: form?.driveType?.id,
           fuel_type_id: form?.fuelType?.id,
           exterior_color_id: form?.exteriorColor?.id,
-          feature_id: 1 /*form?.Feautes*/,
+          feature_id: form?.features?.id,
           chassis_no: form?.chassisNo,
           make_at: `${form?.year}-${form?.month?.id}-01`,
           fob_price: form?.fobPrice,
@@ -97,15 +94,6 @@ export default {
         }))
       } catch (error) {}
     }
-
-    // const modelsList = [
-    //   { id: 1, label: 'Model1' },
-    //   { id: 1, label: 'Model2' },
-    //   { id: 1, label: 'Model3' },
-    //   { id: 1, label: 'Model4' },
-    //   { id: 1, label: 'Model5' },
-    // ]
-
     let modelsList = ref([])
     const getModels = async (moakerId) => {
       try {
@@ -116,19 +104,27 @@ export default {
           ...d,
           label: d.name,
         }))
-      } catch (error) {}
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     const changeMaker = (e) => {
       getModels(e.id)
     }
 
-    const statusList = [
-      { id: 1, label: 'Available' },
-      { id: 1, label: 'Unavailable' },
-      { id: 1, label: 'Out of stock' },
-      { id: 1, label: 'Pendding' },
-    ]
+    let statusList = ref([])
+    const getStatus = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/status')
+        statusList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     const yearsList = range(
       new Date().getFullYear(),
@@ -143,45 +139,104 @@ export default {
         }),
       }
     })
-    const bodyTypeList = [
-      { id: 1, label: '--' },
-      { id: 2, label: 'Sedan' },
-      { id: 3, label: 'Hatchback' },
-      { id: 4, label: 'SUV' },
-      { id: 5, label: 'MUV' },
-      { id: 6, label: 'Coupe' },
-      { id: 7, label: 'Convertibles' },
-      { id: 8, label: 'Other' },
-    ]
-    const transmissionList = [
-      { id: 1, label: 'Automatic Transmission' },
-      { id: 2, label: 'Manual Transmission' },
-      { id: 3, label: 'Automated Manual Transmission' },
-      { id: 4, label: 'Continuously Variable Transmission' },
-    ]
-    const streeingList = [
-      { id: 1, label: 'Left' },
-      { id: 2, label: 'Right' },
-    ]
-    const doorTypesList = [
-      { id: 1, label: '--' },
-      { id: 2, label: 'Butterfly Doors ' },
-      { id: 3, label: 'Scissor Doors ' },
-      { id: 4, label: 'Regular or Conventional Doors ' },
-      { id: 5, label: 'Regular or Conventional Doors ' },
-      { id: 6, label: 'Dihedral Doors ' },
-    ]
+    let bodyTypeList = ref([])
+    const getBodyTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/body-type')
+        bodyTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let transmissionList = ref([])
+    const getTransmitions = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/transmission')
+        transmissionList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let streeingList = ref([])
+    const getStreeings = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/streeings')
+        streeingList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let doorTypesList = ref([])
+    const getDoorTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/door-types')
+        doorTypesList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
     const driveTypeList = [{ id: 1, label: '--' }]
-    const fuleTypeList = [
-      { id: 1, label: '--' },
-      { id: 2, label: 'Petrol' },
-      { id: 3, label: 'Diesel' },
-      { id: 4, label: 'Flex-fuel' },
-    ]
-    const exteriorColorList = [{ id: 1, label: '--' }]
+    let fuleTypeList = ref([])
+    const getfuleTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/fuel-types')
+        fuleTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let exteriorColorList = ref([])
+    const getExteriorColors = async () => {
+      try {
+        const response = await httpResource.get(
+          '/api/resources/exterior-colors'
+        )
+        exteriorColorList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let featuresList = ref([])
+    const getFeatures = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/features')
+        featuresList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     onMounted(async () => {
-      await getMakers()
+      getMakers()
+      getStatus()
+      getBodyTypes()
+      getTransmitions()
+      getStreeings()
+      getDoorTypes()
+      getfuleTypes()
+      getExteriorColors()
+      getFeatures()
     })
 
     const initialState = {
@@ -203,7 +258,7 @@ export default {
       fuelType: fuleTypeList[0],
       exteriorColor: exteriorColorList[0],
       gradeTrim: '',
-      Feautes: '',
+      features: '',
       coverImage: null,
       photos: [],
       description: '',
@@ -238,6 +293,7 @@ export default {
       imageUploaderRef,
       uploaderKey,
       changeMaker,
+      featuresList,
     }
   },
   components: {
@@ -343,6 +399,9 @@ export default {
               v-model="form.exteriorColor"
               :options="exteriorColorList"
             />
+          </FormField>
+          <FormField label="Features">
+            <FormControl v-model="form.features" :options="featuresList" />
           </FormField>
           <FormField label="Grade/ Trim">
             <FormControl
