@@ -10,11 +10,24 @@ import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 
 const carsStore = useCarsStore()
-// const items = computed(() => carsStore.cars)
 const { cars: items } = storeToRefs(carsStore)
 const headers = computed(() => carsStore.tableHeaders)
+const decoratedItems = computed(() => {
+  if (!items.value || !Array.isArray(items.value)) return []
+  return items.value.map((i) => {
+    return {
+      id: i.id,
+      photo: 'https://picsum.photos/200/200',
+      make: i?.make_id?.name,
+      model: i?.model_id?.name,
+      fob: i?.fob_price,
+      status: i?.status_id,
+      inquery: '-',
+    }
+  })
+})
 
-const getAllCars = async (sPage, ePage) => {
+const getAllCars = async () => {
   try {
     const response = await httpResource.get('/api/staff/vehicle')
     carsStore.$patch({
@@ -39,7 +52,7 @@ onMounted(async () => {
             title="All Cars"
             main
           ></SectionTitleLineWithButton>
-          <Table :items="items" :headers="headers"> </Table>
+          <Table :items="decoratedItems" :headers="headers"> </Table>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>
