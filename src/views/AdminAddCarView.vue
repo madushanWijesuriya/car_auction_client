@@ -5,7 +5,7 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate, mdiCalendarRange } from '@mdi/js'
 import FormField from '@/components/admin/FormField.vue'
 import FormControl from '@/components/admin/FormControl.vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, computed } from 'vue'
 import FormCheckRadioGroup from '@/components/admin/FormCheckRadioGroup.vue'
 import BaseDivider from '@/components/admin/BaseDivider.vue'
 import FormFilePicker from '@/components/admin/FormFilePicker.vue'
@@ -44,7 +44,6 @@ export default {
 
     const submitForm = async () => {
       try {
-        // console.log(form)
         const response = await httpResource.post('/api/staff/vehicle', {
           make_id: form?.maker?.id,
           model_id: form?.model?.id,
@@ -80,7 +79,6 @@ export default {
           ],
           description: form?.description,
         })
-        // console.log(response)
         if (response.status === 200) {
           resetForm()
         }
@@ -89,22 +87,42 @@ export default {
       }
     }
 
-    const makersList = [
-      { id: 1, label: 'BMW' },
-      { id: 2, label: 'Benz' },
-      { id: 3, label: 'Toyota' },
-      { id: 4, label: 'Hyundai' },
-      { id: 5, label: 'Honda' },
-      { id: 6, label: 'Mitsubishi' },
-      { id: 6, label: 'Audi' },
-    ]
-    const modelsList = [
-      { id: 1, label: 'Model1' },
-      { id: 1, label: 'Model2' },
-      { id: 1, label: 'Model3' },
-      { id: 1, label: 'Model4' },
-      { id: 1, label: 'Model5' },
-    ]
+    let makersList = ref([])
+    const getMakers = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/maker')
+        makersList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {}
+    }
+
+    // const modelsList = [
+    //   { id: 1, label: 'Model1' },
+    //   { id: 1, label: 'Model2' },
+    //   { id: 1, label: 'Model3' },
+    //   { id: 1, label: 'Model4' },
+    //   { id: 1, label: 'Model5' },
+    // ]
+
+    let modelsList = ref([])
+    const getModels = async (moakerId) => {
+      try {
+        const response = await httpResource.get(
+          '/api/resources/model/' + moakerId
+        )
+        modelsList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {}
+    }
+
+    const changeMaker = (e) => {
+      getModels(e.id)
+    }
+
     const statusList = [
       { id: 1, label: 'Available' },
       { id: 1, label: 'Unavailable' },
@@ -162,6 +180,10 @@ export default {
     ]
     const exteriorColorList = [{ id: 1, label: '--' }]
 
+    onMounted(async () => {
+      await getMakers()
+    })
+
     const initialState = {
       maker: makersList[0],
       model: null,
@@ -215,6 +237,7 @@ export default {
       resetForm,
       imageUploaderRef,
       uploaderKey,
+      changeMaker,
     }
   },
   components: {
@@ -231,7 +254,11 @@ export default {
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
           <FormField label="Maker">
-            <FormControl v-model="form.maker" :options="makersList" />
+            <FormControl
+              v-model="form.maker"
+              :options="makersList"
+              @update:modelValue="changeMaker"
+            />
           </FormField>
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
