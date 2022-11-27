@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
   <div class="flex flex-row md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]">
-    <div class="visible flex items-center md:hidden">
+    <div class="visible flex items-center md:hidden" @click="isOpen = !isOpen">
       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24"
         style="fill: #000000">
         <path
@@ -14,8 +14,11 @@
         <img class="w-full" src="@/assets/images/logo.svg" />
       </div>
     </div>
+    <div v-if="isOpen" class="absolute left-0 z-[1000] top-12 p-5 bg-white">
+      <SideBar  />
+    </div>
     <div
-      class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
+      class="hidden md:flex md:flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
       <div>
         <a class="font-semibold" href="https://car-auction-staging.netlify.app//">Home</a>
       </div>
@@ -71,10 +74,17 @@
 
 <script>
 import Services from '../layout/Services.vue'
+import SideBar from './sideBar.vue';
 export default {
   name: 'navbar',
   components: {
     Services
   },
+  data() {
+    return {
+      isOpen: false,
+    }
+  }
 }
+
 </script>
