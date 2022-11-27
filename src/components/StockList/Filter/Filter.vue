@@ -8,79 +8,80 @@
                <h2 class="text-[20px] font-semibold text-black">Filters</h2>
             </div>
             <div class="filter-result basis-2/3">
-               <h2 class="text-sm font-semibold text-end  text-black">Show Results <span class="primary-blue">245</span></h2>
+               <h2 class="text-sm font-semibold text-end  text-black">Show Results <span class="primary-blue">245</span>
+               </h2>
             </div>
          </div>
          <div class="filter-form mt-5">
             <el-form ref="form" :model="form" label-position="top" label-width="100%" style="width: 100%;">
                <el-form-item label="Brand Name">
-                  <el-select v-model="value2" multiple collapse-tags style="width: 100%;" placeholder="Any">
+                  <el-select v-model="form.brandName" multiple collapse-tags style="width: 100%;" placeholder="Any">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Model">
-                  <el-select v-model="value2" multiple collapse-tags style="width: 100%;" placeholder="Any">
+                  <el-select v-model="form.model" multiple collapse-tags style="width: 100%;" placeholder="Any">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Chassis">
-                  <el-select v-model="value2" placeholder="Any" style="width: 100%;">
+                  <el-select v-model="form.chassis" placeholder="Any" style="width: 100%;">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Condition">
-                  <el-select v-model="value2" placeholder="Any" style="width: 100%;">
+                  <el-select v-model="form.condition" placeholder="Any" style="width: 100%;">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Year From - To">
-                  <div class="block">
-                     <el-slider range show-stops :min="1" :max="10">
+                  <div class="block w-full">
+                     <el-slider v-model="form.fromTo" range :min="2000" :max="2022">
                      </el-slider>
                   </div>
                </el-form-item>
                <el-form-item label="Mileage From - To">
-                  <div class="block">
+                  <div class="block w-full">
                      <el-slider range show-stops :min="1" :max="10">
                      </el-slider>
                   </div>
                </el-form-item>
                <el-form-item label="Engine From - To">
-                  <div class="block">
+                  <div class="block w-full">
                      <el-slider range show-stops :min="1" :max="10">
                      </el-slider>
                   </div>
                </el-form-item>
                <el-form-item label="Drive">
-                  <el-select v-model="value2" placeholder="Select Drive" style="width: 100%;">
+                  <el-select v-model="form.drive" placeholder="Select Drive" style="width: 100%;">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Gearbox">
-                  <el-select v-model="value2" placeholder="Select Gearbox" style="width: 100%;">
-                     <el-option v-for="item in options" :key="item.value2" :label="item.label" :value="item.value2">
-                     </el-option>
+                  <el-select v-model="form.gearbox" placeholder="Select Gearbox" style="width: 100%;">
+                     <el-option label="Auto" value="a"></el-option>
+                     <el-option label="Manual" value="m"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Lot Number">
-                  <el-select v-model="value2" placeholder="Select Lot Number" style="width: 100%;">
+                  <el-select v-model="form.lotNumber" placeholder="Select Lot Number" style="width: 100%;">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Auctions">
-                  <el-select v-model="value2" placeholder="Select Auctions" style="width: 100%;">
+                  <el-select v-model="form.auction" placeholder="Select Auctions" style="width: 100%;">
                      <el-option label="Zone one" value="shanghai"></el-option>
                      <el-option label="Zone two" value="beijing"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Select Dates">
-                  <el-radio-group v-model="form.resource">
+                  <el-radio-group v-model="form.date">
                      <el-radio style="width: 100%;" :label="1">Monday</el-radio>
                      <el-radio style="width: 100%;" :label="2">Tuesday</el-radio>
                      <el-radio style="width: 100%;" :label="3">Wednesday</el-radio>
@@ -90,18 +91,19 @@
                   </el-radio-group>
                </el-form-item>
                <el-form-item label="Shipping Country">
-                  <el-select placeholder="Select Country" style="width: 100%;">
+                  <el-select placeholder="Select Country" v-model="form.shipplingCountry" style="width: 100%;">
                      <el-option label="Sri Lanka" value="shanghai"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="Fort">
-                  <el-select placeholder="Select Fort" style="width: 100%;">
+                  <el-select placeholder="Select Fort" v-model="form.fort"  style="width: 100%;">
                      <el-option label="Hambantota" value="shanghai"></el-option>
                   </el-select>
                </el-form-item>
                <el-form-item label="">
                   <el-input></el-input>
                </el-form-item>
+
                <div class="w-full mt-2 mb-2">
                   <button class="btn-search text-xl">Search</button>
                   <!-- <el-button type="primary">Search</el-button> -->
@@ -122,11 +124,7 @@
                   <div class="subscribe mt-4">
                      <button class="btn-subscribe">Subscribe</button>
                   </div>
-
                </div>
-
-
-               <!-- end of form -->
             </el-form>
          </div>
 
@@ -143,10 +141,22 @@ export default {
             date1: '',
             date2: '',
             delivery: false,
-            value2: [],
+            brandName: [],
             resource: '',
-            desc: ''
-         }
+            desc: '',
+            model: [],
+            chassis: [],
+            condition: [],
+            value: [30, 60],
+            fromTo: [2003, 2007],
+            Drive:'',
+            gearbox:'',
+            lotNumber:'',
+            auction:'',
+            shipplingCountry:'',
+            fort:''
+
+         },
       }
    },
    methods: {
