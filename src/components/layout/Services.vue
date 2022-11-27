@@ -117,6 +117,7 @@ export default {
 }
 
 @media only screen and (max-width: 667px) {
+
     class.dropdown-menu {
         max-width: 100% !important;
     }
