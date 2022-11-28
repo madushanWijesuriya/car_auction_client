@@ -14,8 +14,8 @@
         <img class="w-full" src="@/assets/images/logo.svg" />
       </div>
     </div>
-    <div v-if="isOpen" class="absolute left-0 z-[1000] top-12 p-5 bg-white">
-      <SideBar  />
+    <div v-if="isOpen" class="absolute left-0 z-[500] top-12 p-5 bg-white">
+      <SideBar />
     </div>
     <div
       class="hidden md:flex md:flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
