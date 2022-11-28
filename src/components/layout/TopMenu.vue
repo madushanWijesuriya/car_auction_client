@@ -251,6 +251,7 @@ const url = computed(() => {
       </svg>
     </div>
   </div>
+</div>
 </template>
 <style lang="scss" scoped>
 @import "@/assets/scss/navbar.scss";
