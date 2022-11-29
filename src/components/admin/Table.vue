@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, toRefs } from 'vue'
+import { computed, ref, toRefs, reactive, onMounted } from 'vue'
 // import { useMainStore } from '@/stores/main'
 import { mdiEye, mdiTrashCan } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
@@ -8,6 +8,7 @@ import BaseLevel from '@/components/admin/BaseLevel.vue'
 import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
+import httpResource from '@/http/httpResource'
 
 const props = defineProps({
   checkable: Boolean,
@@ -87,13 +88,198 @@ function isValidHttpUrl(string) {
   }
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
+
+///
+const range = (start, stop, step) =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step)
+
+let makersList = ref([])
+const getMakers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/maker')
+    makersList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+let modelsList = ref([])
+const getModels = async (moakerId) => {
+  try {
+    const response = await httpResource.get('/api/resources/model/' + moakerId)
+    modelsList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const changeMaker = (e) => {
+  getModels(e.id)
+}
+
+let statusList = ref([])
+const getStatus = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/status')
+    statusList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const yearsList = range(
+  new Date().getFullYear(),
+  new Date().getFullYear() - 50,
+  -1
+)
+const monthsList = Array.from({ length: 12 }, (e, i) => {
+  return {
+    id: i + 1,
+    label: new Date(null, i + 1, null).toLocaleDateString('en', {
+      month: 'short',
+    }),
+  }
+})
+let bodyTypeList = ref([])
+const getBodyTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/body-type')
+    bodyTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let transmissionList = ref([])
+const getTransmitions = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/transmission')
+    transmissionList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let streeingList = ref([])
+const getStreeings = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/streeings')
+    streeingList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let doorTypesList = ref([])
+const getDoorTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/door-types')
+    doorTypesList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const driveTypeList = [{ id: 1, label: '--' }]
+let fuleTypeList = ref([])
+const getfuleTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/fuel-types')
+    fuleTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let exteriorColorList = ref([])
+const getExteriorColors = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/exterior-colors')
+    exteriorColorList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let featuresList = ref([])
+const getFeatures = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/features')
+    featuresList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const initialState = {
+  maker: makersList[0],
+  model: null,
+  chassisNo: '',
+  fobPrice: 0,
+  status: statusList[0],
+  year: new Date().getFullYear(),
+  month: monthsList[new Date().getMonth()],
+  displacement: '',
+  condition: 'new',
+  bodyType: bodyTypeList[0],
+  mileage: 0,
+  transmission: transmissionList[0],
+  streeing: streeingList[0],
+  doorTypes: doorTypesList[0],
+  driveType: driveTypeList[0],
+  fuelType: fuleTypeList[0],
+  exteriorColor: exteriorColorList[0],
+  gradeTrim: '',
+  features: '',
+  coverImage: null,
+  photos: [],
+  description: '',
+  privateNote: '',
+  supplierName: '',
+  supplierPrice: 0,
+  supplierURL: '',
+  marketPrice: 0,
+}
+
+let form = reactive({ ...initialState })
+
+onMounted(async () => {
+  getMakers()
+  getStatus()
+  getBodyTypes()
+  getTransmitions()
+  getStreeings()
+  getDoorTypes()
+  getfuleTypes()
+  getExteriorColors()
+  getFeatures()
+})
+///
 </script>
 
 <template>
-  <CardBoxModal v-model="isModalActive" title="Sample modal">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
+  <CardBoxModal v-model="isModalActive" title="Edit vehicle"> </CardBoxModal>
 
   <CardBoxModal
     v-model="isModalDangerActive"
@@ -152,38 +338,6 @@ function isValidHttpUrl(string) {
             />
           </BaseButtons>
         </td>
-        <!-- <td class="border-b-0 lg:w-6 before:hidden">
-          <UserAvatar
-            :username="client.name"
-            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
-          />
-        </td>
-        <td data-label="Name">
-          {{ client.name }}
-        </td>
-        <td data-label="Company">
-          {{ client.company }}
-        </td>
-        <td data-label="City">
-          {{ client.city }}
-        </td>
-        <td data-label="Progress" class="lg:w-32">
-          <progress
-            class="flex w-2/5 self-center lg:w-full"
-            max="100"
-            :value="client.progress"
-          >
-            {{ client.progress }}
-          </progress>
-        </td>
-        <td data-label="Created" class="lg:w-1 whitespace-nowrap">
-          <small
-            class="text-gray-500 dark:text-slate-400"
-            :title="client.created"
-            >{{ client.created }}</small
-          >
-        </td>
-        -->
       </tr>
     </tbody>
   </table>
