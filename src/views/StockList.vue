@@ -20,19 +20,23 @@ const indexingDetails = reactive({
 const getAllCars = async () => {
   try {
     const response = await httpResource.get('/api/staff/vehicle')
-    carsStore.$patch({
-      cars: response.data.data,
-    })
-    indexingDetails.currentPage = response.data.meta.current_page
-    indexingDetails.perPage = response.data.meta.per_page
-    indexingDetails.lastPage = response.data.meta.last_page
-    indexingDetails.total = response.data.meta.total
-    indexingDetails.from = response.data.meta.from
-    indexingDetails.to = response.data.meta.to
-    indexingDetails.links = response.data.meta.links
+    setCars(response)
   } catch (error) {
     console.error(error)
   }
+}
+
+function setCars(response) {
+  carsStore.$patch({
+    cars: response.data.data,
+  })
+  indexingDetails.currentPage = response.data.meta.current_page
+  indexingDetails.perPage = response.data.meta.per_page
+  indexingDetails.lastPage = response.data.meta.last_page
+  indexingDetails.total = response.data.meta.total
+  indexingDetails.from = response.data.meta.from
+  indexingDetails.to = response.data.meta.to
+  indexingDetails.links = response.data.meta.links
 }
 
 let makersList = ref([])
@@ -47,10 +51,32 @@ const getMakers = async () => {
 }
 
 let modelsList = ref([])
-const getModels = async (moakerId) => {
+const getModels = async (makersIds) => {
   try {
-    const response = await httpResource.get('/api/resources/model/' + moakerId)
-    modelsList.value = response.data.data.map((d) => ({
+    let list = []
+    for (let x = 0; x < makersIds.length; x++) {
+      const response = await httpResource.get(
+        '/api/resources/model/' + makersIds[x]
+      )
+      list = [
+        ...list,
+        ...response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        })),
+      ]
+    }
+    modelsList.value = list
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+let driveTypeList = ref([])
+const getDriveTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/drive-types')
+    driveTypeList.value = response.data.data.map((d) => ({
       ...d,
       label: d.name,
     }))
@@ -63,9 +89,27 @@ const changeMaker = (e) => {
   getModels(e)
 }
 
+const applyFilters = async (form) => {
+  try {
+    const response = await httpResource.get(
+      `/api/staff/vehicle?filter[make_id]=${form.maker.join(
+        ','
+      )}&filter[model_id]=${form.model.join(',')}`
+    )
+    setCars(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const resetFilters = () => {
+  getAllCars()
+}
+
 onMounted(async () => {
   await getAllCars()
   await getMakers()
+  await getDriveTypes()
 })
 </script>
 <template>
@@ -96,7 +140,10 @@ onMounted(async () => {
         <Filter
           :makers="makersList"
           :models="modelsList"
+          :drives="driveTypeList"
           @maker-changed="changeMaker"
+          @apply-filters="applyFilters"
+          @reset-filters="resetFilters"
         />
         <VehicalList :indexingDetails="indexingDetails" />
         <CustomerFeedback />

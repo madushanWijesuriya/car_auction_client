@@ -1,8 +1,8 @@
 <script setup>
 import { toRefs, ref, reactive } from 'vue'
-const props = defineProps(['makers', 'models'])
-const { makers, models } = toRefs(props)
-const emit = defineEmits(['maker-changed', 'apply-filters'])
+const props = defineProps(['makers', 'models', 'drives'])
+const { makers, models, drives } = toRefs(props)
+const emit = defineEmits(['maker-changed', 'apply-filters', 'reset-filters'])
 const valueChanged = (e) => {
   emit('maker-changed', e)
 }
@@ -18,21 +18,29 @@ const conditions = ref([
 ])
 const conditionModel = ref()
 const mileageModel = ref([1, 2])
-const form = reactive({
-  name: '',
+const initialState = {
+  maker: '',
+  model: '',
   region: '',
+  year: '',
+  engine: '',
+  lotNo: '',
+  auctions: '',
+  Chassis: '',
   date1: '',
   date2: '',
   delivery: false,
   value2: [],
   resource: '',
   desc: '',
-})
+}
+let form = reactive({ ...initialState })
 function onSubmit() {
-  console.log('submit!')
+  emit('apply-filters', form)
 }
 function onReset() {
-  console.log('reseted!')
+  Object.assign(form, initialState)
+  emit('reset-filters')
 }
 </script>
 
@@ -52,18 +60,11 @@ function onReset() {
         </div>
       </div>
       <div class="filter-form mt-5">
-        <el-form
-          ref="form"
-          :model="form"
-          label-position="top"
-          label-width="100%"
-          style="width: 100%"
-        >
+        <el-form label-position="top" label-width="100%" style="width: 100%">
           <el-form-item label="Brand Name">
             <el-select
-              v-model="value2"
+              v-model="form.maker"
               multiple
-              collapse-tags
               style="width: 100%"
               placeholder="Any"
               @change="valueChanged"
@@ -78,9 +79,8 @@ function onReset() {
           </el-form-item>
           <el-form-item label="Model">
             <el-select
-              v-model="value2"
+              v-model="form.model"
               multiple
-              collapse-tags
               style="width: 100%"
               placeholder="Any"
             >
@@ -93,7 +93,11 @@ function onReset() {
             </el-select>
           </el-form-item>
           <el-form-item label="Chassis">
-            <el-select v-model="value2" placeholder="Any" style="width: 100%">
+            <el-select
+              v-model="form.Chassis"
+              placeholder="Any"
+              style="width: 100%"
+            >
               <el-option label="Zone one" value="shanghai"></el-option>
               <el-option label="Zone two" value="beijing"></el-option>
             </el-select>
@@ -108,13 +112,14 @@ function onReset() {
                 v-for="condition in conditions"
                 :key="condition.id"
                 :label="condition.label"
-                :value="condition.label"
+                :value="condition.id"
               ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Year From - To">
             <div class="block">
-              <el-slider range show-stops :min="1" :max="10"> </el-slider>
+              <el-slider v-model="form.year" range :min="1" :max="10">
+              </el-slider>
             </div>
           </el-form-item>
           <el-form-item label="Mileage From - To">
@@ -125,17 +130,22 @@ function onReset() {
           </el-form-item>
           <el-form-item label="Engine From - To">
             <div class="block">
-              <el-slider range show-stops :min="1" :max="10"> </el-slider>
+              <el-slider v-model="form.engine" range :min="1" :max="10">
+              </el-slider>
             </div>
           </el-form-item>
           <el-form-item label="Drive">
             <el-select
-              v-model="value2"
+              v-model="form.drive"
               placeholder="Select Drive"
               style="width: 100%"
             >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
+              <el-option
+                v-for="drive in drives"
+                :key="drive.id"
+                :label="drive.label"
+                :value="drive.id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Gearbox">
@@ -155,7 +165,7 @@ function onReset() {
           </el-form-item>
           <el-form-item label="Lot Number">
             <el-select
-              v-model="value2"
+              v-model="form.lotNo"
               placeholder="Select Lot Number"
               style="width: 100%"
             >
@@ -165,7 +175,7 @@ function onReset() {
           </el-form-item>
           <el-form-item label="Auctions">
             <el-select
-              v-model="value2"
+              v-model="form.auctions"
               placeholder="Select Auctions"
               style="width: 100%"
             >
@@ -196,27 +206,27 @@ function onReset() {
           <el-form-item label="">
             <el-input></el-input>
           </el-form-item>
-          <div class="w-full mt-2 mb-2">
-            <button class="btn-search text-xl" @click="onSubmit">Search</button>
-          </div>
-          <div class="w-full mt-2 mb-2">
-            <button class="btn-reset text-xl" @click="onReset">Reset</button>
-          </div>
-          <div class="news-letter">
-            <div class="head mb-2">
-              <h2 class="text-xl">News Letter</h2>
-            </div>
-            <div class="desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,
-              rhoncus sapien, sed nec aenean at molestie vitae dignissim.
-            </div>
-            <div class="subscribe mt-4">
-              <button class="btn-subscribe">Subscribe</button>
-            </div>
-          </div>
 
           <!-- end of form -->
         </el-form>
+        <div class="w-full mt-2 mb-2">
+          <button class="btn-search text-xl" @click="onSubmit">Search</button>
+        </div>
+        <div class="w-full mt-2 mb-2">
+          <button class="btn-reset text-xl" @click="onReset">Reset</button>
+        </div>
+        <div class="news-letter">
+          <div class="head mb-2">
+            <h2 class="text-xl">News Letter</h2>
+          </div>
+          <div class="desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,
+            rhoncus sapien, sed nec aenean at molestie vitae dignissim.
+          </div>
+          <div class="subscribe mt-4">
+            <button class="btn-subscribe">Subscribe</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
