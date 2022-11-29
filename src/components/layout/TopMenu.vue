@@ -194,12 +194,12 @@ const url = computed(() => {
   </div>
 </template>
 <style lang="scss" scoped>
-// @import "@/assets/scss/navbar.scss";
+@import "@/assets/scss/navbar.scss";
 </style>
 <script>
-import Services from '../layout/Services.vue'
-import SideBar from './sideBar.vue';
-import AboutVue from "./about.vue";
+import Services from './Services.vue'
+import SideBar from './Sidebar.vue';
+import AboutVue from "./About.vue";
 export default {
   name: 'navbar',
   components: {
