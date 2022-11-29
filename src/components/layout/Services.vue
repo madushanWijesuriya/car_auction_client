@@ -55,14 +55,14 @@ const url = computed(() => {
                     <ul class="dropdown-menu" apear>
                         <li class="nav-item"><a class="dropdown-item" :href="url + 'countries-vehicle-details'">EAA</a>
                         </li>
-                        <li class="nav-item"><a class="dropdown-item" href="services2.html">Intertek</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="services2.html">JAAI </a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="services2.html">JEVIC</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="services2.html">VCA</a></li>
-                        <li class="nav-item"><a class="dropdown-item" href="services2.html">QISJ Calendar</a></li>
+                        <li class="nav-item"><a class="dropdown-item" >Intertek</a></li>
+                        <li class="nav-item"><a class="dropdown-item" >JAAI </a></li>
+                        <li class="nav-item"><a class="dropdown-item" >JEVIC</a></li>
+                        <li class="nav-item"><a class="dropdown-item" >VCA</a></li>
+                        <li class="nav-item"><a class="dropdown-item" >QISJ Calendar</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="dropdown-item" href="onepage.html">Shipment Schedule</a></li>
+                <li class="nav-item"><a class="dropdown-item" :href="url + 'shipment-service'">Shipment Schedule</a></li>
             </ul>
         </transition>
     </div>
