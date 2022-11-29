@@ -151,84 +151,22 @@ const url = computed(() => {
       <div class="flex items-center gap-2">
         <a class="font-semibold" :href="url + 'stock-list'">Stock List</a>
       </div>
-      <div class="">
-        <el-dropdown class="w-full flex text-[#08246C] border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            Services
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'countries-vehicle-details'">Action Calender</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'services-auction-guru'">Action Guide</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'services-auction-vs-stock'">Action vs Stock</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'services-auction-houses'">Action Houses</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'services-quality-control'">Quality Control</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'countries-vehicle-details'">Shipment Schedule</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'shipment-service'">Shipment Schedule</a>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <div class="font-semibold">
-        <el-dropdown class="w-full flex text-[#08246C] font-semibold border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            Certifications
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'countries-vehicle-details'">EAA</a>
-              </el-dropdown-item>
-              <el-dropdown-item></el-dropdown-item>
-              <el-dropdown-item>Intertek</el-dropdown-item>
-              <el-dropdown-item>JAAI</el-dropdown-item>
-              <el-dropdown-item>JEVIC</el-dropdown-item>
-              <el-dropdown-item>VCA</el-dropdown-item>
-              <el-dropdown-item>QISJ</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-      <a class="font-semibold" href="https://car-auction-staging.netlify.app/how-to-ordering">How to Order</a>
       <div class="flex items-center gap-2">
-        <el-dropdown class="w-full flex text-[#08246C] font-semibold border-b-1 text-xl hover:border-red-600">
-          <div class="flex items-center gap-2 font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
-            About Us
-            <div class="w-[10px] h-[10px]">
-              <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'why-us'">Why
-                  Us</a></el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'company-profile'">Company Profile</a>
-              </el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'about'">Corparate
-                  Philosophy</a></el-dropdown-item>
-              <el-dropdown-item><a class="font-semibold" :href="url + 'customer-feedback'">Customer's Feedback</a> 
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
+        <Services title="Services" />
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <a class="font-semibold" :href="url + 'how-to-ordering'">How to Order</a>
+      <div class="flex items-center gap-2">
+        <AboutVue title="About" />
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
       </div>
       <div class="font-semibold">
         <a class="font-semibold" :href="url + 'reachus'">Reach Us</a>
@@ -251,8 +189,23 @@ const url = computed(() => {
       </svg>
     </div>
   </div>
-</div>
 </template>
 <style lang="scss" scoped>
-@import "@/assets/scss/navbar.scss";
+// @import "@/assets/scss/navbar.scss";
 </style>
+<script>
+import Services from '../layout/Services.vue'
+import SideBar from './sideBar.vue';
+import AboutVue from "./about.vue";
+export default {
+  name: 'navbar',
+  components: {
+    Services
+  },
+  data() {
+    return {
+      isOpen: false,
+    }
+  }
+}
+</script>
