@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="grid place-items-center">
+  <div class="grid place-items-center" data-aos="zoom-in">
     <div class="lg:mx-28 lg:mt-10">
       <img class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-full "
         src="@/assets/images/shipmentService/main.svg" />
