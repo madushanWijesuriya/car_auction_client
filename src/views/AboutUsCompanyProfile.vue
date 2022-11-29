@@ -1,12 +1,12 @@
 <template>
     <div class="text-white text-sm">
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
-            <div class="relative w-full md:px-[5%]">
+            <div class="relative w-full md:px-[5%]" data-aos="zoom-in">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
                     src="@/assets/images/company-profile/company-profile.svg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
-                    <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[45%]">
+                    <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[45%]" >
                         <div class="">
                             <div>
                                 <h1 class="font-baner-h1">Biggest Vehicle

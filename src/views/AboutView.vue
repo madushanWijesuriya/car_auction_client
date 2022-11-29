@@ -3,7 +3,7 @@
     <div
       class="flex flex-col justify-center items-lcenters w-full md:px-[60px] lg:px-[80px] xl:px-[180px] md:mt-2 xl:mt-3"
     >
-      <div class="relative w-full">
+      <div class="relative w-full" data-aos="zoom-in">
         <img
           class="lg:rounded-[15px] md:rounded-[10px] w-full"
           src="@/assets/images/aboutus/aboutus-img-1.svg"
