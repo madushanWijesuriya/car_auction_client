@@ -14,7 +14,7 @@ const url = computed(() => {
         <transition name="fade" apear>
             <ul class="dropdown-menu" v-if="isOpen">
                 <li class="dropdown dropdown-submenu dropend" @click="isOpen = !isOpen">
-                    <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">
                         <div class="flex w-full justify-between items-center">
                             <p class=" font-semibold">
                                 Auction
@@ -38,7 +38,7 @@ const url = computed(() => {
                                 Houses</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="dropdown-item" href="pricing.html">Quality Control</a></li>
+                <li class="nav-item"><a class="dropdown-item" :href="url + 'ServicesQualityControlView'">Quality Control</a></li>
                 <li class="dropdown dropdown-submenu dropend"><a class="dropdown-item dropdown-toggle" href="#"
                         data-bs-toggle="dropdown">
                         <div class="flex w-full  justify-between items-center">
