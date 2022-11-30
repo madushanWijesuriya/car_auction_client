@@ -3,7 +3,7 @@ import Filter from '../components/StockList/Filter/Filter.vue'
 import CustomerFeedback from '../components/StockList/CustomerFeedback/CustomerFeedback.vue'
 import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 
 const carsStore = useCarsStore()
@@ -20,42 +20,96 @@ const indexingDetails = reactive({
 const getAllCars = async () => {
   try {
     const response = await httpResource.get('/api/staff/vehicle')
-    carsStore.$patch({
-      cars: response.data.data,
-    })
-    indexingDetails.currentPage = response.data.meta.current_page
-    indexingDetails.perPage = response.data.meta.per_page
-    indexingDetails.lastPage = response.data.meta.last_page
-    indexingDetails.total = response.data.meta.total
-    indexingDetails.from = response.data.meta.from
-    indexingDetails.to = response.data.meta.to
-    indexingDetails.links = response.data.meta.links
+    setCars(response)
   } catch (error) {
     console.error(error)
   }
 }
 
-const getBrands = async () => {
+function setCars(response) {
+  carsStore.$patch({
+    cars: response.data.data,
+  })
+  indexingDetails.currentPage = response.data.meta.current_page
+  indexingDetails.perPage = response.data.meta.per_page
+  indexingDetails.lastPage = response.data.meta.last_page
+  indexingDetails.total = response.data.meta.total
+  indexingDetails.from = response.data.meta.from
+  indexingDetails.to = response.data.meta.to
+  indexingDetails.links = response.data.meta.links
+}
+
+let makersList = ref([])
+const getMakers = async () => {
   try {
     const response = await httpResource.get('/api/resources/maker')
-    console.log(response.data.data)
+    makersList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+
+let modelsList = ref([])
+const getModels = async (makersIds) => {
+  try {
+    let list = []
+    for (let x = 0; x < makersIds.length; x++) {
+      const response = await httpResource.get(
+        '/api/resources/model/' + makersIds[x]
+      )
+      list = [
+        ...list,
+        ...response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        })),
+      ]
+    }
+    modelsList.value = list
   } catch (error) {
     console.error(error)
   }
 }
 
-const getModels = async (brandId) => {
+let driveTypeList = ref([])
+const getDriveTypes = async () => {
   try {
-    const response = await httpResource.get('/api/resources/model/' + brandId)
-    console.log(response.data.data)
+    const response = await httpResource.get('/api/resources/drive-types')
+    driveTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
   } catch (error) {
     console.error(error)
   }
+}
+
+const changeMaker = (e) => {
+  getModels(e)
+}
+
+const applyFilters = async (form) => {
+  try {
+    const response = await httpResource.get(
+      `/api/staff/vehicle?filter[make_id]=${form.maker.join(
+        ','
+      )}&filter[model_id]=${form.model.join(',')}`
+    )
+    setCars(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const resetFilters = () => {
+  getAllCars()
 }
 
 onMounted(async () => {
   await getAllCars()
-  await getBrands()
+  await getMakers()
+  await getDriveTypes()
 })
 </script>
 <template>
@@ -81,10 +135,16 @@ onMounted(async () => {
       </div>
       <p class="font-main-title text-center lg:text-start lg:pl-[16%]">
         Search Japan Used Vehicles
-        <!-- <pre>{{ items }}</pre> -->
       </p>
       <div class="flex flex-col px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
-        <Filter />
+        <Filter
+          :makers="makersList"
+          :models="modelsList"
+          :drives="driveTypeList"
+          @maker-changed="changeMaker"
+          @apply-filters="applyFilters"
+          @reset-filters="resetFilters"
+        />
         <VehicalList :indexingDetails="indexingDetails" />
         <CustomerFeedback />
       </div>
