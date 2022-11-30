@@ -153,15 +153,7 @@
         <div class="space-y-3 p-3">
           <p class="font-title-1">Description</p>
           <p class="font-para-1">
-            BMW i8 Driving Experience. The BMW i8 has the ability to drive up to
-            34 miles around town as a pure electric car, with zero tailpipe
-            emissions. You can select the EV button to ensure the i8 doesn't
-            fire up the petrol engine.
-            <br /><br />
-            The intelligent eDrive propulsion system of the BMW i8 combines the
-            benefits of an electric motor and a petrol engine as a plug-in
-            hybrid to create an exceptional driving experience: Outstanding
-            efficiency and maximum dynamics are simultaneously possible.
+            {{ vehicleData.description }}
           </p>
         </div>
       </div>
@@ -182,28 +174,38 @@
               <p
                 class="flex-1 font-card-line-content font-card-line-content-spec"
               >
-                22857T
+                {{ vehicleData?.id }}
               </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Type</p>
-              <p class="flex-1 font-card-line-content">BMW</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.body_type_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Chassis No.</p>
-              <p class="flex-1 font-card-line-content">i8</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.chassis_no }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Mileage</p>
-              <p class="flex-1 font-card-line-content">BMW-i8-94589</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.mileage }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Grade</p>
-              <p class="flex-1 font-card-line-content">983 KM</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.grade }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Transmission</p>
-              <p class="flex-1 font-card-line-content">i</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.transmission_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Seats</p>
@@ -215,15 +217,21 @@
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Exterior Cond.</p>
-              <p class="flex-1 font-card-line-content">3.5</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.exterior_color_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Year/Month</p>
-              <p class="flex-1 font-card-line-content">2018/08</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.make_at }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Model</p>
-              <p class="flex-1 font-card-line-content">Ajdkls</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.model_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Model Code</p>
@@ -239,19 +247,22 @@
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Fuel</p>
-              <p class="flex-1 font-card-line-content">Hybrid</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.fuel_type_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Doors</p>
-              <p class="flex-1 font-card-line-content">Right Hand</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.door_type_id?.name }}
+              </p>
             </div>
-            <div class="flex gap-3">
-              <p class="flex-1 font-card-line-title">Fuel</p>
-              <p class="flex-1 font-card-line-content">2</p>
-            </div>
+
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Color</p>
-              <p class="flex-1 font-card-line-content">White</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.exterior_color_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Interior Cond.</p>
@@ -283,7 +294,7 @@
             class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5"
           >
             <div class="font-total-price lg:flex lg:flex-col lg:items-end">
-              <p>¥ 176,230.00</p>
+              <p>¥ {{ vehicleData?.market_price }}</p>
               <p class="font-total-price-label">Total Price with Shipping</p>
             </div>
             <div class="flex items-center gap-2">
@@ -400,11 +411,15 @@ import {
 } from '@element-plus/icons-vue'
 import Recapture from '../components/recapture/Recapture.vue'
 import { onMounted, reactive, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
 import httpResource from '../http/httpResource'
+
+const route = useRoute()
 
 const postData = reactive({
   name: null,
-  vehicle_id: 1,
+  vehicle_id: null,
   country_id: null,
   email: null,
   cell_no: null,
@@ -444,7 +459,6 @@ const handleClick = () => {
 
 function resetForm() {
   ;(postData.name = null),
-    (postData.vehicle_id = null),
     (postData.country_id = null),
     (postData.email = null),
     (postData.cell_no = null),
@@ -454,6 +468,7 @@ function resetForm() {
 }
 
 let countryList = ref([])
+let vehicleData = ref([])
 
 const getCountriesforSelect = async () => {
   try {
@@ -466,7 +481,19 @@ const getCountriesforSelect = async () => {
     console.error(error)
   }
 }
+const getVehicleDetails = async () => {
+  try {
+    const response = await httpResource.get(
+      '/api/guest/vehicle/' + postData.vehicle_id
+    )
+    vehicleData.value = response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
 onMounted(async () => {
   getCountriesforSelect()
+  postData.vehicle_id = route.params.id
+  getVehicleDetails()
 })
 </script>

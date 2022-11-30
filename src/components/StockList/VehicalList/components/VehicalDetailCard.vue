@@ -5,7 +5,7 @@ const { vehicle } = toRefs(props)
 </script>
 <template>
   <div
-    @click="$router.push('/vehical-details')"
+    @click="$router.push(`/vehical-details/${vehicle?.id}`)"
     class="w-full p-2 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2"
   >
     <img

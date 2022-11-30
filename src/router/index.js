@@ -65,7 +65,7 @@ const router = createRouter({
       component: () => import('../views/CountriesVehicleDetailsView.vue'),
     },
     {
-      path: '/vehical-details',
+      path: '/vehical-details/:id',
       name: 'vehicalDetails',
       component: () => import('../views/vehicalDetails.vue'),
     },
