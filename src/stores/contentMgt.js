@@ -28,6 +28,10 @@ export const useContentStore = defineStore('content', () => {
     {
       name: 'Country',
       order: 3,
+    },
+    {
+      name: 'Actions',
+      order: 3,
     }
   ])
 
