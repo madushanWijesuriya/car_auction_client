@@ -135,6 +135,26 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/content-mgt',
+      name: 'contentMgt',
+      component: () => import('../views/AdminContentMGT.vue'),
+    },
+    {
+      meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/client-mgt',
+      name: 'clientmgt',
+      component: () => import('../views/AdminClientMgt.vue'),
+    },
+    {
+      meta: {
         title: 'Select style',
         layout: 'LayoutAdmin',
         requiresAuth: true,
@@ -240,7 +260,7 @@ const router = createRouter({
       path: '/blank-page',
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
-    },
+    }
   ],
 })
 

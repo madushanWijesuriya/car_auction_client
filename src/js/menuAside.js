@@ -7,8 +7,8 @@ export default [
     label: 'Dashboard',
   },
   {
-    label: 'Car Section',
-    icon: mdiCarSearch,
+    label: 'Cars',
+    icon: mdiViewList,
     menu: [
       {
         to: '/admin/all-cars',
@@ -23,14 +23,67 @@ export default [
     ],
   },
   {
-    label: 'Inquery Section',
-    icon: mdiCarSearch,
+    label: 'Inquery',
+    icon: mdiViewList,
     menu: [
       {
-        to: '/admin/all-inqueries',
-        label: 'Inqueries',
+        label: 'Inquery',
+        icon: mdiCarSearch,
+        menu: [
+          {
+            to: '/admin/all-inqueries',
+            label: 'Inqueries',
+            icon: mdiCarSearch,
+          },
+      }
+    ],
+  },
+  {
+    label: 'Contents',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/content-mgt',
+        label: 'Content-Managment',
         icon: mdiCarSearch,
       },
+      {
+        to: '/admin/add-car',
+        label: 'Add car',
+        icon: mdiCarEstate,
+      },
+    ],
+  },
+  // {
+  //   label: 'Dropdown',
+  //   icon: mdiViewList,
+  //   menu: [
+  //     {
+  //       to: '/admin/content-mgt',
+  //       label: 'Content Managment',
+  //       icon: mdiCarSearch,
+  //     },
+  //     // {
+  //     //   to: '/admin/add-car',
+  //     //   label: 'Add car',
+  //     //   icon: mdiCarEstate,
+  //     // },
+  //   ],
+  // },
+  {
+    label: 'Clients',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/client-mgt',
+        label: 'Client Managment',
+        icon: mdiCarSearch,
+      },
+      // {
+      //   to: '/admin/add-client',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
     ],
   },
 ]
