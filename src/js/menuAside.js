@@ -37,7 +37,56 @@ export default [
       },
     ],
   },
+  {
+    label: 'Dropdown',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/content-mgt',
+        label: 'Content-Managment',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/add-car',
+        label: 'Add car',
+        icon: mdiCarEstate,
+      },
+    ],
+  },
+  {
+    label: 'Dropdown',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/content-mgt',
+        label: 'Content Managment',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/add-car',
+        label: 'Add car',
+        icon: mdiCarEstate,
+      },
+    ],
+  },
+  {
+    label: 'Dropdown',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/client-mgt',
+        label: 'Client Managment',
+        icon: mdiCarSearch,
+      },
+      // {
+      //   to: '/admin/add-client',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
+    ],
+  },
 ]
+
 
 /**
  * 
