@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import { computed } from "@vue/runtime-core";
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT;
+});
+</script>
 <template>
   <div class="footer">
     <div class="container mx-auto">
@@ -37,14 +42,14 @@
                 <div class="mb-20">
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'why-us'"
                       class="text-left text-white footer-contect-text underline"
                       >Why Choose Us?
                     </a>
                   </div>
                   <div class="mb-5">
                     <a
-                      href="#"
+                      :href="url + 'company-profile'"
                       class="text-left text-white footer-contect-text underline"
                       >Company Profile
                     </a>
@@ -52,7 +57,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'about'"
                       class="text-left text-white footer-contect-text underline"
                       >Corporate Philosophy
                     </a>
@@ -60,7 +65,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                      :href="url + 'ServicesQualityControlView'"
                       class="text-left text-white footer-contect-text underline"
                       >Quality Control
                     </a>
@@ -68,7 +73,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                      :href="url + 'customer-feedback'"
                       class="text-left text-white footer-contect-text underline"
                       >Customer Reviews
                     </a>
@@ -76,7 +81,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'reachus'"
                       class="text-left text-white footer-contect-text underline"
                       >Contact Us</a
                     >
@@ -91,14 +96,14 @@
                 <div class="mb-20 sm:mb-0 md:mb-0">
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'countries-vehicle-details'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Calendar
                     </a>
                   </div>
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'services-auction-houses'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Houses
                     </a>
@@ -106,7 +111,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'services-auction-guru'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Guide
                     </a>
@@ -114,7 +119,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                      :href="url + 'services-auction-vs-stock'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Vs Stock
                     </a>
@@ -122,7 +127,7 @@
 
                   <div class="mb-5">
                     <a
-                      href="#"
+                    :href="url + 'how-to-ordering'"
                       class="text-left text-white footer-contect-text underline"
                       >How to order
                     </a>
@@ -336,8 +341,8 @@
               >
                 <h1
                   class="footer-topic text-center sm:text-center md:text-center lg:text-left xl:text-left"
-                >
-                  Reach us
+                >Reach us
+                  
                 </h1>
                 <br />
                 <h1 class="text-white footer-contect-text">
