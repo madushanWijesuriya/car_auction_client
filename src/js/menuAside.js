@@ -22,7 +22,7 @@ export default [
     label: 'Dashboard',
   },
   {
-    label: 'Dropdown',
+    label: 'Cars',
     icon: mdiViewList,
     menu: [
       {
@@ -38,7 +38,7 @@ export default [
     ],
   },
   {
-    label: 'Dropdown',
+    label: 'Contents',
     icon: mdiViewList,
     menu: [
       {
@@ -53,24 +53,24 @@ export default [
       },
     ],
   },
+  // {
+  //   label: 'Dropdown',
+  //   icon: mdiViewList,
+  //   menu: [
+  //     {
+  //       to: '/admin/content-mgt',
+  //       label: 'Content Managment',
+  //       icon: mdiCarSearch,
+  //     },
+  //     // {
+  //     //   to: '/admin/add-car',
+  //     //   label: 'Add car',
+  //     //   icon: mdiCarEstate,
+  //     // },
+  //   ],
+  // },
   {
-    label: 'Dropdown',
-    icon: mdiViewList,
-    menu: [
-      {
-        to: '/admin/content-mgt',
-        label: 'Content Managment',
-        icon: mdiCarSearch,
-      },
-      // {
-      //   to: '/admin/add-car',
-      //   label: 'Add car',
-      //   icon: mdiCarEstate,
-      // },
-    ],
-  },
-  {
-    label: 'Dropdown',
+    label: 'Clients',
     icon: mdiViewList,
     menu: [
       {
@@ -86,7 +86,6 @@ export default [
     ],
   },
 ]
-
 
 /**
  * 
