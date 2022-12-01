@@ -300,47 +300,49 @@ onMounted(async () => {
       {{ checkedRow.name }}
     </span>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th v-if="checkable" />
+  <div class="table-scrollable" style="overflow: auto">
+    <table>
+      <thead>
+        <tr>
+          <th v-if="checkable" />
 
-        <th v-for="header in headers">{{ header.name }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(row, index) in itemsPaginated" :key="index">
-        <TableCheckboxCell
-          v-if="checkable"
-          @checked="checked($event, client)"
-        />
-        <td v-for="dataPoint in row">
-          <span v-if="!isValidHttpUrl(dataPoint)">
-            {{ dataPoint }}
-          </span>
-          <span v-else>
-            <img :src="dataPoint" alt="img" />
-          </span>
-        </td>
-        <td class="before:hidden lg:w-1 whitespace-nowrap">
-          <BaseButtons type="justify-start lg:justify-end" no-wrap>
-            <BaseButton
-              color="info"
-              :icon="mdiEye"
-              small
-              @click="isModalActive = true"
-            />
-            <BaseButton
-              color="danger"
-              :icon="mdiTrashCan"
-              small
-              @click="isModalDangerActive = true"
-            />
-          </BaseButtons>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <th v-for="header in headers">{{ header.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, index) in itemsPaginated" :key="index">
+          <TableCheckboxCell
+            v-if="checkable"
+            @checked="checked($event, client)"
+          />
+          <td v-for="dataPoint in row">
+            <span v-if="!isValidHttpUrl(dataPoint)">
+              {{ dataPoint }}
+            </span>
+            <span v-else>
+              <img :src="dataPoint" alt="img" />
+            </span>
+          </td>
+          <td class="before:hidden lg:w-1 whitespace-nowrap">
+            <BaseButtons type="justify-start lg:justify-end" no-wrap>
+              <BaseButton
+                color="info"
+                :icon="mdiEye"
+                small
+                @click="isModalActive = true"
+              />
+              <BaseButton
+                color="danger"
+                :icon="mdiTrashCan"
+                small
+                @click="isModalDangerActive = true"
+              />
+            </BaseButtons>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
