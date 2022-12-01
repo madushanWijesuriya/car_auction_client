@@ -1,10 +1,30 @@
 <script setup>
-import StepperOne from "../components/Steppers/StepperOne.vue";
+import StepperOne from '../components/Steppers/StepperOne.vue'
+import httpResource from '@/http/httpResource'
+import { onMounted, ref } from 'vue'
+
+let pageContent = ref([])
 
 const getImageUrl = (name) => {
-  if (!name) return "";
-  return new URL(name, import.meta.url).href;
-};
+  if (!name) return ''
+  return new URL(name, import.meta.url).href
+}
+
+async function getContent(countryId = 22) {
+  const response = await httpResource.get(
+    `/api/staff/content/country/${countryId}`
+  )
+  pageContent.value = response?.data?.data
+}
+
+function renderContent(id) {
+  if (!pageContent.value) return ''
+  return pageContent.value.find((c) => c.id === id)?.contents
+}
+
+onMounted(async () => {
+  await getContent(22)
+})
 </script>
 
 <template>
@@ -12,10 +32,16 @@ const getImageUrl = (name) => {
     <div class="content-01 container mt-6 grid grid-cols-1 sm:grid-cols-5" data-aos="zoom-in">
       <div class="text-2xl sm:text-6xl font-semibold text-black px-4 sm:order-1 sm:pt-48 sm:mb-2 sm:col-span-2">
         <div class="text-color-03 sm:text-color-01">
-          Fully <span class="text-color-02 sm:text-color-01">Transparent</span>
+          {{ renderContent(1) }}
+          <span class="text-color-02 sm:text-color-01">{{
+            renderContent(2)
+          }}</span>
         </div>
         <div class="text-color-03 sm:text-color-01">
-          Fully in <span class="text-color-02 sm:text-color-01">Control</span>
+          {{ renderContent(3) }}
+          <span class="text-color-02 sm:text-color-01">{{
+            renderContent(4)
+          }}</span>
         </div>
       </div>
       <div class="text-sm font-normal text-black leading-5 sm:leading-8 mt-2 mb-4 px-4 sm:order-3 sm:col-span-2">
