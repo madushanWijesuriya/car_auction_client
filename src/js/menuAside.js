@@ -62,11 +62,11 @@ export default [
         label: 'Content Managment',
         icon: mdiCarSearch,
       },
-      {
-        to: '/admin/add-car',
-        label: 'Add car',
-        icon: mdiCarEstate,
-      },
+      // {
+      //   to: '/admin/add-car',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
     ],
   },
   {
