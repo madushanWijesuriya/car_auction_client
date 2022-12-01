@@ -202,6 +202,16 @@ const router = createRouter({
       component: () => import('../views/AdminErrorView.vue'),
     },
     {
+      meta: {
+        title: 'User MGT',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/user-mgt',
+      name: 'all-users',
+      component: () => import('../views/AdminAllUserView.vue'),
+    },
+    {
       path: '/certifications-eaa',
       name: 'CertificationsEaa',
       component: () => import('../views/CertificationsEaaView.vue'),
