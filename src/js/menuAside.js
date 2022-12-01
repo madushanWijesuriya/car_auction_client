@@ -1,4 +1,4 @@
-import { mdiMonitor, mdiCarEstate, mdiCarSearch } from '@mdi/js'
+import { mdiMonitor, mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
 
 export default [
   {
@@ -24,18 +24,13 @@ export default [
   },
   {
     label: 'Inquery',
-    icon: mdiViewList,
+    icon: mdiCarSearch,
     menu: [
       {
-        label: 'Inquery',
+        to: '/admin/all-inqueries',
+        label: 'Inqueries',
         icon: mdiCarSearch,
-        menu: [
-          {
-            to: '/admin/all-inqueries',
-            label: 'Inqueries',
-            icon: mdiCarSearch,
-          },
-      }
+      },
     ],
   },
   {
