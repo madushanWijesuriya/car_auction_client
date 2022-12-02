@@ -24,7 +24,6 @@ const visibleImageList = computed(() => {
 })
 function changeImage() {
   if (!visibleImageList.value) return
-  console.log(currentId.value)
   if (!visibleImageList.value.some((i) => i.id === currentId.value + 1)) {
     currentId.value = 1
   } else {
