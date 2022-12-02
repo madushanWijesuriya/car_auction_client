@@ -1,8 +1,9 @@
 <script setup>
 import { ArrowRight } from '@element-plus/icons-vue'
+import { ref, computed, onMounted, onBeforeUnmount, onUpdated } from 'vue'
 
-import { ref, computed } from 'vue'
 const input = ref('')
+const timer = ref(null)
 
 const imagesList = [
   { id: 1, name: 'vehicalDetails/car-1.svg' },
@@ -15,10 +16,30 @@ const imagesList = [
 ]
 let currentId = ref(1)
 const currentImage = computed(() => {
+  if (!currentId.value) return { id: -99, name: '' }
   return imagesList.find((i) => i.id === currentId.value)
 })
 const visibleImageList = computed(() => {
   return imagesList.slice(0, 6)
+})
+function changeImage() {
+  if (!visibleImageList.value) return
+  console.log(currentId.value)
+  if (!visibleImageList.value.some((i) => i.id === currentId.value + 1)) {
+    currentId.value = 1
+  } else {
+    currentId.value += 1
+  }
+}
+onMounted(function () {
+  timer.value = setInterval(changeImage, 2000)
+})
+onBeforeUnmount(function () {
+  clearInterval(timer.value)
+})
+onUpdated(function () {
+  clearInterval(timer.value)
+  timer.value = setInterval(changeImage, 3000)
 })
 </script>
 <template>
