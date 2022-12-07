@@ -41,6 +41,14 @@ const url = computed(() => {
       </div>
       <a class="font-semibold" :href="url + 'how-to-ordering'">How to Order</a>
       <div class="flex items-center gap-2">
+        <Countries title="Countries"/>
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
         <AboutVue title="About" />
         <div class="w-[10px] h-[10px]">
           <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,6 +85,7 @@ const url = computed(() => {
 import Services from './Services.vue'
 import SideBar from './Sidebar.vue';
 import AboutVue from "./About.vue";
+import Countries from './Countries.vue'
 export default {
   name: 'navbar',
   components: {
