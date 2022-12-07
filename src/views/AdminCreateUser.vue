@@ -26,12 +26,13 @@ export default {
         const submitForm = async () => {
             try {
 
-                console.log(form,'form');
-                const response = await httpResource.post('/api/staff/auth/register', {
+                console.log(form, 'form');
+                const response = await httpResource.post('/api/staff/staffuser', {
                     name: form?.name,
                     email: form?.email,
                     password: form?.password,
-                    password_confirmation:form?.password_confirmation
+                    password_confirmation: form?.password_confirmation,
+                    role_id: form?.role_id.id
                 })
                 if (response.status === 200) {
                     resetForm()
@@ -41,23 +42,26 @@ export default {
             }
         }
 
+        let roleIds = ref([{ id:1,label:'Admin'},{id:2 , label:'Test'}])
         const initialState = {
             name: '',
             email: null,
             password: '',
-            password_confirmation:''
+            role_id: '1',
+            password_confirmation: ''
         }
 
         let form = reactive({ ...initialState })
         return {
             form,
+            roleIds,
             validateForm,
             resetForm,
         }
     }
 }
 </script>
-<template>  
+<template>
     <div class="add-car">
         <LayoutAuthenticated>
             <SectionMain>
@@ -76,6 +80,9 @@ export default {
                     <FormField label="Confirm Password">
                         <FormControl v-model="form.password_confirmation" name="password_confirmation" type="Password"
                             placeholder="" />
+                    </FormField>
+                    <FormField label="Role">
+                        <FormControl v-model="form.role_id" :options="roleIds" />
                     </FormField>
                 </CardBox>
             </SectionMain>
