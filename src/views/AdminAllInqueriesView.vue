@@ -4,7 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
-import { useCarsStore } from '@/stores/cars'
+import { useCarsStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
@@ -18,19 +18,22 @@ const decoratedItems = computed(() => {
   return items.value.map((i) => {
     return {
       id: i.id,
-      photo: 'https://picsum.photos/200/200',
-      make: i?.make_id?.name,
-      model: i?.model_id?.name,
-      fob: i?.fob_price,
-      status: i?.status_id?.name,
-      inquery: '-',
+      type: i?.type,
+      vehicle_id: i?.vehicle_id?.id,
+      country_id: i?.country_id?.name,
+      name: i?.name,
+      email: i?.email,
+      cell_no: i?.cell_no,
+      port_name: i?.port_name,
+      mobile_no: i?.mobile_no,
+      created_at: i?.created_at,
     }
   })
 })
 
 const getAllCars = async () => {
   try {
-    const response = await httpResource.get('/api/staff/vehicle')
+    const response = await httpResource.get('/api/staff/inquery')
     carsStore.$patch({
       cars: response.data.data,
     })
@@ -201,7 +204,7 @@ let form = reactive({ ...initialState })
         <CardBox style="margin-top: 40px">
           <SectionTitleLineWithButton
             :icon="mdiCarEstate"
-            title="All Cars"
+            title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
           <Table :items="decoratedItems" :headers="headers"> </Table>

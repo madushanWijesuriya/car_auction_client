@@ -187,7 +187,19 @@ export default {
         console.error(error)
       }
     }
-    const driveTypeList = [{ id: 1, label: '--' }]
+
+    let driveTypeList = ref([])
+    const getDriverTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/drive-types')
+        driveTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
     let fuleTypeList = ref([])
     const getfuleTypes = async () => {
       try {
@@ -234,6 +246,7 @@ export default {
       getTransmitions()
       getStreeings()
       getDoorTypes()
+      getDriverTypes()
       getfuleTypes()
       getExteriorColors()
       getFeatures()

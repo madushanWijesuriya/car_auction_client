@@ -20,8 +20,26 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  actions: {
+    type: Array,
+    default: [{
+      color: "info",
+      icon: mdiEye,
+      onClick: "defaultAction"
+    },
+    {
+      color: "danger",
+      icon: mdiTrashCan,
+      onClick: "defaultAction"
+    }],
+  }
 })
-const { items, headers } = toRefs(props)
+
+const action = {
+  defaultAction: () => isModalActive = true
+}
+
+const { items, headers ,actions } = toRefs(props)
 // const mainStore = useMainStore()
 
 // const items = computed(() => mainStore.clients)
@@ -101,7 +119,7 @@ const getMakers = async () => {
       ...d,
       label: d.name,
     }))
-  } catch (error) {}
+  } catch (error) { }
 }
 let modelsList = ref([])
 const getModels = async (moakerId) => {
@@ -281,39 +299,29 @@ onMounted(async () => {
 <template>
   <CardBoxModal v-model="isModalActive" title="Edit vehicle"> </CardBoxModal>
 
-  <CardBoxModal
-    v-model="isModalDangerActive"
-    title="Please confirm"
-    button="danger"
-    has-cancel
-  >
+  <CardBoxModal v-model="isModalDangerActive" title="Please confirm" button="danger" has-cancel>
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
-    <span
-      v-for="checkedRow in checkedRows"
-      :key="checkedRow.id"
-      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700"
-    >
+    <span v-for="checkedRow in checkedRows" :key="checkedRow.id"
+      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700">
       {{ checkedRow.name }}
     </span>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th v-if="checkable" />
+  <div class="table-scrollable" style="overflow: auto">
+    <table>
+      <thead>
+        <tr>
+          <th v-if="checkable" />
 
         <th v-for="header in headers">{{ header.name }}</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(row, index) in itemsPaginated" :key="index">
-        <TableCheckboxCell
-          v-if="checkable"
-          @checked="checked($event, client)"
-        />
+        <TableCheckboxCell v-if="checkable" @checked="checked($event, client)" />
         <td v-for="dataPoint in row">
           <span v-if="!isValidHttpUrl(dataPoint)">
             {{ dataPoint }}
@@ -324,35 +332,22 @@ onMounted(async () => {
         </td>
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
-            <BaseButton
-              color="info"
-              :icon="mdiEye"
-              small
-              @click="isModalActive = true"
-            />
-            <BaseButton
-              color="danger"
-              :icon="mdiTrashCan"
-              small
-              @click="isModalDangerActive = true"
-            />
+            <div v-for="(item, index) in actions" :key="index">
+              <BaseButton :label="item.label ? item.label : ''" :color=item?.color :icon=item?.icon small @click= "isModalActive = true" />
+            </div>
+            
+            <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
           </BaseButtons>
         </td>
       </tr>
     </tbody>
   </table>
+  </div>
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
-        <BaseButton
-          v-for="page in pagesList"
-          :key="page"
-          :active="page === currentPage"
-          :label="page + 1"
-          :color="page === currentPage ? 'lightDark' : 'whiteDark'"
-          small
-          @click="currentPage = page"
-        />
+        <BaseButton v-for="page in pagesList" :key="page" :active="page === currentPage" :label="page + 1"
+          :color="page === currentPage ? 'lightDark' : 'whiteDark'" small @click="currentPage = page" />
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
