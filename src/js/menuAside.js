@@ -1,19 +1,4 @@
-import {
-  mdiAccountCircle,
-  mdiMonitor,
-  mdiGithub,
-  mdiLock,
-  mdiAlertCircle,
-  mdiSquareEditOutline,
-  mdiTable,
-  mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
-  mdiPalette,
-  mdiReact,
-  mdiCarEstate,
-  mdiCarSearch,
-} from '@mdi/js'
+import { mdiMonitor, mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
 
 export default [
   {
@@ -34,6 +19,17 @@ export default [
         to: '/admin/add-car',
         label: 'Add car',
         icon: mdiCarEstate,
+      },
+    ],
+  },
+  {
+    label: 'Inquery',
+    icon: mdiCarSearch,
+    menu: [
+      {
+        to: '/admin/all-inqueries',
+        label: 'Inqueries',
+        icon: mdiCarSearch,
       },
     ],
   },

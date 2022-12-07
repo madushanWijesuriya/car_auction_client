@@ -115,6 +115,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'Inqueries',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/all-inqueries',
+      name: 'all-inqueries',
+      component: () => import('../views/AdminAllInqueriesView.vue'),
+    },
+    {
+      meta: {
         title: 'All Cars',
         layout: 'LayoutAdmin',
         requiresAuth: true,

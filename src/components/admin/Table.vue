@@ -310,10 +310,11 @@ onMounted(async () => {
       {{ checkedRow.name }}
     </span>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th v-if="checkable" />
+  <div class="table-scrollable" style="overflow: auto">
+    <table>
+      <thead>
+        <tr>
+          <th v-if="checkable" />
 
         <th v-for="header in headers">{{ header.name }}</th>
       </tr>
@@ -341,6 +342,7 @@ onMounted(async () => {
       </tr>
     </tbody>
   </table>
+  </div>
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
