@@ -13,7 +13,7 @@ const url = computed(() => {
 
         <transition name="fade" apear>
 
-                <div class="grid grid-cols-7 mt-6 border text-xs text-black p-4 gap-4 bg-white w-[800px] z-[1000] absolute" v-if="isOpen">
+                <div class="grid grid-cols-4 mt-6 border text-xs text-black p-4 gap-4 bg-white w-[800px] z-[1000] absolute" v-if="isOpen">
                     <div>
                         <h1 class="footer-contect-text">
                             <img class="inline mr-2"
