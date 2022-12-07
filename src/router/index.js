@@ -155,6 +155,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/create-user',
+      name: 'clientmgt',
+      component: () => import('../views/AdminCreateUser.vue'),
+    },
+    {
+      meta: {
         title: 'Select style',
         layout: 'LayoutAdmin',
         requiresAuth: true,

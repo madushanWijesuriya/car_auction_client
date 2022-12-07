@@ -74,6 +74,32 @@ export default [
         label: 'Client Managment',
         icon: mdiCarSearch,
       },
+      {
+        to: '/admin/create-client',
+        label: 'create client',
+        icon: mdiCarSearch,
+      },
+      // {
+      //   to: '/admin/add-client',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
+    ],
+  },
+  {
+    label: 'staff',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/user-mgt',
+        label: 'User Managment',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/create-user',
+        label: 'Create User',
+        icon: mdiCarSearch,
+      },
       // {
       //   to: '/admin/add-client',
       //   label: 'Add car',
