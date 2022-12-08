@@ -28,7 +28,7 @@ const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/maker/quickAdd',
+      '/api/staff/vehicle/body-type/quickAdd',
       {
         name: form?.name,
       }
@@ -98,11 +98,11 @@ window.addEventListener('keydown', (e) => {
         <div class="add-car">
           <SectionMain>
             <CardBox form @submit.prevent="submit">
-              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add marker" main>
+              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Body Type" main>
               </SectionTitleLineWithButton>
-              <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="User Name" />
-              </FormField>
+              <!-- <FormField label="Name" help="">
+                <FormControl v-model="form.name" type="text" placeholder="Body Type" />
+              </FormField> -->
             </CardBox>
           </SectionMain>
           <SectionMain>

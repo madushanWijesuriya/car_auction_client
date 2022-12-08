@@ -17,6 +17,8 @@ import Editor from '@tinymce/tinymce-vue'
 import { useToast } from 'vue-toastification'
 import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
+import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
+import AddTransmitionModal  from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
 
 export default {
   setup() {
@@ -330,11 +332,19 @@ export default {
     UploadImages,
     editor: Editor,
     AddModal,
+    AddBodyTypeModel,
+    AddTransmitionModal
   },
   methods: {
     addMaker() {
       console.log(this.$refs.makeModal.openModal())
     },
+    addBody() {
+      console.log(this.$refs.bodyTypeModel.openModal())
+    },
+    addTransmition(){
+      console.log(this.$refs.transmitionModal.openModal())
+    }
   },
 }
 </script>
@@ -435,16 +445,29 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
-
+          <AddBodyTypeModel ref="bodyTypeModel"/>
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />
           </FormField>
+          <BaseButton
+              type="submit"
+              color="info"
+              label="Add Body Type"
+              @click="addBody"
+            />
           <FormField label="Transmission">
             <FormControl
               v-model="form.transmission"
               :options="transmissionList"
             />
           </FormField>
+          <AddTransmitionModal ref="transmitionModal"/>
+          <BaseButton
+              type="submit"
+              color="info"
+              label="Add Transminition"
+              @click="addTransmition"
+            />
           <FormField label="Streeing">
             <FormControl v-model="form.streeing" :options="streeingList" />
           </FormField>

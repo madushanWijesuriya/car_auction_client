@@ -124,7 +124,7 @@ export default {
                 outline
                 label="Reset"
                 @click="resetForm"
-              />
+              />        
             </BaseButtons>
           </template>
         </CardBox>
