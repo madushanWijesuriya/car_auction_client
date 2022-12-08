@@ -41,35 +41,24 @@ export default {
       }
     }
 
-    let roleList = ref([])
-    const getRoles = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/roles')
-        roleList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {}
-    }
+    let roleIds = ref([
+      { id: 1, label: 'Admin' },
+      { id: 2, label: 'Test' },
+    ])
     const initialState = {
       name: '',
       email: null,
       password: '',
-      role_id: roleList[0],
+      role_id: '1',
       password_confirmation: '',
     }
 
     let form = reactive({ ...initialState })
-
-    onMounted(() => {
-      getRoles()
-    })
-
     return {
       form,
+      roleIds,
       validateForm,
       resetForm,
-      roleList,
     }
   },
 }
@@ -115,7 +104,7 @@ export default {
             />
           </FormField>
           <FormField label="Role">
-            <FormControl v-model="form.role_id" :options="roleList" />
+            <FormControl v-model="form.role_id" :options="roleIds" />
           </FormField>
         </CardBox>
       </SectionMain>

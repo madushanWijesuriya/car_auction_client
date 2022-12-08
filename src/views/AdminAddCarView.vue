@@ -14,10 +14,17 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UploadImages from 'vue-upload-drop-images'
 import httpResource from '@/http/httpResource'
 import Editor from '@tinymce/tinymce-vue'
+import { useToast } from 'vue-toastification'
+import NotificationBar from '@/components/admin/NotificationBar.vue'
+import AddModal from '@/components/admin/modals/AddModal.vue'
 
 export default {
   setup() {
+    const state = reactive({ validationErrors: null, dialogMaker: false })
+
+    const toast = useToast()
     // methods
+
     const range = (start, stop, step) =>
       Array.from(
         { length: (stop - start) / step + 1 },
@@ -77,10 +84,19 @@ export default {
           description: form?.description,
         })
         if (response.status === 200) {
+          state.validationErrors = null
           resetForm()
+          toast.success('Successfully Added', {
+            timeout: 2000,
+          })
         }
       } catch (error) {
-        console.error(error?.response?.data?.message)
+        if (error.response.status == 422) {
+          state.validationErrors = error.response.data.errors
+          window.scrollTo(0, 0)
+        } else {
+          console.error(error?.response?.data?.message)
+        }
       }
     }
 
@@ -307,11 +323,18 @@ export default {
       uploaderKey,
       changeMaker,
       featuresList,
+      state,
     }
   },
   components: {
     UploadImages,
     editor: Editor,
+    AddModal,
+  },
+  methods: {
+    addMaker() {
+      console.log(this.$refs.makeModal.openModal())
+    },
   },
 }
 </script>
@@ -320,13 +343,40 @@ export default {
     <LayoutAuthenticated>
       <SectionMain>
         <CardBox form @submit.prevent="submit">
+          <div v-if="state.validationErrors">
+            <div
+              v-for="(v, k) in state.validationErrors"
+              :key="k"
+              class="alert alert-primary"
+              role="alert"
+            >
+              <div v-for="error in v" :key="error">
+                <NotificationBar
+                  :isDismissed="false"
+                  color="danger"
+                  :icon="mdiAlertCircle"
+                  :outline="notificationsOutline"
+                >
+                  <b>Invalid input !</b>{{ error }}
+                </NotificationBar>
+                <br />
+              </div>
+            </div>
+          </div>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
+          <AddModal ref="makeModal" />
           <FormField label="Maker">
             <FormControl
               v-model="form.maker"
               :options="makersList"
               @update:modelValue="changeMaker"
+            />
+            <BaseButton
+              type="submit"
+              color="info"
+              label="Add Maker"
+              @click="addMaker"
             />
           </FormField>
           <FormField label="Model">

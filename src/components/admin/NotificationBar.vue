@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed, useSlots } from "vue";
-import { mdiClose } from "@mdi/js";
-import { colorsBgLight, colorsOutline } from "@/js/colors.js";
-import BaseLevel from "@/components/admin/BaseLevel.vue";
-import BaseIcon from "@/components/admin/BaseIcon.vue";
-import BaseButton from "@/components/admin/BaseButton.vue";
+import { ref, computed, useSlots, onMounted } from 'vue'
+import { mdiClose } from '@mdi/js'
+import { colorsBgLight, colorsOutline } from '@/js/colors.js'
+import BaseLevel from '@/components/admin/BaseLevel.vue'
+import BaseIcon from '@/components/admin/BaseIcon.vue'
+import BaseButton from '@/components/admin/BaseButton.vue'
 
 const props = defineProps({
   icon: {
@@ -16,21 +16,21 @@ const props = defineProps({
     type: String,
     required: true,
   },
-});
+})
 
 const componentClass = computed(() =>
   props.outline ? colorsOutline[props.color] : colorsBgLight[props.color]
-);
+)
 
-const isDismissed = ref(false);
+const isDismissed = ref(false)
 
 const dismiss = () => {
-  isDismissed.value = true;
-};
+  isDismissed.value = true
+}
 
-const slots = useSlots();
+const slots = useSlots()
 
-const hasRightSlot = computed(() => slots.right);
+const hasRightSlot = computed(() => slots.right)
 </script>
 
 <template>
@@ -52,14 +52,6 @@ const hasRightSlot = computed(() => slots.right);
         <span class="text-center md:text-left md:py-2"><slot /></span>
       </div>
       <slot v-if="hasRightSlot" name="right" />
-      <BaseButton
-        v-else
-        :icon="mdiClose"
-        small
-        rounded-full
-        color="white"
-        @click="dismiss"
-      />
     </BaseLevel>
   </div>
 </template>
