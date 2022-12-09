@@ -1,3 +1,134 @@
+<script setup>
+import { ArrowRight } from '@element-plus/icons-vue'
+import {
+  ref,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  onUpdated,
+  reactive,
+} from 'vue'
+import Recapture from '../components/recapture/Recapture.vue'
+import { useRoute } from 'vue-router'
+import httpResource from '../http/httpResource'
+
+const input = ref('')
+const timer = ref(null)
+const textarea1 = ref('')
+const textarea2 = ref('')
+let countryList = ref([])
+let vehicleData = ref([])
+
+const imagesList = [
+  { id: 1, name: 'vehicalDetails/car-1.svg' },
+  { id: 2, name: 'vehicalDetails/car-2.svg' },
+  { id: 3, name: 'vehicalDetails/car-2.svg' },
+  { id: 4, name: 'vehicalDetails/car-2.svg' },
+  { id: 5, name: 'vehicalDetails/car-2.svg' },
+  { id: 6, name: 'vehicalDetails/car-2.svg' },
+  { id: 7, name: 'vehicalDetails/car-2.svg' },
+]
+let currentId = ref(1)
+const currentImage = computed(() => {
+  if (!currentId.value) return { id: -99, name: '' }
+  return imagesList.find((i) => i.id === currentId.value)
+})
+const visibleImageList = computed(() => {
+  return imagesList.slice(0, 6)
+})
+function changeImage() {
+  if (!visibleImageList.value) return
+  if (!visibleImageList.value.some((i) => i.id === currentId.value + 1)) {
+    currentId.value = 1
+  } else {
+    currentId.value += 1
+  }
+}
+
+const route = useRoute()
+
+const postData = reactive({
+  name: null,
+  vehicle_id: null,
+  country_id: null,
+  email: null,
+  cell_no: null,
+  port_name: null,
+  mobile_no: null,
+  message: null,
+})
+
+const storeInquery = async () => {
+  try {
+    const response = await httpResource.post('/api/guest/inquery', {
+      name: postData?.name,
+      vehicle_id: postData?.vehicle_id,
+      country_id: postData?.country_id,
+      email: postData?.email,
+      cell_no: postData?.cell_no,
+      port_name: postData?.port_name,
+      mobile_no: postData?.mobile_no,
+      message: postData?.message,
+    })
+    if (response.status === 200) {
+      resetForm()
+    }
+  } catch (error) {
+    console.error(error?.response?.data?.message)
+  }
+}
+
+const handleClick = () => {
+  // eslint-disable-next-line no-alert
+  alert('button click')
+}
+
+function resetForm() {
+  ;(postData.name = null),
+    (postData.country_id = null),
+    (postData.email = null),
+    (postData.cell_no = null),
+    (postData.port_name = null),
+    (postData.mobile_no = null),
+    (postData.message = null)
+}
+
+const getCountriesforSelect = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getVehicleDetails = async () => {
+  try {
+    const response = await httpResource.get(
+      '/api/guest/vehicle/' + postData.vehicle_id
+    )
+    vehicleData.value = response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
+  getCountriesforSelect()
+  postData.vehicle_id = route.params.id
+  getVehicleDetails()
+  timer.value = setInterval(changeImage, 2000)
+})
+onBeforeUnmount(function () {
+  clearInterval(timer.value)
+})
+onUpdated(function () {
+  clearInterval(timer.value)
+  timer.value = setInterval(changeImage, 3000)
+})
+</script>
 <template>
   <div
     class="flex flex-col justify-center items-lcenters gap-2 w-full px-5 md:px-[60px] lg:px-[80px] xl:px-[120px]"
@@ -399,101 +530,3 @@
 <style>
 @import '@/assets/scss/vehicalDetails.scss';
 </style>
-
-<script lang="ts" setup>
-import {
-  ArrowLeft,
-  ArrowRight,
-  Delete,
-  Edit,
-  ArrowDown,
-  Share,
-} from '@element-plus/icons-vue'
-import Recapture from '../components/recapture/Recapture.vue'
-import { onMounted, reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
-
-import httpResource from '../http/httpResource'
-
-const route = useRoute()
-
-const postData = reactive({
-  name: null,
-  vehicle_id: null,
-  country_id: null,
-  email: null,
-  cell_no: null,
-  port_name: null,
-  mobile_no: null,
-  message: null,
-})
-
-const storeInquery = async () => {
-  try {
-    const response = await httpResource.post('/api/guest/inquery', {
-      name: postData?.name,
-      vehicle_id: postData?.vehicle_id,
-      country_id: postData?.country_id,
-      email: postData?.email,
-      cell_no: postData?.cell_no,
-      port_name: postData?.port_name,
-      mobile_no: postData?.mobile_no,
-      message: postData?.message,
-    })
-    if (response.status === 200) {
-      resetForm()
-    }
-  } catch (error) {
-    console.error(error?.response?.data?.message)
-  }
-}
-
-const textarea1 = ref('')
-const textarea2 = ref('')
-const input = ref('')
-
-const handleClick = () => {
-  // eslint-disable-next-line no-alert
-  alert('button click')
-}
-
-function resetForm() {
-  ;(postData.name = null),
-    (postData.country_id = null),
-    (postData.email = null),
-    (postData.cell_no = null),
-    (postData.port_name = null),
-    (postData.mobile_no = null),
-    (postData.message = null)
-}
-
-let countryList = ref([])
-let vehicleData = ref([])
-
-const getCountriesforSelect = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/countries')
-    countryList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-const getVehicleDetails = async () => {
-  try {
-    const response = await httpResource.get(
-      '/api/guest/vehicle/' + postData.vehicle_id
-    )
-    vehicleData.value = response.data.data
-  } catch (error) {
-    console.error(error)
-  }
-}
-onMounted(async () => {
-  getCountriesforSelect()
-  postData.vehicle_id = route.params.id
-  getVehicleDetails()
-})
-</script>
