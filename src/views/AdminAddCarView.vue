@@ -19,6 +19,7 @@ import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
 import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
 import AddTransmitionModal  from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
+import AddModel  from '@/components/admin/modals/add-model/AddModel.vue'
 
 export default {
   setup() {
@@ -333,7 +334,8 @@ export default {
     editor: Editor,
     AddModal,
     AddBodyTypeModel,
-    AddTransmitionModal
+    AddTransmitionModal,
+    AddModel
   },
   methods: {
     addMaker() {
@@ -344,6 +346,9 @@ export default {
     },
     addTransmition(){
       console.log(this.$refs.transmitionModal.openModal())
+    },
+    addTransmition(){
+      console.log(this.$refs.addModel.openModal())
     }
   },
 }
@@ -386,11 +391,18 @@ export default {
               type="submit"
               color="info"
               label="Add Maker"
-              @click="addMaker"
+              @click="addTransmition"
             />
           </FormField>
+          <AddModel ref ="addModel"/>
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
+            <BaseButton
+              type="submit"
+              color="info"
+              label="Add Maker"
+              @click="addMaker"
+            />
           </FormField>
           <FormField label="Chassis No" help="">
             <FormControl
