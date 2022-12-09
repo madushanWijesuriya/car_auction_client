@@ -1,38 +1,45 @@
+<script>
+import QuickAddBodyForm from '@/components/admin/modals/add-body/QuickAddBodyForm.vue'
+import { reactive } from '@vue/reactivity'
+
+export default {
+  emits: ['triggerParent'],
+
+  components: {
+    QuickAddBodyForm,
+  },
+
+  setup(props) {
+    const state = reactive({ dialog: false })
+
+    // expose the state to the template
+    return {
+      state,
+    }
+  },
+
+  methods: {
+    openBodyModal() {
+      this.state.dialog = true
+    },
+    closeBodyModal() {
+      this.state.dialog = false
+    },
+    triggerParent() {
+      this.closeMakeModal()
+      $emits('triggerParent')
+    },
+  },
+}
+</script>
+
 <template>
-    <QuickAddForm
-      v-model="state.dialog"
-      title="Please confirm action"
-      button-label="Confirm"
-      has-cancel
-    >
-      
-    </QuickAddForm>
-  </template>
-  <script>
-  import QuickAddForm from '@/components/admin/modals/add-body/QuickAddForm.vue'
-  import { reactive } from '@vue/reactivity'
-  
-  export default {
-    components: {
-      QuickAddForm,
-    },
-    setup(props) {
-      const state = reactive({ dialog: false })
-  
-      // expose the state to the template
-      return {
-        state,
-      }
-    },
-  
-    methods: {
-      openModal() {
-        this.state.dialog = true
-      },
-      closeModal() {
-        this.state.dialog = false
-      },
-    },
-  }
-  </script>
-  
+  <QuickAddBodyForm
+    v-model="state.dialog"
+    title="Add Body"
+    button-label="Confirm"
+    has-cancel
+    @quickAddBody="triggerParent"
+  >
+  </QuickAddBodyForm>
+</template>

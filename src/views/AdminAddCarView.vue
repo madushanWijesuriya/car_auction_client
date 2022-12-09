@@ -18,7 +18,7 @@ import { useToast } from 'vue-toastification'
 import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
 import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
-import AddTransmitionModal  from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
+import AddTransmitionModal from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
 
 export default {
   setup() {
@@ -326,6 +326,8 @@ export default {
       changeMaker,
       featuresList,
       state,
+      getMakers,
+      getBodyTypes,
     }
   },
   components: {
@@ -333,18 +335,22 @@ export default {
     editor: Editor,
     AddModal,
     AddBodyTypeModel,
-    AddTransmitionModal
+    AddTransmitionModal,
   },
   methods: {
     addMaker() {
-      console.log(this.$refs.makeModal.openModal())
+      this.$refs.makeModal.openMakeModal()
     },
     addBody() {
-      console.log(this.$refs.bodyTypeModel.openModal())
+      this.$refs.bodyTypeModel.openBodyModal()
     },
-    addTransmition(){
-      console.log(this.$refs.transmitionModal.openModal())
-    }
+    addTransmition() {
+      this.$refs.transmitionModal.openTransModal()
+    },
+    getResourcesLists() {
+      getMakers()
+      getBodyTypes()
+    },
   },
 }
 </script>
@@ -375,7 +381,7 @@ export default {
           </div>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
-          <AddModal ref="makeModal" />
+          <AddModal ref="makeModal" @triggerParent="getResourcesLists" />
           <FormField label="Maker">
             <FormControl
               v-model="form.maker"
@@ -445,29 +451,32 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
-          <AddBodyTypeModel ref="bodyTypeModel"/>
+          <AddBodyTypeModel
+            ref="bodyTypeModel"
+            @triggerBodyType="getResourcesLists"
+          />
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />
           </FormField>
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Body Type"
-              @click="addBody"
-            />
+            type="submit"
+            color="info"
+            label="Add Body Type"
+            @click="addBody"
+          />
           <FormField label="Transmission">
             <FormControl
               v-model="form.transmission"
               :options="transmissionList"
             />
           </FormField>
-          <AddTransmitionModal ref="transmitionModal"/>
+          <AddTransmitionModal ref="transmitionModal" />
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Transminition"
-              @click="addTransmition"
-            />
+            type="submit"
+            color="info"
+            label="Add Transminition"
+            @click="addTransmition"
+          />
           <FormField label="Streeing">
             <FormControl v-model="form.streeing" :options="streeingList" />
           </FormField>
