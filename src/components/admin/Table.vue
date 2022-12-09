@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, toRefs, reactive, onMounted } from 'vue'
+import { computed, ref, toRefs, reactive, onMounted, nextTick } from 'vue'
 // import { useMainStore } from '@/stores/main'
 import { mdiEye, mdiTrashCan } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
@@ -9,6 +9,7 @@ import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
+import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
 
 const props = defineProps({
   checkable: Boolean,
@@ -22,29 +23,49 @@ const props = defineProps({
   },
   actions: {
     type: Array,
-    default: [{
-      color: "info",
-      icon: mdiEye,
-      onClick: "defaultAction"
-    },
-    {
-      color: "danger",
-      icon: mdiTrashCan,
-      onClick: "defaultAction"
-    }],
-  }
+    default: [
+      {
+        color: 'info',
+        icon: mdiEye,
+        onClick: 'defaultAction',
+      },
+      {
+        color: 'danger',
+        icon: mdiTrashCan,
+        onClick: 'defaultAction',
+      },
+    ],
+  },
+  rowItemsData: {
+    type: Array,
+    default: () => [],
+  },
 })
 
-const action = {
-  defaultAction: () => isModalActive = true
+const { items, headers, actions, rowItemsData } = toRefs(props)
+let vehicle = ref(null)
+const openEditModel = async (vehicleId) => {
+  // debugger
+  if (rowItemsData.value && rowItemsData.value.length > 0) {
+    vehicle.value = rowItemsData.value.find((v) => v.id === vehicleId)
+  }
+  await nextTick()
+  isModalActive.value = true
 }
 
-const { items, headers ,actions } = toRefs(props)
+function deleteVehicle(vehicleId) {
+  console.log('delete vehicle clicked!', vehicleId)
+}
+
+const action = {
+  defaultAction: () => (isModalActive = true),
+}
+
 // const mainStore = useMainStore()
 
 // const items = computed(() => mainStore.clients)
 
-const isModalActive = ref(false)
+let isModalActive = ref(false)
 
 const isModalDangerActive = ref(false)
 
@@ -119,7 +140,7 @@ const getMakers = async () => {
       ...d,
       label: d.name,
     }))
-  } catch (error) { }
+  } catch (error) {}
 }
 let modelsList = ref([])
 const getModels = async (moakerId) => {
@@ -134,8 +155,8 @@ const getModels = async (moakerId) => {
   }
 }
 
-const changeMaker = (e) => {
-  getModels(e.id)
+const changeMaker = (id) => {
+  getModels(id)
 }
 
 let statusList = ref([])
@@ -212,7 +233,19 @@ const getDoorTypes = async () => {
     console.error(error)
   }
 }
-const driveTypeList = [{ id: 1, label: '--' }]
+let driveTypeList = ref([])
+const getDriveTypeList = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/drive-types')
+    driveTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 let fuleTypeList = ref([])
 const getfuleTypes = async () => {
   try {
@@ -250,38 +283,6 @@ const getFeatures = async () => {
   }
 }
 
-const initialState = {
-  maker: makersList[0],
-  model: null,
-  chassisNo: '',
-  fobPrice: 0,
-  status: statusList[0],
-  year: new Date().getFullYear(),
-  month: monthsList[new Date().getMonth()],
-  displacement: '',
-  condition: 'new',
-  bodyType: bodyTypeList[0],
-  mileage: 0,
-  transmission: transmissionList[0],
-  streeing: streeingList[0],
-  doorTypes: doorTypesList[0],
-  driveType: driveTypeList[0],
-  fuelType: fuleTypeList[0],
-  exteriorColor: exteriorColorList[0],
-  gradeTrim: '',
-  features: '',
-  coverImage: null,
-  photos: [],
-  description: '',
-  privateNote: '',
-  supplierName: '',
-  supplierPrice: 0,
-  supplierURL: '',
-  marketPrice: 0,
-}
-
-let form = reactive({ ...initialState })
-
 onMounted(async () => {
   getMakers()
   getStatus()
@@ -292,21 +293,55 @@ onMounted(async () => {
   getfuleTypes()
   getExteriorColors()
   getFeatures()
+  getDriveTypeList()
 })
 ///
 </script>
 
 <template>
-  <CardBoxModal v-model="isModalActive" title="Edit vehicle"> </CardBoxModal>
+  <div>
+    <CardBoxModal
+      v-model="isModalActive"
+      title="Edit vehicle"
+      v-if="isModalActive"
+    >
+      <AdminEditCarModal
+        :makersList="makersList"
+        :modelsList="modelsList"
+        :statusList="statusList"
+        :bodyTypeList="bodyTypeList"
+        :transmissionList="transmissionList"
+        :streeingList="streeingList"
+        :doorTypesList="doorTypesList"
+        :fuleTypeList="fuleTypeList"
+        :exteriorColorList="exteriorColorList"
+        :featuresList="featuresList"
+        :yearsList="yearsList"
+        :monthsList="monthsList"
+        :driveTypeList="driveTypeList"
+        :vehicle="vehicle"
+        @changeMaker="changeMaker"
+        @closeModal="isModalActive = false"
+      />
+    </CardBoxModal>
+  </div>
 
-  <CardBoxModal v-model="isModalDangerActive" title="Please confirm" button="danger" has-cancel>
+  <CardBoxModal
+    v-model="isModalDangerActive"
+    title="Please confirm"
+    button="danger"
+    has-cancel
+  >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
-    <span v-for="checkedRow in checkedRows" :key="checkedRow.id"
-      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700">
+    <span
+      v-for="checkedRow in checkedRows"
+      :key="checkedRow.id"
+      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700"
+    >
       {{ checkedRow.name }}
     </span>
   </div>
@@ -316,38 +351,58 @@ onMounted(async () => {
         <tr>
           <th v-if="checkable" />
 
-        <th v-for="header in headers">{{ header.name }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(row, index) in itemsPaginated" :key="index">
-        <TableCheckboxCell v-if="checkable" @checked="checked($event, client)" />
-        <td v-for="dataPoint in row">
-          <span v-if="!isValidHttpUrl(dataPoint)">
-            {{ dataPoint }}
-          </span>
-          <span v-else>
-            <img :src="dataPoint" alt="img" />
-          </span>
-        </td>
-        <td class="before:hidden lg:w-1 whitespace-nowrap">
-          <BaseButtons type="justify-start lg:justify-end" no-wrap>
-            <div v-for="(item, index) in actions" :key="index">
-              <BaseButton :label="item.label ? item.label : ''" :color=item?.color :icon=item?.icon small @click= "isModalActive = true" />
-            </div>
-            
-            <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
-          </BaseButtons>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <th v-for="header in headers">{{ header.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, index) in itemsPaginated" :key="index">
+          <TableCheckboxCell
+            v-if="checkable"
+            @checked="checked($event, client)"
+          />
+          <td v-for="dataPoint in row">
+            <span v-if="!isValidHttpUrl(dataPoint)">
+              {{ dataPoint }}
+            </span>
+            <span v-else>
+              <img :src="dataPoint" alt="img" />
+            </span>
+          </td>
+          <td class="before:hidden lg:w-1 whitespace-nowrap">
+            <BaseButtons type="justify-start lg:justify-end" no-wrap>
+              <div v-for="(item, index) in actions" :key="index">
+                <BaseButton
+                  :label="item.label ? item.label : ''"
+                  :color="item?.color"
+                  :icon="item?.icon"
+                  small
+                  v-on="
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: deleteVehicle }
+                  "
+                />
+              </div>
+
+              <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
+            </BaseButtons>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
-        <BaseButton v-for="page in pagesList" :key="page" :active="page === currentPage" :label="page + 1"
-          :color="page === currentPage ? 'lightDark' : 'whiteDark'" small @click="currentPage = page" />
+        <BaseButton
+          v-for="page in pagesList"
+          :key="page"
+          :active="page === currentPage"
+          :label="page + 1"
+          :color="page === currentPage ? 'lightDark' : 'whiteDark'"
+          small
+          @click="currentPage = page"
+        />
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
