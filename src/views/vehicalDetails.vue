@@ -1,9 +1,23 @@
 <script setup>
 import { ArrowRight } from '@element-plus/icons-vue'
-import { ref, computed, onMounted, onBeforeUnmount, onUpdated } from 'vue'
+import {
+  ref,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  onUpdated,
+  reactive,
+} from 'vue'
+import Recapture from '../components/recapture/Recapture.vue'
+import { useRoute } from 'vue-router'
+import httpResource from '../http/httpResource'
 
 const input = ref('')
 const timer = ref(null)
+const textarea1 = ref('')
+const textarea2 = ref('')
+let countryList = ref([])
+let vehicleData = ref([])
 
 const imagesList = [
   { id: 1, name: 'vehicalDetails/car-1.svg' },
@@ -30,7 +44,81 @@ function changeImage() {
     currentId.value += 1
   }
 }
-onMounted(function () {
+
+const route = useRoute()
+
+const postData = reactive({
+  name: null,
+  vehicle_id: null,
+  country_id: null,
+  email: null,
+  cell_no: null,
+  port_name: null,
+  mobile_no: null,
+  message: null,
+})
+
+const storeInquery = async () => {
+  try {
+    const response = await httpResource.post('/api/guest/inquery', {
+      name: postData?.name,
+      vehicle_id: postData?.vehicle_id,
+      country_id: postData?.country_id,
+      email: postData?.email,
+      cell_no: postData?.cell_no,
+      port_name: postData?.port_name,
+      mobile_no: postData?.mobile_no,
+      message: postData?.message,
+    })
+    if (response.status === 200) {
+      resetForm()
+    }
+  } catch (error) {
+    console.error(error?.response?.data?.message)
+  }
+}
+
+const handleClick = () => {
+  // eslint-disable-next-line no-alert
+  alert('button click')
+}
+
+function resetForm() {
+  ;(postData.name = null),
+    (postData.country_id = null),
+    (postData.email = null),
+    (postData.cell_no = null),
+    (postData.port_name = null),
+    (postData.mobile_no = null),
+    (postData.message = null)
+}
+
+const getCountriesforSelect = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getVehicleDetails = async () => {
+  try {
+    const response = await httpResource.get(
+      '/api/guest/vehicle/' + postData.vehicle_id
+    )
+    vehicleData.value = response.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
+  getCountriesforSelect()
+  postData.vehicle_id = route.params.id
+  getVehicleDetails()
   timer.value = setInterval(changeImage, 2000)
 })
 onBeforeUnmount(function () {
@@ -114,7 +202,10 @@ onUpdated(function () {
     >
       <div class="flex flex-col gap-4 lg:gap-4 lg:w-[50%]">
         <div class="w-full">
-          <img class="rounded-lg w-full" :src="currentImage?.name" />
+          <img
+            class="rounded-lg w-full"
+            src="@/assets/images/vehicalDetails/car-1.svg"
+          />
         </div>
         <div class="w-full flex gap-2">
           <div class="flex items-center">
@@ -135,11 +226,40 @@ onUpdated(function () {
             </svg>
           </div>
           <div class="grid grid-cols-6 gap-3 grow">
-            <div v-for="image in visibleImageList" :key="image.id">
+            <div>
               <img
-                class="rounded-lg w-full cursor-pointer"
-                :src="image.name"
-                @click="currentId = image.id"
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
+              />
+            </div>
+            <div>
+              <img
+                class="rounded-lg w-full"
+                src="@/assets/images/vehicalDetails/car-2.svg"
               />
             </div>
           </div>
@@ -164,15 +284,7 @@ onUpdated(function () {
         <div class="space-y-3 p-3">
           <p class="font-title-1">Description</p>
           <p class="font-para-1">
-            BMW i8 Driving Experience. The BMW i8 has the ability to drive up to
-            34 miles around town as a pure electric car, with zero tailpipe
-            emissions. You can select the EV button to ensure the i8 doesn't
-            fire up the petrol engine.
-            <br /><br />
-            The intelligent eDrive propulsion system of the BMW i8 combines the
-            benefits of an electric motor and a petrol engine as a plug-in
-            hybrid to create an exceptional driving experience: Outstanding
-            efficiency and maximum dynamics are simultaneously possible.
+            {{ vehicleData.description }}
           </p>
         </div>
       </div>
@@ -181,8 +293,8 @@ onUpdated(function () {
         <div class="flex justify-between items-center">
           <p class="font-card-title-1">Specifications</p>
           <div class="flex flex-col gap-1 lg:hidden">
-            <p class="font-car-price-title">Car Price :</p>
-            <p class="font-car-price">¥ 147,500.00</p>
+            <P class="font-car-price-title"> Car Price : </P>
+            <P class="font-car-price"> ¥ 147,500.00 </P>
           </div>
           <div class="hidden lg:flex">Copy to Clipboard</div>
         </div>
@@ -193,28 +305,38 @@ onUpdated(function () {
               <p
                 class="flex-1 font-card-line-content font-card-line-content-spec"
               >
-                22857T
+                {{ vehicleData?.id }}
               </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Type</p>
-              <p class="flex-1 font-card-line-content">BMW</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.body_type_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Chassis No.</p>
-              <p class="flex-1 font-card-line-content">i8</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.chassis_no }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Mileage</p>
-              <p class="flex-1 font-card-line-content">BMW-i8-94589</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.mileage }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Grade</p>
-              <p class="flex-1 font-card-line-content">983 KM</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.grade }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Transmission</p>
-              <p class="flex-1 font-card-line-content">i</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.transmission_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Seats</p>
@@ -226,15 +348,21 @@ onUpdated(function () {
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Exterior Cond.</p>
-              <p class="flex-1 font-card-line-content">3.5</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.exterior_color_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Year/Month</p>
-              <p class="flex-1 font-card-line-content">2018/08</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData.make_at }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Model</p>
-              <p class="flex-1 font-card-line-content">Ajdkls</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.model_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Model Code</p>
@@ -250,19 +378,22 @@ onUpdated(function () {
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Fuel</p>
-              <p class="flex-1 font-card-line-content">Hybrid</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.fuel_type_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Doors</p>
-              <p class="flex-1 font-card-line-content">Right Hand</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.door_type_id?.name }}
+              </p>
             </div>
-            <div class="flex gap-3">
-              <p class="flex-1 font-card-line-title">Fuel</p>
-              <p class="flex-1 font-card-line-content">2</p>
-            </div>
+
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Color</p>
-              <p class="flex-1 font-card-line-content">White</p>
+              <p class="flex-1 font-card-line-content">
+                {{ vehicleData?.exterior_color_id?.name }}
+              </p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Interior Cond.</p>
@@ -294,7 +425,7 @@ onUpdated(function () {
             class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5"
           >
             <div class="font-total-price lg:flex lg:flex-col lg:items-end">
-              <p>¥ 176,230.00</p>
+              <p>¥ {{ vehicleData?.market_price }}</p>
               <p class="font-total-price-label">Total Price with Shipping</p>
             </div>
             <div class="flex items-center gap-2">
@@ -329,28 +460,40 @@ onUpdated(function () {
       >
         <p class="font-quote-title">Get Free Quote</p>
         <div>
-          <p class="font-quote-form-label">Search using Keyword</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <p class="font-quote-form-label">Name</p>
+          <el-input v-model="postData.name" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Select Country</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <el-select
+            v-model="postData.country_id"
+            class="m-2"
+            placeholder="Select"
+            size="large"
+          >
+            <el-option
+              v-for="item in countryList"
+              :key="item.id"
+              :label="item.label"
+              :value="item.id"
+            />
+          </el-select>
         </div>
         <div>
           <p class="font-quote-form-label">E-mail ID</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <el-input v-model="postData.email" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Phone/Cell Number</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <el-input v-model="postData.cell_no" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Port Name</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <el-input v-model="postData.port_name" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Mobile/Whatsapp/Viber No</p>
-          <el-input v-model="input" placeholder="Please input" />
+          <el-input v-model="postData.mobile_no" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Message (0 / 250)</p>
@@ -358,14 +501,12 @@ onUpdated(function () {
             :autosize="{ minRows: 5, maxRows: 5 }"
             type="textarea"
             placeholder="Please input"
+            v-model="postData.message"
           />
         </div>
 
         <div class="hidden lg:flex">
-          <img
-            class="rounded-lg w-full"
-            src="@/assets/images/vehicalDetails/not-robot.svg"
-          />
+          <Recapture />
         </div>
         <div
           class="flex lg:absolute bottom-4 gap-2 w-full lg:right-2 lg:left-0 lg:p-4"
@@ -377,6 +518,7 @@ onUpdated(function () {
           </div>
           <div
             class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5"
+            @click="storeInquery"
           >
             Send Inquiry
           </div>

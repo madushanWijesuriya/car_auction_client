@@ -7,7 +7,7 @@ const url = computed(() => {
 <template>
   <div
     class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]">
-    <div class="visible flex items-center md:hidden">
+    <div class="visible flex items-center md:hidden"  @click="isOpen = !isOpen">
       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24"
         style="fill: #000000">
         <path
@@ -20,10 +20,46 @@ const url = computed(() => {
         <img class="w-full" src="@/assets/images/logo.svg" />
       </div>
     </div>
+    <div v-if="isOpen" class="absolute left-0 z-[500] top-12 p-5 bg-white">
+      <SideBar />
+    </div>
     <div
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
       <div>
- </div>
+        <a class="font-semibold" :href="url">Home</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a class="font-semibold" :href="url + 'stock-list'">Stock List</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <Services title="Services" />
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <a class="font-semibold" :href="url + 'how-to-ordering'">How to Order</a>
+      <div class="flex items-center gap-2">
+        <Countries title="Countries"/>
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <AboutVue title="About" />
+        <div class="w-[10px] h-[10px]">
+          <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+      <div class="font-semibold">
+        <a class="font-semibold" :href="url + 'reachus'">Reach Us</a>
+      </div>
+    </div>
     <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
       <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center">
         Log in
@@ -41,19 +77,24 @@ const url = computed(() => {
       </svg>
     </div>
   </div>
-</div>
 </template>
 <style lang="scss" scoped>
 @import "@/assets/scss/navbar.scss";
-
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409EFF;
-}
-
-.el-icon-arrow-down {
-  font-size: 12px;
-  color: black;
-}
 </style>
-
+<script>
+import Services from './Services.vue'
+import SideBar from './Sidebar.vue';
+import AboutVue from "./About.vue";
+import Countries from './Countries.vue'
+export default {
+  name: 'navbar',
+  components: {
+    Services
+  },
+  data() {
+    return {
+      isOpen: false,
+    }
+  }
+}
+</script>

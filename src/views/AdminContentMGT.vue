@@ -4,35 +4,37 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
-import { useCarsStore } from '@/stores/cars'
-import { computed, onMounted, reactive } from 'vue'
+import { useContentStore } from '@/stores/contentMgt'
+import { computed, onMounted,reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 
-const carsStore = useCarsStore()
-const { cars: items } = storeToRefs(carsStore)
-const headers = computed(() => carsStore.tableHeaders)
+const contentStore = useContentStore()
+const { content: items ,countries } = storeToRefs(contentStore)
+const headers = computed(() => contentStore.tableHeaders)
+
+console.log(items,'items');
 const decoratedItems = computed(() => {
-  console.log(items)
   if (!items.value || !Array.isArray(items.value)) return []
   return items.value.map((i) => {
     return {
-      id: i.id,
-      photo: 'https://picsum.photos/200/200',
-      make: i?.make_id?.name,
-      model: i?.model_id?.name,
-      fob: i?.fob_price,
-      status: i?.status_id?.name,
-      inquery: '-',
+    id:i?.id,
+    content: i?.content?.contents,
+    country: i?.country?.name,
     }
   })
 })
 
-const getAllCars = async () => {
+const getContent = async () => {
   try {
-    const response = await httpResource.get('/api/staff/vehicle')
-    carsStore.$patch({
-      cars: response.data.data,
+    const response = await httpResource.get('/api/staff/content')
+    contentStore.$patch({
+        content: response.data.data,
+    })
+
+    const countries = await httpResource.get('/api/resources/countries')
+    contentStore.$patch({
+        countries: countries?.data?.data,
     })
   } catch (error) {
     console.error(error)
@@ -40,7 +42,7 @@ const getAllCars = async () => {
 }
 
 onMounted(async () => {
-  await getAllCars()
+  await getContent()
 })
 
 const range = (start, stop, step) =>
@@ -52,6 +54,7 @@ const validateForm = () => {
 }
 
 const resetForm = () => {
+
   Object.assign(form, initialState)
 }
 const submitForm = async () => {
@@ -66,15 +69,14 @@ const submitForm = async () => {
     console.error(error?.response?.data?.message)
   }
 }
-const makersList = [
-  { id: 1, label: 'BMW' },
-  { id: 2, label: 'Benz' },
-  { id: 3, label: 'Toyota' },
-  { id: 4, label: 'Hyundai' },
-  { id: 5, label: 'Honda' },
-  { id: 6, label: 'Mitsubishi' },
-  { id: 6, label: 'Audi' },
-]
+const makersList =  computed(() => {
+  if (!countries?.value || !Array.isArray(countries?.value)) return []
+  return countries?.value.map((i) => {
+    return {
+        id: i?.id, label: i?.name
+    }
+  })
+})
 const modelsList = [
   { id: 1, label: 'Model1' },
   { id: 1, label: 'Model2' },
@@ -121,61 +123,15 @@ let form = reactive({ ...initialState })
           ></SectionTitleLineWithButton>
           <el-row :gutter="20">
             <el-col :span="6">
-              <FormField label="Maker">
+              <FormField label="Country">
                 <FormControl
                   v-model="form.maker"
                   :options="makersList"
                 /> </FormField
             ></el-col>
             <el-col :span="6">
-              <FormField label="Model">
+              <FormField label="Content">
                 <FormControl v-model="form.model" :options="modelsList" />
-              </FormField>
-            </el-col>
-            <el-col :span="6">
-              <FormField label="Body Type">
-                <FormControl
-                  v-model="form.bodyType"
-                  :options="bodyTypeList"
-                /> </FormField
-            ></el-col>
-            <el-col :span="6">
-              <FormField label="Chassis No" help="">
-                <FormControl
-                  v-model="form.chassisNo"
-                  type="text"
-                  placeholder="Vehicle chassis no"
-                />
-              </FormField>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <FormField label="REFF" help="">
-                <FormControl
-                  v-model="form.reff"
-                  type="text"
-                  placeholder="REFF"
-                />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="From year">
-                <FormControl
-                  v-model="form.fromYear"
-                  :icon="mdiCalendarRange"
-                  :options="yearsList"
-                />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="To year">
-                <FormControl
-                  v-model="form.toYear"
-                  :icon="mdiCalendarRange"
-                  :options="yearsList"
-                />
               </FormField>
             </el-col>
           </el-row>
@@ -200,8 +156,8 @@ let form = reactive({ ...initialState })
         </CardBox>
         <CardBox style="margin-top: 40px">
           <SectionTitleLineWithButton
-            :icon="mdiCarEstate"
-            title="All Cars"
+            
+            title="Contents"
             main
           ></SectionTitleLineWithButton>
           <Table :items="decoratedItems" :headers="headers"> </Table>

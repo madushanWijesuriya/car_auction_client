@@ -9,7 +9,7 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
     <div class="hero">
       <div class="hero-header">
         <div class="lg:grid grid-cols-2 gap-1">
-          <div>
+          <div data-aos="zoom-in">
             <h1 class="text-2xl md:text-5xl text-dark">We’r the <span class="text-red-600">Auto Auctions</span> guru.
             </h1>
             <p class="text:sm md:text-xl mt-8 md:mt-5 ">We at Jamex Auction House have developed a very organized system
@@ -17,7 +17,7 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
           </div>
           <!-- ... -->
           <div>
-            <div class="car-image mt-15 mb-10 lg:mb-2">
+            <div class="car-image mt-15 mb-10 lg:mb-2" data-aos="zoom-in">
               <img class="" src="@/assets/images/services-auction-guru/jamex-auto-auction-guide1.png" />
             </div>
           </div>
@@ -25,7 +25,7 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
       </div>
     </div>
     <div class="action-guru">
-      <div class="auction-para">
+      <div class="auction-para" >
         <h1 class="text-2xl md:text-4xl text-center font-bold text-sky-700 mt-5">Online Auto Auction for Japanese Used
           Cars</h1>
         <p class="text-sm md:text-xl tex-justify mt-5 mb-5">People used to visit the auction houses by themselves to
@@ -54,7 +54,7 @@ import ServiceTab from "../components/Tabs/ServiceTab.vue";
           system of bidding management that allows you to have access to the most useful car of your choice</p>
       </div>
       <div class="auction-para-two">
-        <h1 class="text-2xl md:text-4xl text-start font-bold text-sky-700 mt-5">Auction Sheet</h1>
+        <h1 class="text-2xl md:text-4xl text-start font-bold text-sky-700 mt-5" >Auction Sheet</h1>
         <p class="text-sm md:text-xl tex-justify mt-5 mb-5">The auction sheet helps you to know about the condition of
           the car that you
           will be buying in the future.

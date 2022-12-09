@@ -1,69 +1,33 @@
 <script setup>
-import StepperOne from '../components/Steppers/StepperOne.vue'
-import httpResource from '@/http/httpResource'
-import { onMounted, ref } from 'vue'
-
-let pageContent = ref([])
+import StepperOne from "../components/Steppers/StepperOne.vue";
 
 const getImageUrl = (name) => {
-  if (!name) return ''
-  return new URL(name, import.meta.url).href
-}
-
-async function getContent(countryId = 22) {
-  const response = await httpResource.get(
-    `/api/staff/content/country/${countryId}`
-  )
-  pageContent.value = response?.data?.data
-}
-
-function renderContent(id) {
-  if (!pageContent.value) return ''
-  return pageContent.value.find((c) => c.id === id)?.contents
-}
-
-onMounted(async () => {
-  await getContent(22)
-})
+  if (!name) return "";
+  return new URL(name, import.meta.url).href;
+};
 </script>
 
 <template>
   <div class="counties-vehicle-details-view">
-    <div class="content-01 container mt-6 grid grid-cols-1 sm:grid-cols-5">
-      <div
-        class="text-2xl sm:text-6xl font-semibold text-black px-4 sm:order-1 sm:pt-48 sm:mb-2 sm:col-span-2"
-      >
+    <div class="content-01 container mt-6 grid grid-cols-1 sm:grid-cols-5" data-aos="zoom-in">
+      <div class="text-2xl sm:text-6xl font-semibold text-black px-4 sm:order-1 sm:pt-48 sm:mb-2 sm:col-span-2">
         <div class="text-color-03 sm:text-color-01">
-          {{ renderContent(1) }}
-          <span class="text-color-02 sm:text-color-01">{{
-            renderContent(2)
-          }}</span>
+          Fully <span class="text-color-02 sm:text-color-01">Transparent</span>
         </div>
         <div class="text-color-03 sm:text-color-01">
-          {{ renderContent(3) }}
-          <span class="text-color-02 sm:text-color-01">{{
-            renderContent(4)
-          }}</span>
+          Fully in <span class="text-color-02 sm:text-color-01">Control</span>
         </div>
       </div>
-      <div
-        class="text-sm font-normal text-black leading-5 sm:leading-8 mt-2 mb-4 px-4 sm:order-3 sm:col-span-2"
-      >
+      <div class="text-sm font-normal text-black leading-5 sm:leading-8 mt-2 mb-4 px-4 sm:order-3 sm:col-span-2">
         say hello to an online shopping experience that pute you right in the
         driver's seat.
       </div>
-      <div
-        class="px-2 sm:order-2 sm:row-span-6 sm:place-self-center sm:col-span-3"
-      >
-        <img
-          class="rounded-md shadow"
-          :src="
-            getImageUrl(
-              '../assets/images/countries-details/car-01-counties.jpg'
-            )
-          "
-          alt="car-01-counties-details"
-        />
+      <div class="px-2 sm:order-2 sm:row-span-6 sm:place-self-center sm:col-span-3">
+        <img class="rounded-md shadow" :src="
+          getImageUrl(
+            '../assets/images/countries-details/car-01-counties.jpg'
+          )
+        " alt="car-01-counties-details" />
       </div>
       <div class="sm:order-5 sm:mt-16 sm:col-span-2">
         <div class="text-base sm:text-xl font-medium text-black mb-4 px-2 mt-4">
@@ -89,13 +53,8 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      <div
-        class="flex justify-center mt-6 order-6 sm:absolute sm:right-2/4 sm:bottom-0"
-      >
-        <img
-          :src="getImageUrl('../assets/images/countries-details/QR-code.jpg')"
-          alt="QR-CODE"
-        />
+      <div class="flex justify-center mt-6 order-6 sm:absolute sm:right-2/4 sm:bottom-0">
+        <img :src="getImageUrl('../assets/images/countries-details/QR-code.jpg')" alt="QR-CODE" />
       </div>
     </div>
     <div class="content-02 container px-6 mt-6 sm:mt-16">
@@ -103,9 +62,7 @@ onMounted(async () => {
         Why do <span class="color-02 font-bold">Sri Lankan</span> customers
         choose JAMAX to buy a car in Japan?
       </div>
-      <div
-        class="text-sm sm:text-xl leading-5 sm:leading-7 font-normal color-06"
-      >
+      <div class="text-sm sm:text-xl leading-5 sm:leading-7 font-normal color-06">
         We will give you a member registration form that you can use to register
         with us. Jamex Auto Auctions will give you due assistance regarding the
         procedure with which you can place your bids and control them for the
@@ -118,30 +75,20 @@ onMounted(async () => {
       </div>
       <div class="px-4">
         <StepperOne>
-          <el-step
-            title="Fully tested car"
-            description="The motors we export are fully inspected. We guarantee you that you will get a satisfying car at the lowest price. The condition of the car is the same as the public sale list, as there are fair inspectors who guarantee complete satisfaction to customers around the world."
-          />
-          <el-step
-            title="Lowest price"
+          <el-step title="Fully tested car"
+            description="The motors we export are fully inspected. We guarantee you that you will get a satisfying car at the lowest price. The condition of the car is the same as the public sale list, as there are fair inspectors who guarantee complete satisfaction to customers around the world." />
+          <el-step title="Lowest price"
             description="Jamex Motors achieves the lowest price for a car by avoiding the hidden costs that directly increase the overall value of the used car."
-            status="process"
-          />
-          <el-step
-            title="Prompt delivery"
+            status="process" />
+          <el-step title="Prompt delivery"
             description="Transportation has become faster and easier thanks to our public sale houses near the harbor. We have a strong connection with the Sri Lankan shipping company."
-            status="process"
-          />
-          <el-step
-            title="Well paid network"
+            status="process" />
+          <el-step title="Well paid network"
             description="Our well-distributed community of more than 140 public housing in Japan provides 145,000 vehicles to our customers each week."
-            status="process"
-          />
-          <el-step
-            title="Full buyer support"
+            status="process" />
+          <el-step title="Full buyer support"
             description="We have 24/7 buyer support exclusively for clients who want to get informationon the safe transportation of vehicles in Sri Lanka. With the support of Sri Lanka's Logistics Agency, additional secure customs clearance is permitted."
-            status="process"
-          />
+            status="process" />
         </StepperOne>
       </div>
     </div>
