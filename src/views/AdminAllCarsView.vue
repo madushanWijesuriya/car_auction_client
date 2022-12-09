@@ -13,7 +13,6 @@ const carsStore = useCarsStore()
 const { cars: items } = storeToRefs(carsStore)
 const headers = computed(() => carsStore.tableHeaders)
 const decoratedItems = computed(() => {
-  console.log(items)
   if (!items.value || !Array.isArray(items.value)) return []
   return items.value.map((i) => {
     return {
@@ -204,7 +203,12 @@ let form = reactive({ ...initialState })
             title="All Cars"
             main
           ></SectionTitleLineWithButton>
-          <Table :items="decoratedItems" :headers="headers"> </Table>
+          <Table
+            :items="decoratedItems"
+            :headers="headers"
+            :rowItemsData="items"
+          >
+          </Table>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>
