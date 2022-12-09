@@ -1,11 +1,11 @@
 <template>
   <QuickAddForm
     v-model="state.dialog"
-    title="Please confirm action"
+    title="Add Make"
     button-label="Confirm"
     has-cancel
+    @quickAddMake="triggerParent"
   >
-    
   </QuickAddForm>
 </template>
 <script>
@@ -13,6 +13,7 @@ import QuickAddForm from '@/components/admin/modals/QuickAddForm.vue'
 import { reactive } from '@vue/reactivity'
 
 export default {
+  emits: ['triggerBodyType'],
   components: {
     QuickAddForm,
   },
@@ -26,11 +27,15 @@ export default {
   },
 
   methods: {
-    openModal() {
+    openMakeModal() {
       this.state.dialog = true
     },
-    closeModal() {
+    closeMakeModal() {
       this.state.dialog = false
+    },
+    triggerParent() {
+      this.closeMakeModal()
+      $emits('triggerBodyType')
     },
   },
 }

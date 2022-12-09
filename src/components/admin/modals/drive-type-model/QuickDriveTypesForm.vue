@@ -11,7 +11,7 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 const initialState = {
-  name: ''
+  name: '',
 }
 let form = reactive({ ...initialState })
 
@@ -28,7 +28,7 @@ const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/body-type/quickAdd',
+      '/api/staff/vehicle/drive-types/quickAdd',
       {
         name: form?.name,
       }
@@ -98,11 +98,11 @@ window.addEventListener('keydown', (e) => {
         <div class="add-car">
           <SectionMain>
             <CardBox form @submit.prevent="submit">
-              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Body Type" main>
+              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Drivetype" main>
               </SectionTitleLineWithButton>
-              <!-- <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="Body Type" />
-              </FormField> -->
+              <FormField label="Drivetype" help="">
+                <FormControl v-model="form.name" type="text"  />
+              </FormField>
             </CardBox>
           </SectionMain>
           <SectionMain>

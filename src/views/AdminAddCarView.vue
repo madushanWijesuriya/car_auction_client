@@ -18,8 +18,13 @@ import { useToast } from 'vue-toastification'
 import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
 import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
-import AddTransmitionModal  from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
-import AddModel  from '@/components/admin/modals/add-model/AddModel.vue'
+import AddTransmitionModal from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
+import AddCarModel from '@/components/admin/modals/add-model/AddCarModel.vue'
+import AddStreeings from '@/components/admin/modals/add-streeings/AddStreeings.vue'
+import AddDoorTypeModel from '@/components/admin/modals/add-door-types/AddDoorTypeModel.vue'
+import AddDrivetypeModel from '@/components/admin/modals/drive-type-model/AddDrivetypeModel.vue'
+import AddFuelTypeModel from '@/components/admin/modals/add-fuel-type-model/AddFuelTypeModel.vue'
+import AddExteriorColorModel from '@/components/admin/modals/add-exterior-color-model/AddExteriorColorModel.vue'
 
 export default {
   setup() {
@@ -327,6 +332,8 @@ export default {
       changeMaker,
       featuresList,
       state,
+      getMakers,
+      getBodyTypes,
     }
   },
   components: {
@@ -335,20 +342,44 @@ export default {
     AddModal,
     AddBodyTypeModel,
     AddTransmitionModal,
-    AddModel
+    AddCarModel,
+    AddStreeings,
+    AddDoorTypeModel,
+    AddDrivetypeModel,
+    AddFuelTypeModel,
+    AddExteriorColorModel
   },
   methods: {
     addMaker() {
-      console.log(this.$refs.makeModal.openModal())
+      this.$refs.makeModal.openMakeModal()
     },
     addBody() {
-      console.log(this.$refs.bodyTypeModel.openModal())
+      this.$refs.bodyTypeModel.openBodyModal()
     },
-    addTransmition(){
-      console.log(this.$refs.transmitionModal.openModal())
+    addTransmition() {
+      this.$refs.transmitionModal.openTransModal()
     },
-    addTransmition(){
-      console.log(this.$refs.addModel.openModal())
+    getResourcesLists() {
+      getMakers()
+      getBodyTypes()
+    },
+    addCarModel(){
+      this.$refs.addCarModel.openAddCarModal()
+    },
+    addStreeingsModel(){
+      this.$refs.addStreeings.openAddStreeingsModal()
+    },
+    addDoorTypeModel(){
+      this.$refs.addDoorType.openAddDoorTypeModal()
+    },
+    addDrivetypeModel(){
+      this.$refs.drivetypeModel.openAddDrivetypeModel()
+    },
+    addFuelTypeModel(){
+      this.$refs.fueltypeModel.openAddFuelTypeModal()
+    },
+    addExteriorColorModel(){
+      this.$refs.addExteriorColorModel.openAddExteriorColorModal()
     }
   },
 }
@@ -380,7 +411,7 @@ export default {
           </div>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
-          <AddModal ref="makeModal" />
+          <AddModal ref="makeModal" @triggerParent="getResourcesLists" />
           <FormField label="Maker">
             <FormControl
               v-model="form.maker"
@@ -391,17 +422,17 @@ export default {
               type="submit"
               color="info"
               label="Add Maker"
-              @click="addTransmition"
+              @click="addMaker"
             />
           </FormField>
-          <AddModel ref ="addModel"/>
+          <AddCarModel ref="addCarModel"/> 
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
             <BaseButton
               type="submit"
               color="info"
-              label="Add Maker"
-              @click="addMaker"
+              label="Add Car Model"
+              @click="addCarModel"
             />
           </FormField>
           <FormField label="Chassis No" help="">
@@ -457,47 +488,85 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
-          <AddBodyTypeModel ref="bodyTypeModel"/>
+          <AddBodyTypeModel
+            ref="bodyTypeModel"
+          />
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />
           </FormField>
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Body Type"
-              @click="addBody"
-            />
+            type="submit"
+            color="info"
+            label="Add Body Type"
+            @click="addBody"
+          />
           <FormField label="Transmission">
             <FormControl
               v-model="form.transmission"
               :options="transmissionList"
             />
           </FormField>
-          <AddTransmitionModal ref="transmitionModal"/>
+          <AddTransmitionModal ref="transmitionModal" />
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Transminition"
-              @click="addTransmition"
-            />
+            type="submit"
+            color="info"
+            label="Add Transminition"
+            @click="addTransmition"
+          />
+          <AddStreeings ref="addStreeings"/>
           <FormField label="Streeing">
             <FormControl v-model="form.streeing" :options="streeingList" />
+            <BaseButton
+            type="submit"
+            color="info"
+            label="Add Streeings"
+            @click="addStreeingsModel"
+          />
           </FormField>
+          <AddDoorTypeModel ref="addDoorType"/>
           <FormField label="Door Type">
             <FormControl v-model="form.doorTypes" :options="doorTypesList" />
+            <BaseButton
+            type="submit"
+            color="info"
+            label="Add Door Type"
+            @click="addDoorTypeModel"
+          />
           </FormField>
+          <AddDrivetypeModel ref="drivetypeModel"/>
           <FormField label="Drive Type">
             <FormControl v-model="form.driveType" :options="driveTypeList" />
           </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Drive Type"
+            @click="addDrivetypeModel"
+          />
+          <addFuelTypeModel ref="fueltypeModel"/>
           <FormField label="Fuel Type">
             <FormControl v-model="form.fuelType" :options="fuleTypeList" />
           </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Fuel Type"
+            @click="addFuelTypeModel"
+          />
+          <AddExteriorColorModel ref = "addExteriorColorModel"/>
           <FormField label="Exterior Color">
             <FormControl
               v-model="form.exteriorColor"
               :options="exteriorColorList"
             />
           </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Exterior Color"
+            @click="addExteriorColorModel"
+          />
+          
           <FormField label="Features">
             <FormControl v-model="form.features" :options="featuresList" />
           </FormField>

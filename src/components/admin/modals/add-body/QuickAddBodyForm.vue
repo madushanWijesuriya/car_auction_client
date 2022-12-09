@@ -8,24 +8,10 @@ import OverlayLayer from '@/components/admin/OverlayLayer.vue'
 import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
-const emit = defineEmits(['quickAddMake'])
 
-const value = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value),
-})
-
-const confirmCancel = (mode) => {
-  value.value = false
-  emit(mode)
-}
-
-const confirm = () => confirmCancel('confirm')
-
-const cancel = () => confirmCancel('cancel')
+const emit = defineEmits(['quickAddBody'])
 
 const toast = useToast()
-
 const initialState = {
   name: '',
 }
@@ -37,24 +23,24 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
+  uploaderKey.value += uploaderKey.value + 1
 }
 
 const submitForm = async () => {
   try {
+    console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/maker/quickAdd',
+      '/api/staff/vehicle/body-type/quickAdd',
       {
         name: form?.name,
       }
     )
-
-    console.log(response)
     if (response.status === 200) {
       resetForm()
       toast.success('Successfully Added', {
         timeout: 2000,
       })
-      emit('quickAddMake')
+      emit('quickAddBody')
     }
   } catch (error) {
     console.error(error?.response?.data?.message)
@@ -112,16 +98,12 @@ window.addEventListener('keydown', (e) => {
             <CardBox form @submit.prevent="submit">
               <SectionTitleLineWithButton
                 :icon="mdiCarEstate"
-                title="Add marker"
+                title="Add Body Type"
                 main
               >
               </SectionTitleLineWithButton>
               <FormField label="Name" help="">
-                <FormControl
-                  v-model="form.name"
-                  type="text"
-                  placeholder="User Name"
-                />
+                <FormControl v-model="form.name" type="text" placeholder="Body Type" />
               </FormField>
             </CardBox>
           </SectionMain>

@@ -1,20 +1,20 @@
 <template>
-    <QuickAddModelForm
+    <QuickDriveTypesForm
       v-model="state.dialog"
-      title="Add Vehical Model"
+      title="Add Drive Types"
       button-label="Confirm"
       has-cancel
     >
       
-    </QuickAddModelForm>
+    </QuickDriveTypesForm>
   </template>
   <script>
-  import QuickAddModelForm from '@/components/admin/modals/add-model/QuickAddModelForm.vue'
+  import QuickDriveTypesForm from '@/components/admin/modals/drive-type-model/QuickDriveTypesForm.vue'
   import { reactive } from '@vue/reactivity'
   
   export default {
     components: {
-      QuickAddModelForm,
+        QuickDriveTypesForm,
     },
     setup(props) {
       const state = reactive({ dialog: false })
@@ -26,7 +26,7 @@
     },
   
     methods: {
-      openModal() {
+        openAddDrivetypeModel() {
         this.state.dialog = true
       },
       closeModal() {

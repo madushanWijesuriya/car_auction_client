@@ -100,11 +100,14 @@ window.addEventListener('keydown', (e) => {
         <div class="add-car">
           <SectionMain>
             <CardBox form @submit.prevent="submit">
-              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Body Type" main>
+              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Vehical Model" main>
               </SectionTitleLineWithButton>
-              <!-- <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="Body Type" />
-              </FormField> -->
+              <FormField label="ID" help="">
+                <FormControl v-model="form.id" type="text" placeholder="ID" />
+              </FormField>
+              <FormField label="Vehical Model" help="">
+                <FormControl v-model="form.name" type="text" placeholder="Vehical Model" />
+              </FormField>
             </CardBox>
           </SectionMain>
           <SectionMain>
