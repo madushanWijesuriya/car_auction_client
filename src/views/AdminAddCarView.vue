@@ -575,6 +575,12 @@ export default {
           <FormField label="Features">
             <FormControl v-model="form.features" :options="featuresList" />
           </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Feature"
+            @click="addFeatureModel"
+          />
           <FormField label="Grade/ Trim">
             <FormControl
               v-model="form.gradeTrim"
@@ -582,12 +588,7 @@ export default {
               placeholder="Grade"
             />
           </FormField>
-          <BaseButton
-            type="submit"
-            color="info"
-            label="Add Feature"
-            @click="addFeatureModel"
-          />
+          
           <BaseDivider />
 
           <FormFilePicker v-model="form.coverImage" label="Cover Image" />
