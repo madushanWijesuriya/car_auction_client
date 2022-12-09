@@ -25,6 +25,7 @@ import AddDoorTypeModel from '@/components/admin/modals/add-door-types/AddDoorTy
 import AddDrivetypeModel from '@/components/admin/modals/drive-type-model/AddDrivetypeModel.vue'
 import AddFuelTypeModel from '@/components/admin/modals/add-fuel-type-model/AddFuelTypeModel.vue'
 import AddExteriorColorModel from '@/components/admin/modals/add-exterior-color-model/AddExteriorColorModel.vue'
+import AddFeatureModel from '@/components/admin/modals/add-feature-model/AddFeatureModel.vue'
 
 export default {
   setup() {
@@ -347,7 +348,8 @@ export default {
     AddDoorTypeModel,
     AddDrivetypeModel,
     AddFuelTypeModel,
-    AddExteriorColorModel
+    AddExteriorColorModel,
+    AddFeatureModel
   },
   methods: {
     addMaker() {
@@ -380,6 +382,9 @@ export default {
     },
     addExteriorColorModel(){
       this.$refs.addExteriorColorModel.openAddExteriorColorModal()
+    },
+    addFeatureModel(){
+      this.$refs.addFeatureModel.openAddFeatureModel()
     }
   },
 }
@@ -418,23 +423,23 @@ export default {
               :options="makersList"
               @update:modelValue="changeMaker"
             />
-            <BaseButton
+          </FormField>
+          <BaseButton
               type="submit"
               color="info"
               label="Add Maker"
               @click="addMaker"
             />
-          </FormField>
           <AddCarModel ref="addCarModel"/> 
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
-            <BaseButton
+          </FormField>
+          <BaseButton
               type="submit"
               color="info"
               label="Add Car Model"
               @click="addCarModel"
             />
-          </FormField>
           <FormField label="Chassis No" help="">
             <FormControl
               v-model="form.chassisNo"
@@ -516,23 +521,23 @@ export default {
           <AddStreeings ref="addStreeings"/>
           <FormField label="Streeing">
             <FormControl v-model="form.streeing" :options="streeingList" />
-            <BaseButton
+          </FormField>
+          <BaseButton
             type="submit"
             color="info"
             label="Add Streeings"
             @click="addStreeingsModel"
           />
-          </FormField>
           <AddDoorTypeModel ref="addDoorType"/>
           <FormField label="Door Type">
             <FormControl v-model="form.doorTypes" :options="doorTypesList" />
-            <BaseButton
+          </FormField>
+          <BaseButton
             type="submit"
             color="info"
             label="Add Door Type"
             @click="addDoorTypeModel"
           />
-          </FormField>
           <AddDrivetypeModel ref="drivetypeModel"/>
           <FormField label="Drive Type">
             <FormControl v-model="form.driveType" :options="driveTypeList" />
@@ -566,7 +571,7 @@ export default {
             label="Add Exterior Color"
             @click="addExteriorColorModel"
           />
-          
+          <AddFeatureModel ref="addFeatureModel"/>
           <FormField label="Features">
             <FormControl v-model="form.features" :options="featuresList" />
           </FormField>
@@ -577,6 +582,12 @@ export default {
               placeholder="Grade"
             />
           </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Feature"
+            @click="addFeatureModel"
+          />
           <BaseDivider />
 
           <FormFilePicker v-model="form.coverImage" label="Cover Image" />
