@@ -4,6 +4,7 @@
       title="Add Vehical Model"
       button-label="Confirm"
       has-cancel
+      @quickAddModel="triggerParent"
     >
       
     </QuickAddModelForm>
@@ -32,6 +33,10 @@
       closeModal() {
         this.state.dialog = false
       },
+      triggerParent() {
+      this.closeModal()
+      $emits('quickAddModel')
+    },
     },
   }
   </script>

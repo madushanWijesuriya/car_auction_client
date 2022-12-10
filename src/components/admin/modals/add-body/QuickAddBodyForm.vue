@@ -9,26 +9,24 @@ import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
 
-const emit = defineEmits(['quickAddBody'])
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
 
 const toast = useToast()
 const initialState = {
   name: '',
 }
 let form = reactive({ ...initialState })
-
 const validateForm = () => {
   submitForm()
 }
 
 const resetForm = () => {
   Object.assign(form, initialState)
-  uploaderKey.value += uploaderKey.value + 1
+  // uploaderKey.value += uploaderKey.value + 1
 }
 
 const submitForm = async () => {
   try {
-    console.log(form, 'form')
     const response = await httpResource.post(
       '/api/staff/vehicle/body-type/quickAdd',
       {
@@ -40,8 +38,8 @@ const submitForm = async () => {
       toast.success('Successfully Added', {
         timeout: 2000,
       })
-      emit('quickAddBody')
     }
+    emit('quickAddBody')
   } catch (error) {
     console.error(error?.response?.data?.message)
   }

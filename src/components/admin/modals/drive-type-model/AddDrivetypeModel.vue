@@ -4,7 +4,8 @@
       title="Add Drive Types"
       button-label="Confirm"
       has-cancel
-    >
+      @quickDriveType="triggerParent"
+      >
       
     </QuickDriveTypesForm>
   </template>
@@ -32,6 +33,10 @@
       closeModal() {
         this.state.dialog = false
       },
+      triggerParent() {
+      this.closeModal()
+      $emits('quickDriveType')
+    },
     },
   }
   </script>

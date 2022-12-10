@@ -22,6 +22,10 @@ export default {
     closeTransModal() {
       this.state.dialog = false
     },
+    triggerParent() {
+      this.closeTransModal()
+      $emits('quickTransmitionModal')
+    },
   },
 }
 </script>
@@ -32,6 +36,7 @@ export default {
     title="Add Transmission"
     button-label="Confirm"
     has-cancel
+    @quickTransmitionModal="triggerParent"
   >
   </QuickAddTransmissionForm>
 </template>

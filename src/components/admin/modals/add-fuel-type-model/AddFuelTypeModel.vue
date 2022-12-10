@@ -4,6 +4,7 @@
       title="Add Fuel Type"
       button-label="Confirm"
       has-cancel
+      @quickFuel="triggerParent"
     >
       
     </QuickAddFuelTypeForm>
@@ -32,6 +33,10 @@
       closeModal() {
         this.state.dialog = false
       },
+      triggerParent() {
+      this.closeModal()
+      $emits('quickFuel')
+    },
     },
   }
   </script>

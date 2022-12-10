@@ -13,7 +13,7 @@ import QuickAddBodyForm from '@/components/admin/modals/add-body/QuickAddBodyFor
 import { reactive } from '@vue/reactivity'
 
 export default {
-  emits: ['triggerParent'],
+  // emits: ['triggerParent'],
 
   components: {
     QuickAddBodyForm,
@@ -36,8 +36,8 @@ export default {
       this.state.dialog = false
     },
     triggerParent() {
-      this.closeMakeModal()
-      $emits('triggerParent')
+      this.closeBodyModal()
+      $emits('quickAddBody')
     },
   },
 }
