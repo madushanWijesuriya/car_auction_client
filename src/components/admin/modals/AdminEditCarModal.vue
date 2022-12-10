@@ -331,21 +331,12 @@ export default {
 <template>
   <div class="edit-car-modal el-scrollbar" :key="mainKey">
     <SectionMain>
-      <CardBox form @submit.prevent="() => {}">
+      <CardBox form @submit.prevent="() => { }">
         <div v-if="state.validationErrors">
-          <div
-            v-for="(v, k) in state.validationErrors"
-            :key="k"
-            class="alert alert-primary"
-            role="alert"
-          >
+          <div v-for="(v, k) in state.validationErrors" :key="k" class="alert alert-primary" role="alert">
             <div v-for="error in v" :key="error">
-              <NotificationBar
-                :isDismissed="false"
-                color="danger"
-                :icon="mdiAlertCircle"
-                :outline="notificationsOutline"
-              >
+              <NotificationBar :isDismissed="false" color="danger" :icon="mdiAlertCircle"
+                :outline="notificationsOutline">
                 <b>Invalid input !</b>{{ error }}
               </NotificationBar>
               <br />
@@ -354,97 +345,47 @@ export default {
         </div>
         <AddModal ref="makeModal" />
         <FormField label="Maker">
-          <FormControl
-            v-model="form.maker"
-            :options="makersList"
-            @update:modelValue="changeMaker"
-          />
-          <BaseButton
-            type="submit"
-            color="info"
-            label="Add Maker"
-            @click="addMaker"
-          />
+          <FormControl v-model="form.maker" :options="makersList" @update:modelValue="changeMaker" />
+          <BaseButton type="submit" color="info" label="Add Maker" @click="addMaker" />
         </FormField>
         <FormField label="Model">
           <FormControl v-model="form.model" :options="modelsList" />
         </FormField>
         <FormField label="Chassis No" help="">
-          <FormControl
-            v-model="form.chassisNo"
-            type="text"
-            placeholder="Vehicle chassis no"
-          />
+          <FormControl v-model="form.chassisNo" type="text" placeholder="Vehicle chassis no" />
         </FormField>
         <FormField label="FOB Price (USD)" help="">
-          <FormControl
-            v-model="form.fobPrice"
-            type="number"
-            placeholder="Price (USD)"
-          />
+          <FormControl v-model="form.fobPrice" type="number" placeholder="Price (USD)" />
         </FormField>
         <FormField label="Status">
           <FormControl v-model="form.status" :options="statusList" />
         </FormField>
         <FormField label="Make At">
-          <FormControl
-            v-model="form.year"
-            :icon="mdiCalendarRange"
-            :options="yearsList"
-          />
-          <FormControl
-            v-model="form.month"
-            :icon="mdiCalendarRange"
-            :options="monthsList"
-          />
+          <FormControl v-model="form.year" :icon="mdiCalendarRange" :options="yearsList" />
+          <FormControl v-model="form.month" :icon="mdiCalendarRange" :options="monthsList" />
         </FormField>
         <FormField label="Displacement" help="">
-          <FormControl
-            v-model="form.displacement"
-            type="text"
-            placeholder="Displacement CC"
-          />
+          <FormControl v-model="form.displacement" type="text" placeholder="Displacement CC" />
         </FormField>
         <BaseDivider />
         <FormField label="Condition">
-          <FormCheckRadioGroup
-            v-model="form.condition"
-            name="condition-radio"
-            type="radio"
-            :options="{ new: 'New', used: 'Used' }"
-          />
+          <FormCheckRadioGroup v-model="form.condition" name="condition-radio" type="radio"
+            :options="{ new: 'New', used: 'Used' }" />
         </FormField>
         <BaseDivider />
         <FormField label="Mileage" help="">
-          <FormControl
-            v-model="form.mileage"
-            type="number"
-            placeholder="Mileage KM"
-          />
+          <FormControl v-model="form.mileage" type="number" placeholder="Mileage KM" />
         </FormField>
         <AddBodyTypeModel ref="bodyTypeModel" />
         <FormField label="Body Type">
           <FormControl v-model="form.bodyType" :options="bodyTypeList" />
         </FormField>
-        <BaseButton
-          type="submit"
-          color="info"
-          label="Add Body Type"
-          @click="addBody"
-        />
+        <BaseButton type="submit" color="info" label="Add Body Type" @click="addBody" />
         <FormField label="Transmission">
-          <FormControl
-            v-model="form.transmission"
-            :options="transmissionList"
-          />
+          <FormControl v-model="form.transmission" :options="transmissionList" />
         </FormField>
         <AddTransmitionModal ref="transmitionModal" />
-        <BaseButton
-          type="submit"
-          color="info"
-          label="Add Transminition"
-          @click="addTransmition"
-        />
+        <BaseButton type="submit" color="info" label="Add Transminition" @click="addTransmition" />
         <FormField label="Streeing">
           <FormControl v-model="form.streeing" :options="streeingList" />
         </FormField>
@@ -458,56 +399,34 @@ export default {
           <FormControl v-model="form.fuelType" :options="fuleTypeList" />
         </FormField>
         <FormField label="Exterior Color">
-          <FormControl
-            v-model="form.exteriorColor"
-            :options="exteriorColorList"
-          />
+          <FormControl v-model="form.exteriorColor" :options="exteriorColorList" />
         </FormField>
         <FormField label="Features">
           <FormControl v-model="form.features" :options="featuresList" />
         </FormField>
         <FormField label="Grade/ Trim">
-          <FormControl
-            v-model="form.gradeTrim"
-            type="text"
-            placeholder="Grade"
-          />
+          <FormControl v-model="form.gradeTrim" type="text" placeholder="Grade" />
         </FormField>
         <BaseDivider />
 
         <FormFilePicker v-model="form.coverImage" label="Cover Image" />
 
-        <div
-          class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center"
-        >
+        <div class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center">
           Upload Images
         </div>
-        <div
-          style="height: 400px; width: 55vw; background: #f2f2f2"
-          class="mt-6 image-uploader-wrapper"
-        >
-          <UploadImages
-            ref="imageUploaderRef"
-            @changed="handleImages"
-            :key="uploaderKey"
-          />
+        <div style="height: 400px; width: 55vw; background: #f2f2f2" class="mt-6 image-uploader-wrapper">
+          <UploadImages ref="imageUploaderRef" @changed="handleImages" :key="uploaderKey" />
         </div>
 
         <BaseDivider />
 
         <FormField label="Question" help="Description">
-          <FormControl
-            type="textarea"
-            placeholder=""
-            v-model="form.description"
-          />
+          <FormControl type="textarea" placeholder="" v-model="form.description" />
         </FormField>
       </CardBox>
     </SectionMain>
     <BaseDivider />
-    <div
-      class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center"
-    >
+    <div class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center">
       Supplier Details
     </div>
     <SectionMain>
@@ -523,28 +442,13 @@ export default {
         </FormField>
 
         <FormField label="Private note" help="Private note">
-          <FormControl
-            type="textarea"
-            placeholder=""
-            v-model="form.privateNote"
-          />
+          <FormControl type="textarea" placeholder="" v-model="form.privateNote" />
         </FormField>
 
         <template #footer>
           <BaseButtons>
-            <BaseButton
-              type="submit"
-              color="info"
-              label="Submit"
-              @click="validateForm"
-            />
-            <BaseButton
-              type="reset"
-              color="info"
-              outline
-              label="Reset"
-              @click="resetForm"
-            />
+            <BaseButton type="submit" color="info" label="Submit" @click="validateForm" />
+            <BaseButton type="reset" color="info" outline label="Reset" @click="resetForm" />
           </BaseButtons>
         </template>
       </CardBox>
@@ -556,6 +460,7 @@ export default {
 .edit-car-modal {
   max-height: calc(100vh - 260px);
   overflow-y: auto;
+
   .image-uploader-wrapper {
     max-width: calc(24vw);
     overflow-x: auto;

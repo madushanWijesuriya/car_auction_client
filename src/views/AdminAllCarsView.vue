@@ -38,7 +38,7 @@ const getAllCars = async () => {
   }
 }
 
-onMounted(async () => {
+onMounted(async () => { 
   await getAllCars()
 })
 
