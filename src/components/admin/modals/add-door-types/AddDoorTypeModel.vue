@@ -4,6 +4,7 @@
       title="Add Door Type"
       button-label="Confirm"
       has-cancel
+      @quickDoorType="triggerParent"
     >
       
     </QuickAddDoorTypeForml>
@@ -13,6 +14,7 @@
   import { reactive } from '@vue/reactivity'
   
   export default {
+    emits: ['triggerDoorType'],
     components: {
         QuickAddDoorTypeForml,
     },
@@ -32,6 +34,10 @@
       closeModal() {
         this.state.dialog = false
       },
+      triggerParent() {
+      this.closeModal()
+      $emits('triggerDoorType')
+    },
     },
   }
   </script>

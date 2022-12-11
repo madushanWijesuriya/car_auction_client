@@ -1,5 +1,6 @@
 <template>
-    <QuickAddFeaturesForm v-model="state.dialog" title="Add Feature" button-label="Confirm" has-cancel>
+    <QuickAddFeaturesForm v-model="state.dialog" title="Add Feature" button-label="Confirm" has-cancel  @quickFeatureColor="triggerParent">
+       
 
     </QuickAddFeaturesForm>
 </template>
@@ -26,6 +27,10 @@ export default {
         },
         closeModal() {
             this.state.dialog = false
+        },
+        triggerParent() {
+            this.closeModal()
+            $emits('quickFeatureColor')
         },
     },
 }

@@ -21,7 +21,6 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
-  uploaderKey.value += uploaderKey.value + 1
 }
 
 const submitForm = async () => {
@@ -39,6 +38,7 @@ const submitForm = async () => {
         timeout: 2000,
       })
     }
+    emit('quickExteriorColor')
   } catch (error) {
     console.error(error?.response?.data?.message)
   }

@@ -21,7 +21,7 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
-  uploaderKey.value += uploaderKey.value + 1
+  // uploaderKey.value += uploaderKey.value + 1
 }
 
 const submitForm = async () => {
@@ -38,6 +38,7 @@ const submitForm = async () => {
       toast.success('Successfully Added', {
         timeout: 2000,
       })
+      emit('addStreeings')
     }
   } catch (error) {
     console.error(error?.response?.data?.message)

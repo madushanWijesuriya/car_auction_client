@@ -4,6 +4,7 @@
       title="Add Streeings Modal"
       button-label="Confirm"
       has-cancel
+      @addStreeings="triggerParent"
     >
       
     </QuickAddStreeingsForm>
@@ -32,6 +33,10 @@
       closeModal() {
         this.state.dialog = false
       },
+      triggerParent() {
+      this.closeModal()
+      $emits('addStreeings')
+    },
     },
   }
   </script>
