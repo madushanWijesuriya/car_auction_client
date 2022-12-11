@@ -8,26 +8,11 @@ import OverlayLayer from '@/components/admin/OverlayLayer.vue'
 import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
-const emit = defineEmits(['quickAddMake'])
-
-const value = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value),
-})
-
-const confirmCancel = (mode) => {
-  value.value = false
-  emit(mode)
-}
-
-const confirm = () => confirmCancel('confirm')
-
-const cancel = () => confirmCancel('cancel')
 
 const toast = useToast()
-
 const initialState = {
   name: '',
+  id:''
 }
 let form = reactive({ ...initialState })
 
@@ -37,24 +22,24 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
+  uploaderKey.value += uploaderKey.value + 1
 }
 
 const submitForm = async () => {
   try {
+    console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/maker/quickAdd',
+      '/api/staff/vehicle/model/quickAdd',
       {
         name: form?.name,
+        make_id :form?.id
       }
     )
-
-    console.log(response)
     if (response.status === 200) {
       resetForm()
       toast.success('Successfully Added', {
         timeout: 2000,
       })
-      emit('quickAddMake')
     }
   } catch (error) {
     console.error(error?.response?.data?.message)
@@ -81,6 +66,22 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
+
+const confirmCancel = (mode) => {
+  value.value = false
+  emit(mode)
+}
+
+const confirm = () => confirmCancel('confirm')
+
+const cancel = () => confirmCancel('cancel')
+
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && value.value) {
     cancel()
@@ -90,38 +91,22 @@ window.addEventListener('keydown', (e) => {
 
 <template>
   <OverlayLayer v-show="value" @overlay-click="cancel">
-    <CardBox
-      v-show="value"
-      class="shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50"
-      is-modal
-    >
+    <CardBox v-show="value" class="shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50" is-modal>
       <CardBoxComponentTitle :title="title">
-        <BaseButton
-          v-if="hasCancel"
-          :icon="mdiClose"
-          color="whiteDark"
-          small
-          rounded-full
-          @click.prevent="cancel"
-        />
+        <BaseButton v-if="hasCancel" :icon="mdiClose" color="whiteDark" small rounded-full @click.prevent="cancel" />
       </CardBoxComponentTitle>
 
       <div class="space-y-3">
         <div class="add-car">
           <SectionMain>
             <CardBox form @submit.prevent="submit">
-              <SectionTitleLineWithButton
-                :icon="mdiCarEstate"
-                title="Add marker"
-                main
-              >
+              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Vehical Model" main>
               </SectionTitleLineWithButton>
-              <FormField label="Name" help="">
-                <FormControl
-                  v-model="form.name"
-                  type="text"
-                  placeholder="User Name"
-                />
+              <FormField label="ID" help="">
+                <FormControl v-model="form.id" type="text" placeholder="ID" />
+              </FormField>
+              <FormField label="Vehical Model" help="">
+                <FormControl v-model="form.name" type="text" placeholder="Vehical Model" />
               </FormField>
             </CardBox>
           </SectionMain>
@@ -129,19 +114,8 @@ window.addEventListener('keydown', (e) => {
             <CardBox>
               <template #footer>
                 <BaseButtons>
-                  <BaseButton
-                    type="submit"
-                    color="info"
-                    label="Submit"
-                    @click="validateForm"
-                  />
-                  <BaseButton
-                    type="reset"
-                    color="info"
-                    outline
-                    label="Reset"
-                    @click="resetForm"
-                  />
+                  <BaseButton type="submit" color="info" label="Submit" @click="validateForm" />
+                  <BaseButton type="reset" color="info" outline label="Reset" @click="resetForm" />
                 </BaseButtons>
               </template>
             </CardBox>
