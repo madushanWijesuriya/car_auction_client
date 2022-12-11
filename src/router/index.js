@@ -8,6 +8,8 @@ import { getAuthenticatedUser } from '../util/utils'
 import { useAuthStore } from '@/stores/auth'
 import LoginIn from '@/views/AdminLoginIn.vue'
 import Style from '@/views/AdminStyleView.vue'
+import { useStyleStore } from '@/stores/style'
+import { styleKey } from '@/js/config'
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
@@ -280,12 +282,19 @@ const router = createRouter({
       path: '/blank-page',
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
-    }
+    },
   ],
 })
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
+  const styleStore = useStyleStore()
+  if (
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem(styleKey) === null
+  ) {
+    styleStore.setStyle('white')
+  }
   if (
     to.meta.requiresAuth &&
     to.path !== '/login' &&

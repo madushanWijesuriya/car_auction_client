@@ -30,7 +30,7 @@ import AddFeatureModel from '@/components/admin/modals/add-feature-model/AddFeat
 export default {
   setup() {
     const state = reactive({ validationErrors: null, dialogMaker: false })
-
+    const imageLimit = ref(0) // 0 -> will submit all images / any other number -> will limit image to that number
     const toast = useToast()
     // methods
 
@@ -57,41 +57,50 @@ export default {
 
     const submitForm = async () => {
       try {
-        const response = await httpResource.post('/api/staff/vehicle', {
-          make_id: form?.maker?.id,
-          model_id: form?.model?.id,
-          status_id: form?.status?.id,
-          body_type_id: form?.bodyType?.id,
-          transmission_id: form?.transmission?.id,
-          streeing_id: form?.streeing?.id,
-          door_type_id: form?.doorTypes?.id,
-          driver_type_id: form?.driveType?.id,
-          fuel_type_id: form?.fuelType?.id,
-          exterior_color_id: form?.exteriorColor?.id,
-          feature_id: form?.features?.id,
-          chassis_no: form?.chassisNo,
-          make_at: `${form?.year}-${form?.month?.id}-01`,
-          fob_price: form?.fobPrice,
-          displacement: form?.displacement,
-          isUsed: form?.condition === 'used',
-          mileage: form?.mileage,
-          grade: form?.gradeTrim,
-          cover_image: 'cover image URL' /* form.coverImage */,
-          description: form.description,
-          private_note: form.privateNote,
-          sup_name: form.supplierName,
-          sup_price: form.supplierPrice,
-          sup_url: form.supplierURL,
-          market_price: form.marketPrice,
-          images: [
-            'image_url_1',
-            'image_url_2',
-            'image_url_3',
-            'image_url_4',
-            'image_url_5',
-          ],
-          description: form?.description,
-        })
+        const formData = new FormData()
+        formData.append('make_id', form?.maker?.id)
+        formData.append('model_id', form?.model?.id)
+        formData.append('status_id', form?.status?.id)
+        formData.append('body_type_id', form?.bodyType?.id)
+        formData.append('transmission_id', form?.transmission?.id)
+        formData.append('streeing_id', form?.streeing?.id)
+        formData.append('door_type_id', form?.doorTypes?.id)
+        formData.append('driver_type_id', form?.driveType?.id)
+        formData.append('fuel_type_id', form?.fuelType?.id)
+        formData.append('exterior_color_id', form?.exteriorColor?.id)
+        formData.append('chassis_no', form?.chassisNo)
+        formData.append('make_at', `${form?.year}-${form?.month?.id}-01`)
+        formData.append('fob_price', form?.fobPrice)
+        formData.append('displacement', form?.displacement)
+        formData.append('isUsed', form?.condition === 'used' ? 1 : 0)
+        formData.append('grade', form?.gradeTrim)
+        // formData.append('cover_image', form.coverImage)
+        formData.append('cover_image', 'cover image')
+        formData.append('description', form.description)
+        formData.append('private_note', form.privateNote)
+        formData.append('sup_name', form?.supplierName)
+        formData.append('sup_price', form.supplierPrice)
+        formData.append('sup_url', form.supplierURL)
+        formData.append('mileage', form.mileage)
+        formData.append('market_price', form.marketPrice)
+        formData.append('feature_id', form?.features?.id)
+
+        if (form.photos && form.photos.length > 0) {
+          const imgLimit =
+            imageLimit.value !== 0 ? imageLimit.value : form.photos.length
+          for (let x = 0; x < imgLimit; x++) {
+            formData.append(`image[${x}]`, form.photos[x])
+          }
+        }
+        const response = await httpResource.post(
+          '/api/staff/vehicle',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        )
         if (response.status === 200) {
           state.validationErrors = null
           resetForm()

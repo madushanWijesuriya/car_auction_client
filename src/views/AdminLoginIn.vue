@@ -1,13 +1,16 @@
 <script setup>
 import { useAuthStore } from '@/stores/auth'
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, nextTick, ref, computed } from 'vue'
 import httpResource from '@/http/httpResource'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, isEmpty } from 'lodash-es'
 import { useRouter } from 'vue-router'
+import { ElLoading } from 'element-plus'
+import { useToast } from 'vue-toastification'
 
 const authStore = useAuthStore()
 const router = useRouter()
 const { setIsAuthenticated, setCurrentUser } = authStore
+const toast = useToast()
 
 let loginUser = reactive({
   email: {
@@ -36,22 +39,57 @@ const validateRequest = () => {
   }
 }
 
-const login = async () => {
-  const response = await httpResource.post('/api/staff/auth/login', {
-    email: loginUser.email.value,
-    password: loginUser.password.value,
-  })
-  if (response.status === 200) {
-    const {
-      data: { data },
-    } = await httpResource.get('/api/auth/checkLogin')
-    setCurrentUser(data)
-    setIsAuthenticated(true)
-    router.push({
-      name: 'dashboard',
+let loading = ref(null)
+
+function toggleLoading(state) {
+  if (state) {
+    loading.value = ElLoading.service({
+      lock: true,
+      text: 'Loading',
+      background: 'rgba(0, 0, 0, 0.7)',
     })
+  } else {
+    if (loading.value !== null && loading.value !== undefined) {
+      nextTick(() => {
+        loading.value.close()
+      })
+    }
   }
 }
+
+const login = async () => {
+  toggleLoading(true)
+  try {
+    const response = await httpResource.post('/api/staff/auth/login', {
+      email: loginUser.email.value,
+      password: loginUser.password.value,
+    })
+    toggleLoading(false)
+    if (response.status === 200) {
+      const {
+        data: { data },
+      } = await httpResource.get('/api/auth/checkLogin')
+      setCurrentUser(data)
+      setIsAuthenticated(true)
+      router.push({
+        name: 'dashboard',
+      })
+    }
+    if (response.status === 401) {
+      toast.error('Incorrect username or password', {
+        timeout: 2000,
+      })
+    }
+  } catch (error) {
+    toast.error('Login error, please try again', {
+      timeout: 2000,
+    })
+    toggleLoading(false)
+  }
+}
+const loginDisabled = computed(() => {
+  return isEmpty(loginUser.email.value) || isEmpty(loginUser.password.value)
+})
 </script>
 
 <template>
@@ -72,7 +110,7 @@ const login = async () => {
           </div>
           <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
             <form>
-              <div
+              <!-- <div
                 class="flex flex-row items-center justify-center lg:justify-start"
               >
                 <p class="text-lg mb-0 mr-4">Sign in with</p>
@@ -82,13 +120,11 @@ const login = async () => {
                   data-mdb-ripple-color="light"
                   class="inline-block p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1"
                 >
-                  <!-- Facebook -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 320 512"
                     class="w-4 h-4"
                   >
-                    <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                     <path
                       fill="currentColor"
                       d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
@@ -102,7 +138,6 @@ const login = async () => {
                   data-mdb-ripple-color="light"
                   class="inline-block p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1"
                 >
-                  <!-- Twitter -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
@@ -121,13 +156,11 @@ const login = async () => {
                   data-mdb-ripple-color="light"
                   class="inline-block p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1"
                 >
-                  <!-- Linkedin -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
                     class="w-4 h-4"
                   >
-                    <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                     <path
                       fill="currentColor"
                       d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
@@ -140,7 +173,7 @@ const login = async () => {
                 class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"
               >
                 <p class="text-center font-semibold mx-4 mb-0">Or</p>
-              </div>
+              </div> -->
 
               <!-- Email input -->
               <div class="mb-6">
@@ -197,6 +230,7 @@ const login = async () => {
                   type="submit"
                   class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                   @click.prevent="validateRequest"
+                  :class="loginDisabled ? 'disabled' : ''"
                 >
                   Login
                 </button>
@@ -216,3 +250,9 @@ const login = async () => {
     </section>
   </div>
 </template>
+<styles scoped lang="scss">
+button.disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+</styles>
