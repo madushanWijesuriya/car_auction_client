@@ -32,7 +32,7 @@ const router = createRouter({
       component: () => import('../views/ReachusView.vue'),
     },
     {
-      path: '/service',
+      path: '/service-auction-calendar',
       name: 'service',
       component: () => import('../views/ServicesView.vue'),
     },
@@ -62,7 +62,7 @@ const router = createRouter({
       component: () => import('../views/AboutUsCompanyProfile.vue'),
     },
     {
-      path: '/countries-vehicle-details',
+      path: '/countries-vehicle-details/:name',
       name: 'countriesVehicleDetails',
       component: () => import('../views/CountriesVehicleDetailsView.vue'),
     },
