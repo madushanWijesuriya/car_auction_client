@@ -18,16 +18,11 @@ const textarea1 = ref('')
 const textarea2 = ref('')
 let countryList = ref([])
 let vehicleData = ref([])
+const base_url_api = import.meta.env.VITE_BASE_URL_API
 
-const imagesList = [
-  { id: 1, name: 'vehicalDetails/car-1.svg' },
-  { id: 2, name: 'vehicalDetails/car-2.svg' },
-  { id: 3, name: 'vehicalDetails/car-2.svg' },
-  { id: 4, name: 'vehicalDetails/car-2.svg' },
-  { id: 5, name: 'vehicalDetails/car-2.svg' },
-  { id: 6, name: 'vehicalDetails/car-2.svg' },
-  { id: 7, name: 'vehicalDetails/car-2.svg' },
-]
+const imagesList = computed(() => {
+  return vehicleData
+})
 let currentId = ref(1)
 const currentImage = computed(() => {
   if (!currentId.value) return { id: -99, name: '' }
@@ -110,6 +105,7 @@ const getVehicleDetails = async () => {
       '/api/guest/vehicle/' + postData.vehicle_id
     )
     vehicleData.value = response.data.data
+    imagesList = response.data.data.images
   } catch (error) {
     console.error(error)
   }
@@ -226,40 +222,10 @@ onUpdated(function () {
             </svg>
           </div>
           <div class="grid grid-cols-6 gap-3 grow">
-            <div>
+            <div v-for="image in vehicleData?.images" :key="image.id">
               <img
                 class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
-              />
-            </div>
-            <div>
-              <img
-                class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
-              />
-            </div>
-            <div>
-              <img
-                class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
-              />
-            </div>
-            <div>
-              <img
-                class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
-              />
-            </div>
-            <div>
-              <img
-                class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
-              />
-            </div>
-            <div>
-              <img
-                class="rounded-lg w-full"
-                src="@/assets/images/vehicalDetails/car-2.svg"
+                :src="base_url_api + image.full_url"
               />
             </div>
           </div>

@@ -10,6 +10,7 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
+const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
   checkable: Boolean,

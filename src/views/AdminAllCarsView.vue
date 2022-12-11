@@ -8,7 +8,7 @@ import { useCarsStore } from '@/stores/cars'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
-
+const base_url_api = import.meta.env.VITE_BASE_URL_API
 const carsStore = useCarsStore()
 const { cars: items } = storeToRefs(carsStore)
 const headers = computed(() => carsStore.tableHeaders)
@@ -17,7 +17,7 @@ const decoratedItems = computed(() => {
   return items.value.map((i) => {
     return {
       id: i.id,
-      photo: 'https://picsum.photos/200/200',
+      photo: base_url_api + i?.cover_image_full_url,
       make: i?.make_id?.name,
       model: i?.model_id?.name,
       fob: i?.fob_price,
@@ -38,7 +38,7 @@ const getAllCars = async () => {
   }
 }
 
-onMounted(async () => { 
+onMounted(async () => {
   await getAllCars()
 })
 

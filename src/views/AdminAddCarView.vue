@@ -74,8 +74,8 @@ export default {
         formData.append('displacement', form?.displacement)
         formData.append('isUsed', form?.condition === 'used' ? 1 : 0)
         formData.append('grade', form?.gradeTrim)
-        // formData.append('cover_image', form.coverImage)
-        formData.append('cover_image', 'cover image')
+        formData.append('cover_image', form.coverImage)
+        // formData.append('cover_image', 'cover image')
         formData.append('description', form.description)
         formData.append('private_note', form.privateNote)
         formData.append('sup_name', form?.supplierName)
@@ -358,7 +358,7 @@ export default {
     AddDrivetypeModel,
     AddFuelTypeModel,
     AddExteriorColorModel,
-    AddFeatureModel
+    AddFeatureModel,
   },
   methods: {
     addMaker() {
@@ -374,27 +374,27 @@ export default {
       getMakers()
       getBodyTypes()
     },
-    addCarModel(){
+    addCarModel() {
       this.$refs.addCarModel.openAddCarModal()
     },
-    addStreeingsModel(){
+    addStreeingsModel() {
       this.$refs.addStreeings.openAddStreeingsModal()
     },
-    addDoorTypeModel(){
+    addDoorTypeModel() {
       this.$refs.addDoorType.openAddDoorTypeModal()
     },
-    addDrivetypeModel(){
+    addDrivetypeModel() {
       this.$refs.drivetypeModel.openAddDrivetypeModel()
     },
-    addFuelTypeModel(){
+    addFuelTypeModel() {
       this.$refs.fueltypeModel.openAddFuelTypeModal()
     },
-    addExteriorColorModel(){
+    addExteriorColorModel() {
       this.$refs.addExteriorColorModel.openAddExteriorColorModal()
     },
-    addFeatureModel(){
+    addFeatureModel() {
       this.$refs.addFeatureModel.openAddFeatureModel()
-    }
+    },
   },
 }
 </script>
@@ -434,21 +434,21 @@ export default {
             />
           </FormField>
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Maker"
-              @click="addMaker"
-            />
-          <AddCarModel ref="addCarModel"/> 
+            type="submit"
+            color="info"
+            label="Add Maker"
+            @click="addMaker"
+          />
+          <AddCarModel ref="addCarModel" />
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
           </FormField>
           <BaseButton
-              type="submit"
-              color="info"
-              label="Add Car Model"
-              @click="addCarModel"
-            />
+            type="submit"
+            color="info"
+            label="Add Car Model"
+            @click="addCarModel"
+          />
           <FormField label="Chassis No" help="">
             <FormControl
               v-model="form.chassisNo"
@@ -502,9 +502,7 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
-          <AddBodyTypeModel
-            ref="bodyTypeModel"
-          />
+          <AddBodyTypeModel ref="bodyTypeModel" />
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />
           </FormField>
@@ -527,7 +525,7 @@ export default {
             label="Add Transminition"
             @click="addTransmition"
           />
-          <AddStreeings ref="addStreeings"/>
+          <AddStreeings ref="addStreeings" />
           <FormField label="Streeing">
             <FormControl v-model="form.streeing" :options="streeingList" />
           </FormField>
@@ -537,7 +535,7 @@ export default {
             label="Add Streeings"
             @click="addStreeingsModel"
           />
-          <AddDoorTypeModel ref="addDoorType"/>
+          <AddDoorTypeModel ref="addDoorType" />
           <FormField label="Door Type">
             <FormControl v-model="form.doorTypes" :options="doorTypesList" />
           </FormField>
@@ -547,7 +545,7 @@ export default {
             label="Add Door Type"
             @click="addDoorTypeModel"
           />
-          <AddDrivetypeModel ref="drivetypeModel"/>
+          <AddDrivetypeModel ref="drivetypeModel" />
           <FormField label="Drive Type">
             <FormControl v-model="form.driveType" :options="driveTypeList" />
           </FormField>
@@ -557,7 +555,7 @@ export default {
             label="Add Drive Type"
             @click="addDrivetypeModel"
           />
-          <addFuelTypeModel ref="fueltypeModel"/>
+          <addFuelTypeModel ref="fueltypeModel" />
           <FormField label="Fuel Type">
             <FormControl v-model="form.fuelType" :options="fuleTypeList" />
           </FormField>
@@ -567,7 +565,7 @@ export default {
             label="Add Fuel Type"
             @click="addFuelTypeModel"
           />
-          <AddExteriorColorModel ref = "addExteriorColorModel"/>
+          <AddExteriorColorModel ref="addExteriorColorModel" />
           <FormField label="Exterior Color">
             <FormControl
               v-model="form.exteriorColor"
@@ -580,7 +578,7 @@ export default {
             label="Add Exterior Color"
             @click="addExteriorColorModel"
           />
-          <AddFeatureModel ref="addFeatureModel"/>
+          <AddFeatureModel ref="addFeatureModel" />
           <FormField label="Features">
             <FormControl v-model="form.features" :options="featuresList" />
           </FormField>
@@ -597,7 +595,7 @@ export default {
               placeholder="Grade"
             />
           </FormField>
-          
+
           <BaseDivider />
 
           <FormFilePicker v-model="form.coverImage" label="Cover Image" />
