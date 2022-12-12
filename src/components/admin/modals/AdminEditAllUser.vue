@@ -23,13 +23,54 @@ export default {
         },
     },
 
+
+
     setup(props, { emit }) {
         const { user } = toRefs(props)
+
+
+        const validateForm = () => {
+            // handle frontend validations
+            submitForm()
+        }
+
 
         const resetForm = () => {
             Object.assign(form, initialState)
             // uploaderKey.value += uploaderKey.value + 1
         }
+
+        let roleIds = ref([
+            { id: 1, label: 'Admin' },
+            { id: 2, label: 'Test' },
+        ])
+
+        const initialState = {
+            name: '',
+            email: null,
+            password: '',
+            role_id: '1',
+            password_confirmation: '',
+        }
+
+        const state = reactive({ validationErrors: null, dialogMaker: false })
+        const toast = useToast()
+        let form = reactive({ ...initialState })
+
+        onMounted(async () => {
+            // await nextTick()
+            form.name = user.value?.name
+            form.email = user.value?.email
+            form.password = user.value?.password
+            form.role_id = roleIds?.value?.filter((i) => (i.label == "Admin"))[0].id
+
+            // setTimeout(() => {
+            //     form.model = modelsList.value.find(
+            //         (i) => i.id === vehicle.value?.model_id?.id
+            //     )
+            // }, 2000)
+        })
+
 
         const submitForm = async () => {
             try {
@@ -59,58 +100,21 @@ export default {
                 }
             }
         }
+
+        return {
+            form,
+            roleIds,
+            validateForm,
+            resetForm
+        }
     }
-}
-
-const validateForm = () => {
-    // handle frontend validations
-    submitForm()
-}
-
-let roleIds = ref([
-    { id: 1, label: 'Admin' },
-    { id: 2, label: 'Test' },
-])
-const initialState = {
-    name: '',
-    email: null,
-    password: '',
-    role_id: '1',
-    password_confirmation: '',
-}
-const state = reactive({ validationErrors: null, dialogMaker: false })
-const toast = useToast()
-let form = reactive({ ...initialState })
-
-onMounted(async () => {
-    // await nextTick()
-    form.name = user.value?.name
-    form.email = user.value?.email
-    form.password = user.value?.password
-    form.role_id = roleIds?.value?.filter((i) => (i.label == "Admin"))[0].id
-
-    // setTimeout(() => {
-    //     form.model = modelsList.value.find(
-    //         (i) => i.id === vehicle.value?.model_id?.id
-    //     )
-    // }, 2000)
-})
-
-
-
-return {
-    form,
-    roleIds,
-    validateForm,
-    resetForm,
 }
 
 </script>
 <template>
     <div class="edit-car-modal">
         <CardBox form @submit.prevent="submit">
-            <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Staff User" main>
-            </SectionTitleLineWithButton>
+           
             <FormField label="Name" help="">
                 <FormControl v-model="form.name" type="text" placeholder="User Name" />
             </FormField>
