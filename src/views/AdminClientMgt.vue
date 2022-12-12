@@ -4,6 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import ClientTable from '@/components/Tables/Admin/ClientTable.vue'
 import { useClientsStore } from '@/stores/clientsMgt'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -143,7 +144,7 @@ let form = reactive({ ...initialState })
                 </CardBox>
                 <CardBox style="margin-top: 40px">
                     <SectionTitleLineWithButton title="Clients" main></SectionTitleLineWithButton>
-                    <Table :items="decoratedItems" :headers="headers" :actions="actions"> </Table>
+                    <ClientTable :items="decoratedItems" :headers="headers" :actions="actions"> </ClientTable>
                 </CardBox>
             </SectionMain>
         </LayoutAuthenticated>

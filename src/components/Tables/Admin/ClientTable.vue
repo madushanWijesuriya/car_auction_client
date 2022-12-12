@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, toRefs, reactive, onMounted, nextTick } from 'vue'
 // import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/admin/TableCheckboxCell.vue'
 import BaseLevel from '@/components/admin/BaseLevel.vue'
@@ -10,6 +9,7 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
+import { mdiEye, mdiTrashCan, mdiBlockHelper } from '@mdi/js'
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
@@ -129,205 +129,33 @@ function isValidHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
-///
-const range = (start, stop, step) =>
-  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step)
-
-let makersList = ref([])
-const getMakers = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/maker')
-    makersList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {}
-}
-let modelsList = ref([])
-const getModels = async (moakerId) => {
-  try {
-    const response = await httpResource.get('/api/resources/model/' + moakerId)
-    modelsList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 const changeMaker = (id) => {
   getModels(id)
 }
 
-let statusList = ref([])
-const getStatus = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/status')
-    statusList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const yearsList = range(
-  new Date().getFullYear(),
-  new Date().getFullYear() - 50,
-  -1
-)
-const monthsList = Array.from({ length: 12 }, (e, i) => {
-  return {
-    id: i + 1,
-    label: new Date(null, i + 1, null).toLocaleDateString('en', {
-      month: 'short',
-    }),
-  }
-})
-let bodyTypeList = ref([])
-const getBodyTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/body-type')
-    bodyTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let transmissionList = ref([])
-const getTransmitions = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/transmission')
-    transmissionList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let streeingList = ref([])
-const getStreeings = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/streeings')
-    streeingList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let doorTypesList = ref([])
-const getDoorTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/door-types')
-    doorTypesList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let driveTypeList = ref([])
-const getDriveTypeList = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/drive-types')
-    driveTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-let fuleTypeList = ref([])
-const getfuleTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/fuel-types')
-    fuleTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let exteriorColorList = ref([])
-const getExteriorColors = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/exterior-colors')
-    exteriorColorList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let featuresList = ref([])
-const getFeatures = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/features')
-    featuresList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
+
 })
 ///
 </script>
 
 <template>
-  <div>
-    <CardBoxModal
+  <!-- <div> -->
+    <!-- <CardBoxModal
       v-model="isModalActive"
       title="Edit vehicle"
       v-if="isModalActive"
     >
       <AdminEditCarModal
-        :makersList="makersList"
-        :modelsList="modelsList"
-        :statusList="statusList"
-        :bodyTypeList="bodyTypeList"
-        :transmissionList="transmissionList"
-        :streeingList="streeingList"
-        :doorTypesList="doorTypesList"
-        :fuleTypeList="fuleTypeList"
-        :exteriorColorList="exteriorColorList"
-        :featuresList="featuresList"
-        :yearsList="yearsList"
-        :monthsList="monthsList"
-        :driveTypeList="driveTypeList"
         :vehicle="vehicle"
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"
       />
-    </CardBoxModal>
-  </div>
+    </CardBoxModal> -->
+  <!-- </div> -->
 
-  <CardBoxModal
+  <!-- <CardBoxModal
     v-model="isModalDangerActive"
     title="Please confirm"
     button="danger"
@@ -335,7 +163,7 @@ onMounted(async () => {
   >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
-  </CardBoxModal>
+  </CardBoxModal> -->
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
     <span
@@ -371,11 +199,10 @@ onMounted(async () => {
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">
             <BaseButtons type="justify-start lg:justify-end" no-wrap>
-              <div v-for="(item, index) in actions" :key="index">
                 <BaseButton
-                  :label="item.label ? item.label : ''"
-                  :color="item?.color"
-                  :icon="item?.icon"
+                  label="Block"
+                  color="danger"
+                  icon= mdiBlockHelper
                   small
                   v-on="
                     index === 0
@@ -383,8 +210,28 @@ onMounted(async () => {
                       : { click: deleteVehicle }
                   "
                 />
-              </div>
-
+                <BaseButton
+                  label="info"
+                  color= "info"
+                  icon= mdiEye,
+                  small
+                  v-on="
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: deleteVehicle }
+                  "
+                />
+                <BaseButton
+                  label="Delete"
+                  color="danger"
+                  icon= mdiTrashCan
+                  small
+                  v-on="
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: deleteVehicle }
+                  "
+                />
               <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
             </BaseButtons>
           </td>

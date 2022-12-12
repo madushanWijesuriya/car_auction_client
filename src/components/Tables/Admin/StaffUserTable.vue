@@ -45,11 +45,11 @@ const props = defineProps({
 })
 
 const { items, headers, actions, rowItemsData } = toRefs(props)
-let vehicle = ref(null)
+let user = ref(null)
 const openEditModel = async (vehicleId) => {
   // debugger
   if (items.value && items.value.length > 0) {
-    items.value = items.value.find((v) => v.id === vehicleId)
+    user.value = items.value.find((v) => v.id === vehicleId)
   }
   await nextTick()
   isModalActive.value = true
