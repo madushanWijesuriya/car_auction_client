@@ -1,7 +1,12 @@
 <script setup>
-import { toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 const props = defineProps(['vehicle'])
 const { vehicle } = toRefs(props)
+const base_url_api = import.meta.env.VITE_BASE_URL_API
+
+const cover_image = computed(() => {
+  return base_url_api + props.vehicle.cover_image_full_url
+})
 </script>
 <template>
   <div
@@ -10,7 +15,7 @@ const { vehicle } = toRefs(props)
   >
     <img
       class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[18vw] object-cover"
-      src="@/assets/images/stock-list/vehical-list/list-car-1.svg"
+      :src="cover_image"
     />
 
     <div class="px-2 py-2 space-y-3 w-full md:relative">
