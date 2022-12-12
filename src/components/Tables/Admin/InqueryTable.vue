@@ -54,8 +54,29 @@ const openEditModel = async (vehicleId) => {
   isModalActive.value = true
 }
 
-function deleteVehicle(vehicleId) {
-  console.log('delete vehicle clicked!', vehicleId)
+async function deleteInquery(id) {
+  // try {
+  //   const response = await httpResource.delete('/api/staff/staffuser/' + id, {
+  //   })
+
+  //   if (response.status === 200) {
+  //     state.validationErrors = null
+  //     toast.success('Successfully Deleted', {
+  //       timeout: 2000,
+  //     })
+  //   }
+  // } catch (error) {
+  //   console.log(error, 'roerer');
+  //   if (error.response.status == 422) {
+  //     state.validationErrors = error.response.data.errors
+  //     window.scrollTo(0, 0)
+  //   } else {
+  //     console.error(error?.response?.data?.message)
+  //     toast.error('Something went wrong', {
+  //       timeout: 2000,
+  //     })
+  //   }
+  // }
 }
 
 const action = {
@@ -285,22 +306,22 @@ const getFeatures = async () => {
 }
 
 onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
+  // getMakers()
+  // getStatus()
+  // getBodyTypes()
+  // getTransmitions()
+  // getStreeings()
+  // getDoorTypes()
+  // getfuleTypes()
+  // getExteriorColors()
+  // getFeatures()
+  // getDriveTypeList()
 })
 ///
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <CardBoxModal
       v-model="isModalActive"
       title="Edit vehicle"
@@ -335,7 +356,7 @@ onMounted(async () => {
   >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
-  </CardBoxModal>
+  </CardBoxModal> -->
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
     <span
@@ -380,7 +401,7 @@ onMounted(async () => {
                   v-on="
                     index === 0
                       ? { click: () => openEditModel(row.id) }
-                      : { click: deleteVehicle }
+                      : { click: ()=>deleteInquery(row.id) }
                   "
                 />
               </div>
