@@ -27,6 +27,7 @@ const decoratedItems = computed(() => {
       key: i?.content?.key,
       data: i?.content?.data,
       udpdated_at: i?.updated_at,
+      content: i?.content?.contents
     }
   })
 })
@@ -74,6 +75,7 @@ const submitForm = async () => {
     console.error(error?.response?.data?.message)
   }
 }
+
 </script>
 <template>
   <div class="all-cars">

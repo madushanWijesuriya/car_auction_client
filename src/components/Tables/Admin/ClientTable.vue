@@ -141,8 +141,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- <div> -->
-    <!-- <CardBoxModal
+<!-- <div>  -->
+<!-- <CardBoxModal
       v-model="isModalActive"
       title="Edit vehicle"
       v-if="isModalActive"
@@ -152,10 +152,10 @@ onMounted(async () => {
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"
       />
-    </CardBoxModal> -->
-  <!-- </div> -->
+    </CardBoxModal> 
+</div> 
 
-  <!-- <CardBoxModal
+   <CardBoxModal
     v-model="isModalDangerActive"
     title="Please confirm"
     button="danger"
@@ -223,7 +223,7 @@ onMounted(async () => {
                 />
                 <BaseButton
                   label="Delete"
-                  color="danger"
+                   color="danger"
                   icon= mdiTrashCan
                   small
                   v-on="
