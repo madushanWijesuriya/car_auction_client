@@ -58,6 +58,9 @@ const submitForm = async () => {
     }
   } catch (error) {
     console.error(error?.response?.data?.message)
+    toast.warning(error?.response?.data?.message, {
+      timeout: 2000,
+    })
   }
 }
 

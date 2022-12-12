@@ -114,6 +114,9 @@ export default {
           window.scrollTo(0, 0)
         } else {
           console.error(error?.response?.data?.message)
+          toast.error('Something went wrong', {
+            timeout: 2000,
+          })
         }
       }
     }

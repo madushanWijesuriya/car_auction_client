@@ -47,7 +47,8 @@ onMounted(() => {
         class="text-2xl sm:text-6xl font-semibold text-black px-4 sm:order-1 sm:pt-48 sm:mb-2 sm:col-span-2"
       >
         <div class="text-color-03 sm:text-color-01">
-          Fully <span class="text-color-02 sm:text-color-01">Transparent</span>
+          {{ filterContent('header_one_01')[0].data
+          }}<span class="text-color-02 sm:text-color-01">Transparent</span>
         </div>
         <div class="text-color-03 sm:text-color-01">
           Fully in <span class="text-color-02 sm:text-color-01">Control</span>

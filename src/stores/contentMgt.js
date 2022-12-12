@@ -5,35 +5,43 @@ export const useContentStore = defineStore('content', () => {
   const content = ref([
     {
       id: 1,
-        country_id: 1,
-        content_id: 1,
-        country: 'i?.country?.name',
+      country_id: null,
+      content_id: null,
+      country: null,
+      key: null,
+      data: null,
+      udpdated_at: null,
     },
   ])
 
-  const countries = ref([
-    {id:1 , label:''}
-
-  ])
+  const countries = ref([{ id: 1, label: '' }])
 
   const tableHeaders = reactive([
     {
-      name: 'No',
+      name: 'id',
       order: 1,
     },
     {
-      name: 'Content',
-      order: 2,
+      name: 'country',
+      order: 4,
     },
     {
-      name: 'Country',
-      order: 3,
+      name: 'key',
+      order: 5,
+    },
+    {
+      name: 'latest update',
+      order: 6,
+    },
+    {
+      name: 'data',
+      order: 6,
     },
     {
       name: 'Actions',
-      order: 3,
-    }
+      order: 7,
+    },
   ])
 
-  return { content,countries, tableHeaders }
+  return { content, countries, tableHeaders }
 })

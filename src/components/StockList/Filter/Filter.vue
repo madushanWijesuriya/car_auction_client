@@ -35,6 +35,7 @@ const initialState = {
   desc: '',
 }
 let form = reactive({ ...initialState })
+let formOne = reactive({ ...initialState })
 function onSubmit() {
   emit('apply-filters', form)
 }
@@ -63,7 +64,7 @@ function onReset() {
         <el-form label-position="top" label-width="100%" style="width: 100%">
           <el-form-item label="Brand Name">
             <el-select
-              v-model="form.maker"
+              v-model="formOne.maker"
               multiple
               style="width: 100%"
               placeholder="Any"
