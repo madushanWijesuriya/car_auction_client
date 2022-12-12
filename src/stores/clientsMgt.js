@@ -8,6 +8,7 @@ export const useClientsStore = defineStore('clients', () => {
             country_id: 1,
             content_id: 1,
             country: '',
+            isActive:''
         },
     ])
 
@@ -31,6 +32,10 @@ export const useClientsStore = defineStore('clients', () => {
         },
         {
             name: 'Country',
+            order: 3,
+        },
+        {
+            name: 'Active',
             order: 3,
         },
 

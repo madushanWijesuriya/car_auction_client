@@ -23,7 +23,8 @@ const decoratedItems = computed(() => {
             id: i?.id,
             name: i?.name,
             email: i?.email,
-            country: i?.country?.name
+            country: i?.country?.name,
+            isActive:i?.isActive ? "Active" : "deactivate" 
         }
     })
 })
