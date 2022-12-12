@@ -142,10 +142,12 @@
           <div>
             <div class="grid grid-cols-2 gap-2">
               <div class="inner-group">
-                <button class="btn-search" @click="applyFilter">Search</button>
+                <button type="button" class="btn-search" @click="applyFilters">
+                  Search
+                </button>
               </div>
               <div class="inner-group">
-                <button class="btn-clear">Clear</button>
+                <button class="btn-clear" type="button">Clear</button>
               </div>
             </div>
           </div>
@@ -165,35 +167,47 @@ const router = useRouter()
 
 const carsStore = useCarsStore()
 
+const indexingDetails = reactive({
+  perPage: 0,
+  currentPage: 0,
+  lastPage: 0,
+  total: 0,
+  from: 0,
+  to: 0,
+  links: null,
+})
+
 const applyFilters = async () => {
   try {
     let filterQuery = '/api/staff/vehicle?'
 
-    if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
-    if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
-    if (form.status_id.id)
+    if (form.make_id?.id) filterQuery += `filter[make_id]=${form.make_id.id}`
+    if (form.make_id?.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
+    if (form.status_id?.id)
       filterQuery += `&filter[status_id]=${form.status_id.id}`
-    if (form.body_type_id.id)
+    if (form.body_type_id?.id)
       filterQuery += `&filter[body_type_id]=${form.body_type_id.id}`
-    if (form.transmission_id.id)
+    if (form.transmission_id?.id)
       filterQuery += `&filter[transmission_id]=${form.transmission_id.id}`
-    if (form.streeing_id.id)
+    if (form.streeing_id?.id)
       filterQuery += `&filter[streeing_id]=${form.streeing_id.id}`
-    if (form.door_type_id.id)
+    if (form.door_type_id?.id)
       filterQuery += `&filter[door_type_id]=${form.door_type_id.id}`
-    if (form.driver_type_id.id)
+    if (form.driver_type_id?.id)
       filterQuery += `&filter[driver_type_id]=${form.driver_type_id.id}`
-    if (form.fuel_type_id.id)
+    if (form.fuel_type_id?.id)
       filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id.id}`
-    if (form.exterior_color_id.id)
+    if (form.exterior_color_id?.id)
       filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id.id}`
-    if (form.feature_id.id)
-      filterQuery += `&filter[feature_id]=${form.feature_id.id}`
+    if (form.feature_id?.id)
+      filterQuery += `&filter[feature_id]=${form.feature_id?.id}`
     if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
     if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
     const response = await httpResource.get(filterQuery)
     setCars(response)
-    router.push({ path: '/stock-list' })
+    router.push({
+      name: 'StockList',
+    })
   } catch (error) {
     console.error(error)
   }
