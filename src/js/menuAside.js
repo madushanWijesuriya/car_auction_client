@@ -74,11 +74,11 @@ export default [
         label: 'Client Managment',
         icon: mdiCarSearch,
       },
-      {
-        to: '/admin/create-client',
-        label: 'create client',
-        icon: mdiCarSearch,
-      },
+      // {
+      //   to: '/admin/create-client',
+      //   label: 'create client',
+      //   icon: mdiCarSearch,
+      // },
       // {
       //   to: '/admin/add-client',
       //   label: 'Add car',

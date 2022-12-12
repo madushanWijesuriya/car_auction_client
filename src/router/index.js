@@ -150,17 +150,17 @@ const router = createRouter({
         requiresAuth: true,
       },
       path: '/admin/client-mgt',
-      name: 'clientmgt',
+      name: 'allClient',
       component: () => import('../views/AdminClientMgt.vue'),
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Users',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/create-user',
-      name: 'clientmgt',
+      name: 'createUser',
       component: () => import('../views/AdminCreateUser.vue'),
     },
     {
