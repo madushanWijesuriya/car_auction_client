@@ -1,6 +1,5 @@
 <script setup>
-import { reactive, ref } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core'
+import { onMounted, reactive, ref } from 'vue'
 import StepperOne from '../components/Steppers/StepperOne.vue'
 import httpResource from '@/http/httpResource'
 import { useRoute } from 'vue-router'
@@ -27,6 +26,7 @@ const getContents = async () => {
 }
 
 function filterContent(name) {
+  if (!contents.value) return []
   return contents.value.filter(function (item) {
     return item.key == name
   })
@@ -47,18 +47,22 @@ onMounted(() => {
         class="text-2xl sm:text-6xl font-semibold text-black px-4 sm:order-1 sm:pt-48 sm:mb-2 sm:col-span-2"
       >
         <div class="text-color-03 sm:text-color-01">
-          {{ filterContent('header_one_01')[0].data
-          }}<span class="text-color-02 sm:text-color-01">Transparent</span>
+          {{ filterContent('header_one_01')[0]?.data
+          }}<span class="text-color-02 sm:text-color-01">{{
+            filterContent('header_one_02')[0]?.data
+          }}</span>
         </div>
         <div class="text-color-03 sm:text-color-01">
-          Fully in <span class="text-color-02 sm:text-color-01">Control</span>
+          {{ filterContent('header_one_03')[0]?.data }}
+          <span class="text-color-02 sm:text-color-01">{{
+            filterContent('header_one_04')[0]?.data
+          }}</span>
         </div>
       </div>
       <div
         class="text-sm font-normal text-black leading-5 sm:leading-8 mt-2 mb-4 px-4 sm:order-3 sm:col-span-2"
       >
-        say hello to an online shopping experience that pute you right in the
-        driver's seat.
+        {{ filterContent('para_one_01')[0]?.data }}
       </div>
       <div
         class="px-2 sm:order-2 sm:row-span-6 sm:place-self-center sm:col-span-3"
@@ -75,24 +79,34 @@ onMounted(() => {
       </div>
       <div class="sm:order-5 sm:mt-16 sm:col-span-2">
         <div class="text-base sm:text-xl font-medium text-black mb-4 px-2 mt-4">
-          <div class="mb-1">Contact Us</div>
+          <div class="mb-1">{{ filterContent('contact_us')[0]?.data }}</div>
           <hr class="sm:hidden" />
         </div>
         <div class="px-5">
           <div class="mb-3 text-xs sm:text-lg">
-            <div class="sm:text-color-07">Office</div>
+            <div class="sm:text-color-07">
+              {{ filterContent('office')[0]?.data }}
+            </div>
             <div class="mt-3 color-01">
-              123 Anywhere St., Any City, ST 12345
+              {{ filterContent('office_value')[0]?.data }}
             </div>
           </div>
           <div class="grid grid-cols-2 text-xs sm:text-lg">
             <div>
-              <div class="sm:text-color-07">Phone Number</div>
-              <div class="mt-3 color-01">+123-456-789 0</div>
+              <div class="sm:text-color-07">
+                {{ filterContent('phone_no')[0]?.data }}
+              </div>
+              <div class="mt-3 color-01">
+                {{ filterContent('phone_no_value')[0]?.data }}
+              </div>
             </div>
             <div>
-              <div class="sm:text-color-07">Email</div>
-              <div class="mt-3 color-01">hello@reallygreatsite.com</div>
+              <div class="sm:text-color-07">
+                {{ filterContent('email')[0]?.data }}
+              </div>
+              <div class="mt-3 color-01">
+                {{ filterContent('email_value')[0]?.data }}
+              </div>
             </div>
           </div>
         </div>
@@ -108,8 +122,11 @@ onMounted(() => {
     </div>
     <div class="content-02 container px-6 mt-6 sm:mt-16">
       <div class="color-01 mb-4 text-xl sm:text-4xl font-bold leading-7">
-        Why do <span class="color-02 font-bold">Sri Lankan</span> customers
-        choose JAMAX to buy a car in Japan?
+        {{ filterContent('header_two_01')[0]?.data }}
+        <span class="color-02 font-bold">{{
+          filterContent('header_two_country')[0]?.data
+        }}</span>
+        {{ filterContent('header_two_02')[0]?.data }}
       </div>
       <div
         class="text-sm sm:text-xl leading-5 sm:leading-7 font-normal color-06"
