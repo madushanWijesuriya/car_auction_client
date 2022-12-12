@@ -167,33 +167,34 @@ const carsStore = useCarsStore()
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/staff/vehicle?'
-
-    if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
-    if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
-    if (form.status_id.id)
-      filterQuery += `&filter[status_id]=${form.status_id.id}`
-    if (form.body_type_id.id)
-      filterQuery += `&filter[body_type_id]=${form.body_type_id.id}`
-    if (form.transmission_id.id)
-      filterQuery += `&filter[transmission_id]=${form.transmission_id.id}`
-    if (form.streeing_id.id)
-      filterQuery += `&filter[streeing_id]=${form.streeing_id.id}`
-    if (form.door_type_id.id)
-      filterQuery += `&filter[door_type_id]=${form.door_type_id.id}`
-    if (form.driver_type_id.id)
-      filterQuery += `&filter[driver_type_id]=${form.driver_type_id.id}`
-    if (form.fuel_type_id.id)
-      filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id.id}`
-    if (form.exterior_color_id.id)
-      filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id.id}`
-    if (form.feature_id.id)
-      filterQuery += `&filter[feature_id]=${form.feature_id.id}`
+    let filterQuery = '/api/guest/vehicle?'
+    console.log(form)
+    if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
+    if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
+    if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
+    if (form.body_type_id)
+      filterQuery += `&filter[body_type_id]=${form.body_type_id}`
+    if (form.transmission_id)
+      filterQuery += `&filter[transmission_id]=${form.transmission_id}`
+    if (form.streeing_id)
+      filterQuery += `&filter[streeing_id]=${form.streeing_id}`
+    if (form.door_type_id)
+      filterQuery += `&filter[door_type_id]=${form.door_type_id}`
+    if (form.driver_type_id)
+      filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
+    if (form.fuel_type_id)
+      filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
+    if (form.exterior_color_id)
+      filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
+    if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
     if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
     if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
+
     const response = await httpResource.get(filterQuery)
     setCars(response)
-    router.push({ path: '/stock-list' })
+    router.push({
+      name: 'HomeStockList',
+    })
   } catch (error) {
     console.error(error)
   }

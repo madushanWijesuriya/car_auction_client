@@ -82,6 +82,11 @@ const router = createRouter({
       component: () => import('../views/StockList.vue'),
     },
     {
+      path: '/home-stock-list',
+      name: 'HomeStockList',
+      component: () => import('../views/StockList.vue'),
+    },
+    {
       path: '/login',
       name: 'login-admin',
       component: LoginIn,
