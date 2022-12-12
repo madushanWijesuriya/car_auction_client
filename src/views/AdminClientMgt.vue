@@ -47,9 +47,9 @@ const actions = [
 
 const getAllClients = async () => {
     try {
-        // const response = await httpResource.get('api/staff/customer?filter[country_id]=2')
+        const response = await httpResource.get('api/staff/customer')
         clientsStore.$patch({
-            clients: clientsData.data
+            clients: response?.data?.data
         })
 
         const countries = await httpResource.get('/api/resources/countries')

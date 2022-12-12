@@ -17,7 +17,7 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
     props: {
-        user: {
+        inquery: {
             type: Object,
             default: () => undefined,
         },
@@ -25,7 +25,7 @@ export default {
 
     setup(props, { emit }) {
         const {
-            user,
+            inquery,
         } = toRefs(props)
 
         const resetForm = () => {
@@ -35,7 +35,7 @@ export default {
 
         const submitForm = async () => {
             try {
-                const response = await httpResource.patch('/api/staff/staffuser/' + user.value.id, {
+                const response = await httpResource.patch('/api/staff/staffuser/' + inquery.value.id, {
                     name: form?.name,
                     email: form?.email,
                     password: form?.password,
@@ -69,11 +69,16 @@ export default {
             { id: 2, label: 'Test' },
         ])
         const initialState = {
+            id: '',
+            type: '',
+            vehicle_id: '',
+            country_id: '',
             name: '',
-            email: null,
-            password: '',
-            role_id: '1',
-            password_confirmation: '',
+            email: '',
+            cell_no: '',
+            port_name: '',
+            mobile_no: '',
+            created_at: '',
         }
         const state = reactive({ validationErrors: null, dialogMaker: false })
         const toast = useToast()
@@ -81,10 +86,16 @@ export default {
 
         onMounted(async () => {
             // await nextTick()
-            form.name = user.value?.name
-            form.email = user.value?.email
-            form.password = user.value?.password
-            form.role_id = roleIds?.value?.filter((i)=>(i.label == "Admin"))[0].id
+            form.id = inquery.value.id,
+                form.type = inquery.value.type,
+                form.vehicle_id = inquery.value.vehicle_id?.id,
+                form.country_id = inquery.value.country_id?.name,
+                form.name = inquery.value.name,
+                form.email = inquery.value.email,
+                form.cell_no = inquery.value.cell_no,
+                form.port_name = inquery.value.port_name,
+                form.mobile_no = inquery.value.mobile_no,
+                form.created_at = inquery.value.created_at
 
             // setTimeout(() => {
             //     form.model = modelsList.value.find(
@@ -93,7 +104,7 @@ export default {
             // }, 2000)
         })
 
-        
+
 
         return {
             form,
