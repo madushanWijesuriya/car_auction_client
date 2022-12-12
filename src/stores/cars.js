@@ -14,6 +14,7 @@ export const useCarsStore = defineStore('cars', () => {
     },
   ])
 
+  const filters = ref([])
   const tableHeaders = reactive([
     {
       name: 'No',
