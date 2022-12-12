@@ -19,7 +19,7 @@ const indexingDetails = reactive({
 
 const getAllCars = async () => {
   try {
-    const response = await httpResource.get('/api/staff/vehicle')
+    const response = await httpResource.get('/api/staff/vehicle?sort=-id')
     setCars(response)
   } catch (error) {
     console.error(error)
