@@ -180,7 +180,8 @@ const indexingDetails = reactive({
 const applyFilters = async () => {
   try {
     let filterQuery = '/api/guest/vehicle?'
-    console.log(form)
+    if (form.search_text)
+      filterQuery += `filter[search_text]=${form.search_text}`
     if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
     if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
     if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
