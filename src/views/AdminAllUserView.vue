@@ -23,7 +23,7 @@ const decoratedItems = computed(() => {
       email_verified_at: i?.email_verified_at,
       created_at: i?.created_at,
       updated_at: i?.updated_at,
-      deleted_at: i?.deleted_at,
+      // deleted_at: i?.deleted_at,
       roles: i?.roles[0]?.name,
     }
   })

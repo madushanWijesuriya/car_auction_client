@@ -108,13 +108,15 @@ export default {
             resetForm
         }
     }
+
+
 }
 
 </script>
 <template>
     <div class="edit-car-modal">
         <CardBox form @submit.prevent="submit">
-           
+
             <FormField label="Name" help="">
                 <FormControl v-model="form.name" type="text" placeholder="User Name" />
             </FormField>
