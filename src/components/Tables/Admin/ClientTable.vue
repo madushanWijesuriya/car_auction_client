@@ -79,8 +79,29 @@ const blockUser = async (id) => {
   }
 }
 
-function deleteVehicle(vehicleId) {
-  console.log('delete vehicle clicked!', vehicleId)
+async function deleteClient(id) {
+  try {
+    const response = await httpResource.delete('/api/staff/staffuser/' + id, {
+    })
+
+    if (response.status === 200) {
+      state.validationErrors = null
+      toast.success('Successfully Deleted', {
+        timeout: 2000,
+      })
+    }
+  } catch (error) {
+    console.log(error, 'roerer');
+    if (error.response.status == 422) {
+      state.validationErrors = error.response.data.errors
+      window.scrollTo(0, 0)
+    } else {
+      console.error(error?.response?.data?.message)
+      toast.error('Something went wrong', {
+        timeout: 2000,
+      })
+    }
+  }
 }
 
 const action = {
@@ -224,13 +245,11 @@ onMounted(async () => {
               <BaseButton label="info" color="info" icon=mdiEye, small v-on="
                 index === 0
                   ? { click: () => openEditModel(row.id) }
-                  : { click: deleteVehicle }
+                  : { }
               " />
-              <BaseButton label="Delete" color="danger" icon=mdiTrashCan small v-on="
-                index === 0
-                  ? { click: () => openEditModel(row.id) }
-                  : { click: deleteVehicle }
-              " />
+              <!-- <BaseButton label="Delete" color="danger" icon=mdiTrashCan small v-on="
+                   { click: () => deleteClient(row.id) }
+              " /> -->
               <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
             </BaseButtons>
           </td>
