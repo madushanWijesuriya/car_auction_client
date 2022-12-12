@@ -142,10 +142,12 @@
           <div>
             <div class="grid grid-cols-2 gap-2">
               <div class="inner-group">
-                <button class="btn-search" @click="applyFilter">Search</button>
+                <button type="button" class="btn-search" @click="applyFilters">
+                  Search
+                </button>
               </div>
               <div class="inner-group">
-                <button class="btn-clear">Clear</button>
+                <button class="btn-clear" type="button">Clear</button>
               </div>
             </div>
           </div>
@@ -164,6 +166,16 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const carsStore = useCarsStore()
+
+const indexingDetails = reactive({
+  perPage: 0,
+  currentPage: 0,
+  lastPage: 0,
+  total: 0,
+  from: 0,
+  to: 0,
+  links: null,
+})
 
 const applyFilters = async () => {
   try {
