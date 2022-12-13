@@ -99,6 +99,7 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
+  getAllCars()
 }
 const submitForm = async () => {
   try {

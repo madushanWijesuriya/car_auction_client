@@ -63,6 +63,7 @@ const validateForm = () => {
 
 const resetForm = () => {
   Object.assign(form, initialState)
+  getContent()
 }
 const submitForm = async () => {
   try {
