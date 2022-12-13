@@ -11,6 +11,7 @@ export const useContentStore = defineStore('content', () => {
       key: null,
       data: null,
       udpdated_at: null,
+      content:null
     },
   ])
 

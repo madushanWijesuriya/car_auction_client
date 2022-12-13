@@ -17,64 +17,25 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
     props: {
-        user: {
+        inquery: {
             type: Object,
             default: () => undefined,
         },
     },
 
-
-
     setup(props, { emit }) {
-        const { user } = toRefs(props)
-
-
-        const validateForm = () => {
-            // handle frontend validations
-            submitForm()
-        }
-
+        const {
+            inquery,
+        } = toRefs(props)
 
         const resetForm = () => {
             Object.assign(form, initialState)
             // uploaderKey.value += uploaderKey.value + 1
         }
 
-        let roleIds = ref([
-            { id: 1, label: 'Admin' },
-            { id: 2, label: 'Test' },
-        ])
-
-        const initialState = {
-            name: '',
-            email: null,
-            password: '',
-            role_id: '1',
-            password_confirmation: '',
-        }
-
-        const state = reactive({ validationErrors: null, dialogMaker: false })
-        const toast = useToast()
-        let form = reactive({ ...initialState })
-
-        onMounted(async () => {
-            // await nextTick()
-            form.name = user.value?.name
-            form.email = user.value?.email
-            form.password = user.value?.password
-            form.role_id = roleIds?.value?.filter((i) => (i.label == "Admin"))[0].id
-
-            // setTimeout(() => {
-            //     form.model = modelsList.value.find(
-            //         (i) => i.id === vehicle.value?.model_id?.id
-            //     )
-            // }, 2000)
-        })
-
-
         const submitForm = async () => {
             try {
-                const response = await httpResource.patch('/api/staff/staffuser/' + user.value.id, {
+                const response = await httpResource.patch('/api/staff/staffuser/' + inquery.value.id, {
                     name: form?.name,
                     email: form?.email,
                     password: form?.password,
@@ -94,29 +55,71 @@ export default {
                     window.scrollTo(0, 0)
                 } else {
                     console.error(error?.response?.data?.message)
-                    toast.error('Something went wrong', {
-                        timeout: 2000,
-                    })
                 }
             }
         }
+
+        const validateForm = () => {
+            // handle frontend validations
+            submitForm()
+        }
+
+        let roleIds = ref([
+            { id: 1, label: 'Admin' },
+            { id: 2, label: 'Test' },
+        ])
+        const initialState = {
+            id: '',
+            type: '',
+            vehicle_id: '',
+            country_id: '',
+            name: '',
+            email: '',
+            cell_no: '',
+            port_name: '',
+            mobile_no: '',
+            created_at: '',
+        }
+        const state = reactive({ validationErrors: null, dialogMaker: false })
+        const toast = useToast()
+        let form = reactive({ ...initialState })
+
+        onMounted(async () => {
+            // await nextTick()
+            form.id = inquery.value.id,
+                form.type = inquery.value.type,
+                form.vehicle_id = inquery.value.vehicle_id?.id,
+                form.country_id = inquery.value.country_id?.name,
+                form.name = inquery.value.name,
+                form.email = inquery.value.email,
+                form.cell_no = inquery.value.cell_no,
+                form.port_name = inquery.value.port_name,
+                form.mobile_no = inquery.value.mobile_no,
+                form.created_at = inquery.value.created_at
+
+            // setTimeout(() => {
+            //     form.model = modelsList.value.find(
+            //         (i) => i.id === vehicle.value?.model_id?.id
+            //     )
+            // }, 2000)
+        })
+
+
 
         return {
             form,
             roleIds,
             validateForm,
-            resetForm
+            resetForm,
         }
-    }
-
-
+    },
 }
-
 </script>
 <template>
     <div class="edit-car-modal">
         <CardBox form @submit.prevent="submit">
-
+            <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Staff User" main>
+            </SectionTitleLineWithButton>
             <FormField label="Name" help="">
                 <FormControl v-model="form.name" type="text" placeholder="User Name" />
             </FormField>
@@ -145,6 +148,7 @@ export default {
         </CardBox>
     </div>
 </template>
+  
 
 <styles scoped lang="scss">
 .edit-car-modal {

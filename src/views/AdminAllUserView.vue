@@ -4,6 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
 import { useStaffUsersStore } from '../stores/staffuser'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -16,13 +17,14 @@ const decoratedItems = computed(() => {
   if (!items.value || !Array.isArray(items.value)) return []
   return items.value.map((i) => {
     return {
-      id: i.id,
-      photo: i.name,
-      email: i.email,
-      model: i.email_verified_at?.email_verified_at,
-      fob: i.created_at?.created_at,
-      status: i.updated_at?.updated_at,
-      inquery: i.roles?.roles
+      id: i?.id,
+      name: i?.name,
+      email: i?.email,
+      email_verified_at: i?.email_verified_at,
+      created_at: i?.created_at,
+      updated_at: i?.updated_at,
+      // deleted_at: i?.deleted_at,
+      roles: i?.roles[0]?.name,
     }
   })
 })
@@ -105,7 +107,7 @@ let form = reactive({ ...initialState })
         </CardBox>
         <CardBox style="margin-top: 40px">
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="All Users" main></SectionTitleLineWithButton>
-          <Table :items="decoratedItems" :headers="headers"> </Table>
+          <StaffUserTable :items="decoratedItems" :headers="headers"> </StaffUserTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

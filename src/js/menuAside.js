@@ -42,11 +42,11 @@ export default [
         label: 'Content-Managment',
         icon: mdiCarSearch,
       },
-      {
-        to: '/admin/add-car',
-        label: 'Add car',
-        icon: mdiCarEstate,
-      },
+      // {
+      //   to: '/admin/add-car',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
     ],
   },
   // {
@@ -74,11 +74,11 @@ export default [
         label: 'Client Managment',
         icon: mdiCarSearch,
       },
-      {
-        to: '/admin/create-client',
-        label: 'create client',
-        icon: mdiCarSearch,
-      },
+      // {
+      //   to: '/admin/create-client',
+      //   label: 'create client',
+      //   icon: mdiCarSearch,
+      // },
       // {
       //   to: '/admin/add-client',
       //   label: 'Add car',

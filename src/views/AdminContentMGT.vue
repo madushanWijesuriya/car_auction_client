@@ -27,6 +27,7 @@ const decoratedItems = computed(() => {
       key: i?.content?.key,
       data: i?.content?.data,
       udpdated_at: i?.updated_at,
+      content: i?.content?.contents
     }
   })
 })
@@ -39,8 +40,9 @@ const getContent = async () => {
     })
 
     const countries = await httpResource.get('/api/resources/countries')
+    let options = countries?.data?.data.map((item)=>({id:item?.id ,   label:item?.name}))
     contentStore.$patch({
-      countries: countries?.data?.data,
+      countries: options,
     })
   } catch (error) {
     console.error(error)
@@ -74,6 +76,20 @@ const submitForm = async () => {
     console.error(error?.response?.data?.message)
   }
 }
+const applyFilters = async () => {
+  try {
+    let filterQuery = '/api/staff/content/country/'
+
+    if (form.country_id) filterQuery += `id=${form.country_id.id}`
+    const response = await httpResource.get(filterQuery)
+    contentStore.$patch({
+      content: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 </script>
 <template>
   <div class="all-cars">
@@ -93,6 +109,7 @@ const submitForm = async () => {
                   :options="countries"
                 /> </FormField
             ></el-col>
+            
           </el-row>
 
           <BaseButtons>
@@ -100,7 +117,7 @@ const submitForm = async () => {
               type="submit justify-end lg:justify-end"
               color="info"
               label="Search"
-              @click="validateForm"
+              @click="applyFilters"
               no-wrap
             />
             <BaseButton

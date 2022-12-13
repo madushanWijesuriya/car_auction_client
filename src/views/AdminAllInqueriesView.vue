@@ -4,6 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import InqueryTable from '@/components/Tables/Admin/InqueryTable.vue'
 import { useCarsStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -207,7 +208,7 @@ let form = reactive({ ...initialState })
             title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
-          <Table :items="decoratedItems" :headers="headers"> </Table>
+          <InqueryTable :items="decoratedItems" :headers="headers"> </InqueryTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

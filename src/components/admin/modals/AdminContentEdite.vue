@@ -17,16 +17,13 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
     props: {
-        user: {
+        content: {
             type: Object,
             default: () => undefined,
         },
     },
-
-
-
     setup(props, { emit }) {
-        const { user } = toRefs(props)
+        const { content } = toRefs(props)
 
 
         const validateForm = () => {
@@ -40,17 +37,8 @@ export default {
             // uploaderKey.value += uploaderKey.value + 1
         }
 
-        let roleIds = ref([
-            { id: 1, label: 'Admin' },
-            { id: 2, label: 'Test' },
-        ])
-
         const initialState = {
-            name: '',
-            email: null,
-            password: '',
-            role_id: '1',
-            password_confirmation: '',
+            content: '',
         }
 
         const state = reactive({ validationErrors: null, dialogMaker: false })
@@ -59,11 +47,7 @@ export default {
 
         onMounted(async () => {
             // await nextTick()
-            form.name = user.value?.name
-            form.email = user.value?.email
-            form.password = user.value?.password
-            form.role_id = roleIds?.value?.filter((i) => (i.label == "Admin"))[0].id
-
+            form.content = content.value?.content
             // setTimeout(() => {
             //     form.model = modelsList.value.find(
             //         (i) => i.id === vehicle.value?.model_id?.id
@@ -74,13 +58,10 @@ export default {
 
         const submitForm = async () => {
             try {
-                const response = await httpResource.patch('/api/staff/staffuser/' + user.value.id, {
-                    name: form?.name,
-                    email: form?.email,
-                    password: form?.password,
-                    password_confirmation: form?.password_confirmation,
-                    role_id: form?.role_id.id,
+                const response = await httpResource.patch('/api/staff/content/' + content.value.id, {
+                    "contents": form?.content,
                 })
+              
                 if (response.status === 200) {
                     state.validationErrors = null
                     toast.success('Successfully Updated', {
@@ -89,6 +70,7 @@ export default {
                     emit('closeModal')
                 }
             } catch (error) {
+                console.log(error,'roerer');
                 if (error.response.status == 422) {
                     state.validationErrors = error.response.data.errors
                     window.scrollTo(0, 0)
@@ -103,7 +85,6 @@ export default {
 
         return {
             form,
-            roleIds,
             validateForm,
             resetForm
         }
@@ -116,22 +97,8 @@ export default {
 <template>
     <div class="edit-car-modal">
         <CardBox form @submit.prevent="submit">
-
-            <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="User Name" />
-            </FormField>
-            <FormField label="Email">
-                <FormControl v-model="form.email" type="email" placeholder="Email" />
-            </FormField>
-            <FormField label="Password" help="">
-                <FormControl v-model="form.password" type="password" placeholder="" />
-            </FormField>
-            <FormField label="Confirm Password">
-                <FormControl v-model="form.password_confirmation" name="password_confirmation" type="Password"
-                    placeholder="" />
-            </FormField>
-            <FormField label="Role">
-                <FormControl v-model="form.role_id" :options="roleIds" />
+            <FormField label="Content" help="">
+                <FormControl v-model="form.content" type="text" placeholder="User Name" />
             </FormField>
         </CardBox>
 

@@ -4,6 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import ClientTable from '@/components/Tables/Admin/ClientTable.vue'
 import { useClientsStore } from '@/stores/clientsMgt'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -22,7 +23,8 @@ const decoratedItems = computed(() => {
             id: i?.id,
             name: i?.name,
             email: i?.email,
-            country: i?.country?.name
+            country: i?.country?.name,
+            isActive:i?.isActive ? "Active" : "deactivate" 
         }
     })
 })
@@ -47,9 +49,9 @@ const actions = [
 
 const getAllClients = async () => {
     try {
-        // const response = await httpResource.get('api/staff/customer?filter[country_id]=2')
+        const response = await httpResource.get('api/staff/customer')
         clientsStore.$patch({
-            clients: clientsData.data
+            clients: response?.data?.data
         })
 
         const countries = await httpResource.get('/api/resources/countries')
@@ -59,6 +61,22 @@ const getAllClients = async () => {
     } catch (error) {
         console.error(error)
     }
+}
+
+const applyFilters = async () => {
+  try {
+    let filterQuery = '/api/staff/customer?'
+
+    if (form?.country_id?.id) filterQuery += `filter[country_id]=${form.country_id?.id}`
+    if (form?.isActive?.id) filterQuery += `&filter[isActive]=${form?.isActive?.id}`
+    if (form?.email) filterQuery += `&filter[email]=${form?.email}`
+    const response = await httpResource.get(filterQuery)
+    clientsStore.$patch({
+        clients: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 onMounted(async () => {
@@ -89,7 +107,7 @@ const submitForm = async () => {
         console.error(error?.response?.data?.message)
     }
 }
-const makersList = computed(() => {
+const countryList = computed(() => {
     if (!countries?.value || !Array.isArray(countries?.value)) return []
     return countries?.value.map((i) => {
         return {
@@ -98,25 +116,23 @@ const makersList = computed(() => {
     })
 })
 
-const bodyTypeList = [
-    { id: 1, label: '--' },
-    { id: 2, label: 'Sedan' },
-    { id: 3, label: 'Hatchback' },
-    { id: 4, label: 'SUV' },
-    { id: 5, label: 'MUV' },
-    { id: 6, label: 'Coupe' },
-    { id: 7, label: 'Convertibles' },
-    { id: 8, label: 'Other' },
-]
+
 const initialState = {
-    maker: makersList[0],
-    model: null,
-    chassisNo: '',
-    fromYear: new Date().getFullYear(),
-    toYear: new Date().getFullYear(),
-    bodyType: bodyTypeList[0],
-    reff: '',
+    country_id: countryList[0],
+    isActive: 1,
+    email:''
 }
+
+const statusOptions = [
+    {
+        id:1,
+        label:'Active'
+    },
+    {
+        id:2,
+        label:'Deactive'
+    }
+]
 
 let form = reactive({ ...initialState })
 </script>
@@ -129,21 +145,31 @@ let form = reactive({ ...initialState })
                     <el-row :gutter="20">
                         <el-col :span="6">
                             <FormField label="Country">
-                                <FormControl v-model="form.maker" :options="makersList" />
+                                <FormControl v-model="form.country_id" :options="countryList" />
+                            </FormField>
+                        </el-col>
+                        <el-col :span="6">
+                            <FormField label="Status">
+                                <FormControl v-model="form.isActive" :options="statusOptions"/>
+                            </FormField>
+                        </el-col>
+                        <el-col :span="6">
+                            <FormField label="Email">
+                                <FormControl v-model="form.email" type="text"/>
                             </FormField>
                         </el-col>
                     </el-row>
 
                     <BaseButtons>
                         <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search"
-                            @click="validateForm" no-wrap />
+                            @click="applyFilters" no-wrap />
                         <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset"
                             @click="resetForm" no-wrap />
                     </BaseButtons>
                 </CardBox>
                 <CardBox style="margin-top: 40px">
                     <SectionTitleLineWithButton title="Clients" main></SectionTitleLineWithButton>
-                    <Table :items="decoratedItems" :headers="headers" :actions="actions"> </Table>
+                    <ClientTable :items="decoratedItems" :headers="headers" :actions="actions"> </ClientTable>
                 </CardBox>
             </SectionMain>
         </LayoutAuthenticated>

@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, toRefs, reactive, onMounted, nextTick } from 'vue'
 // import { useMainStore } from '@/stores/main'
+import { mdiEye, mdiTrashCan } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/admin/TableCheckboxCell.vue'
 import BaseLevel from '@/components/admin/BaseLevel.vue'
@@ -9,8 +10,6 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
-import { mdiEye, mdiTrashCan, mdiBlockHelper } from '@mdi/js'
-const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
   checkable: Boolean,
@@ -54,54 +53,8 @@ const openEditModel = async (vehicleId) => {
   isModalActive.value = true
 }
 
-const blockUser = async (id) => {
-  try {
-    const response = await httpResource.get('/api/staff/customer/change-status/' + id, {
-    })
-
-    if (response.status === 200) {
-      state.validationErrors = null
-      toast.success('Successfully Blocked', {
-        timeout: 2000,
-      })
-    }
-  } catch (error) {
-    console.log(error, 'roerer');
-    if (error.response.status == 422) {
-      state.validationErrors = error.response.data.errors
-      window.scrollTo(0, 0)
-    } else {
-      console.error(error?.response?.data?.message)
-      toast.error('Something went wrong', {
-        timeout: 2000,
-      })
-    }
-  }
-}
-
-async function deleteClient(id) {
-  try {
-    const response = await httpResource.delete('/api/staff/staffuser/' + id, {
-    })
-
-    if (response.status === 200) {
-      state.validationErrors = null
-      toast.success('Successfully Deleted', {
-        timeout: 2000,
-      })
-    }
-  } catch (error) {
-    console.log(error, 'roerer');
-    if (error.response.status == 422) {
-      state.validationErrors = error.response.data.errors
-      window.scrollTo(0, 0)
-    } else {
-      console.error(error?.response?.data?.message)
-      toast.error('Something went wrong', {
-        timeout: 2000,
-      })
-    }
-  }
+function deleteVehicle(vehicleId) {
+  console.log('delete vehicle clicked!', vehicleId)
 }
 
 const action = {
@@ -175,33 +128,132 @@ function isValidHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
+///
+const range = (start, stop, step) =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step)
+
+let makersList = ref([])
+const getMakers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/maker')
+    makersList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+let modelsList = ref([])
+const getModels = async (moakerId) => {
+  try {
+    const response = await httpResource.get('/api/resources/model/' + moakerId)
+    modelsList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 const changeMaker = (id) => {
   getModels(id)
 }
 
-onMounted(async () => {
+let statusList = ref([])
+const getStatus = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/status')
+    statusList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+const yearsList = range(
+  new Date().getFullYear(),
+  new Date().getFullYear() - 50,
+  -1
+)
+const monthsList = Array.from({ length: 12 }, (e, i) => {
+  return {
+    id: i + 1,
+    label: new Date(null, i + 1, null).toLocaleDateString('en', {
+      month: 'short',
+    }),
+  }
+})
+let bodyTypeList = ref([])
+const getBodyTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/body-type')
+    bodyTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let transmissionList = ref([])
+const getTransmitions = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/transmission')
+    transmissionList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
+  getMakers()
+  getStatus()
+  getBodyTypes()
+  getTransmitions()
+  getStreeings()
+  getDoorTypes()
+  getfuleTypes()
+  getExteriorColors()
+  getFeatures()
+  getDriveTypeList()
 })
 ///
 </script>
 
 <template>
-  <!-- <div>  -->
-  <!-- <CardBoxModal
+  <div>
+    <CardBoxModal
       v-model="isModalActive"
       title="Edit vehicle"
       v-if="isModalActive"
     >
       <AdminEditCarModal
+        :makersList="makersList"
+        :modelsList="modelsList"
+        :statusList="statusList"
+        :bodyTypeList="bodyTypeList"
+        :transmissionList="transmissionList"
+        :streeingList="streeingList"
+        :doorTypesList="doorTypesList"
+        :fuleTypeList="fuleTypeList"
+        :exteriorColorList="exteriorColorList"
+        :featuresList="featuresList"
+        :yearsList="yearsList"
+        :monthsList="monthsList"
+        :driveTypeList="driveTypeList"
         :vehicle="vehicle"
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"
       />
-    </CardBoxModal> 
-</div> 
+    </CardBoxModal>
+  </div>
 
-   <CardBoxModal
+  <CardBoxModal
     v-model="isModalDangerActive"
     title="Please confirm"
     button="danger"
@@ -209,11 +261,14 @@ onMounted(async () => {
   >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
-  </CardBoxModal> -->
+  </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
-    <span v-for="checkedRow in checkedRows" :key="checkedRow.id"
-      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700">
+    <span
+      v-for="checkedRow in checkedRows"
+      :key="checkedRow.id"
+      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700"
+    >
       {{ checkedRow.name }}
     </span>
   </div>
@@ -228,7 +283,10 @@ onMounted(async () => {
       </thead>
       <tbody>
         <tr v-for="(row, index) in itemsPaginated" :key="index">
-          <TableCheckboxCell v-if="checkable" @checked="checked($event, client)" />
+          <TableCheckboxCell
+            v-if="checkable"
+            @checked="checked($event, client)"
+          />
           <td v-for="dataPoint in row">
             <span v-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
@@ -239,17 +297,20 @@ onMounted(async () => {
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">
             <BaseButtons type="justify-start lg:justify-end" no-wrap>
-              <BaseButton label="Block" color="danger" icon=mdiBlockHelper small v-on="
-                { click: () => blockUser(row.id) }
-              " />
-              <BaseButton label="info" color="info" icon=mdiEye, small v-on="
-                index === 0
-                  ? { click: () => openEditModel(row.id) }
-                  : { }
-              " />
-              <!-- <BaseButton label="Delete" color="danger" icon=mdiTrashCan small v-on="
-                   { click: () => deleteClient(row.id) }
-              " /> -->
+              <div v-for="(item, index) in actions" :key="index">
+                <BaseButton
+                  :label="item.label ? item.label : ''"
+                  :color="item?.color"
+                  :icon="item?.icon"
+                  small
+                  v-on="
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: deleteVehicle }
+                  "
+                />
+              </div>
+
               <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
             </BaseButtons>
           </td>
@@ -260,8 +321,15 @@ onMounted(async () => {
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
-        <BaseButton v-for="page in pagesList" :key="page" :active="page === currentPage" :label="page + 1"
-          :color="page === currentPage ? 'lightDark' : 'whiteDark'" small @click="currentPage = page" />
+        <BaseButton
+          v-for="page in pagesList"
+          :key="page"
+          :active="page === currentPage"
+          :label="page + 1"
+          :color="page === currentPage ? 'lightDark' : 'whiteDark'"
+          small
+          @click="currentPage = page"
+        />
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
