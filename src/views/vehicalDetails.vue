@@ -19,20 +19,38 @@ const textarea2 = ref('')
 let countryList = ref([])
 let vehicleData = ref([])
 const base_url_api = import.meta.env.VITE_BASE_URL_API
-
-const imagesList = computed(() => {
-  return vehicleData
+let imagesFromBE = ref([
+  { id: 1, name: '/vehical_details/car-1.svg' },
+  { id: 2, name: '/vehical_details/car-2.svg' },
+  { id: 3, name: '/vehical_details/car-2.svg' },
+  { id: 4, name: '/vehical_details/car-2.svg' },
+  { id: 5, name: '/vehical_details/car-2.svg' },
+  { id: 6, name: '/vehical_details/car-2.svg' },
+  { id: 7, name: '/vehical_details/car-2.svg' },
+])
+let imagesList = computed(() => {
+  return imagesFromBE.value
 })
 let currentId = ref(1)
 const currentImage = computed(() => {
-  if (!currentId.value) return { id: -99, name: '' }
-  return imagesList.find((i) => i.id === currentId.value)
+  if (!currentId.value || !visibleImageList.value) return { id: -99, name: '' }
+  return visibleImageList.value.find((i) => i.id === currentId.value)
 })
 const visibleImageList = computed(() => {
-  return imagesList.slice(0, 6)
+  if (!imagesList.value || (imagesList.value && imagesList.value.length < 1))
+    return []
+  return imagesList.value.slice(0, 6)
 })
-function changeImage() {
+function changeImage(val) {
   if (!visibleImageList.value) return
+  if (val && val === 'reverse') {
+    if (!visibleImageList.value.some((i) => i.id === currentId.value - 1)) {
+      currentId.value = 1
+    } else {
+      currentId.value -= 1
+    }
+    return
+  }
   if (!visibleImageList.value.some((i) => i.id === currentId.value + 1)) {
     currentId.value = 1
   } else {
@@ -79,13 +97,13 @@ const handleClick = () => {
 }
 
 function resetForm() {
-  ;(postData.name = null),
-    (postData.country_id = null),
-    (postData.email = null),
-    (postData.cell_no = null),
-    (postData.port_name = null),
-    (postData.mobile_no = null),
-    (postData.message = null)
+  postData.name = null
+  postData.country_id = null
+  postData.email = null
+  postData.cell_no = null
+  postData.port_name = null
+  postData.mobile_no = null
+  postData.message = null
 }
 
 const getCountriesforSelect = async () => {
@@ -105,7 +123,21 @@ const getVehicleDetails = async () => {
       '/api/guest/vehicle/' + postData.vehicle_id
     )
     vehicleData.value = response.data.data
-    imagesList = response.data.data.images
+    // imagesFromBE.value = response.data.data.images.map(i => {
+    // return {
+    //   ...i,
+    //   id: i.id,
+    //   name: base_url_api + 'url....'
+    // }
+    // })
+    /** output
+     * [
+     *  {
+     *    id: 1,
+     *    name: 'image URL'
+     *  },
+     * ]
+     */
   } catch (error) {
     console.error(error)
   }
@@ -115,7 +147,7 @@ onMounted(async () => {
   getCountriesforSelect()
   postData.vehicle_id = route.params.id
   getVehicleDetails()
-  timer.value = setInterval(changeImage, 2000)
+  timer.value = setInterval(changeImage, 3000)
 })
 onBeforeUnmount(function () {
   clearInterval(timer.value)
@@ -124,6 +156,10 @@ onUpdated(function () {
   clearInterval(timer.value)
   timer.value = setInterval(changeImage, 3000)
 })
+const getImageUrl = (name) => {
+  if (!name) return ''
+  return name
+}
 </script>
 <template>
   <div
@@ -198,13 +234,13 @@ onUpdated(function () {
     >
       <div class="flex flex-col gap-4 lg:gap-4 lg:w-[50%]">
         <div class="w-full">
-          <img
-            class="rounded-lg w-full"
-            src="@/assets/images/vehicalDetails/car-1.svg"
-          />
+          <img class="rounded-lg w-full" :src="currentImage.name" />
         </div>
         <div class="w-full flex gap-2">
-          <div class="flex items-center">
+          <div
+            class="flex items-center cursor-pointer"
+            @click="changeImage('reverse')"
+          >
             <svg
               width="2vw"
               height="5vh"
@@ -222,14 +258,15 @@ onUpdated(function () {
             </svg>
           </div>
           <div class="grid grid-cols-6 gap-3 grow">
-            <div v-for="image in vehicleData?.images" :key="image.id">
+            <div v-for="image in visibleImageList" :key="image.id">
               <img
-                class="rounded-lg w-full"
-                :src="base_url_api + image.full_url"
+                class="rounded-lg w-full cursor-pointer"
+                :src="getImageUrl(image.name)"
+                @click="currentId = image.id"
               />
             </div>
           </div>
-          <div class="flex items-center">
+          <div class="flex items-center cursor-pointer" @click="changeImage">
             <svg
               width="2vw"
               height="5vh"
@@ -259,8 +296,8 @@ onUpdated(function () {
         <div class="flex justify-between items-center">
           <p class="font-card-title-1">Specifications</p>
           <div class="flex flex-col gap-1 lg:hidden">
-            <P class="font-car-price-title"> Car Price : </P>
-            <P class="font-car-price"> ¥ 147,500.00 </P>
+            <p class="font-car-price-title">Car Price :</p>
+            <p class="font-car-price">¥ 147,500.00</p>
           </div>
           <div class="hidden lg:flex">Copy to Clipboard</div>
         </div>
