@@ -9,6 +9,8 @@ import { useStaffUsersStore } from '../stores/staffuser'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const usersStore = useStaffUsersStore()
 const { users: items } = storeToRefs(usersStore)
@@ -54,7 +56,6 @@ const applyFilters = async () => {
   }
 }
 
-
 onMounted(async () => {
   await getAllUsers()
 })
@@ -68,7 +69,6 @@ const validateForm = () => {
 }
 
 const resetForm = () => {
-
   Object.assign(form, initialState)
   getAllUsers()
 }
@@ -79,6 +79,9 @@ const submitForm = async () => {
     // console.log(response)
     if (response.status === 200) {
       resetForm()
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
     }
   } catch (error) {
     console.error(error?.response?.data?.message)
@@ -93,7 +96,7 @@ const initialState = {
   fromYear: new Date().getFullYear(),
   toYear: new Date().getFullYear(),
   email: '',
-  role_id:''
+  role_id: '',
 }
 let roleIds = [
   { id: 1, label: 'Admin' },
@@ -107,40 +110,62 @@ let form = reactive({ ...initialState })
     <LayoutAuthenticated>
       <SectionMain>
         <CardBox>
-          <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
+          <SectionTitleLineWithButton
+            :icon="mdiCarEstate"
+            title="Search"
+            main
+          ></SectionTitleLineWithButton>
           <el-row :gutter="20">
             <el-col :span="8">
-              <FormField label="From year">
-                <FormControl v-model="form.fromYear" :icon="mdiCalendarRange" :options="yearsList" />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="To year">
-                <FormControl v-model="form.toYear" :icon="mdiCalendarRange" :options="yearsList" />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
               <FormField label="Email">
-                <FormControl v-model="form.email" :icon="mdiCalendarRange" type="text" />
+                <FormControl
+                  v-model="form.email"
+                  :icon="mdiCalendarRange"
+                  type="text"
+                />
               </FormField>
             </el-col>
             <el-col :span="8">
               <FormField label="Role">
-                <FormControl v-model="form.role_id" :icon="mdiCalendarRange" :options=roleIds />
+                <FormControl
+                  v-model="form.role_id"
+                  :icon="mdiCalendarRange"
+                  :options="roleIds"
+                />
               </FormField>
             </el-col>
           </el-row>
 
           <BaseButtons>
-            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="applyFilters"
-              no-wrap />
-            <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
-              no-wrap />
+            <BaseButton
+              type="submit justify-end lg:justify-end"
+              color="info"
+              label="Search"
+              @click="applyFilters"
+              no-wrap
+            />
+            <BaseButton
+              type="reset justify-end lg:justify-end"
+              color="info"
+              outline
+              label="Reset"
+              @click="resetForm"
+              no-wrap
+            />
           </BaseButtons>
         </CardBox>
         <CardBox style="margin-top: 40px">
-          <SectionTitleLineWithButton :icon="mdiCarEstate" title="All Users" main></SectionTitleLineWithButton>
-          <StaffUserTable :items="decoratedItems" :headers="headers"> </StaffUserTable>
+          <SectionTitleLineWithButton
+            :icon="mdiCarEstate"
+            title="All Users"
+            main
+          ></SectionTitleLineWithButton>
+          <StaffUserTable
+            @edit-user="getAllUsers"
+            :items="decoratedItems"
+            :headers="headers"
+          >
+          </StaffUserTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

@@ -8,6 +8,9 @@ import { useCarsStore } from '@/stores/cars'
 import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
+
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 const carsStore = useCarsStore()
 const { cars: items } = storeToRefs(carsStore)
@@ -23,7 +26,7 @@ const decoratedItems = computed(() => {
       model: i?.model_id?.name,
       fob: i?.fob_price,
       status: i?.status_id?.name,
-      inquery: '-',
+      inquery: i?.inqueries?.length,
     }
   })
 })
@@ -108,6 +111,9 @@ const submitForm = async () => {
     // console.log(response)
     if (response.status === 200) {
       resetForm()
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
     }
   } catch (error) {
     console.error(error?.response?.data?.message)

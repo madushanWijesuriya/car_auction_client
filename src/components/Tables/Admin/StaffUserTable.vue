@@ -14,6 +14,8 @@ import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
 import AdminEditAllUser from '@/components/admin/modals/AdminEditAllUser.vue'
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 
+const emit = defineEmits(['edit-user'])
+
 const props = defineProps({
   checkable: Boolean,
   items: {
@@ -59,8 +61,7 @@ const openEditModel = async (vehicleId) => {
 
 async function deleteStaffUser(id) {
   try {
-    const response = await httpResource.delete('/api/staff/staffuser/' + id, {
-    })
+    const response = await httpResource.delete('/api/staff/staffuser/' + id, {})
 
     if (response.status === 200) {
       state.validationErrors = null
@@ -69,7 +70,7 @@ async function deleteStaffUser(id) {
       })
     }
   } catch (error) {
-    console.log(error, 'roerer');
+    console.log(error, 'roerer')
     if (error.response.status == 422) {
       state.validationErrors = error.response.data.errors
       window.scrollTo(0, 0)
@@ -168,27 +169,41 @@ const getTransmitions = async () => {
   }
 }
 
-
-onMounted(async () => {
-
-})
+onMounted(async () => {})
 </script>
 
 <template>
   <div>
-    <CardBoxModal v-model="isModalActive" title="Edit Staff User" v-if="isModalActive">
-      <AdminEditAllUser :user="user" @changeMaker="changeMaker" @closeModal="isModalActive = false" />
+    <CardBoxModal
+      v-model="isModalActive"
+      title="Edit Staff User"
+      v-if="isModalActive"
+    >
+      <AdminEditAllUser
+        @edit-user="emit('edit-user')"
+        :user="user"
+        @changeMaker="changeMaker"
+        @closeModal="isModalActive = false"
+      />
     </CardBoxModal>
   </div>
 
-  <CardBoxModal v-model="isModalDangerActive" title="Please confirm" button="danger" has-cancel>
+  <CardBoxModal
+    v-model="isModalDangerActive"
+    title="Please confirm"
+    button="danger"
+    has-cancel
+  >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
   </CardBoxModal>
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
-    <span v-for="checkedRow in checkedRows" :key="checkedRow.id"
-      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700">
+    <span
+      v-for="checkedRow in checkedRows"
+      :key="checkedRow.id"
+      class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700"
+    >
       {{ checkedRow.name }}
     </span>
   </div>
@@ -203,7 +218,10 @@ onMounted(async () => {
       </thead>
       <tbody>
         <tr v-for="(row, index) in itemsPaginated" :key="index">
-          <TableCheckboxCell v-if="checkable" @checked="checked($event, client)" />
+          <TableCheckboxCell
+            v-if="checkable"
+            @checked="checked($event, client)"
+          />
           <td v-for="dataPoint in row">
             <span v-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
@@ -215,11 +233,17 @@ onMounted(async () => {
           <td class="before:hidden lg:w-1 whitespace-nowrap">
             <BaseButtons type="justify-start lg:justify-end" no-wrap>
               <div v-for="(item, index) in actions" :key="index">
-                <BaseButton :label="item.label ? item.label : ''" :color="item?.color" :icon="item?.icon" small v-on="
-                  index === 0
-                    ? { click: () => openEditModel(row.id) }
-                    : { click: ()=> deleteStaffUser(row.id) }
-                " />
+                <BaseButton
+                  :label="item.label ? item.label : ''"
+                  :color="item?.color"
+                  :icon="item?.icon"
+                  small
+                  v-on="
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: () => deleteStaffUser(row.id) }
+                  "
+                />
               </div>
 
               <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
@@ -232,8 +256,15 @@ onMounted(async () => {
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>
-        <BaseButton v-for="page in pagesList" :key="page" :active="page === currentPage" :label="page + 1"
-          :color="page === currentPage ? 'lightDark' : 'whiteDark'" small @click="currentPage = page" />
+        <BaseButton
+          v-for="page in pagesList"
+          :key="page"
+          :active="page === currentPage"
+          :label="page + 1"
+          :color="page === currentPage ? 'lightDark' : 'whiteDark'"
+          small
+          @click="currentPage = page"
+        />
       </BaseButtons>
       <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
     </BaseLevel>
