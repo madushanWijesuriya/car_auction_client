@@ -40,6 +40,21 @@ const getAllUsers = async () => {
   }
 }
 
+const applyFilters = async () => {
+  try {
+    let filterQuery = '/api/staff/staffuser?'
+    if (form.email) filterQuery += `filter[email]=${form.email}`
+    if (form.role_id) filterQuery += `filter[roles.id]=${form.role_id.id}`
+    const response = await httpResource.get(filterQuery)
+    usersStore.$patch({
+      users: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
 onMounted(async () => {
   await getAllUsers()
 })
@@ -55,6 +70,7 @@ const validateForm = () => {
 const resetForm = () => {
 
   Object.assign(form, initialState)
+  getAllUsers()
 }
 const submitForm = async () => {
   try {
@@ -76,7 +92,14 @@ const yearsList = range(
 const initialState = {
   fromYear: new Date().getFullYear(),
   toYear: new Date().getFullYear(),
+  email: '',
+  role_id:''
 }
+let roleIds = [
+  { id: 1, label: 'Admin' },
+  { id: 2, label: 'Test' },
+]
+
 let form = reactive({ ...initialState })
 </script>
 <template>
@@ -96,10 +119,20 @@ let form = reactive({ ...initialState })
                 <FormControl v-model="form.toYear" :icon="mdiCalendarRange" :options="yearsList" />
               </FormField>
             </el-col>
+            <el-col :span="8">
+              <FormField label="Email">
+                <FormControl v-model="form.email" :icon="mdiCalendarRange" type="text" />
+              </FormField>
+            </el-col>
+            <el-col :span="8">
+              <FormField label="Role">
+                <FormControl v-model="form.role_id" :icon="mdiCalendarRange" :options=roleIds />
+              </FormField>
+            </el-col>
           </el-row>
 
           <BaseButtons>
-            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="validateForm"
+            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="applyFilters"
               no-wrap />
             <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
               no-wrap />

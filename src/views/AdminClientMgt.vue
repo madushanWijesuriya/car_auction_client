@@ -94,6 +94,7 @@ const validateForm = () => {
 const resetForm = () => {
 
     Object.assign(form, initialState)
+    getAllClients()
 }
 const submitForm = async () => {
     try {
