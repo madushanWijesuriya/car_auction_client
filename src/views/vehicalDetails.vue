@@ -11,6 +11,8 @@ import {
 import Recapture from '../components/recapture/Recapture.vue'
 import { useRoute } from 'vue-router'
 import httpResource from '../http/httpResource'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const input = ref('')
 const timer = ref(null)
@@ -84,6 +86,9 @@ const storeInquery = async () => {
       message: postData?.message,
     })
     if (response.status === 200) {
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
       resetForm()
     }
   } catch (error) {

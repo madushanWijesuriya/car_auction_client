@@ -102,6 +102,9 @@ export default {
           }
         )
         if (response.status === 200) {
+          toast.success('Successfully Added', {
+            timeout: 2000,
+          })
           state.validationErrors = null
           resetForm()
           toast.success('Successfully Added', {

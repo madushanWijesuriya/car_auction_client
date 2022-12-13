@@ -142,7 +142,7 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Contents',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
@@ -152,7 +152,7 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Clients',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
@@ -162,7 +162,7 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Users',
+        title: 'All Staff',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },

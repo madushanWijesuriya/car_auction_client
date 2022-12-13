@@ -10,6 +10,8 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
+import CardBoxWidget from '@/components/admin/CardBoxWidget.vue'
+
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
@@ -361,8 +363,12 @@ onMounted(async () => {
             v-if="checkable"
             @checked="checked($event, client)"
           />
-          <td v-for="dataPoint in row">
-            <span v-if="!isValidHttpUrl(dataPoint)">
+          <td v-for="(dataPoint, key) in row" :key="key">
+            <BaseLevel v-if="key == 'inquery'" class="mb-3" mobile>
+              <PillTagTrend :trend="dataPoint" small />
+              <BaseButton icon-w="w-4" icon-h="h-4" color="lightDark" small />
+            </BaseLevel>
+            <span v-else-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
             </span>
             <span v-else>

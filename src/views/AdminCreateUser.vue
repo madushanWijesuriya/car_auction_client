@@ -10,6 +10,8 @@ import BaseDivider from '@/components/admin/BaseDivider.vue'
 import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import httpResource from '@/http/httpResource'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 export default {
   setup() {
@@ -34,6 +36,9 @@ export default {
           role_id: form?.role_id.id,
         })
         if (response.status === 200) {
+          toast.success('Successfully Added', {
+            timeout: 2000,
+          })
           resetForm()
         }
       } catch (error) {
@@ -124,7 +129,7 @@ export default {
                 outline
                 label="Reset"
                 @click="resetForm"
-              />        
+              />
             </BaseButtons>
           </template>
         </CardBox>

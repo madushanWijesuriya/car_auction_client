@@ -8,6 +8,8 @@ import { useContentStore } from '@/stores/contentMgt'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 const initialState = {
   country_id: '',
 }
@@ -71,6 +73,9 @@ const submitForm = async () => {
     const response = await httpResource.post('/api/staff/vehicle', {})
     // console.log(response)
     if (response.status === 200) {
+      toast.success('Successfully Added', {
+            timeout: 2000,
+          })
       resetForm()
     }
   } catch (error) {
