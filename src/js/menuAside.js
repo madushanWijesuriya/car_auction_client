@@ -1,11 +1,6 @@
-import { mdiMonitor, mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
+import { mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
 
 export default [
-  {
-    to: '/admin/dashboard',
-    icon: mdiMonitor,
-    label: 'Dashboard',
-  },
   {
     label: 'Cars',
     icon: mdiViewList,
