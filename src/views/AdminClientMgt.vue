@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia'
 import clientsData from '../dummy-data/clients'
 import { mdiEye, mdiTrashCan, mdiBlockHelper } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
-import AdminSendNewsLetters from '@/components/admin/modals/AdminSendNewsLetters.vue'
+import AdminEditeNewsLetters from '@/components/admin/modals/AdminEditeNewsLetters.vue'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
