@@ -1,12 +1,7 @@
 <script>
 import FormField from '@/components/admin/FormField.vue'
 import FormControl from '@/components/admin/FormControl.vue'
-import {
-    onMounted,
-    reactive,
-    ref,
-    toRefs,
-} from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
 import BaseDivider from '@/components/admin/BaseDivider.vue'
 import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
@@ -16,143 +11,170 @@ import NotificationBar from '@/components/admin/NotificationBar.vue'
 import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
-    props: {
-        inquery: {
-            type: Object,
-            default: () => undefined,
-        },
+  props: {
+    inquery: {
+      type: Object,
+      default: () => undefined,
     },
+  },
 
-    setup(props, { emit }) {
-        const {
-            inquery,
-        } = toRefs(props)
+  setup(props, { emit }) {
+    const { inquery } = toRefs(props)
 
-        const resetForm = () => {
-            Object.assign(form, initialState)
-            // uploaderKey.value += uploaderKey.value + 1
+    const resetForm = () => {
+      Object.assign(form, initialState)
+      // uploaderKey.value += uploaderKey.value + 1
+    }
+
+    const submitForm = async () => {
+      try {
+        const response = await httpResource.patch(
+          '/api/staff/staffuser/' + inquery.value.id,
+          {
+            name: form?.name,
+            email: form?.email,
+            password: form?.password,
+            password_confirmation: form?.password_confirmation,
+            role_id: form?.role_id.id,
+          }
+        )
+        if (response.status === 200) {
+          state.validationErrors = null
+          toast.success('Successfully Updated', {
+            timeout: 2000,
+          })
+          emit('closeModal')
         }
-
-        const submitForm = async () => {
-            try {
-                const response = await httpResource.patch('/api/staff/staffuser/' + inquery.value.id, {
-                    name: form?.name,
-                    email: form?.email,
-                    password: form?.password,
-                    password_confirmation: form?.password_confirmation,
-                    role_id: form?.role_id.id,
-                })
-                if (response.status === 200) {
-                    state.validationErrors = null
-                    toast.success('Successfully Updated', {
-                        timeout: 2000,
-                    })
-                    emit('closeModal')
-                }
-            } catch (error) {
-                if (error.response.status == 422) {
-                    state.validationErrors = error.response.data.errors
-                    window.scrollTo(0, 0)
-                } else {
-                    console.error(error?.response?.data?.message)
-                }
-            }
+      } catch (error) {
+        if (error.response.status == 422) {
+          state.validationErrors = error.response.data.errors
+          window.scrollTo(0, 0)
+        } else {
+          console.error(error?.response?.data?.message)
         }
+      }
+    }
 
-        const validateForm = () => {
-            // handle frontend validations
-            submitForm()
-        }
+    const validateForm = () => {
+      // handle frontend validations
+      submitForm()
+    }
 
-        let roleIds = ref([
-            { id: 1, label: 'Admin' },
-            { id: 2, label: 'Test' },
-        ])
-        const initialState = {
-            id: '',
-            type: '',
-            vehicle_id: '',
-            country_id: '',
-            name: '',
-            email: '',
-            cell_no: '',
-            port_name: '',
-            mobile_no: '',
-            created_at: '',
-        }
-        const state = reactive({ validationErrors: null, dialogMaker: false })
-        const toast = useToast()
-        let form = reactive({ ...initialState })
+    let roleIds = ref([])
+    const getRoles = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/roles')
+        roleIds.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    const initialState = {
+      id: '',
+      type: '',
+      vehicle_id: '',
+      country_id: '',
+      name: '',
+      email: '',
+      cell_no: '',
+      port_name: '',
+      mobile_no: '',
+      created_at: '',
+    }
+    const state = reactive({ validationErrors: null, dialogMaker: false })
+    const toast = useToast()
+    let form = reactive({ ...initialState })
 
-        onMounted(async () => {
-            // await nextTick()
-            form.id = inquery.value.id,
-                form.type = inquery.value.type,
-                form.vehicle_id = inquery.value.vehicle_id?.id,
-                form.country_id = inquery.value.country_id?.name,
-                form.name = inquery.value.name,
-                form.email = inquery.value.email,
-                form.cell_no = inquery.value.cell_no,
-                form.port_name = inquery.value.port_name,
-                form.mobile_no = inquery.value.mobile_no,
-                form.created_at = inquery.value.created_at
+    onMounted(async () => {
+      // await nextTick()
+      getRoles()
+      ;(form.id = inquery.value.id),
+        (form.type = inquery.value.type),
+        (form.vehicle_id = inquery.value.vehicle_id?.id),
+        (form.country_id = inquery.value.country_id?.name),
+        (form.name = inquery.value.name),
+        (form.email = inquery.value.email),
+        (form.cell_no = inquery.value.cell_no),
+        (form.port_name = inquery.value.port_name),
+        (form.mobile_no = inquery.value.mobile_no),
+        (form.created_at = inquery.value.created_at)
 
-            // setTimeout(() => {
-            //     form.model = modelsList.value.find(
-            //         (i) => i.id === vehicle.value?.model_id?.id
-            //     )
-            // }, 2000)
-        })
+      // setTimeout(() => {
+      //     form.model = modelsList.value.find(
+      //         (i) => i.id === vehicle.value?.model_id?.id
+      //     )
+      // }, 2000)
+    })
 
-
-
-        return {
-            form,
-            roleIds,
-            validateForm,
-            resetForm,
-        }
-    },
+    return {
+      form,
+      roleIds,
+      validateForm,
+      resetForm,
+      getRoles,
+    }
+  },
 }
 </script>
 <template>
-    <div class="edit-car-modal">
-        <CardBox form @submit.prevent="submit">
-            <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Staff User" main>
-            </SectionTitleLineWithButton>
-            <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="User Name" />
-            </FormField>
-            <FormField label="Email">
-                <FormControl v-model="form.email" type="email" placeholder="Email" />
-            </FormField>
-            <FormField label="Password" help="">
-                <FormControl v-model="form.password" type="password" placeholder="" />
-            </FormField>
-            <FormField label="Confirm Password">
-                <FormControl v-model="form.password_confirmation" name="password_confirmation" type="Password"
-                    placeholder="" />
-            </FormField>
-            <FormField label="Role">
-                <FormControl v-model="form.role_id" :options="roleIds" />
-            </FormField>
-        </CardBox>
+  <div class="edit-car-modal">
+    <CardBox form @submit.prevent="submit">
+      <SectionTitleLineWithButton
+        :icon="mdiCarEstate"
+        title="Add Staff User"
+        main
+      >
+      </SectionTitleLineWithButton>
+      <FormField label="Name" help="">
+        <FormControl v-model="form.name" type="text" placeholder="User Name" />
+      </FormField>
+      <FormField label="Email">
+        <FormControl v-model="form.email" type="email" placeholder="Email" />
+      </FormField>
+      <FormField label="Password" help="">
+        <FormControl v-model="form.password" type="password" placeholder="" />
+      </FormField>
+      <FormField label="Confirm Password">
+        <FormControl
+          v-model="form.password_confirmation"
+          name="password_confirmation"
+          type="Password"
+          placeholder=""
+        />
+      </FormField>
+      <FormField label="Role">
+        <FormControl v-model="form.role_id" :options="roleIds" />
+      </FormField>
+    </CardBox>
 
-        <CardBox>
-            <template #footer>
-                <BaseButtons>
-                    <BaseButton type="submit" color="info" label="Submit" @click="validateForm" />
-                    <BaseButton type="reset" color="info" outline label="Reset" @click="resetForm" />
-                </BaseButtons>
-            </template>
-        </CardBox>
-    </div>
+    <CardBox>
+      <template #footer>
+        <BaseButtons>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Submit"
+            @click="validateForm"
+          />
+          <BaseButton
+            type="reset"
+            color="info"
+            outline
+            label="Reset"
+            @click="resetForm"
+          />
+        </BaseButtons>
+      </template>
+    </CardBox>
+  </div>
 </template>
-  
 
 <styles scoped lang="scss">
 .edit-car-modal {
-    max-height: calc(100vh - 350px);
-    overflow-y: auto;
+  max-height: calc(100vh - 350px);
+  overflow-y: auto;
 }
 </styles>
