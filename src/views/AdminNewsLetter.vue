@@ -4,7 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
-import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
+import NewsLettersTable from '@/components/Tables/Admin/NewsLettersTable.vue'
 import { useNewsLetterStore } from '../stores/newsLetter'
 import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -168,12 +168,12 @@ let form = reactive({ ...initialState })
             title="All Users"
             main
           ></SectionTitleLineWithButton>
-          <StaffUserTable
+          <NewsLettersTable
             @edit-user="getAllUsers"
             :items="decoratedItems"
             :headers="headers"
           >
-          </StaffUserTable>
+          </NewsLettersTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

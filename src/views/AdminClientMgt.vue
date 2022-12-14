@@ -26,6 +26,7 @@ const decoratedItems = computed(() => {
       name: i?.name,
       email: i?.email,
       country: i?.country?.name,
+      
       isActive: i?.isActive ? 'Active' : 'deactivate',
     }
   })
@@ -142,6 +143,10 @@ const statusOptions = [
   },
 ]
 
+const openModel = ()=>{
+  
+};
+
 let form = reactive({ ...initialState })
 </script>
 <template>
@@ -169,6 +174,15 @@ let form = reactive({ ...initialState })
               <FormField label="Email">
                 <FormControl v-model="form.email" type="text" />
               </FormField>
+            </el-col>
+            <el-col :span="6">
+              <BaseButton
+              type="submit justify-end lg:justify-end"
+              color="info"
+              label="Send News and Letters"
+              @click="openModel"
+              no-wrap
+            />
             </el-col>
           </el-row>
 
