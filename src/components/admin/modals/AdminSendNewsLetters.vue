@@ -12,14 +12,14 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
   props: {
-    newsAndLetter: {
+    inquery: {
       type: Object,
       default: () => undefined,
     },
   },
 
   setup(props, { emit }) {
-    const { newsAndLetter } = toRefs(props)
+    const { inquery } = toRefs(props)
 
     const resetForm = () => {
       Object.assign(form, initialState)
@@ -78,9 +78,14 @@ export default {
     let form = reactive({ ...initialState })
 
     onMounted(async () => {
-      form.name = newsAndLetter.value?.name
-      form.subject = newsAndLetter.value?.subject
-      form.html_content = newsAndLetter.value?.html_content
+      // await nextTick()
+      
+
+      // setTimeout(() => {
+      //     form.model = modelsList.value.find(
+      //         (i) => i.id === vehicle.value?.model_id?.id
+      //     )
+      // }, 2000)
     })
 
     return {

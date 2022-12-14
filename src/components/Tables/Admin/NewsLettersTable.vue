@@ -144,7 +144,7 @@ onMounted(async () => {
       v-if="isModalActive"
     >
       <AdminEditeNewsLetters
-        :content="content"
+        :newsAndLetter="content"
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"
       />
