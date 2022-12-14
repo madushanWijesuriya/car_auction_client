@@ -16,7 +16,7 @@ const newsLetterStore = useNewsLetterStore()
 const { newsLetters: items } = storeToRefs(newsLetterStore)
 const headers = computed(() => newsLetterStore.tableHeaders)
 const decoratedItems = computed(() => {
-  if (!items.value || !Array.isArray(items.value)) return []
+  if (!items?.value || !Array.isArray(items?.value)) return []
   return items.value.map((i) => {
     return {
       id: i?.id,

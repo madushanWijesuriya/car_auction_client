@@ -47,7 +47,7 @@ const { items, headers, actions, rowItemsData } = toRefs(props)
 let content = ref(null)
 const openEditModel = async (vehicleId) => {
   // debugger
-  if (items.value && items.value.length > 0) {
+  if (items?.value && items?.value.length > 0) {
     content.value = items.value.find((v) => v.id === vehicleId)
   }
   await nextTick()
