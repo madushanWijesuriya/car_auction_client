@@ -30,12 +30,10 @@ const props = defineProps({
       {
         color: 'info',
         icon: mdiEye,
-        onClick: 'defaultAction',
       },
       {
         color: 'danger',
         icon: mdiTrashCan,
-        onClick: 'defaultAction',
       },
     ],
   },
@@ -384,9 +382,13 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0
-                      ? { click: () => openEditModel(row.id) }
-                      : { click: deleteVehicle }
+                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
+                      ? item.clickFunc
+                        ? { click: () => item.clickFunc(row.id) }
+                        : { click: () => openEditModel(row.id) }
+                      : item.clickFunc
+                      ? { click: () => item.clickFunc(row.id) }
+                      : { click: () => deleteVehicle(row.id) }
                   "
                 />
               </div>

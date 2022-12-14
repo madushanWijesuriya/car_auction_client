@@ -9,10 +9,13 @@ import { useCarsStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
+import { mdiEye, mdiTrashCan } from '@mdi/js'
+import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 const carsStore = useCarsStore()
+const router = useRouter()
 const { cars: items } = storeToRefs(carsStore)
 const headers = computed(() => carsStore.tableHeaders)
 const decoratedItems = computed(() => {
@@ -117,6 +120,28 @@ const initialState = {
 }
 
 let form = reactive({ ...initialState })
+
+let tableActions = reactive([
+  {
+    color: 'info',
+    icon: mdiEye,
+    clickFunc: (id) => {
+      router.push({
+        name: 'inquiry-reply',
+        query: {
+          inquiryId: id,
+        },
+      })
+    },
+  },
+  {
+    color: 'danger',
+    icon: mdiTrashCan,
+    clickFunc: (id) => {
+      console.log('function 2 called!', id)
+    },
+  },
+])
 </script>
 <template>
   <div class="all-cars">
@@ -213,8 +238,12 @@ let form = reactive({ ...initialState })
             title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
-          <InqueryTable :items="decoratedItems" :headers="headers">
-          </InqueryTable>
+          <Table
+            :items="decoratedItems"
+            :headers="headers"
+            :actions="tableActions"
+          >
+          </Table>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

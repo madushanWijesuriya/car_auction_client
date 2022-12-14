@@ -132,6 +132,17 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'inquiry Reply View',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/inquiry-reply',
+      name: 'inquiry-reply',
+      component: () => import('../views/AdminInquiryReplyView.vue'),
+      props: true,
+    },
+    {
+      meta: {
         title: 'All Cars',
         layout: 'LayoutAdmin',
         requiresAuth: true,
