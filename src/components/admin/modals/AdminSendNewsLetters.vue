@@ -64,7 +64,7 @@ export default {
 
     const getNewsAndLetterList = async () => {
       try {
-        const response = await httpResource.get('api/staff/news-letter')
+        const response = await httpResource.get('api/resources/newsLetters')
         newsAndLetterList.value = response.data.data.map((d) => ({
           id: d.id,
           label: d.name,
