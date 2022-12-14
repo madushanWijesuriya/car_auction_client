@@ -6,7 +6,7 @@ import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
 import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
 import { useStaffUsersStore } from '../stores/staffuser'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toastification'
@@ -58,6 +58,7 @@ const applyFilters = async () => {
 
 onMounted(async () => {
   await getAllUsers()
+  getRoles()
 })
 
 const range = (start, stop, step) =>
@@ -98,10 +99,19 @@ const initialState = {
   email: '',
   role_id: '',
 }
-let roleIds = [
-  { id: 1, label: 'Admin' },
-  { id: 2, label: 'Test' },
-]
+let roleIds = ref([])
+
+const getRoles = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/roles')
+    roleIds.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 let form = reactive({ ...initialState })
 </script>

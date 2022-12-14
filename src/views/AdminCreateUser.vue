@@ -46,10 +46,21 @@ export default {
       }
     }
 
-    let roleIds = ref([
-      { id: 1, label: 'Admin' },
-      { id: 2, label: 'Test' },
-    ])
+    let roleIds = ref([])
+    const getRoles = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/roles')
+        roleIds.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    onMounted(async () => {
+      getRoles()
+    })
     const initialState = {
       name: '',
       email: null,
@@ -64,6 +75,7 @@ export default {
       roleIds,
       validateForm,
       resetForm,
+      getRoles,
     }
   },
 }

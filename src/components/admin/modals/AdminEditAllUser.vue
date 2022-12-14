@@ -63,7 +63,7 @@ export default {
 
     const getRoles = async () => {
       try {
-        const response = await httpResource.get('/api/resources/roles/')
+        const response = await httpResource.get('/api/resources/roles')
         roleIds.value = response.data.data.map((d) => ({
           ...d,
           label: d.name,
