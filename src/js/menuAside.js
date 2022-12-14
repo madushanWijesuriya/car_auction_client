@@ -1,19 +1,4 @@
-import {
-  mdiAccountCircle,
-  mdiMonitor,
-  mdiGithub,
-  mdiLock,
-  mdiAlertCircle,
-  mdiSquareEditOutline,
-  mdiTable,
-  mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
-  mdiPalette,
-  mdiReact,
-  mdiCarEstate,
-  mdiCarSearch,
-} from '@mdi/js'
+import { mdiMonitor, mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
 
 export default [
   {
@@ -22,69 +7,79 @@ export default [
     label: 'Dashboard',
   },
   {
-    to: '/admin/add-car',
-    label: 'Add car',
-    icon: mdiCarEstate,
-  },
-
-  {
-    to: '/admin/all-cars',
-    label: 'All Cars',
-    icon: mdiCarSearch,
-  },
-  {
-    to: '/admin/ui',
-    label: 'UI',
-    icon: mdiTelevisionGuide,
-  },
-  {
-    to: '/admin/responsive',
-    label: 'Responsive',
-    icon: mdiResponsive,
-  },
-  {
-    to: '/',
-    label: 'Styles',
-    icon: mdiPalette,
-  },
-  {
-    to: '/admin/profile',
-    label: 'Profile',
-    icon: mdiAccountCircle,
-  },
-  {
-    to: '/admin/login',
-    label: 'Login',
-    icon: mdiLock,
-  },
-  {
-    to: '/admin/error',
-    label: 'Error',
-    icon: mdiAlertCircle,
-  },
-  {
-    label: 'Dropdown',
+    label: 'Cars',
     icon: mdiViewList,
     menu: [
       {
-        label: 'Item One',
+        to: '/admin/all-cars',
+        label: 'All Cars',
+        icon: mdiCarSearch,
       },
       {
-        label: 'Item Two',
+        to: '/admin/add-car',
+        label: 'Add car',
+        icon: mdiCarEstate,
       },
     ],
   },
   {
-    href: 'https://github.com/justboil/admin-one-vue-tailwind',
-    label: 'GitHub',
-    icon: mdiGithub,
-    target: '_blank',
+    label: 'Inquery',
+    icon: mdiCarSearch,
+    menu: [
+      {
+        to: '/admin/all-inqueries',
+        label: 'Inqueries',
+        icon: mdiCarSearch,
+      },
+    ],
   },
   {
-    href: 'https://github.com/justboil/admin-one-react-tailwind',
-    label: 'React version',
-    icon: mdiReact,
-    target: '_blank',
+    label: 'Contents',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/content-mgt',
+        label: 'Content-Managment',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/add-car',
+        label: 'Add car',
+        icon: mdiCarEstate,
+      },
+    ],
+  },
+  // {
+  //   label: 'Dropdown',
+  //   icon: mdiViewList,
+  //   menu: [
+  //     {
+  //       to: '/admin/content-mgt',
+  //       label: 'Content Managment',
+  //       icon: mdiCarSearch,
+  //     },
+  //     // {
+  //     //   to: '/admin/add-car',
+  //     //   label: 'Add car',
+  //     //   icon: mdiCarEstate,
+  //     // },
+  //   ],
+  // },
+  {
+    label: 'Clients',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/client-mgt',
+        label: 'Client Managment',
+        icon: mdiCarSearch,
+      },
+      // {
+      //   to: '/admin/add-client',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
+    ],
   },
 ]
 

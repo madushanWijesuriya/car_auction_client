@@ -115,6 +115,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'Inqueries',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/all-inqueries',
+      name: 'all-inqueries',
+      component: () => import('../views/AdminAllInqueriesView.vue'),
+    },
+    {
+      meta: {
         title: 'All Cars',
         layout: 'LayoutAdmin',
         requiresAuth: true,
@@ -122,6 +132,26 @@ const router = createRouter({
       path: '/admin/all-cars',
       name: 'all-cars',
       component: () => import('../views/AdminAllCarsView.vue'),
+    },
+    {
+      meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/content-mgt',
+      name: 'contentMgt',
+      component: () => import('../views/AdminContentMGT.vue'),
+    },
+    {
+      meta: {
+        title: 'All Cars',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/client-mgt',
+      name: 'clientmgt',
+      component: () => import('../views/AdminClientMgt.vue'),
     },
     {
       meta: {
@@ -240,7 +270,7 @@ const router = createRouter({
       path: '/blank-page',
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
-    },
+    }
   ],
 })
 
