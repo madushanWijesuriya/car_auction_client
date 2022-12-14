@@ -14,12 +14,15 @@ const indexingDetails = reactive({
   total: 0,
   from: 0,
   to: 0,
-  links: null,
+  links: {
+    next: null,
+  },
 })
 
-const getAllCars = async () => {
+const getAllCars = async (pageId) => {
   try {
-    const response = await httpResource.get('/api/staff/vehicle?sort=-id')
+    const url = `/api/staff/vehicle?sort=id${pageId ? '&page=' + pageId : ''}`
+    const response = await httpResource.get(url)
     setCars(response)
   } catch (error) {
     console.error(error)
@@ -106,6 +109,19 @@ const resetFilters = () => {
   getAllCars()
 }
 
+const goToFirstPage = () => {
+  getAllCars(1)
+}
+
+const goToLastPage = () => {
+  getAllCars(indexingDetails.lastPage)
+}
+
+const changePage = (pageId) => {
+  if (!pageId) return
+  getAllCars(pageId)
+}
+
 onMounted(async () => {
   await getAllCars()
   await getMakers()
@@ -145,7 +161,12 @@ onMounted(async () => {
           @apply-filters="applyFilters"
           @reset-filters="resetFilters"
         />
-        <VehicalList :indexingDetails="indexingDetails" />
+        <VehicalList
+          :indexingDetails="indexingDetails"
+          @go-to-first-page="goToFirstPage"
+          @go-to-last-page="goToLastPage"
+          @change-page="changePage"
+        />
         <CustomerFeedback />
       </div>
     </div>
