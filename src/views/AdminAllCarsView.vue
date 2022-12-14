@@ -33,7 +33,7 @@ const decoratedItems = computed(() => {
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/staff/vehicle?'
+    let filterQuery = '/api/guest/vehicle?noPagination'
 
     if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
     if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`

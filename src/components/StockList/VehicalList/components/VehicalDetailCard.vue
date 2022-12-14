@@ -85,13 +85,6 @@ const cover_image = computed(() => {
           <p class="font-shipping-price">Total Price with Shipping</p>
         </div>
       </div>
-      <div class="w-full lg:flex lg:justify-end">
-        <div
-          class="bg-[#08246C] items-center font-add text-center py-2 rounded-md px-4"
-        >
-          + Add to Wishlist
-        </div>
-      </div>
     </div>
   </div>
 </template>
