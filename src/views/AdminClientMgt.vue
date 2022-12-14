@@ -159,7 +159,7 @@ let form = reactive({ ...initialState })
         <CardBox>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
           <div>
-            <CardBoxModal v-model="isModalActive" title="Edit News and Letters" v-if="isModalActive">
+            <CardBoxModal v-model="isModalActive" title="Send News and Letters" v-if="isModalActive">
               <AdminSendNewsLetters :content="content" @changeMaker="changeMaker"
                 @closeModal="isModalActive = false" />
             </CardBoxModal>
