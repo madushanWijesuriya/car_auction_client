@@ -162,6 +162,26 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'create newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/create-news-letter',
+      name: 'createNewsLetter',
+      component: () => import('../views/AdminCreateNewsLetter.vue'),
+    },
+    {
+      meta: {
+        title: 'all newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/news-letter',
+      name: 'allNewsLetter',
+      component: () => import('../views/AdminNewsLetter.vue'),
+    },
+    {
+      meta: {
         title: 'All Staff',
         layout: 'LayoutAdmin',
         requiresAuth: true,
