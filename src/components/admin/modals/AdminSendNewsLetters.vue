@@ -22,6 +22,7 @@ export default {
     const { inquery } = toRefs(props)
 
     const resetForm = () => {
+      selectedClients.value = []
       Object.assign(form, initialState)
       // uploaderKey.value += uploaderKey.value + 1
     }
@@ -31,8 +32,8 @@ export default {
         const response = await httpResource.post(
           'api/staff/news-letter/send',
           {
-            customer_id:selectedClients.value,
-            news_letter_id: form.selectedNewsAndLetter
+            customer_id: selectedClients.value,
+            news_letter_id: form.selectedNewsAndLetter.id
           }
         )
         if (response.status === 200) {
@@ -58,7 +59,21 @@ export default {
     }
 
     let users = ref([])
+    let newsAndLetterList = ref([])
     let selectedClients = ref([])
+
+    const getNewsAndLetterList = async () => {
+      try {
+        const response = await httpResource.get('api/staff/news-letter')
+        newsAndLetterList.value = response.data.data.map((d) => ({
+          id: d.id,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     const getUsers = async () => {
       try {
         const response = await httpResource.get('api/staff/customer')
@@ -70,6 +85,7 @@ export default {
         console.error(error)
       }
     }
+
     const initialState = {
       selectedclient: '',
       selectedNewsAndLetter: ''
@@ -80,20 +96,23 @@ export default {
 
     onMounted(async () => {
       await getUsers()
+      await getNewsAndLetterList()
     })
 
     const addClient = () => {
       if (form.selectedclient) selectedClients.value = [...selectedClients.value, form?.selectedclient.id]
-      console.log(selectedClients, 'selectedclient');
     }
 
     return {
       form,
       users,
+      newsAndLetterList,
+      selectedClients,
       validateForm,
       resetForm,
       getUsers,
-      addClient
+      addClient,
+      getNewsAndLetterList
     }
   },
 }
@@ -105,7 +124,7 @@ export default {
         <FormControl v-model="form.selectedclient" :options="users" />
       </FormField>
       <FormField label="News and letter id">
-        <FormControl v-model="form.selectedNewsAndLetter" type="text" />
+        <FormControl v-model="form.selectedNewsAndLetter" :options="newsAndLetterList" />
       </FormField>
       <BaseButton type="submit" color="info" label="Add Client" @click="addClient" />
     </CardBox>

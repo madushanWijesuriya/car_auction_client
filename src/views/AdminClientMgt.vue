@@ -6,7 +6,7 @@ import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
 import ClientTable from '@/components/Tables/Admin/ClientTable.vue'
 import { useClientsStore } from '@/stores/clientsMgt'
-import { computed,ref , onMounted, reactive } from 'vue'
+import { computed, ref, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import clientsData from '../dummy-data/clients'
@@ -160,8 +160,7 @@ let form = reactive({ ...initialState })
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
           <div>
             <CardBoxModal v-model="isModalActive" title="Send News and Letters" v-if="isModalActive">
-              <AdminSendNewsLetters :content="content" @changeMaker="changeMaker"
-                @closeModal="isModalActive = false" />
+              <AdminSendNewsLetters :content="content" @changeMaker="changeMaker" @closeModal="isModalActive = false" />
             </CardBoxModal>
           </div>
           <el-row :gutter="20">
@@ -180,10 +179,6 @@ let form = reactive({ ...initialState })
                 <FormControl v-model="form.email" type="text" />
               </FormField>
             </el-col>
-            <el-col :span="6">
-              <BaseButton type="submit justify-end lg:justify-end" color="info" label="Send News and Letters"
-                @click="openModel" no-wrap />
-            </el-col>
           </el-row>
 
           <BaseButtons>
@@ -191,6 +186,8 @@ let form = reactive({ ...initialState })
               no-wrap />
             <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
               no-wrap />
+            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Send News and Letters"
+              @click="openModel" no-wrap />
           </BaseButtons>
         </CardBox>
         <CardBox style="margin-top: 40px">
