@@ -12,7 +12,7 @@ import { storeToRefs } from 'pinia'
 import clientsData from '../dummy-data/clients'
 import { mdiEye, mdiTrashCan, mdiBlockHelper } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
-import AdminEditeNewsLetters from '@/components/admin/modals/AdminEditeNewsLetters.vue'
+import AdminSendNewsLetters from '@/components/admin/modals/AdminSendNewsLetters.vue'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
@@ -21,7 +21,7 @@ const { clients: items, countries } = storeToRefs(clientsStore)
 const headers = computed(() => clientsStore.tableHeaders)
 
 const decoratedItems = computed(() => {
-  if (!items?.value || !Array.isArray(items?.value)) return []
+  if (!items?.value || !Array?.isArray(items?.value)) return []
   return items.value.map((i) => {
     return {
       id: i?.id,
@@ -160,7 +160,7 @@ let form = reactive({ ...initialState })
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
           <div>
             <CardBoxModal v-model="isModalActive" title="Edit News and Letters" v-if="isModalActive">
-              <AdminEditeNewsLetters :content="content" @changeMaker="changeMaker"
+              <AdminSendNewsLetters :content="content" @changeMaker="changeMaker"
                 @closeModal="isModalActive = false" />
             </CardBoxModal>
           </div>

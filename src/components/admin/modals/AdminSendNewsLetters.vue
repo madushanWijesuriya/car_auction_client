@@ -28,10 +28,11 @@ export default {
 
     const submitForm = async () => {
       try {
-        const response = await httpResource.patch(
-          '/api/staff/staffuser/' + inquery.value.id,
+        const response = await httpResource.post(
+          'api/staff/news-letter/send',
           {
-          ...form
+            customer_id:selectedClients.value,
+            news_letter_id: form.selectedNewsAndLetter
           }
         )
         if (response.status === 200) {
@@ -56,12 +57,13 @@ export default {
       submitForm()
     }
 
-    let roleIds = ref([])
-    const getRoles = async () => {
+    let users = ref([])
+    let selectedClients = ref([])
+    const getUsers = async () => {
       try {
-        const response = await httpResource.get('/api/resources/roles')
-        roleIds.value = response.data.data.map((d) => ({
-          ...d,
+        const response = await httpResource.get('api/staff/customer')
+        users.value = response.data.data.map((d) => ({
+          id: d.id,
           label: d.name,
         }))
       } catch (error) {
@@ -69,31 +71,29 @@ export default {
       }
     }
     const initialState = {
-      name: '',
-      subject: '',
-      html_content: ''
+      selectedclient: '',
+      selectedNewsAndLetter: ''
     }
     const state = reactive({ validationErrors: null, dialogMaker: false })
     const toast = useToast()
     let form = reactive({ ...initialState })
 
     onMounted(async () => {
-      // await nextTick()
-      
-
-      // setTimeout(() => {
-      //     form.model = modelsList.value.find(
-      //         (i) => i.id === vehicle.value?.model_id?.id
-      //     )
-      // }, 2000)
+      await getUsers()
     })
+
+    const addClient = () => {
+      if (form.selectedclient) selectedClients.value = [...selectedClients.value, form?.selectedclient.id]
+      console.log(selectedClients, 'selectedclient');
+    }
 
     return {
       form,
-      roleIds,
+      users,
       validateForm,
       resetForm,
-      getRoles,
+      getUsers,
+      addClient
     }
   },
 }
@@ -101,33 +101,20 @@ export default {
 <template>
   <div class="edit-car-modal">
     <CardBox form @submit.prevent="submit">
-      <FormField label="Name" help="">
-        <FormControl v-model="form.name" type="text" placeholder="User Name" />
+      <FormField label="Clients">
+        <FormControl v-model="form.selectedclient" :options="users" />
       </FormField>
-      <FormField label="Subject">
-        <FormControl v-model="form.subject" type="text" placeholder="subject" />
+      <FormField label="News and letter id">
+        <FormControl v-model="form.selectedNewsAndLetter" type="text" />
       </FormField>
-      <FormField label="Content" help="">
-        <FormControl v-model="form.html_content" type="textarea" placeholder="Content" />
-      </FormField>
+      <BaseButton type="submit" color="info" label="Add Client" @click="addClient" />
     </CardBox>
 
     <CardBox>
       <template #footer>
         <BaseButtons>
-          <BaseButton
-            type="submit"
-            color="info"
-            label="Submit"
-            @click="validateForm"
-          />
-          <BaseButton
-            type="reset"
-            color="info"
-            outline
-            label="Reset"
-            @click="resetForm"
-          />
+          <BaseButton type="submit" color="info" label="Submit" @click="validateForm" />
+          <BaseButton type="reset" color="info" outline label="Reset" @click="resetForm" />
         </BaseButtons>
       </template>
     </CardBox>
