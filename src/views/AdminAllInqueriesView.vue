@@ -4,12 +4,15 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import InqueryTable from '@/components/Tables/Admin/InqueryTable.vue'
 import { useCarsStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import { mdiEye, mdiTrashCan } from '@mdi/js'
 import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const carsStore = useCarsStore()
 const router = useRouter()
@@ -66,6 +69,9 @@ const submitForm = async () => {
     const response = await httpResource.post('/api/staff/vehicle', {})
     // console.log(response)
     if (response.status === 200) {
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
       resetForm()
     }
   } catch (error) {

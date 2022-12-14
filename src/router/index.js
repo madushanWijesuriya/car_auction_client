@@ -82,6 +82,11 @@ const router = createRouter({
       component: () => import('../views/StockList.vue'),
     },
     {
+      path: '/home-stock-list',
+      name: 'HomeStockList',
+      component: () => import('../views/StockList.vue'),
+    },
+    {
       path: '/login',
       name: 'login-admin',
       component: LoginIn,
@@ -148,7 +153,7 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Contents',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
@@ -158,22 +163,22 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Clients',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/client-mgt',
-      name: 'clientmgt',
+      name: 'allClient',
       component: () => import('../views/AdminClientMgt.vue'),
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Staff',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/create-user',
-      name: 'clientmgt',
+      name: 'createUser',
       component: () => import('../views/AdminCreateUser.vue'),
     },
     {

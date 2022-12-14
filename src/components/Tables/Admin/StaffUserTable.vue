@@ -9,10 +9,12 @@ import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
+import { useToast } from 'vue-toastification'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
-import CardBoxWidget from '@/components/admin/CardBoxWidget.vue'
-
+import AdminEditAllUser from '@/components/admin/modals/AdminEditAllUser.vue'
 const base_url_api = import.meta.env.VITE_BASE_URL_API
+
+const emit = defineEmits(['edit-user'])
 
 const props = defineProps({
   checkable: Boolean,
@@ -30,10 +32,12 @@ const props = defineProps({
       {
         color: 'info',
         icon: mdiEye,
+        onClick: 'defaultAction',
       },
       {
         color: 'danger',
         icon: mdiTrashCan,
+        onClick: 'defaultAction',
       },
     ],
   },
@@ -44,18 +48,39 @@ const props = defineProps({
 })
 
 const { items, headers, actions, rowItemsData } = toRefs(props)
-let vehicle = ref(null)
+let user = ref(null)
+const toast = useToast()
 const openEditModel = async (vehicleId) => {
   // debugger
-  if (rowItemsData.value && rowItemsData.value.length > 0) {
-    vehicle.value = rowItemsData.value.find((v) => v.id === vehicleId)
+  if (items.value && items.value.length > 0) {
+    user.value = items.value.find((v) => v.id === vehicleId)
   }
   await nextTick()
   isModalActive.value = true
 }
 
-function deleteVehicle(vehicleId) {
-  console.log('delete vehicle clicked!', vehicleId)
+async function deleteStaffUser(id) {
+  try {
+    const response = await httpResource.delete('/api/staff/staffuser/' + id, {})
+
+    if (response.status === 200) {
+      state.validationErrors = null
+      toast.success('Successfully Deleted', {
+        timeout: 2000,
+      })
+    }
+  } catch (error) {
+    console.log(error, 'roerer')
+    if (error.response.status == 422) {
+      state.validationErrors = error.response.data.errors
+      window.scrollTo(0, 0)
+    } else {
+      console.error(error?.response?.data?.message)
+      toast.error('Something went wrong', {
+        timeout: 2000,
+      })
+    }
+  }
 }
 
 const action = {
@@ -130,74 +155,7 @@ function isValidHttpUrl(string) {
 }
 
 ///
-const range = (start, stop, step) =>
-  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step)
 
-let makersList = ref([])
-const getMakers = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/maker')
-    makersList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {}
-}
-let modelsList = ref([])
-const getModels = async (moakerId) => {
-  try {
-    const response = await httpResource.get('/api/resources/model/' + moakerId)
-    modelsList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const changeMaker = (id) => {
-  getModels(id)
-}
-
-let statusList = ref([])
-const getStatus = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/status')
-    statusList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const yearsList = range(
-  new Date().getFullYear(),
-  new Date().getFullYear() - 50,
-  -1
-)
-const monthsList = Array.from({ length: 12 }, (e, i) => {
-  return {
-    id: i + 1,
-    label: new Date(null, i + 1, null).toLocaleDateString('en', {
-      month: 'short',
-    }),
-  }
-})
-let bodyTypeList = ref([])
-const getBodyTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/body-type')
-    bodyTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
 let transmissionList = ref([])
 const getTransmitions = async () => {
   try {
@@ -210,117 +168,20 @@ const getTransmitions = async () => {
     console.error(error)
   }
 }
-let streeingList = ref([])
-const getStreeings = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/streeings')
-    streeingList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let doorTypesList = ref([])
-const getDoorTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/door-types')
-    doorTypesList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let driveTypeList = ref([])
-const getDriveTypeList = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/drive-types')
-    driveTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
 
-let fuleTypeList = ref([])
-const getfuleTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/fuel-types')
-    fuleTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let exteriorColorList = ref([])
-const getExteriorColors = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/exterior-colors')
-    exteriorColorList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let featuresList = ref([])
-const getFeatures = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/features')
-    featuresList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
-})
-///
+onMounted(async () => {})
 </script>
 
 <template>
   <div>
     <CardBoxModal
       v-model="isModalActive"
-      title="Edit vehicle"
+      title="Edit Staff User"
       v-if="isModalActive"
     >
-      <AdminEditCarModal
-        :makersList="makersList"
-        :modelsList="modelsList"
-        :statusList="statusList"
-        :bodyTypeList="bodyTypeList"
-        :transmissionList="transmissionList"
-        :streeingList="streeingList"
-        :doorTypesList="doorTypesList"
-        :fuleTypeList="fuleTypeList"
-        :exteriorColorList="exteriorColorList"
-        :featuresList="featuresList"
-        :yearsList="yearsList"
-        :monthsList="monthsList"
-        :driveTypeList="driveTypeList"
-        :vehicle="vehicle"
+      <AdminEditAllUser
+        @edit-user="emit('edit-user')"
+        :user="user"
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"
       />
@@ -361,12 +222,8 @@ onMounted(async () => {
             v-if="checkable"
             @checked="checked($event, client)"
           />
-          <td v-for="(dataPoint, key) in row" :key="key">
-            <BaseLevel v-if="key == 'inquery'" class="mb-3" mobile>
-              <PillTagTrend :trend="dataPoint" small />
-              <BaseButton icon-w="w-4" icon-h="h-4" color="lightDark" small />
-            </BaseLevel>
-            <span v-else-if="!isValidHttpUrl(dataPoint)">
+          <td v-for="dataPoint in row">
+            <span v-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
             </span>
             <span v-else>
@@ -382,13 +239,9 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
-                      ? item.clickFunc
-                        ? { click: () => item.clickFunc(row.id) }
-                        : { click: () => openEditModel(row.id) }
-                      : item.clickFunc
-                      ? { click: () => item.clickFunc(row.id) }
-                      : { click: () => deleteVehicle(row.id) }
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: () => deleteStaffUser(row.id) }
                   "
                 />
               </div>

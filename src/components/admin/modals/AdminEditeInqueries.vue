@@ -12,70 +12,24 @@ import SectionMain from '@/components/admin/SectionMain.vue'
 
 export default {
   props: {
-    user: {
+    inquery: {
       type: Object,
       default: () => undefined,
     },
   },
-  emits: ['edit-user'],
 
   setup(props, { emit }) {
-    const { user } = toRefs(props)
-
-    const validateForm = () => {
-      // handle frontend validations
-      submitForm()
-    }
+    const { inquery } = toRefs(props)
 
     const resetForm = () => {
       Object.assign(form, initialState)
       // uploaderKey.value += uploaderKey.value + 1
     }
 
-    let roleIds = ref([])
-
-    const initialState = {
-      name: '',
-      email: null,
-      password: '',
-      role_id: '1',
-      password_confirmation: '',
-    }
-
-    const state = reactive({ validationErrors: null, dialogMaker: false })
-    const toast = useToast()
-    let form = reactive({ ...initialState })
-
-    onMounted(async () => {
-      // await nextTick()
-      getRoles()
-      form.name = user.value?.name
-      form.email = user.value?.email
-      form.password = user.value?.password
-      form.role_id = roleIds?.value?.filter((i) => i.label == 'Admin')[0].id
-
-      // setTimeout(() => {
-      //     form.model = modelsList.value.find(
-      //         (i) => i.id === vehicle.value?.model_id?.id
-      //     )
-      // }, 2000)
-    })
-
-    const getRoles = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/roles')
-        roleIds.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
     const submitForm = async () => {
       try {
         const response = await httpResource.patch(
-          '/api/staff/staffuser/' + user.value.id,
+          '/api/staff/staffuser/' + inquery.value.id,
           {
             name: form?.name,
             email: form?.email,
@@ -89,7 +43,6 @@ export default {
           toast.success('Successfully Updated', {
             timeout: 2000,
           })
-          emit('edit-user')
           emit('closeModal')
         }
       } catch (error) {
@@ -98,12 +51,63 @@ export default {
           window.scrollTo(0, 0)
         } else {
           console.error(error?.response?.data?.message)
-          toast.error('Something went wrong', {
-            timeout: 2000,
-          })
         }
       }
     }
+
+    const validateForm = () => {
+      // handle frontend validations
+      submitForm()
+    }
+
+    let roleIds = ref([])
+    const getRoles = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/roles')
+        roleIds.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    const initialState = {
+      id: '',
+      type: '',
+      vehicle_id: '',
+      country_id: '',
+      name: '',
+      email: '',
+      cell_no: '',
+      port_name: '',
+      mobile_no: '',
+      created_at: '',
+    }
+    const state = reactive({ validationErrors: null, dialogMaker: false })
+    const toast = useToast()
+    let form = reactive({ ...initialState })
+
+    onMounted(async () => {
+      // await nextTick()
+      getRoles()
+      ;(form.id = inquery.value.id),
+        (form.type = inquery.value.type),
+        (form.vehicle_id = inquery.value.vehicle_id?.id),
+        (form.country_id = inquery.value.country_id?.name),
+        (form.name = inquery.value.name),
+        (form.email = inquery.value.email),
+        (form.cell_no = inquery.value.cell_no),
+        (form.port_name = inquery.value.port_name),
+        (form.mobile_no = inquery.value.mobile_no),
+        (form.created_at = inquery.value.created_at)
+
+      // setTimeout(() => {
+      //     form.model = modelsList.value.find(
+      //         (i) => i.id === vehicle.value?.model_id?.id
+      //     )
+      // }, 2000)
+    })
 
     return {
       form,
@@ -118,6 +122,12 @@ export default {
 <template>
   <div class="edit-car-modal">
     <CardBox form @submit.prevent="submit">
+      <SectionTitleLineWithButton
+        :icon="mdiCarEstate"
+        title="Add Staff User"
+        main
+      >
+      </SectionTitleLineWithButton>
       <FormField label="Name" help="">
         <FormControl v-model="form.name" type="text" placeholder="User Name" />
       </FormField>

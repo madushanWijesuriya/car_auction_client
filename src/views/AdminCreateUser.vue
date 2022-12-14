@@ -10,6 +10,8 @@ import BaseDivider from '@/components/admin/BaseDivider.vue'
 import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import httpResource from '@/http/httpResource'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 export default {
   setup() {
@@ -34,6 +36,9 @@ export default {
           role_id: form?.role_id.id,
         })
         if (response.status === 200) {
+          toast.success('Successfully Added', {
+            timeout: 2000,
+          })
           resetForm()
         }
       } catch (error) {
@@ -41,10 +46,21 @@ export default {
       }
     }
 
-    let roleIds = ref([
-      { id: 1, label: 'Admin' },
-      { id: 2, label: 'Test' },
-    ])
+    let roleIds = ref([])
+    const getRoles = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/roles')
+        roleIds.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    onMounted(async () => {
+      getRoles()
+    })
     const initialState = {
       name: '',
       email: null,
@@ -59,6 +75,7 @@ export default {
       roleIds,
       validateForm,
       resetForm,
+      getRoles,
     }
   },
 }
@@ -124,7 +141,7 @@ export default {
                 outline
                 label="Reset"
                 @click="resetForm"
-              />        
+              />
             </BaseButtons>
           </template>
         </CardBox>

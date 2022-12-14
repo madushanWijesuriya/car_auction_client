@@ -104,6 +104,9 @@ export default {
           }
         )
         if (response.status === 200) {
+          toast.success('Successfully Added', {
+            timeout: 2000,
+          })
           state.validationErrors = null
           resetForm()
           toast.success('Successfully Added', {
@@ -116,6 +119,9 @@ export default {
           window.scrollTo(0, 0)
         } else {
           console.error(error?.response?.data?.message)
+          toast.error('Something went wrong', {
+            timeout: 2000,
+          })
         }
       }
     }

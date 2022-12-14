@@ -5,6 +5,9 @@ import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
 import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const carsStore = useCarsStore()
 const indexingDetails = reactive({
@@ -21,7 +24,7 @@ const indexingDetails = reactive({
 
 const getAllCars = async (pageId) => {
   try {
-    const url = `/api/staff/vehicle?sort=id${pageId ? '&page=' + pageId : ''}`
+    const url = `/api/guest/vehicle?sort=id${pageId ? '&page=' + pageId : ''}`
     const response = await httpResource.get(url)
     setCars(response)
   } catch (error) {
@@ -123,7 +126,8 @@ const changePage = (pageId) => {
 }
 
 onMounted(async () => {
-  await getAllCars()
+  if (router.currentRoute.value.name !== 'HomeStockList') await getAllCars()
+
   await getMakers()
   await getDriveTypes()
 })

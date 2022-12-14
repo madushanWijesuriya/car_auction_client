@@ -10,9 +10,6 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
-import CardBoxWidget from '@/components/admin/CardBoxWidget.vue'
-
-const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
   checkable: Boolean,
@@ -30,10 +27,12 @@ const props = defineProps({
       {
         color: 'info',
         icon: mdiEye,
+        onClick: 'defaultAction',
       },
       {
         color: 'danger',
         icon: mdiTrashCan,
+        onClick: 'defaultAction',
       },
     ],
   },
@@ -210,79 +209,6 @@ const getTransmitions = async () => {
     console.error(error)
   }
 }
-let streeingList = ref([])
-const getStreeings = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/streeings')
-    streeingList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let doorTypesList = ref([])
-const getDoorTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/door-types')
-    doorTypesList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let driveTypeList = ref([])
-const getDriveTypeList = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/drive-types')
-    driveTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-let fuleTypeList = ref([])
-const getfuleTypes = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/fuel-types')
-    fuleTypeList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let exteriorColorList = ref([])
-const getExteriorColors = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/exterior-colors')
-    exteriorColorList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
-let featuresList = ref([])
-const getFeatures = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/features')
-    featuresList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 onMounted(async () => {
   getMakers()
@@ -361,12 +287,8 @@ onMounted(async () => {
             v-if="checkable"
             @checked="checked($event, client)"
           />
-          <td v-for="(dataPoint, key) in row" :key="key">
-            <BaseLevel v-if="key == 'inquery'" class="mb-3" mobile>
-              <PillTagTrend :trend="dataPoint" small />
-              <BaseButton icon-w="w-4" icon-h="h-4" color="lightDark" small />
-            </BaseLevel>
-            <span v-else-if="!isValidHttpUrl(dataPoint)">
+          <td v-for="dataPoint in row">
+            <span v-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
             </span>
             <span v-else>
@@ -382,13 +304,9 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
-                      ? item.clickFunc
-                        ? { click: () => item.clickFunc(row.id) }
-                        : { click: () => openEditModel(row.id) }
-                      : item.clickFunc
-                      ? { click: () => item.clickFunc(row.id) }
-                      : { click: () => deleteVehicle(row.id) }
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: deleteVehicle }
                   "
                 />
               </div>

@@ -10,8 +10,6 @@ import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
 import AdminEditCarModal from '@/components/admin/modals/AdminEditCarModal.vue'
-import CardBoxWidget from '@/components/admin/CardBoxWidget.vue'
-
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
@@ -30,10 +28,12 @@ const props = defineProps({
       {
         color: 'info',
         icon: mdiEye,
+        onClick: 'defaultAction',
       },
       {
         color: 'danger',
         icon: mdiTrashCan,
+        onClick: 'defaultAction',
       },
     ],
   },
@@ -54,8 +54,29 @@ const openEditModel = async (vehicleId) => {
   isModalActive.value = true
 }
 
-function deleteVehicle(vehicleId) {
-  console.log('delete vehicle clicked!', vehicleId)
+async function deleteInquery(id) {
+  // try {
+  //   const response = await httpResource.delete('/api/staff/staffuser/' + id, {
+  //   })
+
+  //   if (response.status === 200) {
+  //     state.validationErrors = null
+  //     toast.success('Successfully Deleted', {
+  //       timeout: 2000,
+  //     })
+  //   }
+  // } catch (error) {
+  //   console.log(error, 'roerer');
+  //   if (error.response.status == 422) {
+  //     state.validationErrors = error.response.data.errors
+  //     window.scrollTo(0, 0)
+  //   } else {
+  //     console.error(error?.response?.data?.message)
+  //     toast.error('Something went wrong', {
+  //       timeout: 2000,
+  //     })
+  //   }
+  // }
 }
 
 const action = {
@@ -285,22 +306,22 @@ const getFeatures = async () => {
 }
 
 onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
+  // getMakers()
+  // getStatus()
+  // getBodyTypes()
+  // getTransmitions()
+  // getStreeings()
+  // getDoorTypes()
+  // getfuleTypes()
+  // getExteriorColors()
+  // getFeatures()
+  // getDriveTypeList()
 })
 ///
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <CardBoxModal
       v-model="isModalActive"
       title="Edit vehicle"
@@ -335,7 +356,7 @@ onMounted(async () => {
   >
     <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
     <p>This is sample modal</p>
-  </CardBoxModal>
+  </CardBoxModal> -->
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
     <span
@@ -361,12 +382,8 @@ onMounted(async () => {
             v-if="checkable"
             @checked="checked($event, client)"
           />
-          <td v-for="(dataPoint, key) in row" :key="key">
-            <BaseLevel v-if="key == 'inquery'" class="mb-3" mobile>
-              <PillTagTrend :trend="dataPoint" small />
-              <BaseButton icon-w="w-4" icon-h="h-4" color="lightDark" small />
-            </BaseLevel>
-            <span v-else-if="!isValidHttpUrl(dataPoint)">
+          <td v-for="dataPoint in row">
+            <span v-if="!isValidHttpUrl(dataPoint)">
               {{ dataPoint }}
             </span>
             <span v-else>
@@ -382,13 +399,9 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
-                      ? item.clickFunc
-                        ? { click: () => item.clickFunc(row.id) }
-                        : { click: () => openEditModel(row.id) }
-                      : item.clickFunc
-                      ? { click: () => item.clickFunc(row.id) }
-                      : { click: () => deleteVehicle(row.id) }
+                    index === 0
+                      ? { click: () => openEditModel(row.id) }
+                      : { click: ()=>deleteInquery(row.id) }
                   "
                 />
               </div>
