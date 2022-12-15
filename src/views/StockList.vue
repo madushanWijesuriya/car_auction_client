@@ -161,6 +161,7 @@ onMounted(async () => {
           :makers="makersList"
           :models="modelsList"
           :drives="driveTypeList"
+          :resultCount="indexingDetails.total"
           @maker-changed="changeMaker"
           @apply-filters="applyFilters"
           @reset-filters="resetFilters"
