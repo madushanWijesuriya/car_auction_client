@@ -93,7 +93,16 @@ function onReset() {
               ></el-option>
             </el-select>
           </el-form-item>
-
+          <el-form-item label="Chassis">
+            <el-select
+              v-model="form.Chassis"
+              placeholder="Any"
+              style="width: 100%"
+            >
+              <el-option label="Zone one" value="shanghai"></el-option>
+              <el-option label="Zone two" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="Condition">
             <el-select
               v-model="conditionModel"
@@ -140,7 +149,41 @@ function onReset() {
               ></el-option>
             </el-select>
           </el-form-item>
-
+          <el-form-item label="Gearbox">
+            <el-select
+              v-model="value2"
+              placeholder="Select Gearbox"
+              style="width: 100%"
+            >
+              <el-option
+                v-for="item in []"
+                :key="item.value2"
+                :label="item.label"
+                :value="item.value2"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Lot Number">
+            <el-select
+              v-model="form.lotNo"
+              placeholder="Select Lot Number"
+              style="width: 100%"
+            >
+              <el-option label="Zone one" value="shanghai"></el-option>
+              <el-option label="Zone two" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Auctions">
+            <el-select
+              v-model="form.auctions"
+              placeholder="Select Auctions"
+              style="width: 100%"
+            >
+              <el-option label="Zone one" value="shanghai"></el-option>
+              <el-option label="Zone two" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="Select Dates">
             <el-radio-group v-model="form.resource">
               <el-radio style="width: 100%" :label="1">Monday</el-radio>

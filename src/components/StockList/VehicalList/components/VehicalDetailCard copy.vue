@@ -30,15 +30,11 @@ const cover_image = computed(() => {
       <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
         <div class="w-full">
           <p class="font-vehical-details-title">Body</p>
-          <p class="font-vehical-details-content">
-            {{ vehicle?.body_type_id?.name }}
-          </p>
+          <p class="font-vehical-details-content">{{ vehicle.displacement }}</p>
         </div>
         <div class="w-full">
-          <p class="font-vehical-details-title">Condition</p>
-          <p class="font-vehical-details-content">
-            {{ vehicle?.isUsed ? 'Used' : 'New' }}
-          </p>
+          <p class="font-vehical-details-title">Mileage</p>
+          <p class="font-vehical-details-content">81,000 KM</p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Mileage</p>
@@ -56,16 +52,16 @@ const cover_image = computed(() => {
       <div class="lg:flex">
         <div class="flex font-button-row flex-wrap gap-2 justify-start">
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            {{ vehicle?.fuel_type_id?.name }}
+            {{}}
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            {{ vehicle?.door_type_id?.name }}
+            Auto Gear
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            {{ vehicle?.streeing_id?.name }} Hand
+            Right Hand
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            {{ vehicle?.driver_type_id?.name }}
+            4WD
           </div>
         </div>
       </div>
@@ -78,6 +74,10 @@ const cover_image = computed(() => {
           >
             <p class="font-car-price-1">Car Price :</p>
             <p class="font-car-price-3">¥ {{ vehicle.sup_price }}</p>
+          </div>
+
+          <div class="flex w-full items-start md:justify-end">
+            Sri Lanka-Hambantota
           </div>
         </div>
         <div class="flex w-full flex-col md: items-end">
