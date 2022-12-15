@@ -21,15 +21,7 @@ const textarea2 = ref('')
 let countryList = ref([])
 let vehicleData = ref([])
 const base_url_api = import.meta.env.VITE_BASE_URL_API
-let imagesFromBE = ref([
-  { id: 1, name: '/vehical_details/car-1.svg' },
-  { id: 2, name: '/vehical_details/car-2.svg' },
-  { id: 3, name: '/vehical_details/car-2.svg' },
-  { id: 4, name: '/vehical_details/car-2.svg' },
-  { id: 5, name: '/vehical_details/car-2.svg' },
-  { id: 6, name: '/vehical_details/car-2.svg' },
-  { id: 7, name: '/vehical_details/car-2.svg' },
-])
+let imagesFromBE = ref([])
 let imagesList = computed(() => {
   return imagesFromBE.value
 })
