@@ -403,9 +403,13 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0
-                      ? { click: () => openEditModel(row.id) }
-                      : { click: () => deleteInquery(row.id) }
+                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
+                      ? item.clickFunc
+                        ? { click: () => item.clickFunc(row.id) }
+                        : { click: () => openEditModel(row.id) }
+                      : item.clickFunc
+                      ? { click: () => item.clickFunc(row.id) }
+                      : { click: () => deleteVehicle(row.id) }
                   "
                 />
               </div>
