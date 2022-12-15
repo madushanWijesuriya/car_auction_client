@@ -3,9 +3,8 @@ import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.v
 import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
-import Table from '@/components/admin/Table.vue'
 import InqueryTable from '@/components/Tables/Admin/InqueryTable.vue'
-import { useCarsStore } from '@/stores/inqueries'
+import { useInqStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
@@ -14,10 +13,10 @@ import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
-const carsStore = useCarsStore()
+const inqueryStore = useInqStore()
 const router = useRouter()
-const { cars: items } = storeToRefs(carsStore)
-const headers = computed(() => carsStore.tableHeaders)
+const { inqueries: items } = storeToRefs(inqueryStore)
+const headers = computed(() => inqueryStore.tableHeaders)
 const decoratedItems = computed(() => {
   console.log(items)
   if (!items.value || !Array.isArray(items.value)) return []
@@ -40,8 +39,8 @@ const decoratedItems = computed(() => {
 const getAllInquiries = async () => {
   try {
     const response = await httpResource.get('/api/staff/inquery')
-    carsStore.$patch({
-      cars: response.data.data,
+    inqueryStore.$patch({
+      inqueries: response.data.data,
     })
   } catch (error) {
     console.error(error)
@@ -75,7 +74,7 @@ const applyFilters = async () => {
     if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
     if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
     const response = await httpResource.get(filterQuery)
-    carsStore.$patch({
+    inqueryStore.$patch({
       cars: response.data.data,
     })
   } catch (error) {
@@ -463,12 +462,12 @@ let tableActions = reactive([
             title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
-          <Table
+          <InqueryTable
             :items="decoratedItems"
             :headers="headers"
             :actions="tableActions"
           >
-          </Table>
+          </InqueryTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>
