@@ -29,7 +29,7 @@ export default {
     const submitForm = async () => {
       try {
         const response = await httpResource.patch(
-          '/api/staff/staffuser/' + inquery.value.id,
+          '/api/staff/news-letter/' + newsAndLetter.value.id,
           {
           ...form
           }
