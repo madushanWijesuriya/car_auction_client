@@ -128,13 +128,13 @@ const getVehicleDetails = async () => {
       '/api/guest/vehicle/' + postData.vehicle_id
     )
     vehicleData.value = response.data.data
-    // imagesFromBE.value = response.data.data.images.map(i => {
-    // return {
-    //   ...i,
-    //   id: i.id,
-    //   name: base_url_api + 'url....'
-    // }
-    // })
+    imagesFromBE.value = response.data.data.images.map((i) => {
+      return {
+        ...i,
+        id: i.id,
+        name: base_url_api + i.full_url,
+      }
+    })
     /** output
      * [
      *  {
@@ -239,7 +239,12 @@ const getImageUrl = (name) => {
     >
       <div class="flex flex-col gap-4 lg:gap-4 lg:w-[50%]">
         <div class="w-full">
-          <img class="rounded-lg w-full" :src="currentImage.name" />
+          <div v-if="currentImage">
+            <img class="rounded-lg w-full" :src="currentImage?.name" />
+          </div>
+          <div v-else>
+            <img class="rounded-lg w-full" :src="imagesFromBE[0].name" />
+          </div>
         </div>
         <div class="w-full flex gap-2">
           <div
@@ -266,7 +271,7 @@ const getImageUrl = (name) => {
             <div v-for="image in visibleImageList" :key="image.id">
               <img
                 class="rounded-lg w-full cursor-pointer"
-                :src="getImageUrl(image.name)"
+                :src="getImageUrl(image?.name)"
                 @click="currentId = image.id"
               />
             </div>
