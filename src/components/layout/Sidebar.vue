@@ -16,7 +16,7 @@
                     <a class="" href="#" data-bs-toggle="dropdown">
                         <div class="flex w-full justify-between items-center">
                             <p class=" font-semibold">
-                                Auction
+                                Auctions
                             </p>
                             <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
