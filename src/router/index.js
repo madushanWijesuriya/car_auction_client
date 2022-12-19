@@ -8,6 +8,8 @@ import { getAuthenticatedUser } from '../util/utils'
 import { useAuthStore } from '@/stores/auth'
 import LoginIn from '@/views/AdminLoginIn.vue'
 import Style from '@/views/AdminStyleView.vue'
+import { useStyleStore } from '@/stores/style'
+import { styleKey } from '@/js/config'
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,7 +32,7 @@ const router = createRouter({
       component: () => import('../views/ReachusView.vue'),
     },
     {
-      path: '/service',
+      path: '/service-auction-calendar',
       name: 'service',
       component: () => import('../views/ServicesView.vue'),
     },
@@ -60,7 +62,7 @@ const router = createRouter({
       component: () => import('../views/AboutUsCompanyProfile.vue'),
     },
     {
-      path: '/countries-vehicle-details',
+      path: '/countries-vehicle-details/:name',
       name: 'countriesVehicleDetails',
       component: () => import('../views/CountriesVehicleDetailsView.vue'),
     },
@@ -77,6 +79,11 @@ const router = createRouter({
     {
       path: '/stock-list',
       name: 'StockList',
+      component: () => import('../views/StockList.vue'),
+    },
+    {
+      path: '/home-stock-list',
+      name: 'HomeStockList',
       component: () => import('../views/StockList.vue'),
     },
     {
@@ -125,6 +132,17 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'inquiry Reply View',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/inquiry-reply',
+      name: 'inquiry-reply',
+      component: () => import('../views/AdminInquiryReplyView.vue'),
+      props: true,
+    },
+    {
+      meta: {
         title: 'All Cars',
         layout: 'LayoutAdmin',
         requiresAuth: true,
@@ -135,7 +153,7 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Contents',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
@@ -145,13 +163,43 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'All Cars',
+        title: 'All Clients',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/client-mgt',
-      name: 'clientmgt',
+      name: 'allClient',
       component: () => import('../views/AdminClientMgt.vue'),
+    },
+    {
+      meta: {
+        title: 'create newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/create-news-letter',
+      name: 'createNewsLetter',
+      component: () => import('../views/AdminCreateNewsLetter.vue'),
+    },
+    {
+      meta: {
+        title: 'all newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/news-letter',
+      name: 'allNewsLetter',
+      component: () => import('../views/AdminNewsLetter.vue'),
+    },
+    {
+      meta: {
+        title: 'All Staff',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/create-user',
+      name: 'createUser',
+      component: () => import('../views/AdminCreateUser.vue'),
     },
     {
       meta: {
@@ -270,12 +318,19 @@ const router = createRouter({
       path: '/blank-page',
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
-    }
+    },
   ],
 })
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
+  const styleStore = useStyleStore()
+  if (
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem(styleKey) === null
+  ) {
+    styleStore.setStyle('white')
+  }
   if (
     to.meta.requiresAuth &&
     to.path !== '/login' &&

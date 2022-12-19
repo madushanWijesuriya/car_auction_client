@@ -1,7 +1,12 @@
 <script setup>
-import { toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 const props = defineProps(['vehicle'])
 const { vehicle } = toRefs(props)
+const base_url_api = import.meta.env.VITE_BASE_URL_API
+
+const cover_image = computed(() => {
+  return base_url_api + props.vehicle.cover_image_full_url
+})
 </script>
 <template>
   <div
@@ -10,7 +15,7 @@ const { vehicle } = toRefs(props)
   >
     <img
       class="lg:rounded-[15px] md:rounded-[10px] w-full md:w-[30vw] lg:w-[18vw] object-cover"
-      src="@/assets/images/stock-list/vehical-list/list-car-1.svg"
+      :src="cover_image"
     />
 
     <div class="px-2 py-2 space-y-3 w-full md:relative">
@@ -24,12 +29,16 @@ const { vehicle } = toRefs(props)
       </div>
       <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
         <div class="w-full">
-          <p class="font-vehical-details-title">Engine Capacity</p>
-          <p class="font-vehical-details-content">{{ vehicle.displacement }}</p>
+          <p class="font-vehical-details-title">Body</p>
+          <p class="font-vehical-details-content">
+            {{ vehicle?.body_type_id?.name }}
+          </p>
         </div>
         <div class="w-full">
-          <p class="font-vehical-details-title">Mileage</p>
-          <p class="font-vehical-details-content">81,000 KM</p>
+          <p class="font-vehical-details-title">Condition</p>
+          <p class="font-vehical-details-content">
+            {{ vehicle?.isUsed ? 'Used' : 'New' }}
+          </p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Mileage</p>
@@ -41,22 +50,22 @@ const { vehicle } = toRefs(props)
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Now On Sale</p>
-          <p class="font-vehical-details-content">Ref# 22830T</p>
+          <p class="font-vehical-details-content">Ref# {{ vehicle.id }}</p>
         </div>
       </div>
       <div class="lg:flex">
         <div class="flex font-button-row flex-wrap gap-2 justify-start">
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            Petrol
+            {{ vehicle?.fuel_type_id?.name }}
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            Auto Gear
+            {{ vehicle?.door_type_id?.name }}
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            Right Hand
+            {{ vehicle?.streeing_id?.name }} Hand
           </div>
           <div class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow">
-            4WD
+            {{ vehicle?.driver_type_id?.name }}
           </div>
         </div>
       </div>
@@ -68,23 +77,12 @@ const { vehicle } = toRefs(props)
             class="flex flex-col md:items-end lg:flex-row lg:justify-end lg:gap-3"
           >
             <p class="font-car-price-1">Car Price :</p>
-            <p class="font-car-price-3">¥ {{ vehicle.sup_price }}</p>
-          </div>
-
-          <div class="flex w-full items-start md:justify-end">
-            Sri Lanka-Hambantota
+            <p class="font-car-price-3">¥ {{ vehicle.fob_price }}</p>
           </div>
         </div>
         <div class="flex w-full flex-col md: items-end">
-          <p class="font-car-price-2">¥ {{ vehicle.sup_price }}</p>
+          <p class="font-car-price-2">¥ {{ vehicle.fob_price }}</p>
           <p class="font-shipping-price">Total Price with Shipping</p>
-        </div>
-      </div>
-      <div class="w-full lg:flex lg:justify-end">
-        <div
-          class="bg-[#08246C] items-center font-add text-center py-2 rounded-md px-4"
-        >
-          + Add to Wishlist
         </div>
       </div>
     </div>

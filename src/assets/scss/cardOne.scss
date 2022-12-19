@@ -31,6 +31,15 @@
   background: #ce2832;
   border-radius: 0px 8px 0px 12px;
 }
+.cardTitle {
+  height: 40px;
+  width: 130px;
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  bottom: inherit;
+  border-radius: 0px 8px 0px 12px;
+}
 .cardOneImg {
   max-height: 330px;
   height: 330px;
@@ -39,7 +48,7 @@
 }
 .cardTitleText {
   bottom: 30px;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -49,7 +58,7 @@
 }
 .cardTitlePrice {
   bottom: 30px;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

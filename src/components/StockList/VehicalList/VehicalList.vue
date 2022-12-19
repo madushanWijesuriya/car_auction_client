@@ -9,7 +9,19 @@ const carsStore = useCarsStore()
 const { cars: items } = storeToRefs(carsStore)
 
 const props = defineProps(['indexingDetails'])
+const emit = defineEmits(['go-to-first-page', 'go-to-last-page', 'change-page'])
 const { indexingDetails } = toRefs(props)
+const goToFirstPage = () => {
+  emit('go-to-first-page')
+}
+
+const goToLastPage = () => {
+  emit('go-to-last-page')
+}
+
+const changePage = (pageId) => {
+  emit('change-page', pageId)
+}
 </script>
 
 <template>
@@ -19,7 +31,12 @@ const { indexingDetails } = toRefs(props)
       :key="item.id"
       :vehicle="item"
     />
-    <Pagination :indexingDetails="indexingDetails" />
+    <Pagination
+      :indexingDetails="indexingDetails"
+      @go-to-first-page="goToFirstPage"
+      @go-to-last-page="goToLastPage"
+      @change-page="changePage"
+    />
   </div>
 </template>
 
