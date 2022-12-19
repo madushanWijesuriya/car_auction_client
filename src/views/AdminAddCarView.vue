@@ -87,7 +87,9 @@ export default {
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
-            imageLimit.value !== 0 ? imageLimit.value : form.photos.length
+            imageLimit.value !== 0 && form.photos.length >= imageLimit.value
+              ? imageLimit.value
+              : form.photos.length
           for (let x = 0; x < imgLimit; x++) {
             formData.append(`image[${x}]`, form.photos[x])
           }
@@ -107,9 +109,6 @@ export default {
           })
           state.validationErrors = null
           resetForm()
-          toast.success('Successfully Added', {
-            timeout: 2000,
-          })
         }
       } catch (error) {
         if (error.response.status == 422) {

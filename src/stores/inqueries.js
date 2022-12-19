@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
-export const useCarsStore = defineStore('cars', () => {
-  const cars = ref([
+export const useInqStore = defineStore('inqueries', () => {
+  const inqueries = ref([
     {
       id: 'ssssssssssssss',
       type: 'ssssssssssssss',
@@ -64,5 +64,5 @@ export const useCarsStore = defineStore('cars', () => {
     },
   ])
 
-  return { cars, tableHeaders }
+  return { inqueries, tableHeaders }
 })
