@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *,
 *::before,
 *::after {
@@ -14,7 +14,7 @@
   color: var(--color-text);
   background: var(--color-background);
   line-height: 1.6;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,4 +53,18 @@
 }
 .color-07 {
   color: #a098ae;
+}
+
+/**
+Absolute font sizes
+*/
+
+@responsive {
+  .font-size-16 {
+    font-size: 16px;
+  }
+
+  .font-size-12 {
+    font-size: 12px;
+  }
 }
