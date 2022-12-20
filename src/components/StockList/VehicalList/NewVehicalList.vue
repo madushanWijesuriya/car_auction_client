@@ -3,14 +3,14 @@
 
 <template>
     <div class="vehicalCard">
-        <div class="grid grid-rows-3 lg:grid-rows-1 grid-flow-col gap-2">
+        <div class="grid grid-rows-3 lg:grid-rows-1 grid-flow-col gap-2 content-center justify-items-center">
             <div class="row-span-1 lg:row-span-1">
                 <div class="vehicalImg">
                     <img src="@/assets/images/stock-list/vehical-list/list-car-1.svg" alt="">
                 </div>
             </div>
 
-            <div class="col-span-1 lg:row-span-1">
+            <div class="col-span-1 content-center lg:row-span-1">
                 <div class="col-span-2">
                     <div class="middleInfo">
                         <h1>Toyota Mark II E-JZX100 1997/08</h1>
