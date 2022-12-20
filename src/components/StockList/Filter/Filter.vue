@@ -46,9 +46,7 @@ function onReset() {
 </script>
 
 <template>
-  <div
-    class="hidden xl:flex w-full lg:w-[30%] xl:w-[20%] h-fit text-blackborder border-[#E7E7E7]"
-  >
+  <div class="hidden xl:flex w-full lg:w-[30%] xl:w-[20%] h-fit text-blackborder border-[#E7E7E7]">
     <div class="filter-box">
       <div class="filter-heading flex flex-row items-center">
         <div class="heading basis-1/3">
@@ -63,49 +61,20 @@ function onReset() {
       <div class="filter-form mt-5">
         <el-form label-position="top" label-width="100%" style="width: 100%">
           <el-form-item label="Brand Name">
-            <el-select
-              v-model="formOne.maker"
-              multiple
-              style="width: 100%"
-              placeholder="Any"
-              @change="valueChanged"
-            >
-              <el-option
-                v-for="maker in makers"
-                :key="maker.id"
-                :label="maker.label"
-                :value="maker.id"
-              ></el-option>
+            <el-select v-model="formOne.maker" multiple style="width: 100%" placeholder="Any" @change="valueChanged">
+              <el-option v-for="maker in makers" :key="maker.id" :label="maker.label" :value="maker.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Model">
-            <el-select
-              v-model="form.model"
-              multiple
-              style="width: 100%"
-              placeholder="Any"
-            >
-              <el-option
-                v-for="model in models"
-                :key="model.id"
-                :label="model.label"
-                :value="model.id"
-              ></el-option>
+            <el-select v-model="form.model" multiple style="width: 100%" placeholder="Any">
+              <el-option v-for="model in models" :key="model.id" :label="model.label" :value="model.id"></el-option>
             </el-select>
           </el-form-item>
 
           <el-form-item label="Condition">
-            <el-select
-              v-model="conditionModel"
-              placeholder="Any"
-              style="width: 100%"
-            >
-              <el-option
-                v-for="condition in conditions"
-                :key="condition.id"
-                :label="condition.label"
-                :value="condition.id"
-              ></el-option>
+            <el-select v-model="conditionModel" placeholder="Any" style="width: 100%">
+              <el-option v-for="condition in conditions" :key="condition.id" :label="condition.label"
+                :value="condition.id"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Year From - To">
@@ -122,17 +91,8 @@ function onReset() {
           </el-form-item>
 
           <el-form-item label="Drive">
-            <el-select
-              v-model="form.drive"
-              placeholder="Select Drive"
-              style="width: 100%"
-            >
-              <el-option
-                v-for="drive in drives"
-                :key="drive.id"
-                :label="drive.label"
-                :value="drive.id"
-              ></el-option>
+            <el-select v-model="form.drive" placeholder="Select Drive" style="width: 100%">
+              <el-option v-for="drive in drives" :key="drive.id" :label="drive.label" :value="drive.id"></el-option>
             </el-select>
           </el-form-item>
 
