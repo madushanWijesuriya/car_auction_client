@@ -1,11 +1,6 @@
-import { mdiMonitor, mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
+import { mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
 
 export default [
-  {
-    to: '/admin/dashboard',
-    icon: mdiMonitor,
-    label: 'Dashboard',
-  },
   {
     label: 'Cars',
     icon: mdiViewList,
@@ -42,9 +37,25 @@ export default [
         label: 'Content-Managment',
         icon: mdiCarSearch,
       },
+      // {
+      //   to: '/admin/add-car',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
+    ],
+  },
+  {
+    label: 'News Letter',
+    icon: mdiViewList,
+    menu: [
       {
-        to: '/admin/add-car',
-        label: 'Add car',
+        to: '/admin/news-letter',
+        label: 'News Letter',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/create-news-letter',
+        label: 'Add News Letter',
         icon: mdiCarEstate,
       },
     ],
@@ -72,6 +83,32 @@ export default [
       {
         to: '/admin/client-mgt',
         label: 'Client Managment',
+        icon: mdiCarSearch,
+      },
+      // {
+      //   to: '/admin/create-client',
+      //   label: 'create client',
+      //   icon: mdiCarSearch,
+      // },
+      // {
+      //   to: '/admin/add-client',
+      //   label: 'Add car',
+      //   icon: mdiCarEstate,
+      // },
+    ],
+  },
+  {
+    label: 'staff',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/user-mgt',
+        label: 'User Managment',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/create-user',
+        label: 'Create User',
         icon: mdiCarSearch,
       },
       // {

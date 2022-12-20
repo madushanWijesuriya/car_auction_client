@@ -4,10 +4,13 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
+import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
 import { useStaffUsersStore } from '../stores/staffuser'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const usersStore = useStaffUsersStore()
 const { users: items } = storeToRefs(usersStore)
@@ -16,13 +19,14 @@ const decoratedItems = computed(() => {
   if (!items.value || !Array.isArray(items.value)) return []
   return items.value.map((i) => {
     return {
-      id: i.id,
-      photo: i.name,
-      email: i.email,
-      model: i.email_verified_at?.email_verified_at,
-      fob: i.created_at?.created_at,
-      status: i.updated_at?.updated_at,
-      inquery: i.roles?.roles
+      id: i?.id,
+      name: i?.name,
+      email: i?.email,
+      email_verified_at: i?.email_verified_at,
+      created_at: i?.created_at,
+      updated_at: i?.updated_at,
+      // deleted_at: i?.deleted_at,
+      roles: i?.roles[0]?.name,
     }
   })
 })
@@ -38,8 +42,23 @@ const getAllUsers = async () => {
   }
 }
 
+const applyFilters = async () => {
+  try {
+    let filterQuery = '/api/staff/staffuser?'
+    if (form.email) filterQuery += `filter[email]=${form.email}`
+    if (form.role_id) filterQuery += `filter[roles.id]=${form.role_id.id}`
+    const response = await httpResource.get(filterQuery)
+    usersStore.$patch({
+      users: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 onMounted(async () => {
   await getAllUsers()
+  getRoles()
 })
 
 const range = (start, stop, step) =>
@@ -51,8 +70,8 @@ const validateForm = () => {
 }
 
 const resetForm = () => {
-
   Object.assign(form, initialState)
+  getAllUsers()
 }
 const submitForm = async () => {
   try {
@@ -61,6 +80,9 @@ const submitForm = async () => {
     // console.log(response)
     if (response.status === 200) {
       resetForm()
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
     }
   } catch (error) {
     console.error(error?.response?.data?.message)
@@ -74,7 +96,23 @@ const yearsList = range(
 const initialState = {
   fromYear: new Date().getFullYear(),
   toYear: new Date().getFullYear(),
+  email: '',
+  role_id: '',
 }
+let roleIds = ref([])
+
+const getRoles = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/roles')
+    roleIds.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 let form = reactive({ ...initialState })
 </script>
 <template>
@@ -82,30 +120,62 @@ let form = reactive({ ...initialState })
     <LayoutAuthenticated>
       <SectionMain>
         <CardBox>
-          <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
+          <SectionTitleLineWithButton
+            :icon="mdiCarEstate"
+            title="Search"
+            main
+          ></SectionTitleLineWithButton>
           <el-row :gutter="20">
             <el-col :span="8">
-              <FormField label="From year">
-                <FormControl v-model="form.fromYear" :icon="mdiCalendarRange" :options="yearsList" />
+              <FormField label="Email">
+                <FormControl
+                  v-model="form.email"
+                  :icon="mdiCalendarRange"
+                  type="text"
+                />
               </FormField>
             </el-col>
             <el-col :span="8">
-              <FormField label="To year">
-                <FormControl v-model="form.toYear" :icon="mdiCalendarRange" :options="yearsList" />
+              <FormField label="Role">
+                <FormControl
+                  v-model="form.role_id"
+                  :icon="mdiCalendarRange"
+                  :options="roleIds"
+                />
               </FormField>
             </el-col>
           </el-row>
 
           <BaseButtons>
-            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="validateForm"
-              no-wrap />
-            <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
-              no-wrap />
+            <BaseButton
+              type="submit justify-end lg:justify-end"
+              color="info"
+              label="Search"
+              @click="applyFilters"
+              no-wrap
+            />
+            <BaseButton
+              type="reset justify-end lg:justify-end"
+              color="info"
+              outline
+              label="Reset"
+              @click="resetForm"
+              no-wrap
+            />
           </BaseButtons>
         </CardBox>
         <CardBox style="margin-top: 40px">
-          <SectionTitleLineWithButton :icon="mdiCarEstate" title="All Users" main></SectionTitleLineWithButton>
-          <Table :items="decoratedItems" :headers="headers"> </Table>
+          <SectionTitleLineWithButton
+            :icon="mdiCarEstate"
+            title="All Users"
+            main
+          ></SectionTitleLineWithButton>
+          <StaffUserTable
+            @edit-user="getAllUsers"
+            :items="decoratedItems"
+            :headers="headers"
+          >
+          </StaffUserTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

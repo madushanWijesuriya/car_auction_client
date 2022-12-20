@@ -1,11 +1,11 @@
 <script setup>
-import { computed } from "vue";
-import { mdiClose } from "@mdi/js";
-import BaseButton from "@/components/admin/BaseButton.vue";
-import BaseButtons from "@/components/admin/BaseButtons.vue";
-import CardBox from "@/components/admin/CardBox.vue";
-import OverlayLayer from "@/components/admin/OverlayLayer.vue";
-import CardBoxComponentTitle from "@/components/admin/CardBoxComponentTitle.vue";
+import { computed } from 'vue'
+import { mdiClose } from '@mdi/js'
+import BaseButton from '@/components/admin/BaseButton.vue'
+import BaseButtons from '@/components/admin/BaseButtons.vue'
+import CardBox from '@/components/admin/CardBox.vue'
+import OverlayLayer from '@/components/admin/OverlayLayer.vue'
+import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 
 const props = defineProps({
   title: {
@@ -14,40 +14,40 @@ const props = defineProps({
   },
   button: {
     type: String,
-    default: "info",
+    default: 'info',
   },
   buttonLabel: {
     type: String,
-    default: "Done",
+    default: 'Done',
   },
   hasCancel: Boolean,
   modelValue: {
     type: [String, Number, Boolean],
     default: null,
   },
-});
+})
 
-const emit = defineEmits(["update:modelValue", "cancel", "confirm"]);
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
 
 const value = computed({
   get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
-});
+  set: (value) => emit('update:modelValue', value),
+})
 
 const confirmCancel = (mode) => {
-  value.value = false;
-  emit(mode);
-};
+  value.value = false
+  emit(mode)
+}
 
-const confirm = () => confirmCancel("confirm");
+const confirm = () => confirmCancel('confirm')
 
-const cancel = () => confirmCancel("cancel");
+const cancel = () => confirmCancel('cancel')
 
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && value.value) {
-    cancel();
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && value.value) {
+    cancel()
   }
-});
+})
 </script>
 
 <template>
@@ -72,7 +72,7 @@ window.addEventListener("keydown", (e) => {
         <slot />
       </div>
 
-      <template #footer>
+      <!-- <template #footer>
         <BaseButtons>
           <BaseButton :label="buttonLabel" :color="button" @click="confirm" />
           <BaseButton
@@ -83,7 +83,7 @@ window.addEventListener("keydown", (e) => {
             @click="cancel"
           />
         </BaseButtons>
-      </template>
+      </template> -->
     </CardBox>
   </OverlayLayer>
 </template>

@@ -20,7 +20,7 @@ const form = reactive({
 const router = useRouter()
 
 const submit = () => {
-  router.push('/admin/dashboard')
+  router.push('/admin/all-cars')
 }
 </script>
 
@@ -58,7 +58,7 @@ const submit = () => {
           <BaseButtons>
             <BaseButton type="submit" color="info" label="Login" />
             <BaseButton
-              to="/admin/dashboard"
+              to="/admin/all-cars"
               color="info"
               outline
               label="Back"

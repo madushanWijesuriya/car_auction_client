@@ -1,6 +1,6 @@
 <script setup>
 import { toRefs, ref, reactive } from 'vue'
-const props = defineProps(['makers', 'models', 'drives'])
+const props = defineProps(['makers', 'models', 'drives', 'resultCount'])
 const { makers, models, drives } = toRefs(props)
 const emit = defineEmits(['maker-changed', 'apply-filters', 'reset-filters'])
 const valueChanged = (e) => {
@@ -35,6 +35,7 @@ const initialState = {
   desc: '',
 }
 let form = reactive({ ...initialState })
+let formOne = reactive({ ...initialState })
 function onSubmit() {
   emit('apply-filters', form)
 }
@@ -55,7 +56,7 @@ function onReset() {
         </div>
         <div class="filter-result basis-2/3">
           <h2 class="text-sm font-semibold text-end text-black">
-            Show Results <span class="primary-blue">245</span>
+            Show Results <span class="primary-blue">{{ resultCount }}</span>
           </h2>
         </div>
       </div>
@@ -63,7 +64,7 @@ function onReset() {
         <el-form label-position="top" label-width="100%" style="width: 100%">
           <el-form-item label="Brand Name">
             <el-select
-              v-model="form.maker"
+              v-model="formOne.maker"
               multiple
               style="width: 100%"
               placeholder="Any"
@@ -92,16 +93,7 @@ function onReset() {
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="Chassis">
-            <el-select
-              v-model="form.Chassis"
-              placeholder="Any"
-              style="width: 100%"
-            >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
+
           <el-form-item label="Condition">
             <el-select
               v-model="conditionModel"
@@ -128,12 +120,7 @@ function onReset() {
               </el-slider>
             </div>
           </el-form-item>
-          <el-form-item label="Engine From - To">
-            <div class="block">
-              <el-slider v-model="form.engine" range :min="1" :max="10">
-              </el-slider>
-            </div>
-          </el-form-item>
+
           <el-form-item label="Drive">
             <el-select
               v-model="form.drive"
@@ -147,64 +134,6 @@ function onReset() {
                 :value="drive.id"
               ></el-option>
             </el-select>
-          </el-form-item>
-          <el-form-item label="Gearbox">
-            <el-select
-              v-model="value2"
-              placeholder="Select Gearbox"
-              style="width: 100%"
-            >
-              <el-option
-                v-for="item in []"
-                :key="item.value2"
-                :label="item.label"
-                :value="item.value2"
-              >
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Lot Number">
-            <el-select
-              v-model="form.lotNo"
-              placeholder="Select Lot Number"
-              style="width: 100%"
-            >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Auctions">
-            <el-select
-              v-model="form.auctions"
-              placeholder="Select Auctions"
-              style="width: 100%"
-            >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Select Dates">
-            <el-radio-group v-model="form.resource">
-              <el-radio style="width: 100%" :label="1">Monday</el-radio>
-              <el-radio style="width: 100%" :label="2">Tuesday</el-radio>
-              <el-radio style="width: 100%" :label="3">Wednesday</el-radio>
-              <el-radio style="width: 100%" :label="4">Thursday</el-radio>
-              <el-radio style="width: 100%" :label="5">Friday</el-radio>
-              <el-radio style="width: 100%" :label="6">Saturday</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="Shipping Country">
-            <el-select placeholder="Select Country" style="width: 100%">
-              <el-option label="Sri Lanka" value="shanghai"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Fort">
-            <el-select placeholder="Select Fort" style="width: 100%">
-              <el-option label="Hambantota" value="shanghai"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="">
-            <el-input></el-input>
           </el-form-item>
 
           <!-- end of form -->

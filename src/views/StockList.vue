@@ -5,6 +5,9 @@ import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
 import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const carsStore = useCarsStore()
 const indexingDetails = reactive({
@@ -14,12 +17,15 @@ const indexingDetails = reactive({
   total: 0,
   from: 0,
   to: 0,
-  links: null,
+  links: {
+    next: null,
+  },
 })
 
-const getAllCars = async () => {
+const getAllCars = async (pageId) => {
   try {
-    const response = await httpResource.get('/api/staff/vehicle')
+    const url = `/api/guest/vehicle?sort=id${pageId ? '&page=' + pageId : ''}`
+    const response = await httpResource.get(url)
     setCars(response)
   } catch (error) {
     console.error(error)
@@ -106,8 +112,22 @@ const resetFilters = () => {
   getAllCars()
 }
 
+const goToFirstPage = () => {
+  getAllCars(1)
+}
+
+const goToLastPage = () => {
+  getAllCars(indexingDetails.lastPage)
+}
+
+const changePage = (pageId) => {
+  if (!pageId) return
+  getAllCars(pageId)
+}
+
 onMounted(async () => {
-  await getAllCars()
+  if (router.currentRoute.value.name !== 'HomeStockList') await getAllCars()
+
   await getMakers()
   await getDriveTypes()
 })
@@ -141,11 +161,17 @@ onMounted(async () => {
           :makers="makersList"
           :models="modelsList"
           :drives="driveTypeList"
+          :resultCount="indexingDetails.total"
           @maker-changed="changeMaker"
           @apply-filters="applyFilters"
           @reset-filters="resetFilters"
         />
-        <VehicalList :indexingDetails="indexingDetails" />
+        <VehicalList
+          :indexingDetails="indexingDetails"
+          @go-to-first-page="goToFirstPage"
+          @go-to-last-page="goToLastPage"
+          @change-page="changePage"
+        />
         <CustomerFeedback />
       </div>
     </div>
