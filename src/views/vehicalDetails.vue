@@ -418,7 +418,7 @@ const getImageUrl = (name) => {
         </div>
         <div>
           <p class="font-quote-form-label">E-mail ID</p>
-          <el-input v-model="postData.email" placeholder="Please input" />
+          <el-input  v-model="postData.email" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Phone/Cell Number</p>
@@ -458,7 +458,7 @@ const getImageUrl = (name) => {
             Reset
           </div>
           <div
-            class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5"
+            class="w-full font-down-image text-center bg-[#08246C] cursor-pointer rounded-md text-white py-3 px-2 mt-5"
             @click="storeInquery"
           >
             Send Inquiry

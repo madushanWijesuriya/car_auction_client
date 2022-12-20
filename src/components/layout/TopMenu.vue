@@ -61,11 +61,11 @@ const url = computed(() => {
       </div>
     </div>
     <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
-      <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center">
+      <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] cursor-pointer xl:text-[20px] font-semibold items-center">
         Log in
       </div>
       <div
-        class="rounded xl:rounded-lg bg-[#08246C] px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4">
+        class="rounded xl:rounded-lg  cursor-pointer bg-[#08246C] hover:bg-blue-800 px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4">
         Register
       </div>
     </div>
