@@ -143,6 +143,7 @@ export default {
   name: 'navbar',
   components: {
     Services,
+    AboutVue,
   },
   data() {
     return {
