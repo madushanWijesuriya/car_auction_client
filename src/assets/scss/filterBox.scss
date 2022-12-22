@@ -11,12 +11,11 @@
 .btn-search {
   width: 100%;
   margin-top: 20px;
-  background: #08246C;
+  background: #08246c;
   color: #e7edff;
   border-radius: 8px;
-  border: 1px solid #08246C;
+  border: 1px solid #08246c;
   padding: 10px 30px 10px 30px;
-
 }
 
 .btn-clear {
@@ -25,13 +24,40 @@
   border-radius: 8px;
   padding: 10px 30px 10px 30px;
   background: #fff;
-  color: #08246C;
-  border: 1px solid #08246C;
+  color: #08246c;
+  border: 1px solid #08246c;
+}
+
+.btn-clear:hover {
+  background: rgb(246, 246, 247);
+  transition: 0.4s all;
+}
+
+.btn-search:hover {
+  background: #15327c;
+  transition: 0.4s all;
 }
 
 .filter-box {
   ::v-deep(.el-form-item__label) {
     font-size: 20px;
+  }
+
+  ::v-deep(.el-input__inner) {
+    color: var(--primary-blue);
+  }
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--primary-blue);
+  }
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--primary-blue);
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--primary-blue);
   }
 
   ::v-deep(.el-input__inner):focus {

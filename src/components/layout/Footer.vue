@@ -367,6 +367,46 @@ import { computed } from '@vue/runtime-core'
           </div>
         </div>
       </div>
+      <div class="flex flex-wrap justify-center gap-3 md:gap-0">
+        <div
+          class="text-white bottom-7 font-size-14 md:font-size-16 text-center md:text-left"
+        >
+          Tokyo Public Safety Commission No. 302151306342
+        </div>
+        <div class="text-white bottom-7 font-size-14 md:font-size-16 m-auto">
+          © 2022 Jamex Auction House
+        </div>
+        <div class="flex gap-5">
+          <a href="#">
+            <img
+              src="home/facebook.svg"
+              alt="facebook-logo"
+              class="bottom-7 cursor-pointer"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="home/twitter.svg"
+              alt="facebook-logo"
+              class="bottom-7 cursor-pointer"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="home/linkedIn.svg"
+              alt="facebook-logo"
+              class="bottom-7 cursor-pointer"
+            />
+          </a>
+          <a href="#">
+            <img
+              src="home/instagram.svg"
+              alt="facebook-logo"
+              class="bottom-7 cursor-pointer"
+            />
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>

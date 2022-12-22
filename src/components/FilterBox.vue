@@ -147,7 +147,13 @@
                 </button>
               </div>
               <div class="inner-group">
-                <button class="btn-clear" type="button">Clear</button>
+                <button
+                  class="btn-clear"
+                  type="button"
+                  @click="clearAllFilters"
+                >
+                  Clear
+                </button>
               </div>
             </div>
           </div>
@@ -228,9 +234,9 @@ function setCars(response) {
 const initialState = {
   search_text: '',
   maker: '',
-  model: '',
+  model_id: '',
   body_type_id: '',
-  drive_trype_id: '',
+  drive_type_id: '',
   to: '',
   from: '',
   engine: '',
@@ -287,6 +293,10 @@ const getDriverTypes = async () => {
 }
 const changeMaker = (e) => {
   getModels(e)
+}
+
+const clearAllFilters = () => {
+  Object.assign(form, initialState)
 }
 
 onMounted(async () => {
