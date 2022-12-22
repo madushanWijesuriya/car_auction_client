@@ -13,12 +13,12 @@ const url = computed(() => {
 
         <transition name="fade" apear>
             <ul class="dropdown-menu" v-if="isOpen">
-                <li class="nav-item"><a class="dropdown-item" :href="url + 'why-us'">Why
+                <li class="nav-item"><a class="dropdown-item cursor-pointer" :href="url + 'why-us'">Why
                         Us</a></li>
-                <li class="nav-item"><a class="dropdown-item" :href="url + 'company-profile'">Company Profile</a></li>
-                <li class="nav-item"><a class="dropdown-item" :href="url + 'about'">Corparate
+                <li class="nav-item"><a class="dropdown-item cursor-pointer" :href="url + 'company-profile'">Company Profile</a></li>
+                <li class="nav-item"><a class="dropdown-item cursor-pointer" :href="url + 'about'">Corparate
                         Philosophy</a></li>
-                <li class="nav-item"><a class="dropdown-item" :href="url + 'customer-feedback'">Customer's Feedback</a>
+                <li class="nav-item"><a class="dropdown-item cursor-pointer" :href="url + 'customer-feedback'">Customer's Feedback</a>
                 </li>
             </ul>
         </transition>

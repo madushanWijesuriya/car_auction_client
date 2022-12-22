@@ -16,8 +16,8 @@ const url = computed(() => {
       </svg>
     </div>
     <div class="flex items-center">
-      <div class="lg:w-[150px] xl:w-[250px] md:w-[120px]">
-        <img class="w-full" src="@/assets/images/logo.svg" />
+      <div class="lg:w-[150px] xl:w-[250px] md:w-[120px] cursor-pointer">
+        <a class="font-semibold" :href="url"><img class="w-full" src="@/assets/images/logo.svg" /></a>
       </div>
     </div>
     <div v-if="isOpen" class="absolute left-0 z-[500] top-12 p-5 bg-white">
@@ -26,10 +26,10 @@ const url = computed(() => {
     <div
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]">
       <div>
-        <a class="font-semibold" :href="url">Home</a>
+        <a class="font-semibold cursor-pointer" :href="url">Home</a>
       </div>
       <div class="flex items-center gap-2">
-        <a class="font-semibold" :href="url + 'stock-list'">Stock List</a>
+        <a class="font-semibold cursor-pointer" :href="url + 'stock-list'">Stock List</a>
       </div>
       <div class="flex items-center gap-2">
         <Services title="Services" />
@@ -39,8 +39,8 @@ const url = computed(() => {
           </svg>
         </div>
       </div>
-      <a class="font-semibold" :href="url + 'how-to-ordering'">How to Order</a>
-      <div class="flex items-center gap-2">
+      <a class="font-semibold cursor-pointer" :href="url + 'how-to-ordering'">How to Order</a>
+      <div class="flex items-center gap-2 cursor-pointer">
         <Countries title="Countries"/>
         <div class="w-[10px] h-[10px]">
           <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,8 +48,8 @@ const url = computed(() => {
           </svg>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <AboutVue title="About" />
+      <div class="flex items-center gap-2 cursor-pointer">
+        <AboutVue title="About " />
         <div class="w-[10px] h-[10px]">
           <svg width="100%" height="100%" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L7 7L13 1" stroke="#08246C" stroke-width="1.5" stroke-linecap="round" />
@@ -57,11 +57,11 @@ const url = computed(() => {
         </div>
       </div>
       <div class="font-semibold">
-        <a class="font-semibold" :href="url + 'reachus'">Reach Us</a>
+        <a class="font-semibold cursor-pointer" :href="url + 'reachus'">Reach Us</a>
       </div>
     </div>
     <div class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center">
-      <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] cursor-pointer xl:text-[20px] font-semibold items-center">
+      <div class="flex flex-row justify-center md:text-[12px] lg:text-[15px] cursor-pointer xl:text-[20px] font-semibold items-center cursor-pointer">
         Log in
       </div>
       <div

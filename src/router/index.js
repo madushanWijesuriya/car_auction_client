@@ -67,6 +67,11 @@ const router = createRouter({
       component: () => import('../views/CountriesVehicleDetailsView.vue'),
     },
     {
+      path: '/certificationEAA',
+      name: 'certificationsEaaView',
+      component: () => import('../views/CertificationsEaaView.vue'),
+    },
+    {
       path: '/vehical-details/:id',
       name: 'vehicalDetails',
       component: () => import('../views/vehicalDetails.vue'),

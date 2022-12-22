@@ -16,7 +16,7 @@ const url = computed(() => {
         <li class="dropdown dropdown-submenu dropend" @click="isOpen = !isOpen">
           <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">
             <div class="flex w-full justify-between items-center">
-              <p class="font-semibold">Auction</p>
+              <p class="font-semibold cursor-pointer">Auction</p>
               <svg
                 width="13"
                 height="13"
@@ -35,29 +35,29 @@ const url = computed(() => {
           </a>
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
-              <a class="dropdown-item" :href="url + 'service-auction-calendar'"
+              <a class="dropdown-item cursor-pointer" :href="url + 'service-auction-calendar'"
                 >Auction Calendar</a
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item" :href="url + 'services-auction-guru'"
+              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-guru'"
                 >Auction Guide</a
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item" :href="url + 'services-auction-vs-stock'"
+              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-vs-stock'"
                 >Auction Vs Stock</a
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item" :href="url + 'services-auction-houses'"
+              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-houses'"
                 >Auction Houses</a
               >
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item" :href="url + 'ServicesQualityControlView'"
+          <a class="dropdown-item cursor-pointer" :href="url + 'services-quality-control'"
             >Quality Control</a
           >
         </li>
@@ -68,7 +68,7 @@ const url = computed(() => {
             data-bs-toggle="dropdown"
           >
             <div class="flex w-full justify-between items-center">
-              <p class="font-semibold">Certifications</p>
+              <p class="font-semibold cursor-pointer">Certifications</p>
               <svg
                 width="13"
                 height="13"
@@ -87,19 +87,19 @@ const url = computed(() => {
           </a>
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
-              <a class="dropdown-item" :href="url + 'countries-vehicle-details'"
+              <a class="dropdown-item cursor-pointer" :href="url + 'certificationEAA'"
                 >EAA</a
               >
             </li>
-            <li class="nav-item"><a class="dropdown-item">Intertek</a></li>
-            <li class="nav-item"><a class="dropdown-item">JAAI </a></li>
-            <li class="nav-item"><a class="dropdown-item">JEVIC</a></li>
-            <li class="nav-item"><a class="dropdown-item">VCA</a></li>
-            <li class="nav-item"><a class="dropdown-item">QISJ Calendar</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">Intertek</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">JAAI </a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">JEVIC</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">VCA</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">QISJ Calendar</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item" :href="url + 'shipment-service'"
+          <a class="dropdown-item cursor-pointer" :href="url + 'shipment-service'"
             >Shipment Schedule</a
           >
         </li>
