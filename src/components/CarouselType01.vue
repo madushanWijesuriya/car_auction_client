@@ -92,9 +92,7 @@ const changeImageTimer = () => {
         <div
           class="para-text-03 order-1 sm:order-2 sm:pr-24 sm:pt-9 sm:col-span-5 col-span-full"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh
-          malesuada ipsum feugiat quis in. Eros neque purus convallis tellus
-          elementum faucibus lacinia eu integer.
+        Jamex is an exporter of Japanese used cars, new cars and Japanese used construction equipment. We export quality used machinery and used cars from Japan to Asia, Africa, South America, Caribbean and Oceania. We attend Japanese Auto Auctions and Used Machinery Auctions. We are Japan's No1 Auto Auction Agent! Â Supplier of only quality used and new cars from Japan. JAMEX is Your best Supplier of japanese Brand new Cars! We can supply not only Japanese RHD Cars but we can also supply German and American LHD Cars!
         </div>
         <Transition appear name="slide-fade" mode="in-out">
           <img

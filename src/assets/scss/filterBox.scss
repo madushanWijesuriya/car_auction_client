@@ -30,12 +30,13 @@
 }
 
 .filter-box {
-  ::v-deep(.el-input__inner) {
-    // height: calc(var(--el-input-height, 50px) - -10px)
-  }
-
   ::v-deep(.el-form-item__label) {
     font-size: 20px;
-    // height: calc(var(--el-input-height, 50px) - -10px)
+  }
+
+  ::v-deep(.el-input__inner):focus {
+    border: unset;
+    outline: unset;
+    box-shadow: unset;
   }
 }

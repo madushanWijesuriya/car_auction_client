@@ -1,6 +1,4 @@
-<script setup>
-import { computed } from '@vue/runtime-core'
-</script>
+<script setup></script>
 <template>
   <div
     class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]"
@@ -32,7 +30,7 @@ import { computed } from '@vue/runtime-core'
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <routerLink class="font-semibold" :to="'/'">Home</routerLink>
+        <routerLink :class="['font-semibold']" :to="'/'">Home</routerLink>
       </div>
       <div class="flex items-center gap-2">
         <routerLink class="font-semibold" :to="'/stock-list'"
@@ -61,7 +59,7 @@ import { computed } from '@vue/runtime-core'
       <routerLink class="font-semibold" :to="'/how-to-ordering'"
         >How to Order</routerLink
       >
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 sub-menu-list">
         <Countries title="Countries" />
         <div class="w-[10px] h-[10px]">
           <svg
@@ -80,7 +78,7 @@ import { computed } from '@vue/runtime-core'
           </svg>
         </div>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 sub-menu-list">
         <AboutVue title="About" />
         <div class="w-[10px] h-[10px]">
           <svg

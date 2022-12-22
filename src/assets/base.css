@@ -68,3 +68,11 @@ Absolute font sizes
     font-size: 12px;
   }
 }
+
+.router-link-active {
+  border-bottom: 4px solid #ce2832;
+}
+
+.sub-menu-list .nav-item {
+  padding: 0 8px;
+}
