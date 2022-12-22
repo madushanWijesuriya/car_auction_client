@@ -2,7 +2,7 @@
   <div class="text-black md:hidden">
     <div class="space-y-5">
       <div>
-        <a :href="url">Home</a>
+        <routerLink :to="'/'">Home</routerLink>
       </div>
       <div>
         <div @click="isOpen = !isOpen">Services</div>
@@ -30,20 +30,24 @@
               </a>
               <ul apear>
                 <li>
-                  <a :href="url + 'service-auction-calendar'"
-                    >Auction Calendar</a
+                  <routerLink :to="'/service-auction-calendar'"
+                    >Auction Calendar</routerLink
                   >
                 </li>
                 <li>
-                  <a :href="url + 'services-auction-guru'">Auction Guide</a>
-                </li>
-                <li>
-                  <a :href="url + 'services-auction-vs-stock'"
-                    >Auction Vs Stock</a
+                  <routerLink :to="'/services-auction-guru'"
+                    >Auction Guide</routerLink
                   >
                 </li>
                 <li>
-                  <a :href="url + 'services-auction-houses'">Auction Houses</a>
+                  <routerLink :to="'/services-auction-vs-stock'"
+                    >Auction Vs Stock</routerLink
+                  >
+                </li>
+                <li>
+                  <routerLink :to="'/services-auction-houses'"
+                    >Auction Houses</routerLink
+                  >
                 </li>
               </ul>
             </li>
@@ -77,7 +81,9 @@
                 <li><a>QISJ Calendar</a></li>
               </ul>
             </li>
-            <li class=""><a class="" href="">Shipment Schedule</a></li>
+            <li class="">
+              <routerLink class="" to="#">Shipment Schedule</routerLink>
+            </li>
           </ul>
         </div>
         <!-- <div class="w-[10px] h-[10px]">
@@ -87,13 +93,13 @@
                 </div> -->
       </div>
       <div class="font-semibold">
-        <a class="font-semibold" :href="url + 'countries-vehicle-details'"
-          >Countries</a
+        <routerLink class="font-semibold" :to="'/countries-vehicle-details'"
+          >Countries</routerLink
         >
       </div>
       <div class="font-semibold">How to Order</div>
       <div class="flex items-center gap-2">
-        <a class="font-semibold" :href="url + 'about'">About Us</a>
+        <routerLink class="font-semibold" :to="'/about'">About Us</routerLink>
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -112,15 +118,12 @@
         </div>
       </div>
       <div class="font-semibold">
-        <a class="font-semibold" :href="url + 'reachus'">Reach Us</a>
+        <routerLink class="font-semibold" :to="'/reachus'">Reach Us</routerLink>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-const url = import.meta.env.VITE_BASE_URL_CLIENT
-</script>
 <script>
 export default {
   name: 'SideBar',
