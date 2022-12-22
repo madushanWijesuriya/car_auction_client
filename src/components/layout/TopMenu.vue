@@ -103,6 +103,7 @@ import { computed } from '@vue/runtime-core'
         <routerLink class="font-semibold" :to="'/reachus'">Reach Us</routerLink>
       </div>
     </div>
+
     <div
       class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center"
     >
@@ -114,6 +115,7 @@ import { computed } from '@vue/runtime-core'
       <div
         class="rounded xl:rounded-lg bg-[#08246C] px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4"
       >
+
         Register
       </div>
     </div>
