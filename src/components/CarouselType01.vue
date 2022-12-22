@@ -98,7 +98,7 @@ const changeImageTimer = () => {
         </div>
         <Transition appear name="slide-fade" mode="in-out">
           <img
-            class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14"
+            class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14 image-car"
             :src="getImageUrl(activeImageObj.image || '')"
             :alt="items[0].alt"
           />
