@@ -319,6 +319,11 @@ const router = createRouter({
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
     },
+    {
+      path: '/log-in',
+      name: 'LogIn',
+      component: () => import('../views/Portal/Login.vue'),
+    },
   ],
 })
 
