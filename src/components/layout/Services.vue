@@ -1,8 +1,5 @@
 <script setup>
 import { computed } from '@vue/runtime-core'
-const url = computed(() => {
-  return import.meta.env.VITE_BASE_URL_CLIENT
-})
 </script>
 
 <template>
@@ -35,36 +32,40 @@ const url = computed(() => {
           </a>
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
-              <a class="dropdown-item cursor-pointer" :href="url + 'service-auction-calendar'"
-                >Auction Calendar</a
+              <routerLink
+                class="dropdown-item cursor-pointer"
+                :to="'/service-auction-calendar'"
+                >Auction Calendar</routerLink
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-guru'"
-                >Auction Guide</a
+              <routerLink class="dropdown-item cursor-pointer" :to="'/services-auction-guru'"
+                >Auction Guide</routerLink
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-vs-stock'"
-                >Auction Vs Stock</a
+              <routerLink
+                class="dropdown-item cursor-pointer"
+                :to="'/services-auction-vs-stock'"
+                >Auction Vs Stock</routerLink
               >
             </li>
             <li class="nav-item">
-              <a class="dropdown-item cursor-pointer" :href="url + 'services-auction-houses'"
-                >Auction Houses</a
+              <routerLink class="dropdown-item cursor-pointer" :to="'/services-auction-houses'"
+                >Auction Houses</routerLink
               >
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item cursor-pointer" :href="url + 'services-quality-control'"
-            >Quality Control</a
+          <routerLink class="dropdown-item cursor-pointer" :to="'/services-quality-control'"
+            >Quality Control</routerLink
           >
         </li>
         <li class="dropdown dropdown-submenu dropend">
-          <a
+          <routerLink
             class="dropdown-item dropdown-toggle"
-            href="#"
+            to="#"
             data-bs-toggle="dropdown"
           >
             <div class="flex w-full justify-between items-center">
@@ -84,11 +85,13 @@ const url = computed(() => {
                 />
               </svg>
             </div>
-          </a>
+          </routerLink>
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
-              <a class="dropdown-item cursor-pointer" :href="url + 'certificationEAA'"
-                >EAA</a
+              <routerLink
+                class="dropdown-item cursor-pointer"
+                :to="'/certificationEAA'"
+                >EAA</routerLink
               >
             </li>
             <li class="nav-item cursor-pointer"><a class="dropdown-item">Intertek</a></li>
@@ -99,8 +102,8 @@ const url = computed(() => {
           </ul>
         </li>
         <li class="nav-item">
-          <a class="dropdown-item cursor-pointer" :href="url + 'shipment-service'"
-            >Shipment Schedule</a
+          <routerLink class="dropdown-item cursor-pointer" :to="'/shipment-service'"
+            >Shipment Schedule</routerLink
           >
         </li>
       </ul>

@@ -1,5 +1,5 @@
 <script setup>
-import logoSVG from "@/assets/images/logo.svg";
+import logoSVG from '@/assets/images/logo.svg'
 </script>
 <template>
   <div class="menu-navbar">
@@ -21,5 +21,5 @@ import logoSVG from "@/assets/images/logo.svg";
   </div>
 </template>
 <style scoped lang="scss">
-@import "@/assets/scss/menuNavbar.scss";
+@import '@/assets/scss/menuNavbar.scss';
 </style>

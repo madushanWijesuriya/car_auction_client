@@ -1,8 +1,5 @@
 <script setup>
-import { computed } from "@vue/runtime-core";
-const url = computed(() => {
-  return import.meta.env.VITE_BASE_URL_CLIENT;
-});
+import { computed } from '@vue/runtime-core'
 </script>
 <template>
   <div class="footer">
@@ -41,49 +38,49 @@ const url = computed(() => {
                 <br />
                 <div class="mb-20">
                   <div class="mb-5">
-                    <a
-                    :href="url + 'why-us'"
+                    <routerLink
+                      :to="'/why-us'"
                       class="text-left text-white footer-contect-text underline"
                       >Why Choose Us?
-                    </a>
+                    </routerLink>
                   </div>
                   <div class="mb-5">
-                    <a
-                      :href="url + 'company-profile'"
+                    <routerLink
+                      :to="'/company-profile'"
                       class="text-left text-white footer-contect-text underline"
                       >Company Profile
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                    :href="url + 'about'"
+                    <routerLink
+                      :to="'/about'"
                       class="text-left text-white footer-contect-text underline"
                       >Corporate Philosophy
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                      :href="url + 'ServicesQualityControlView'"
+                    <routerLink
+                      :to="'/ServicesQualityControlView'"
                       class="text-left text-white footer-contect-text underline"
                       >Quality Control
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                      :href="url + 'customer-feedback'"
+                    <routerLink
+                      :to="'/customer-feedback'"
                       class="text-left text-white footer-contect-text underline"
                       >Customer Reviews
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                    :href="url + 'reachus'"
+                    <routerLink
+                      :to="'/reachus'"
                       class="text-left text-white footer-contect-text underline"
-                      >Contact Us</a
+                      >Contact Us</routerLink
                     >
                   </div>
                 </div>
@@ -95,42 +92,42 @@ const url = computed(() => {
                 <br />
                 <div class="mb-20 sm:mb-0 md:mb-0">
                   <div class="mb-5">
-                    <a
-                    :href="url + 'countries-vehicle-details'"
+                    <routerLink
+                      :to="'/countries-vehicle-details'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Calendar
-                    </a>
+                    </routerLink>
                   </div>
                   <div class="mb-5">
-                    <a
-                    :href="url + 'services-auction-houses'"
+                    <routerLink
+                      :to="'/services-auction-houses'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Houses
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                    :href="url + 'services-auction-guru'"
+                    <routerLink
+                      :to="'/services-auction-guru'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Guide
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                      :href="url + 'services-auction-vs-stock'"
+                    <routerLink
+                      :to="'/services-auction-vs-stock'"
                       class="text-left text-white footer-contect-text underline"
                       >Auction Vs Stock
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
-                    <a
-                    :href="url + 'how-to-ordering'"
+                    <routerLink
+                      :to="'/how-to-ordering'"
                       class="text-left text-white footer-contect-text underline"
                       >How to order
-                    </a>
+                    </routerLink>
                   </div>
 
                   <div class="mb-5">
@@ -341,8 +338,8 @@ const url = computed(() => {
               >
                 <h1
                   class="footer-topic text-center sm:text-center md:text-center lg:text-left xl:text-left"
-                >Reach us
-                  
+                >
+                  Reach us
                 </h1>
                 <br />
                 <h1 class="text-white footer-contect-text">
@@ -374,5 +371,5 @@ const url = computed(() => {
   </div>
 </template>
 <style scoped lang="scss">
-@import "@/assets/scss/footer.scss";
+@import '@/assets/scss/footer.scss';
 </style>
