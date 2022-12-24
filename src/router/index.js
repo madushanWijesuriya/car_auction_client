@@ -324,6 +324,16 @@ const router = createRouter({
       name: 'LogIn',
       component: () => import('../views/Portal/Login.vue'),
     },
+    {
+      path: '/sing-up',
+      name: 'Register',
+      component: () => import('../views/Portal/Register.vue'),
+    },
+    {
+      path: '/step-two',
+      name: 'Register Step',
+      component: () => import('../views/Portal/Register_two.vue'),
+    },
   ],
 })
 
