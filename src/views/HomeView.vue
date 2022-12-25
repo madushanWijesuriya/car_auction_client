@@ -10,10 +10,23 @@ import RatingsGroup from '../components/RatingsGroup.vue'
 
 <template>
   <div class="home">
+    <div class="fixed-images absolute right-0 hidden md:block">
+      <div class="group fixed-group relative">
+        <img
+          class="back_image"
+          src="background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-20"
+          src="jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
+    </div>
     <div class="main-section-01" data-aos="zoom-in">
       <div class="top">
         <div class="right-fade"></div>
-        <!-- <MenuNavbar class="menu-navbar" /> -->
       </div>
       <div class="bottom">
         <div class="content-01">
