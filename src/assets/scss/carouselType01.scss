@@ -67,4 +67,14 @@
     top: 0;
     width: 100%;
   }
+
+  img.image-car {
+    height: 426px;
+  }
+
+  @media (max-width: 600px) {
+    img.image-car {
+      height: 200px;
+    }
+  }
 }

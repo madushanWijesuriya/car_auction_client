@@ -5,6 +5,7 @@ import FilterBox from '../components/FilterBox.vue'
 import CardTwo from '../components/Cards/CardTwo.vue'
 import CardOne from '../components/Cards/CardOne.vue'
 import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
+import RatingsGroup from '../components/RatingsGroup.vue'
 import { useCarsStore } from '@/stores/cars'
 import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -29,10 +30,23 @@ onMounted(async () => {
 
 <template>
   <div class="home">
+    <div class="fixed-images absolute right-0 hidden md:block">
+      <div class="group fixed-group relative">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-20"
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
+    </div>
     <div class="main-section-01" data-aos="zoom-in">
       <div class="top">
         <div class="right-fade"></div>
-        <!-- <MenuNavbar class="menu-navbar" /> -->
       </div>
       <div class="bottom">
         <div class="content-01">
@@ -179,6 +193,55 @@ onMounted(async () => {
               <ButtoneTwo text="Read More" />
             </div>
           </div>
+        </div>
+      </div>
+      <div class="contenet-6 container mt-9 md:mt-20">
+        <div
+          data-aos="fade-right"
+          class="color-01 font-size-24 md:font-size-48 font-bold text-center"
+        >
+          Our FREE Services
+        </div>
+        <div
+          data-aos="fade-right"
+          class="mt-14 flex flex-wrap gap-3 md:gap-10 font-size-16 md:font-size-32 justify-center leading-6 md:leading-10"
+        >
+          <span class="flex"
+            >Documentation
+            <span class="ml-5 color-02"> | </span>
+          </span>
+          <span class="flex"
+            >Courier
+            <span class="ml-5 color-02"> |</span>
+          </span>
+          <span class="flex">
+            No Tax
+            <span class="ml-5 color-02">|</span>
+          </span>
+          <span class="flex"
+            >Auction Sheet
+            <span class="ml-5 color-02">|</span>
+          </span>
+          <span class="flex"
+            >Transaltion
+            <span class="ml-5 color-02">|</span>
+          </span>
+          <span>No Recycle Fee</span>
+        </div>
+        <div
+          data-aos="fade-left"
+          class="color-01 font-bold font-size-24 md:font-size-48 mt-9 md:mt-20 text-center leading-7 md:leading-10"
+        >
+          What's our client say about us
+        </div>
+        <RatingsGroup />
+        <div class="mt-6 text-center">
+          <button
+            type="button"
+            class="w-full lg:w-44 text-white bg-color-01 font-size-20 rounded-lg py-3 hover:bg-[#0f2869] shadow-md"
+          >
+            See More
+          </button>
         </div>
       </div>
     </div>

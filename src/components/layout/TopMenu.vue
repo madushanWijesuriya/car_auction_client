@@ -1,6 +1,4 @@
-<script setup>
-import { computed } from '@vue/runtime-core'
-</script>
+<script setup></script>
 <template>
   <div
     class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]"
@@ -61,7 +59,7 @@ import { computed } from '@vue/runtime-core'
       <routerLink class="font-semibold" :to="'/how-to-ordering'"
         >How to Order</routerLink
       >
-      <div class="flex items-center gap-2 cursor-pointer">
+      <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
         <Countries title="Countries" />
         <div class="w-[10px] h-[10px]">
           <svg
@@ -80,8 +78,8 @@ import { computed } from '@vue/runtime-core'
           </svg>
         </div>
       </div>
-      <div class="flex items-center gap-2 cursor-pointer">
-        <AboutVue title="About " />
+      <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
+        <AboutVue title="About" />
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -147,6 +145,7 @@ export default {
   name: 'navbar',
   components: {
     Services,
+    AboutVue,
   },
   data() {
     return {

@@ -4,9 +4,9 @@ import { computed } from '@vue/runtime-core'
 
 <template>
   <div class="menu-sub relative" @click="isOpen = !isOpen">
-    <routerLink :to="''" class="font-semibold">
+    <a href="#" class="font-semibold">
       {{ title }}
-    </routerLink>
+    </a>
 
     <transition name="fade" apear>
       <div
