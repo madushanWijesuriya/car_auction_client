@@ -109,9 +109,6 @@ export default {
           })
           state.validationErrors = null
           resetForm()
-          toast.success('Successfully Added', {
-            timeout: 2000,
-          })
         }
       } catch (error) {
         if (error.response.status == 422) {

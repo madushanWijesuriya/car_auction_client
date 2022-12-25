@@ -6,11 +6,13 @@ import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
 import ClientTable from '@/components/Tables/Admin/ClientTable.vue'
 import { useClientsStore } from '@/stores/clientsMgt'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, ref, onMounted, reactive } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import clientsData from '../dummy-data/clients'
 import { mdiEye, mdiTrashCan, mdiBlockHelper } from '@mdi/js'
+import CardBoxModal from '@/components/admin/CardBoxModal.vue'
+import AdminSendNewsLetters from '@/components/admin/modals/AdminSendNewsLetters.vue'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
@@ -19,13 +21,14 @@ const { clients: items, countries } = storeToRefs(clientsStore)
 const headers = computed(() => clientsStore.tableHeaders)
 
 const decoratedItems = computed(() => {
-  if (!items.value || !Array.isArray(items.value)) return []
+  if (!items?.value || !Array?.isArray(items?.value)) return []
   return items.value.map((i) => {
     return {
       id: i?.id,
       name: i?.name,
       email: i?.email,
       country: i?.country?.name,
+
       isActive: i?.isActive ? 'Active' : 'deactivate',
     }
   })
@@ -124,6 +127,7 @@ const countryList = computed(() => {
     }
   })
 })
+let isModalActive = ref(false)
 
 const initialState = {
   country_id: countryList[0],
@@ -142,6 +146,10 @@ const statusOptions = [
   },
 ]
 
+const openModel = () => {
+  isModalActive.value = true
+};
+
 let form = reactive({ ...initialState })
 </script>
 <template>
@@ -149,11 +157,12 @@ let form = reactive({ ...initialState })
     <LayoutAuthenticated>
       <SectionMain>
         <CardBox>
-          <SectionTitleLineWithButton
-            :icon="mdiCarEstate"
-            title="Search"
-            main
-          ></SectionTitleLineWithButton>
+          <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton>
+          <div>
+            <CardBoxModal v-model="isModalActive" title="Send News and Letters" v-if="isModalActive">
+              <AdminSendNewsLetters :content="content" @changeMaker="changeMaker" @closeModal="isModalActive = false" />
+            </CardBoxModal>
+          </div>
           <el-row :gutter="20">
             <el-col :span="6">
               <FormField label="Country">
@@ -173,34 +182,17 @@ let form = reactive({ ...initialState })
           </el-row>
 
           <BaseButtons>
-            <BaseButton
-              type="submit justify-end lg:justify-end"
-              color="info"
-              label="Search"
-              @click="applyFilters"
-              no-wrap
-            />
-            <BaseButton
-              type="reset justify-end lg:justify-end"
-              color="info"
-              outline
-              label="Reset"
-              @click="resetForm"
-              no-wrap
-            />
+            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="applyFilters"
+              no-wrap />
+            <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
+              no-wrap />
+            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Send News and Letters"
+              @click="openModel" no-wrap />
           </BaseButtons>
         </CardBox>
         <CardBox style="margin-top: 40px">
-          <SectionTitleLineWithButton
-            title="Clients"
-            main
-          ></SectionTitleLineWithButton>
-          <ClientTable
-            :items="decoratedItems"
-            :headers="headers"
-            :actions="actions"
-            @block-user="getAllClients"
-          >
+          <SectionTitleLineWithButton title="Clients" main></SectionTitleLineWithButton>
+          <ClientTable :items="decoratedItems" :headers="headers" :actions="actions" @block-user="getAllClients">
           </ClientTable>
         </CardBox>
       </SectionMain>

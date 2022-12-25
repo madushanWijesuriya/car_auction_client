@@ -1,0 +1,18 @@
+.vehicalImg img {
+    width: 250px !important;
+    height: 175px;
+}
+
+@media only screen and (max-width: 600px) {
+    .vehicalImg img {
+        width: 100% !important;
+    }
+}
+
+.btn-primary {
+    padding: 5px 20px 5px 20px;
+    background: #08246C;
+    color: wheat;
+    font-size: 10px;
+    border-radius: 6px;
+}

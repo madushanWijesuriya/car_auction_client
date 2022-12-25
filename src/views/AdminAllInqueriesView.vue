@@ -3,10 +3,9 @@ import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.v
 import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
-import Table from '@/components/admin/Table.vue'
 import InqueryTable from '@/components/Tables/Admin/InqueryTable.vue'
-import { useCarsStore } from '@/stores/inqueries'
-import { computed, onMounted, reactive } from 'vue'
+import { useInqStore } from '@/stores/inqueries'
+import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import { mdiEye, mdiTrashCan } from '@mdi/js'
@@ -14,10 +13,10 @@ import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
-const carsStore = useCarsStore()
+const inqueryStore = useInqStore()
 const router = useRouter()
-const { cars: items } = storeToRefs(carsStore)
-const headers = computed(() => carsStore.tableHeaders)
+const { inqueries: items } = storeToRefs(inqueryStore)
+const headers = computed(() => inqueryStore.tableHeaders)
 const decoratedItems = computed(() => {
   console.log(items)
   if (!items.value || !Array.isArray(items.value)) return []
@@ -25,7 +24,7 @@ const decoratedItems = computed(() => {
     return {
       id: i.id,
       type: i?.type,
-      vehicle_id: i?.vehicle_id?.id,
+      vehicle_id: i?.vehicle_id,
       country_id: i?.country_id?.name,
       name: i?.name,
       email: i?.email,
@@ -37,10 +36,45 @@ const decoratedItems = computed(() => {
   })
 })
 
-const getAllCars = async () => {
+const getAllInquiries = async () => {
   try {
     const response = await httpResource.get('/api/staff/inquery')
-    carsStore.$patch({
+    inqueryStore.$patch({
+      inqueries: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const applyFilters = async () => {
+  try {
+    let filterQuery = '/api/staff/inquery?'
+
+    if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
+    if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
+    if (form.status_id.id)
+      filterQuery += `&filter[status_id]=${form.status_id.id}`
+    if (form.body_type_id.id)
+      filterQuery += `&filter[body_type_id]=${form.body_type_id.id}`
+    if (form.transmission_id.id)
+      filterQuery += `&filter[transmission_id]=${form.transmission_id.id}`
+    if (form.streeing_id.id)
+      filterQuery += `&filter[streeing_id]=${form.streeing_id.id}`
+    if (form.door_type_id.id)
+      filterQuery += `&filter[door_type_id]=${form.door_type_id.id}`
+    if (form.driver_type_id.id)
+      filterQuery += `&filter[driver_type_id]=${form.driver_type_id.id}`
+    if (form.fuel_type_id.id)
+      filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id.id}`
+    if (form.exterior_color_id.id)
+      filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id.id}`
+    if (form.feature_id.id)
+      filterQuery += `&filter[feature_id]=${form.feature_id.id}`
+    if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
+    if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
+    const response = await httpResource.get(filterQuery)
+    inqueryStore.$patch({
       cars: response.data.data,
     })
   } catch (error) {
@@ -49,7 +83,17 @@ const getAllCars = async () => {
 }
 
 onMounted(async () => {
-  await getAllCars()
+  await getAllInquiries()
+  getMakers()
+  getStatus()
+  getBodyTypes()
+  getTransmitions()
+  getStreeings()
+  getDoorTypes()
+  getDriverTypes()
+  getfuleTypes()
+  getExteriorColors()
+  getFeatures()
 })
 
 const range = (start, stop, step) =>
@@ -78,45 +122,181 @@ const submitForm = async () => {
     console.error(error?.response?.data?.message)
   }
 }
-const makersList = [
-  { id: 1, label: 'BMW' },
-  { id: 2, label: 'Benz' },
-  { id: 3, label: 'Toyota' },
-  { id: 4, label: 'Hyundai' },
-  { id: 5, label: 'Honda' },
-  { id: 6, label: 'Mitsubishi' },
-  { id: 6, label: 'Audi' },
+let makersList = ref([])
+let modelsList = ref([])
+let statusList = ref([])
+let bodyTypeList = ref([])
+let streeingList = ref([])
+let transmissionList = ref([])
+let doorTypesList = ref([])
+let driveTypeList = ref([])
+let fuleTypeList = ref([])
+let exteriorColorList = ref([])
+let featuresList = ref([])
+let conditionList = [
+  { id: 1, label: 'Used' },
+  { id: 2, label: 'New' },
 ]
-const modelsList = [
-  { id: 1, label: 'Model1' },
-  { id: 1, label: 'Model2' },
-  { id: 1, label: 'Model3' },
-  { id: 1, label: 'Model4' },
-  { id: 1, label: 'Model5' },
-]
+
 const yearsList = range(
   new Date().getFullYear(),
   new Date().getFullYear() - 50,
   -1
 )
-const bodyTypeList = [
-  { id: 1, label: '--' },
-  { id: 2, label: 'Sedan' },
-  { id: 3, label: 'Hatchback' },
-  { id: 4, label: 'SUV' },
-  { id: 5, label: 'MUV' },
-  { id: 6, label: 'Coupe' },
-  { id: 7, label: 'Convertibles' },
-  { id: 8, label: 'Other' },
-]
+
+const getMakers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/maker')
+    makersList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+const getModels = async (moakerId) => {
+  try {
+    const response = await httpResource.get('/api/resources/model/' + moakerId)
+    modelsList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const changeMaker = (e) => {
+  getModels(e.id)
+}
+
+const getStatus = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/status')
+    statusList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const monthsList = Array.from({ length: 12 }, (e, i) => {
+  return {
+    id: i + 1,
+    label: new Date(null, i + 1, null).toLocaleDateString('en', {
+      month: 'short',
+    }),
+  }
+})
+const getBodyTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/body-type')
+    bodyTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getTransmitions = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/transmission')
+    transmissionList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getStreeings = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/streeings')
+    streeingList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getDoorTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/door-types')
+    doorTypesList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getDriverTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/drive-types')
+    driveTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getfuleTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/fuel-types')
+    fuleTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getExteriorColors = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/exterior-colors')
+    exteriorColorList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const getFeatures = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/features')
+    featuresList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const initialState = {
-  maker: makersList[0],
-  model: null,
-  chassisNo: '',
-  fromYear: new Date().getFullYear(),
-  toYear: new Date().getFullYear(),
-  bodyType: bodyTypeList[0],
-  reff: '',
+  make_id: '',
+  model_id: '',
+  status_id: '',
+  body_type_id: '',
+  transmission_id: '',
+  streeing_id: '',
+  door_type_id: '',
+  driver_type_id: '',
+  fuel_type_id: '',
+  exterior_color_id: '',
+  feature_id: '',
+  chassis_no: '',
+  make_at: '',
+  isUsed: '',
 }
 
 let form = reactive({ ...initialState })
@@ -154,64 +334,108 @@ let tableActions = reactive([
             main
           ></SectionTitleLineWithButton>
           <el-row :gutter="20">
-            <el-col :span="6">
-              <FormField label="Maker">
+            <el-col :span="3">
+              <FormField label="Make">
                 <FormControl
-                  v-model="form.maker"
+                  v-model="form.make_id"
                   :options="makersList"
+                  @update:modelValue="changeMaker"
                 /> </FormField
             ></el-col>
-            <el-col :span="6">
+            <el-col :span="3">
               <FormField label="Model">
-                <FormControl v-model="form.model" :options="modelsList" />
+                <FormControl v-model="form.model_id" :options="modelsList" />
               </FormField>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="3">
               <FormField label="Body Type">
                 <FormControl
-                  v-model="form.bodyType"
+                  v-model="form.body_type_id"
                   :options="bodyTypeList"
                 /> </FormField
             ></el-col>
-            <el-col :span="6">
+            <el-col :span="3">
+              <FormField label="Status">
+                <FormControl
+                  v-model="form.status_id"
+                  :options="statusList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Make at">
+                <FormControl
+                  v-model="form.make_at"
+                  :icon="mdiCalendarRange"
+                  :options="yearsList"
+                />
+              </FormField>
+            </el-col>
+            <el-col :span="3">
+              <FormField label="Transmission">
+                <FormControl
+                  v-model="form.transmission_id"
+                  :options="transmissionList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Streeing">
+                <FormControl
+                  v-model="form.streeing_id"
+                  :options="streeingList"
+                /> </FormField
+            ></el-col>
+
+            <el-col :span="3">
+              <FormField label="Door Type">
+                <FormControl
+                  v-model="form.door_type_id"
+                  :options="doorTypesList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
               <FormField label="Chassis No" help="">
                 <FormControl
-                  v-model="form.chassisNo"
+                  v-model="form.chassis_no"
                   type="text"
                   placeholder="Vehicle chassis no"
                 />
               </FormField>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <FormField label="REFF" help="">
+            <el-col :span="3">
+              <FormField label="Drive">
                 <FormControl
-                  v-model="form.reff"
-                  type="text"
-                  placeholder="REFF"
-                />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="From year">
+                  v-model="form.driver_type_id"
+                  :options="driveTypeList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Fuel">
                 <FormControl
-                  v-model="form.fromYear"
-                  :icon="mdiCalendarRange"
-                  :options="yearsList"
-                />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="To year">
+                  v-model="form.fuel_type_id"
+                  :options="fuleTypeList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Color">
                 <FormControl
-                  v-model="form.toYear"
-                  :icon="mdiCalendarRange"
-                  :options="yearsList"
-                />
-              </FormField>
-            </el-col>
+                  v-model="form.exterior_color_id"
+                  :options="exteriorColorList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Feature">
+                <FormControl
+                  v-model="form.feature_id"
+                  :options="featuresList"
+                /> </FormField
+            ></el-col>
+            <el-col :span="3">
+              <FormField label="Condition">
+                <FormControl
+                  v-model="form.isUsed"
+                  :options="conditionList"
+                /> </FormField
+            ></el-col>
           </el-row>
 
           <BaseButtons>
@@ -219,7 +443,7 @@ let tableActions = reactive([
               type="submit justify-end lg:justify-end"
               color="info"
               label="Search"
-              @click="validateForm"
+              @click="applyFilters"
               no-wrap
             />
             <BaseButton
@@ -238,12 +462,12 @@ let tableActions = reactive([
             title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
-          <Table
+          <InqueryTable
             :items="decoratedItems"
             :headers="headers"
             :actions="tableActions"
           >
-          </Table>
+          </InqueryTable>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

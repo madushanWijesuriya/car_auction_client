@@ -67,6 +67,11 @@ const router = createRouter({
       component: () => import('../views/CountriesVehicleDetailsView.vue'),
     },
     {
+      path: '/certificationEAA',
+      name: 'certificationsEaaView',
+      component: () => import('../views/CertificationsEaaView.vue'),
+    },
+    {
       path: '/vehical-details/:id',
       name: 'vehicalDetails',
       component: () => import('../views/vehicalDetails.vue'),
@@ -170,6 +175,26 @@ const router = createRouter({
       path: '/admin/client-mgt',
       name: 'allClient',
       component: () => import('../views/AdminClientMgt.vue'),
+    },
+    {
+      meta: {
+        title: 'create newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/create-news-letter',
+      name: 'createNewsLetter',
+      component: () => import('../views/AdminCreateNewsLetter.vue'),
+    },
+    {
+      meta: {
+        title: 'all newsletters',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/news-letter',
+      name: 'allNewsLetter',
+      component: () => import('../views/AdminNewsLetter.vue'),
     },
     {
       meta: {

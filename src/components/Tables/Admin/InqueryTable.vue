@@ -58,7 +58,6 @@ async function deleteInquery(id) {
   // try {
   //   const response = await httpResource.delete('/api/staff/staffuser/' + id, {
   //   })
-
   //   if (response.status === 200) {
   //     state.validationErrors = null
   //     toast.success('Successfully Deleted', {
@@ -382,12 +381,17 @@ onMounted(async () => {
             v-if="checkable"
             @checked="checked($event, client)"
           />
-          <td v-for="dataPoint in row">
-            <span v-if="!isValidHttpUrl(dataPoint)">
+
+          <td v-for="(dataPoint, key) in row" :key="key">
+            <span v-if="key != 'vehicle_id'">
               {{ dataPoint }}
             </span>
             <span v-else>
-              <img :src="dataPoint" alt="img" />
+              <img
+                :src="base_url_api + dataPoint.cover_image_full_url"
+                alt="img"
+                height="100px"
+              />
             </span>
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">
@@ -399,9 +403,13 @@ onMounted(async () => {
                   :icon="item?.icon"
                   small
                   v-on="
-                    index === 0
-                      ? { click: () => openEditModel(row.id) }
-                      : { click: ()=>deleteInquery(row.id) }
+                    index === 0 // ? { click: () => openEditModel(row.id) } // : { click: deleteVehicle }
+                      ? item.clickFunc
+                        ? { click: () => item.clickFunc(row.id) }
+                        : { click: () => openEditModel(row.id) }
+                      : item.clickFunc
+                      ? { click: () => item.clickFunc(row.id) }
+                      : { click: () => deleteVehicle(row.id) }
                   "
                 />
               </div>

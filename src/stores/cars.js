@@ -2,17 +2,7 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
 export const useCarsStore = defineStore('cars', () => {
-  const cars = ref([
-    {
-      no: 100,
-      photo: 'https://picsum.photos/200/200',
-      make: 'Audi',
-      model: 'A5',
-      FOB: 'Test',
-      Status: 'Active',
-      Inquiry: '-',
-    },
-  ])
+  const cars = ref([])
 
   const filters = ref([])
   const tableHeaders = reactive([

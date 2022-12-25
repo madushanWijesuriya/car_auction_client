@@ -44,6 +44,22 @@ export default [
       // },
     ],
   },
+  {
+    label: 'News Letter',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/news-letter',
+        label: 'News Letter',
+        icon: mdiCarSearch,
+      },
+      {
+        to: '/admin/create-news-letter',
+        label: 'Add News Letter',
+        icon: mdiCarEstate,
+      },
+    ],
+  },
   // {
   //   label: 'Dropdown',
   //   icon: mdiViewList,

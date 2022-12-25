@@ -13,7 +13,7 @@ import { computed } from '@vue/runtime-core'
         <li class="dropdown dropdown-submenu dropend" @click="isOpen = !isOpen">
           <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">
             <div class="flex w-full justify-between items-center">
-              <p class="font-semibold">Auction</p>
+              <p class="font-semibold cursor-pointer">Auction</p>
               <svg
                 width="13"
                 height="13"
@@ -33,32 +33,32 @@ import { computed } from '@vue/runtime-core'
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
               <routerLink
-                class="dropdown-item"
+                class="dropdown-item cursor-pointer"
                 :to="'/service-auction-calendar'"
                 >Auction Calendar</routerLink
               >
             </li>
             <li class="nav-item">
-              <routerLink class="dropdown-item" :to="'/services-auction-guru'"
+              <routerLink class="dropdown-item cursor-pointer" :to="'/services-auction-guru'"
                 >Auction Guide</routerLink
               >
             </li>
             <li class="nav-item">
               <routerLink
-                class="dropdown-item"
+                class="dropdown-item cursor-pointer"
                 :to="'/services-auction-vs-stock'"
                 >Auction Vs Stock</routerLink
               >
             </li>
             <li class="nav-item">
-              <routerLink class="dropdown-item" :to="'/services-auction-houses'"
+              <routerLink class="dropdown-item cursor-pointer" :to="'/services-auction-houses'"
                 >Auction Houses</routerLink
               >
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/ServicesQualityControlView'"
+          <routerLink class="dropdown-item cursor-pointer" :to="'/services-quality-control'"
             >Quality Control</routerLink
           >
         </li>
@@ -69,7 +69,7 @@ import { computed } from '@vue/runtime-core'
             data-bs-toggle="dropdown"
           >
             <div class="flex w-full justify-between items-center">
-              <p class="font-semibold">Certifications</p>
+              <p class="font-semibold cursor-pointer">Certifications</p>
               <svg
                 width="13"
                 height="13"
@@ -89,20 +89,20 @@ import { computed } from '@vue/runtime-core'
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
               <routerLink
-                class="dropdown-item"
-                :to="'/countries-vehicle-details'"
+                class="dropdown-item cursor-pointer"
+                :to="'/certificationEAA'"
                 >EAA</routerLink
               >
             </li>
-            <li class="nav-item"><a class="dropdown-item">Intertek</a></li>
-            <li class="nav-item"><a class="dropdown-item">JAAI </a></li>
-            <li class="nav-item"><a class="dropdown-item">JEVIC</a></li>
-            <li class="nav-item"><a class="dropdown-item">VCA</a></li>
-            <li class="nav-item"><a class="dropdown-item">QISJ Calendar</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">Intertek</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">JAAI </a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">JEVIC</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">VCA</a></li>
+            <li class="nav-item cursor-pointer"><a class="dropdown-item">QISJ Calendar</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/shipment-service'"
+          <routerLink class="dropdown-item cursor-pointer" :to="'/shipment-service'"
             >Shipment Schedule</routerLink
           >
         </li>

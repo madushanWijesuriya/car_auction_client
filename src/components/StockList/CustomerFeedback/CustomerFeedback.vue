@@ -16,7 +16,7 @@
                     Thank
                     you so much. Royal Trading is loyal and
                 </div>
-                <div class="view-all">
+                <div class="view-all cursor-pointer">
                     View All »
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         you so much. Royal Trading is loyal and
                     </p>
                 </div>
-                <div class="view-all">
+                <div class="view-all  cursor-pointer">
                     View All »
                 </div>
             </div>
@@ -73,7 +73,7 @@
                         you so much. Royal Trading is loyal and
                     </p>
                 </div>
-                <div class="view-all">
+                <div class="view-all cursor-pointer">
                     View All »
                 </div>
             </div>
@@ -99,7 +99,7 @@
                         you so much. Royal Trading is loyal and
                     </p>
                 </div>
-                <div class="view-all">
+                <div class="view-all cursor-pointer">
                     View All »
                 </div>
             </div>

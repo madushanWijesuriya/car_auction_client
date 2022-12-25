@@ -6,6 +6,26 @@ import CardTwo from '../components/Cards/CardTwo.vue'
 import CardOne from '../components/Cards/CardOne.vue'
 import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
 import RatingsGroup from '../components/RatingsGroup.vue'
+import { useCarsStore } from '@/stores/cars'
+import { onMounted, reactive, ref } from 'vue'
+import httpResource from '@/http/httpResource'
+
+let latestCarsList = ref([])
+
+const getAllCars = async () => {
+  try {
+    const url = `/api/guest/vehicle?paginate=4&sort=-id`
+    const response = await httpResource.get(url)
+    latestCarsList = response.data.data
+    console.log(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
+  await getAllCars()
+})
 </script>
 
 <template>
@@ -125,10 +145,9 @@ import RatingsGroup from '../components/RatingsGroup.vue'
         <div
           class="grid gap-6 sm:gap-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-6 sm:mt-12 place-items-center"
         >
-          <!-- <CardOne />
-          <CardOne />
-          <CardOne />
-          <CardOne /> -->
+          <div v-for="(vehicle, key) in latestCarsList" :key="key">
+            <CardOne :vehicle="vehicle" />
+          </div>
         </div>
       </div>
       <div class="content-05 container mt-9 px-4 md:px-20">

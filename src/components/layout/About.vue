@@ -11,20 +11,20 @@ import { computed } from '@vue/runtime-core'
     <transition name="fade" apear>
       <ul class="dropdown-menu" v-if="isOpen">
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/why-us'">Why Us</routerLink>
+          <routerLink class="dropdown-item cursor-pointer" :to="'/why-us'">Why Us</routerLink>
         </li>
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/company-profile'"
+          <routerLink class="dropdown-item cursor-pointer" :to="'/company-profile'"
             >Company Profile</routerLink
           >
         </li>
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/about'"
+          <routerLink class="dropdown-item cursor-pointer" :to="'/about'"
             >Corparate Philosophy</routerLink
           >
         </li>
         <li class="nav-item">
-          <routerLink class="dropdown-item" :to="'/customer-feedback'"
+          <routerLink class="dropdown-item cursor-pointer" :to="'/customer-feedback'"
             >Customer's Feedback</routerLink
           >
         </li>
