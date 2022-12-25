@@ -24,6 +24,17 @@ import { computed } from '@vue/runtime-core'
               procedure with which you can place your bids and control them for
               the deposit, auction,and payments
             </h1>
+            <div class="">
+              <iframe
+                class="w-11/12 mt-4"
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjamexcojp%2F&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=577622146523366"
+                style="border: none; overflow: hidden"
+                scrolling="no"
+                frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </div>
           </div>
           <div
             class="col-span-8 col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-8 xl:col-span-8"
@@ -377,7 +388,7 @@ import { computed } from '@vue/runtime-core'
           © 2022 Jamex Auction House
         </div>
         <div class="flex gap-5">
-          <a href="#">
+          <a href="https://www.facebook.com/jamexcojp/" target="_blank">
             <img
               src="home/facebook.svg"
               alt="facebook-logo"
