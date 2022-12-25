@@ -72,6 +72,24 @@
     height: 426px;
   }
 
+  .slider-controls {
+    right: -36px;
+    bottom: 30%;
+  }
+
+  .non-active-dot {
+    background-color: rgba(8, 36, 108, 0.2);
+  }
+
+  .active-dot {
+    border: 3.33px solid #fff;
+  }
+
+  .dot-control {
+    width: 20px;
+    height: 20px;
+  }
+
   @media (max-width: 600px) {
     img.image-car {
       height: 200px;
