@@ -34,12 +34,12 @@ onMounted(async () => {
       <div class="group fixed-group relative">
         <img
           class="back_image"
-          src="background_image.svg"
+          src="/background_image.svg"
           alt="backfround_image"
         />
         <img
           class="jap_map absolute top-32 right-20"
-          src="jap_map.svg"
+          src="/jap_map.svg"
           alt="jap_map"
         />
       </div>

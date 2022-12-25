@@ -390,29 +390,29 @@ import { computed } from '@vue/runtime-core'
         <div class="flex gap-5">
           <a href="https://www.facebook.com/jamexcojp/" target="_blank">
             <img
-              src="home/facebook.svg"
+              src="/home/facebook.svg"
               alt="facebook-logo"
               class="bottom-7 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
-              src="home/twitter.svg"
-              alt="facebook-logo"
+              src="/home/twitter.svg"
+              alt="twitter-logo"
               class="bottom-7 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
-              src="home/linkedIn.svg"
-              alt="facebook-logo"
+              src="/home/linkedIn.svg"
+              alt="linkedIn-logo"
               class="bottom-7 cursor-pointer"
             />
           </a>
           <a href="#">
             <img
-              src="home/instagram.svg"
-              alt="facebook-logo"
+              src="/home/instagram.svg"
+              alt="instagram-logo"
               class="bottom-7 cursor-pointer"
             />
           </a>

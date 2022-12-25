@@ -12,7 +12,7 @@ const value1 = ref(4)
           class="w-full px-6 pt-6 pb-2 md:pb-6 flex items-center justify-start"
         >
           <div class="w-12 h-12">
-            <img src="home/profile-pic-01.png" alt="profile-pic" />
+            <img src="/home/profile-pic-01.png" alt="profile-pic" />
           </div>
           <div
             class="ml-4 text-[#171616] font-size-16 md:font-size-20 font-bold"
@@ -39,7 +39,7 @@ const value1 = ref(4)
           class="w-full px-6 pt-6 pb-2 md:pb-6 flex items-center justify-start"
         >
           <div class="w-12 h-12">
-            <img src="home/profile-pic-01.png" alt="profile-pic" />
+            <img src="/home/profile-pic-01.png" alt="profile-pic" />
           </div>
           <div
             class="ml-4 text-[#171616] font-size-16 md:font-size-20 font-bold"
@@ -66,7 +66,7 @@ const value1 = ref(4)
           class="w-full px-6 pt-6 pb-2 md:pb-6 flex items-center justify-start"
         >
           <div class="w-12 h-12">
-            <img src="home/profile-pic-01.png" alt="profile-pic" />
+            <img src="/home/profile-pic-01.png" alt="profile-pic" />
           </div>
           <div
             class="ml-4 text-[#171616] font-size-16 md:font-size-20 font-bold"
@@ -93,7 +93,7 @@ const value1 = ref(4)
           class="w-full px-6 pt-6 pb-2 md:pb-6 flex items-center justify-start"
         >
           <div class="w-12 h-12">
-            <img src="home/profile-pic-01.png" alt="profile-pic" />
+            <img src="/home/profile-pic-01.png" alt="profile-pic" />
           </div>
           <div
             class="ml-4 text-[#171616] font-size-16 md:font-size-20 font-bold"
