@@ -10,23 +10,16 @@ const items = reactive([
   },
   {
     id: 2,
-    image: 'carousel/car03.svg',
+    image: 'carousel/car01.svg',
     order: 2,
     alt: 'image-2',
     selected: false,
   },
   {
     id: 3,
-    image: 'carousel/car01.svg',
+    image: 'carousel/car04.svg',
     order: 3,
     alt: 'image-3',
-    selected: false,
-  },
-  {
-    id: 4,
-    image: 'carousel/car04.svg',
-    order: 4,
-    alt: 'image-4',
     selected: true,
   },
 ])
@@ -39,12 +32,43 @@ const getImageUrl = (name) => {
   return name
 }
 
-setInterval(() => {
-  changeImageTimer()
-}, 3000)
+let imageTimer = ref(null)
 
-const changeImageTimer = () => {
+imageTimer.value = setInterval(() => {
+  changeImageTimer()
+}, 4000)
+
+const changeImageTimer = (toNext = false, toPre = false, image = null) => {
   const selectedItem = items.find((i) => i.selected)
+  if (toNext || toPre || image) {
+    // debugger
+    clearInterval(imageTimer.value)
+    let imageIndexToChnage = 0
+    if (toNext) {
+      imageIndexToChnage =
+        items.length - 1 < items.indexOf(selectedItem) + 1
+          ? 0
+          : items.indexOf(selectedItem) + 1
+    } else if (toPre) {
+      imageIndexToChnage =
+        -1 < items.indexOf(selectedItem) - 1
+          ? items.indexOf(selectedItem) - 1
+          : items.length - 1
+    } else if (image) {
+      const imageToChnage = items.find((item) => item.id === image.id)
+      imageIndexToChnage =
+        items.indexOf(imageToChnage) > -1 ? items.indexOf(imageToChnage) : 0
+    }
+    items.forEach((item, index) => {
+      if (index === imageIndexToChnage) {
+        item.selected = true
+      } else {
+        item.selected = false
+      }
+    })
+    imageTimer.value = setInterval(changeImageTimer, 4000)
+    return
+  }
   let selIndex = -1
   if (selectedItem) {
     selIndex = items.indexOf(selectedItem)
@@ -92,14 +116,51 @@ const changeImageTimer = () => {
         <div
           class="para-text-03 order-1 sm:order-2 sm:pr-24 sm:pt-9 sm:col-span-5 col-span-full"
         >
-        Jamex is an exporter of Japanese used cars, new cars and Japanese used construction equipment. We export quality used machinery and used cars from Japan to Asia, Africa, South America, Caribbean and Oceania. We attend Japanese Auto Auctions and Used Machinery Auctions. We are Japan's No1 Auto Auction Agent! Â Supplier of only quality used and new cars from Japan. JAMEX is Your best Supplier of japanese Brand new Cars! We can supply not only Japanese RHD Cars but we can also supply German and American LHD Cars!
+          Jamex is an exporter of Japanese used cars, new cars and Japanese used
+          construction equipment. We export quality used machinery and used cars
+          from Japan to Asia, Africa, South America, Caribbean and Oceania. We
+          attend Japanese Auto Auctions and Used Machinery Auctions. We are
+          Japan's No1 Auto Auction Agent! Â Supplier of only quality used and
+          new cars from Japan. JAMEX is Your best Supplier of japanese Brand new
+          Cars! We can supply not only Japanese RHD Cars but we can also supply
+          German and American LHD Cars!
         </div>
         <Transition appear name="slide-fade" mode="in-out">
-          <img
-            class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14 image-car"
-            :src="getImageUrl(activeImageObj.image || '')"
-            :alt="items[0].alt"
-          />
+          <div
+            class="order-2 sm:order-1 sm:row-span-6 col-span-3 self-center xl:self-auto sm:mt-14 image-car relative"
+          >
+            <img
+              class=""
+              :src="getImageUrl(activeImageObj.image || '')"
+              :alt="items[0].alt"
+            />
+            <div class="slider-controls hidden md:block absolute">
+              <img
+                src="/carousel/previous.svg"
+                alt="previous"
+                class="mb-8 cursor-pointer"
+                @click="changeImageTimer(false, true, null)"
+              />
+              <div
+                :class="[
+                  'dot-control cursor-pointer rounded-full',
+                  activeImageObj.id === item.id
+                    ? 'bg-color-01 active-dot'
+                    : 'non-active-dot',
+                  { 'mt-4': idx !== 0 },
+                ]"
+                v-for="(item, idx) in items"
+                :key="item.id"
+                @click="changeImageTimer(false, false, item)"
+              ></div>
+              <img
+                src="/carousel/next.svg"
+                alt="next"
+                class="mt-8 cursor-pointer"
+                @click="changeImageTimer(true, false, null)"
+              />
+            </div>
+          </div>
         </Transition>
         <div
           class="mt-4 grid grid-cols-5 gap-6 order-3 sm:order-3 sm:col-span-5 col-span-full"
