@@ -2,17 +2,18 @@
   min-height: 60px;
   background-color: #08246c;
   color: #ffffff;
+
   .light-text-01 {
     color: rgba(255, 255, 255, 0.6);
     font-weight: 400;
   }
+
   /* Navbar container */
   .navbar {
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
   }
-
   /* Links inside the navbar */
   .navbar a {
     float: left;
@@ -37,8 +38,10 @@
     color: white;
     padding: 14px 16px;
     background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
   }
 
   /* Add a red background color to navbar links on hover */
@@ -81,6 +84,15 @@
     .part-01 {
       display: none;
     }
+
     min-height: 30px;
   }
+}
+
+.active {
+  border: solid;
+  border-top: 8px;
+  border-left: 8px;
+  border-right: 8px;
+  border-color: red;
 }

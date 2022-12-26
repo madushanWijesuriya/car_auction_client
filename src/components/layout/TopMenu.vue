@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import { computed ,onMounted } from '@vue/runtime-core'
+
+</script>
 <template>
   <div
     class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]"
@@ -30,10 +33,10 @@
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <routerLink class="font-semibold cursor-pointer" :to="'/'">Home</routerLink>
+        <routerLink active-class="active" class="font-semibold cursor-pointer   " :to="'/'">Home</routerLink>
       </div>
       <div class="flex items-center gap-2">
-        <routerLink class="font-semibold cursor-pointer" :to="'/stock-list'"
+        <routerLink active-class="active" class=" font-semibold cursor-pointer" :to="'/stock-list'"
           >Stock List</routerLink
         >
       </div>
@@ -56,7 +59,7 @@
           </svg>
         </div>
       </div>
-      <routerLink class="font-semibold" :to="'/how-to-ordering'"
+      <routerLink active-class="active"  class="font-semibold " :to="'/how-to-ordering'"
         >How to Order</routerLink
       >
       <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
@@ -98,7 +101,7 @@
         </div>
       </div>
       <div class="font-semibold">
-        <routerLink class="font-semibold cursor-pointer" :to="'/reachus'">Reach Us</routerLink>
+        <routerLink active-class="active"  class="font-semibold cursor-pointer" :to="'/reachus'">Reach Us</routerLink>
       </div>
     </div>
 
