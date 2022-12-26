@@ -63,9 +63,9 @@ import { computed } from '@vue/runtime-core'
           >
         </li>
         <li class="dropdown dropdown-submenu dropend">
-          <routerLink
+          <a
             class="dropdown-item dropdown-toggle"
-            to="#"
+            href="#"
             data-bs-toggle="dropdown"
           >
             <div class="flex w-full justify-between items-center">
@@ -85,7 +85,7 @@ import { computed } from '@vue/runtime-core'
                 />
               </svg>
             </div>
-          </routerLink>
+          </a>
           <ul class="dropdown-menu" apear>
             <li class="nav-item">
               <routerLink

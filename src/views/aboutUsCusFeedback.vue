@@ -6,7 +6,7 @@ var base_url = window.location.origin;
         <div class="flex flex-col gap-10 justify-center items-center w-full md:px-[10%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full" data-aos="zoom-in">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
-                    src="@/assets/images/customer-feedback/cus-feedback.svg" />
+                    src="@/assets/images/customer-feedback/cus-feedback.jpg" />
                 <div class="absolute text-white top-1/2 left-1/4 -translate-x-1/4 -translate-y-1/2">
                     <div class="text-white">
                         <div class="flex flex-col md:flex-col md:gap-2 lg:gap-2">

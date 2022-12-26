@@ -62,7 +62,7 @@ import { computed ,onMounted } from '@vue/runtime-core'
       <routerLink active-class="active"  class="font-semibold " :to="'/how-to-ordering'"
         >How to Order</routerLink
       >
-      <div class="flex items-center gap-2 cursor-pointer">
+      <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
         <Countries title="Countries" />
         <div class="w-[10px] h-[10px]">
           <svg
@@ -81,8 +81,8 @@ import { computed ,onMounted } from '@vue/runtime-core'
           </svg>
         </div>
       </div>
-      <div class="flex items-center gap-2 cursor-pointer">
-        <AboutVue title="About " />
+      <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
+        <AboutVue title="About" />
         <div class="w-[10px] h-[10px]">
           <svg
             width="100%"
@@ -148,6 +148,7 @@ export default {
   name: 'navbar',
   components: {
     Services,
+    AboutVue,
   },
   data() {
     return {
