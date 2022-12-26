@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full md:px-[5%]">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
-                    src="@/assets/images/why-us/why-us-1.svg" />
+                    src="@/assets/images/why-us/why-us-1.jpg" />
                 <div
                     class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[12%]">
                     <div class="flex flex-col text-white">

@@ -6,7 +6,7 @@
       <div class="relative w-full" data-aos="zoom-in">
         <img
           class="lg:rounded-[15px] md:rounded-[10px] w-full"
-          src="@/assets/images/aboutus/aboutus-img-1.svg"
+          src="@/assets/images/aboutus/aboutus-img-1.jpg"
         />
         <div
           class="absolute text-white top-1/2 left-1/4 -translate-x-1/4 -translate-y-1/2"
