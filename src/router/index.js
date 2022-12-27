@@ -72,6 +72,26 @@ const router = createRouter({
       component: () => import('../views/CertificationsEaaView.vue'),
     },
     {
+      path: '/intertek',
+      name: 'intertek',
+      component: () => import('../views/CetificationIntertek.vue'),
+    },
+    {
+      path: '/certificationJEVIC',
+      name: 'certificationJEVIC',
+      component: () => import('../views/CertifiactionJEVIC.vue'),
+    },
+    {
+      path: '/certificationVCA',
+      name: 'certificationVCA',
+      component: () => import('../views/CertificationVCA.vue'),
+    },
+    {
+      path: '/certificationQISJ',
+      name: 'certificationQISJ',
+      component: () => import('../views/CertificationQISJ.vue'),
+    },
+    {
       path: '/vehical-details/:id',
       name: 'vehicalDetails',
       component: () => import('../views/vehicalDetails.vue'),
