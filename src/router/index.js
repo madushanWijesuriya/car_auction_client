@@ -85,6 +85,7 @@ const router = createRouter({
       path: '/stock-list',
       name: 'StockList',
       component: () => import('../views/StockList.vue'),
+      props: true
     },
     {
       path: '/home-stock-list',

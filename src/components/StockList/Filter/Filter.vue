@@ -1,6 +1,7 @@
 <script setup>
-import { toRefs, ref, reactive } from 'vue'
-const props = defineProps(['makers', 'models', 'drives', 'resultCount'])
+import { toRefs, ref, reactive, onMounted } from 'vue'
+import { isEmpty } from 'lodash-es'
+const props = defineProps(['makers', 'models', 'drives', 'resultCount', 'filters'])
 const { makers, models, drives } = toRefs(props)
 const emit = defineEmits(['maker-changed', 'apply-filters', 'reset-filters'])
 const valueChanged = (e) => {
@@ -43,6 +44,25 @@ function onReset() {
   Object.assign(form, initialState)
   emit('reset-filters')
 }
+
+onMounted (() => {
+  setTimeout(() => {
+    if (!isEmpty(props.filters)) {
+      // console.log(props.filters)
+      form.maker = props.filters?.brands && Array.isArray(props.filters?.brands) ? props.filters?.brands.map(Number) : props.filters?.brands && !Array.isArray(props.filters?.brands) ? [Number(props.filters?.brands)] : ''
+      setTimeout(() => {
+        form.model = props.filters?.models && Array.isArray(props.filters?.models) ? props.filters?.models.map(Number) : props.filters?.models && !Array.isArray(props.filters?.models) ? [Number(props.filters?.models)] : ''
+      }, 3000)
+      if (props.filters?.drive_type_id) {
+        form.drive = Number(props.filters?.drive_type_id)
+      }
+      if (props.filters?.condition_id) {
+        conditionModel.value = props.filters?.condition_id
+      }
+      onSubmit()
+    }
+  }, 100)
+})
 </script>
 
 <template>
@@ -64,7 +84,7 @@ function onReset() {
         <el-form label-position="top" label-width="100%" style="width: 100%">
           <el-form-item label="Brand Name">
             <el-select
-              v-model="formOne.maker"
+              v-model="form.maker"
               multiple
               style="width: 100%"
               placeholder="Any"
