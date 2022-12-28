@@ -132,6 +132,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'sample-dashbord',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/sample-dashbord',
+      name: 'sample-dashbord',
+      component: () => import('../views/Portal/Sidebar.vue'),
+    },
+    {
+      meta: {
         title: 'inquiry Reply View',
         layout: 'LayoutAdmin',
         requiresAuth: true,
