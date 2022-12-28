@@ -110,8 +110,9 @@ const applyFilters = async (form) => {
   }
 }
 
-const resetFilters = () => {
-  getAllCars()
+const resetFilters = async () => {
+  router.replace({ path: route.path, query: {} })
+  await getAllCars()
 }
 
 const goToFirstPage = () => {
@@ -130,13 +131,18 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
-  // if (router.currentRoute.value.name !== 'HomeStockList') await getAllCars()
-    if (isEmpty(route.query)) {
-      await getAllCars()
+  await getMakers()
+  if (isEmpty(route.query)) {
+    await getAllCars()
+  } else if (!isEmpty(route.query) && route.query.brands) {
+    if (Array.isArray(route.query.brands) && route.query.brands[0] !== '') {
+      changeMaker(route.query.brands)
+    } else if (!Array.isArray(route.query.brands)) {
+      changeMaker([route.query.brands])
     }
-    await getMakers()
-    await getDriveTypes()
-    loadedCompleted.value = true
+  }
+  await getDriveTypes()
+  loadedCompleted.value = true
 })
 </script>
 <template>
