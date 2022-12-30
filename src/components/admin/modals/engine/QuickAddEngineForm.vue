@@ -9,12 +9,6 @@ import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
 
-const emit = defineEmits([
-  'update:modelValue',
-  'cancel',
-  'confirm',
-  'quickGearModal',
-])
 const toast = useToast()
 const initialState = {
   name: '',
@@ -34,7 +28,7 @@ const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/gear/quickAdd',
+      '/api/staff/vehicle/engine/quickAdd',
       {
         name: form?.name,
       }
@@ -45,7 +39,7 @@ const submitForm = async () => {
         timeout: 2000,
       })
     }
-    emit('quickGearModal')
+    emit('quickEngineModal')
   } catch (error) {
     console.error(error?.response?.data?.message)
   }
@@ -70,6 +64,8 @@ const props = defineProps({
     default: null,
   },
 })
+
+const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
 
 const value = computed({
   get: () => props.modelValue,
@@ -116,7 +112,7 @@ window.addEventListener('keydown', (e) => {
             <CardBox form @submit.prevent="submit">
               <SectionTitleLineWithButton
                 :icon="mdiCarEstate"
-                title="Add Gear"
+                title="Add Engine"
                 main
               >
               </SectionTitleLineWithButton>
@@ -124,7 +120,7 @@ window.addEventListener('keydown', (e) => {
                 <FormControl
                   v-model="form.name"
                   type="text"
-                  placeholder="Gear"
+                  placeholder="Engine"
                 />
               </FormField>
             </CardBox>

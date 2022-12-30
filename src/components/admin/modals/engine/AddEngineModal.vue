@@ -1,10 +1,10 @@
 <script>
-import QuickAddGearForm from '@/components/admin/modals/add-gear/QuickAddGearForm.vue'
+import QuickAddEngineForm from '@/components/admin/modals/engine/QuickAddEngineForm.vue'
 import { reactive } from '@vue/reactivity'
 
 export default {
   components: {
-    QuickAddGearForm,
+    QuickAddEngineForm,
   },
   setup(props) {
     const state = reactive({ dialog: false })
@@ -16,27 +16,27 @@ export default {
   },
 
   methods: {
-    openGearModal() {
+    openEngineModal() {
       this.state.dialog = true
     },
-    closeGearModal() {
+    closeEngineModal() {
       this.state.dialog = false
     },
     triggerParent() {
-      this.closeGearModal()
-      $emits('quickGearModalParent')
+      this.closeTransModal()
+      $emits('quickEngineModalParent')
     },
   },
 }
 </script>
 
 <template>
-  <QuickAddGearForm
+  <QuickAddEngineForm
     v-model="state.dialog"
-    title="Add Gear"
+    title="Add Transmission"
     button-label="Confirm"
     has-cancel
-    @quickGearModal="triggerParent"
+    @quickEngineModal="triggerParent"
   >
-  </QuickAddGearForm>
+  </QuickAddEngineForm>
 </template>
