@@ -5,9 +5,11 @@ import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
 import { onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { isEmpty } from 'lodash-es'
 
 const router = useRouter()
+const route = useRoute()
 
 const carsStore = useCarsStore()
 const indexingDetails = reactive({
@@ -108,8 +110,9 @@ const applyFilters = async (form) => {
   }
 }
 
-const resetFilters = () => {
-  getAllCars()
+const resetFilters = async () => {
+  router.replace({ path: route.path, query: {} })
+  await getAllCars()
 }
 
 const goToFirstPage = () => {
@@ -125,11 +128,21 @@ const changePage = (pageId) => {
   getAllCars(pageId)
 }
 
-onMounted(async () => {
-  if (router.currentRoute.value.name !== 'HomeStockList') await getAllCars()
+let loadedCompleted = ref(false)
 
+onMounted(async () => {
   await getMakers()
+  if (isEmpty(route.query)) {
+    await getAllCars()
+  } else if (!isEmpty(route.query) && route.query.brands) {
+    if (Array.isArray(route.query.brands) && route.query.brands[0] !== '') {
+      changeMaker(route.query.brands)
+    } else if (!Array.isArray(route.query.brands)) {
+      changeMaker([route.query.brands])
+    }
+  }
   await getDriveTypes()
+  loadedCompleted.value = true
 })
 </script>
 <template>
@@ -158,10 +171,12 @@ onMounted(async () => {
       </p>
       <div class="flex flex-col px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
         <Filter
+          v-if="loadedCompleted"
           :makers="makersList"
           :models="modelsList"
           :drives="driveTypeList"
           :resultCount="indexingDetails.total"
+          :filters="route.query"
           @maker-changed="changeMaker"
           @apply-filters="applyFilters"
           @reset-filters="resetFilters"
