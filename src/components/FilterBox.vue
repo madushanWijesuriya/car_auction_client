@@ -21,7 +21,9 @@
                   <el-date-picker
                     v-model="form.from"
                     type="date"
-                    placeholder="Pick a day"
+                    placeholder="Pick a Date"
+                    format="YYYY/MM/DD"
+                    value-format="YYYY-MM-DD"
                   >
                   </el-date-picker>
                 </el-form-item>
@@ -32,6 +34,8 @@
                     v-model="form.to"
                     type="date"
                     placeholder="Pick a day"
+                    format="YYYY/MM/DD"
+                    value-format="YYYY-MM-DD"
                   >
                   </el-date-picker>
                 </el-form-item>
@@ -185,35 +189,34 @@ const indexingDetails = reactive({
 
 const applyFilters = async () => {
   try {
-    // let filterQuery = '/api/guest/vehicle?'
-    // if (form.search_text)
-    //   filterQuery += `filter[search_text]=${form.search_text}`
-    // if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
-    // if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
-    // if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
-    // if (form.body_type_id)
-    //   filterQuery += `&filter[body_type_id]=${form.body_type_id}`
-    // if (form.transmission_id)
-    //   filterQuery += `&filter[transmission_id]=${form.transmission_id}`
-    // if (form.streeing_id)
-    //   filterQuery += `&filter[streeing_id]=${form.streeing_id}`
-    // if (form.door_type_id)
-    //   filterQuery += `&filter[door_type_id]=${form.door_type_id}`
-    // if (form.driver_type_id)
-    //   filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
-    // if (form.fuel_type_id)
-    //   filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
-    // if (form.exterior_color_id)
-    //   filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
-    // if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
-    // if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
-    // if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
+    let filterQuery = '/api/guest/vehicle?'
+    if (form.search_text)
+      filterQuery += `filter[search_text]=${form.search_text}`
+    if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
+    if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
+    if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
+    if (form.body_type_id)
+      filterQuery += `&filter[body_type_id]=${form.body_type_id}`
+    if (form.transmission_id)
+      filterQuery += `&filter[transmission_id]=${form.transmission_id}`
+    if (form.streeing_id)
+      filterQuery += `&filter[streeing_id]=${form.streeing_id}`
+    if (form.door_type_id)
+      filterQuery += `&filter[door_type_id]=${form.door_type_id}`
+    if (form.driver_type_id)
+      filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
+    if (form.fuel_type_id)
+      filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
+    if (form.exterior_color_id)
+      filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
+    if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
+    if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
+    if (form.from || form.to)
+      filterQuery += `&filter[make_at]=${form.from} - ${form.to}`
 
-    // const response = await httpResource.get(filterQuery)
-    // setCars(response)
-    // router.push({
-    //   name: 'HomeStockList',
-    // })
+    console.log(form.from)
+    const response = await httpResource.get(filterQuery)
+    setCars(response)
     router.push({
       name: 'StockList',
       query: {
