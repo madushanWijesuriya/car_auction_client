@@ -63,6 +63,7 @@ export default {
         formData.append('model_id', form?.model?.id)
         formData.append('status_id', form?.status?.id)
         formData.append('body_type_id', form?.bodyType?.id)
+        formData.append('engine_id', form?.engine_id?.id)
         formData.append('gear_box_id', form?.gear_box_id?.id)
         formData.append('transmission_id', form?.transmission?.id)
         formData.append('streeing_id', form?.streeing?.id)
@@ -86,6 +87,9 @@ export default {
         formData.append('mileage', form.mileage)
         formData.append('market_price', form.marketPrice)
         formData.append('feature_id', form?.features?.id)
+        formData.append('lot_number', form?.lot_number)
+        formData.append('title', form?.title)
+        formData.append('seats', form?.seats)
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
@@ -216,6 +220,18 @@ export default {
         console.error(error)
       }
     }
+    let country = ref([])
+    const countryList = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/countries')
+        countryList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
     let transmissionList = ref([])
     const getTransmitions = async () => {
       try {
@@ -316,6 +332,8 @@ export default {
       getfuleTypes()
       getExteriorColors()
       getFeatures()
+      getEngines()
+      getGearTypes()
     })
 
     const initialState = {
@@ -348,6 +366,9 @@ export default {
       supplierPrice: 0,
       supplierURL: '',
       marketPrice: 0,
+      title: '',
+      lot_number: '',
+      seats: null,
     }
 
     let form = reactive({ ...initialState })
@@ -470,6 +491,23 @@ export default {
           </div>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
+          <FormField label="Title" help="">
+            <FormControl v-model="form.title" type="text" placeholder="Title" />
+          </FormField>
+          <FormField label="Lot Number" help="">
+            <FormControl
+              v-model="form.lot_number"
+              type="text"
+              placeholder="Lot Number"
+            />
+          </FormField>
+          <FormField label="Seats" help="">
+            <FormControl
+              v-model="form.seats"
+              type="number"
+              placeholder="No of Seats"
+            />
+          </FormField>
           <AddModal ref="makeModal" @triggerParent="getResourcesLists" />
           <FormField label="Maker">
             <FormControl
@@ -557,6 +595,16 @@ export default {
             @click="addBody"
           />
           <FormField label="Engine">
+            <FormControl v-model="form.engine_id" :options="engineList" />
+          </FormField>
+          <AddEngineModal ref="engineModel" />
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Engine Type"
+            @click="addEngine"
+          />
+          <FormField label="Country">
             <FormControl v-model="form.engine_id" :options="engineList" />
           </FormField>
           <AddEngineModal ref="engineModel" />
