@@ -18,6 +18,7 @@ import { useToast } from 'vue-toastification'
 import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
 import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
+import AddGearTypeModel from '@/components/admin/modals/add-gear/AddGearTypeModel.vue'
 import AddTransmitionModal from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
 import AddCarModel from '@/components/admin/modals/add-model/AddCarModel.vue'
 import AddStreeings from '@/components/admin/modals/add-streeings/AddStreeings.vue'
@@ -62,6 +63,7 @@ export default {
         formData.append('model_id', form?.model?.id)
         formData.append('status_id', form?.status?.id)
         formData.append('body_type_id', form?.bodyType?.id)
+        formData.append('gear_box_id', form?.gear_box_id?.id)
         formData.append('transmission_id', form?.transmission?.id)
         formData.append('streeing_id', form?.streeing?.id)
         formData.append('door_type_id', form?.doorTypes?.id)
@@ -178,6 +180,18 @@ export default {
         }),
       }
     })
+    let gearTypeList = ref([])
+    const getGearTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/gears')
+        gearTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
     let bodyTypeList = ref([])
     const getBodyTypes = async () => {
       try {
@@ -281,6 +295,7 @@ export default {
     onMounted(async () => {
       getMakers()
       getStatus()
+      getGearTypes()
       getBodyTypes()
       getTransmitions()
       getStreeings()
@@ -302,6 +317,7 @@ export default {
       displacement: '',
       condition: 'new',
       bodyType: bodyTypeList[0],
+      gearType: gearTypeList[0],
       mileage: 0,
       transmission: transmissionList[0],
       streeing: streeingList[0],
@@ -332,6 +348,7 @@ export default {
       doorTypesList,
       streeingList,
       transmissionList,
+      gearTypeList,
       bodyTypeList,
       monthsList,
       yearsList,
@@ -355,6 +372,7 @@ export default {
     UploadImages,
     editor: Editor,
     AddModal,
+    AddGearTypeModel,
     AddBodyTypeModel,
     AddTransmitionModal,
     AddCarModel,
@@ -369,6 +387,10 @@ export default {
     addMaker() {
       this.$refs.makeModal.openMakeModal()
     },
+    // addGear() {
+    //   console.log('sssssssssssss')
+    //   this.$refs.gearTypeModel.openGearModal()
+    // },
     addBody() {
       this.$refs.bodyTypeModel.openBodyModal()
     },
@@ -507,6 +529,16 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
+          <AddGearTypeModel ref="gearTypeModel" />
+          <FormField label="Gear Type">
+            <FormControl v-model="form.gear_box_id" :options="gearTypeList" />
+          </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Gear Type"
+            @click="addGear"
+          />
           <AddBodyTypeModel ref="bodyTypeModel" />
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />

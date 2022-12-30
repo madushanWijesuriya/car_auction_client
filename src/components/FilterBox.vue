@@ -247,6 +247,7 @@ let form = reactive({ ...initialState })
 let makersList = ref([])
 let modelsList = ref([])
 let bodyTypeList = ref([])
+let engineTypeList = ref([])
 let driveTypeList = ref([])
 
 const getMakers = async () => {
@@ -280,6 +281,17 @@ const getBodyTypes = async () => {
     console.error(error)
   }
 }
+const getEngineTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/engine-types')
+    engineTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
 const getDriverTypes = async () => {
   try {
     const response = await httpResource.get('/api/resources/drive-types')
@@ -303,6 +315,7 @@ onMounted(async () => {
   getMakers()
   getBodyTypes()
   getDriverTypes()
+  getEngineTypes()
 })
 </script>
 <style scoped lang="scss">
