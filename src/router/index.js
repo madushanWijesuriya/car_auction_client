@@ -142,6 +142,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'portal-profile',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/profile',
+      name: 'portal-profile',
+      component: () => import('../views/Portal/Profile.vue'),
+    },
+    {
+      meta: {
         title: 'inquiry Reply View',
         layout: 'LayoutAdmin',
         requiresAuth: true,
