@@ -79,7 +79,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="hidden xl:flex w-full lg:w-[30%] xl:w-[20%] h-fit text-blackborder border-[#E7E7E7]"
+    class="hidden xl:flex w-full lg:w-[30%] xl:w-[20%] h-fit text-blackborder border-[#E7E7E7] pt-[60px]"
   >
     <div class="filter-box">
       <div class="filter-heading flex flex-row items-center">

@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-    <div class="customer-feedback w-full lg:w-[30%] xl:w-[20%] h-fit rounded-md text-black p-3">
+    <div class="customer-feedback w-full lg:w-[30%] xl:w-[20%] h-fit rounded-md text-black p-3 mt-[60px]">
         <p class="text-center main-title">
             Customer Feedback
         </p>

@@ -25,6 +25,7 @@ const cover_image = computed(() => {
 
           <svg class=" cursor-pointer" width="10" height="17" viewBox="0 0 10 17" fill="none"
             xmlns="http://www.w3.org/2000/svg">
+            
             <path d="M1.00007 1L8.27417 8.2741L1.00007 15.5482" stroke="white" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round" />
           </svg>
