@@ -7,7 +7,7 @@
 }
 
 .font-header-photo {
-    font-size: 64px;
+    font-size: 48px;
     line-height: 87.3px;
     color: #FFFFFF;
     font-family: 'Nunito';
@@ -15,7 +15,7 @@
 }
 
 .font-header-photo-2 {
-    font-size: 32px;
+    font-size: 25px;
     line-height: 43.65px;
     color: #FFFFFF;
     font-family: 'Nunito';
@@ -241,6 +241,23 @@
         font-size: 10px;
         color: white;
     }
+
+    [class*="font-header-photo"] {
+        font-size: 129px;
+        line-height: 175.96px;
+        color: #FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
+    }
+
+    [class*="font-header-photo-2"] {
+        font-size: 64px;
+        line-height: 87.3px;
+        color: #FFFFFF;
+        font-family: 'Nunito';
+        font-weight: 800;
+    }
+
 }
 
 @media only screen and (min-width: 1300px) {
