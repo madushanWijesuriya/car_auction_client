@@ -2,7 +2,7 @@
 </script>
 <template>
     <div class="customer-feedback w-full lg:w-[30%] xl:w-[20%] h-fit rounded-md text-black p-3 mt-[60px]">
-        <p class="text-center main-title">
+        <p class="text-left main-title">
             Customer Feedback
         </p>
         <div>
@@ -24,7 +24,7 @@
         <div>
             <img class="rounded-sm w-full object-cover" src="@/assets/images/customer-feedback/customer-feed-2.svg" />
         </div>
-        <p class="text-center main-title">
+        <p class="text-left main-title">
             Latest News
         </p>
         <div>
@@ -34,7 +34,7 @@
             </div>
             <div class="space-y-2">
                 <div class="">
-                    <p class="text-center main-title">
+                    <p class="text-left main-title">
                         Import Rule Update
                     </p>
                     <p class="first-card-1">
@@ -60,7 +60,7 @@
             </div>
             <div class="space-y-2">
                 <div class="">
-                    <p class="text-center main-title">
+                    <p class="text-left main-title">
                         New Freight Rates
                     </p>
                     <p class="first-card-1">
@@ -86,7 +86,7 @@
             </div>
             <div class="space-y-2">
                 <div class="">
-                    <p class="text-center main-title">
+                    <p class="text-left main-title">
                         Spare Parts
                     </p>
                     <p class="first-card-1">
