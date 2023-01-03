@@ -85,7 +85,7 @@ const router = createRouter({
       path: '/stock-list',
       name: 'StockList',
       component: () => import('../views/StockList.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/home-stock-list',
@@ -357,7 +357,7 @@ const router = createRouter({
     },
     {
       path: '/step-two',
-      name: 'Register Step',
+      name: 'RegisterStep',
       component: () => import('../views/Portal/Register_two.vue'),
     },
   ],
