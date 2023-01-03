@@ -152,6 +152,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'shipping document',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/shipping-document',
+      name: 'shipping-document',
+      component: () => import('../views/Portal/ShippingDocument.vue'),
+    },
+    {
+      meta: {
         title: 'inquiry Reply View',
         layout: 'LayoutAdmin',
         requiresAuth: true,
