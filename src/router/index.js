@@ -152,6 +152,36 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'freight invoices',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/freight-invoices',
+      name: 'freight-invoices',
+      component: () => import('../views/Portal/FreightInvoices.vue'),
+    },
+    {
+      meta: {
+        title: 'financial information',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/financial-information',
+      name: 'financial-information',
+      component: () => import('../views/Portal/FinancialInformationTransactions.vue'),
+    },
+    {
+      meta: {
+        title: 'financial information ledger',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/financial-information-ledger',
+      name: 'financial-information-ledger',
+      component: () => import('../views/Portal/FinancialInformationLedger.vue'),
+    },
+    {
+      meta: {
         title: 'shipping document',
         layout: 'LayoutAdmin',
         requiresAuth: false,
