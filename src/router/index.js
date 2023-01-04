@@ -158,6 +158,26 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'sample-dashbord',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/sample-dashbord',
+      name: 'sample-dashbord',
+      component: () => import('../views/Portal/Sidebar.vue'),
+    },
+    {
+      meta: {
+        title: 'portal-profile',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/profile',
+      name: 'portal-profile',
+      component: () => import('../views/Portal/Profile.vue'),
+    },
+    {
+      meta: {
         title: 'inquiry Reply View',
         layout: 'LayoutAdmin',
         requiresAuth: true,
@@ -344,6 +364,21 @@ const router = createRouter({
       path: '/blank-page',
       name: 'BlankPage',
       component: () => import('../views/BlankPage.vue'),
+    },
+    {
+      path: '/log-in',
+      name: 'LogIn',
+      component: () => import('../views/Portal/Login.vue'),
+    },
+    {
+      path: '/sing-up',
+      name: 'Register',
+      component: () => import('../views/Portal/Register.vue'),
+    },
+    {
+      path: '/step-two',
+      name: 'Register Step',
+      component: () => import('../views/Portal/Register_two.vue'),
     },
   ],
 })

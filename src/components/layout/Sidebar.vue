@@ -30,18 +30,16 @@
               </a>
               <ul apear>
                 <li>
-                  <routerLink :to="'/service-auction-calendar'"
-                    >Auction Calendar</routerLink
+                  <a :href="url + 'service-auction-calendar'"
+                    >Auction Calendar</a
                   >
                 </li>
                 <li>
-                  <routerLink :to="'/services-auction-guru'"
-                    >Auction Guide</routerLink
-                  >
+                  <a :href="url + 'services-auction-guru'">Auction Guide</a>
                 </li>
                 <li>
-                  <routerLink :to="'/services-auction-vs-stock'"
-                    >Auction Vs Stock</routerLink
+                  <a :href="url + 'services-auction-vs-stock'"
+                    >Auction Vs Stock</a
                   >
                 </li>
                 <li>
@@ -93,9 +91,15 @@
                 </div> -->
       </div>
       <div class="font-semibold">
+        <<<<<<< HEAD
         <routerLink class="font-semibold" :to="'/countries-vehicle-details'"
           >Countries</routerLink
         >
+        =======
+        <a class="font-semibold" :href="url + 'countries-vehicle-details'"
+          >Countries</a
+        >
+        >>>>>>> udaya-admin
       </div>
       <div class="font-semibold">How to Order</div>
       <div class="flex items-center gap-2">
