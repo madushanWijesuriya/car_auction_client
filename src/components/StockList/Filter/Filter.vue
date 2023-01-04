@@ -29,8 +29,8 @@ const initialState = {
   maker: '',
   model: '',
   region: '',
-  year: '',
-  engine: '',
+  year: [],
+  engine: [],
   lotNo: '',
   auctions: '',
   Chassis: '',
@@ -153,7 +153,7 @@ onMounted(async () => {
           </el-form-item>
           <el-form-item label="Year From - To">
             <div class="block">
-              <el-slider v-model="form.year" range :min="1" :max="10">
+              <el-slider v-model="form.year" range :min="2010" :max="2025">
               </el-slider>
             </div>
           </el-form-item>
