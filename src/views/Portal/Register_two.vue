@@ -25,12 +25,53 @@ const form = reactive({
 })
 
 const submitForm = async () => {
+  errorList.value = []
+
+  if (isEmpty(form.company_name))
+    errorList.value.push({
+      message: 'Company name is required.',
+      companyName: true,
+    })
+  if (!form.country_id)
+    errorList.value.push({ message: 'Country is required.', country: true })
+  if (isEmpty(form.company_address))
+    errorList.value.push({
+      message: 'Company address is required.',
+      companyAddress: true,
+    })
+  if (isEmpty(form.port) || !form.port)
+    errorList.value.push({ message: 'Port is required.', port: true })
+  if (isEmpty(form.contact_person))
+    errorList.value.push({
+      message: 'Contact person is required.',
+      contactPerson: true,
+    })
+  if (isEmpty(form.requested_car))
+    errorList.value.push({
+      message: 'Requested car is required.',
+      requestedCar: true,
+    })
+  if (isEmpty(form.contact_no))
+    errorList.value.push({
+      message: 'Contact number is required.',
+      contactNo: true,
+    })
+  if (isEmpty(form.password))
+    errorList.value.push({ message: 'Password is required.', password: true })
+  if (isEmpty(form.company_email))
+    errorList.value.push({
+      message: 'Company email is required',
+      companyEmail: true,
+    })
+  if (isEmpty(form.city))
+    errorList.value.push({ message: 'City is required.', city: true })
   try {
     const response = await httpResource.post(
       '/api/customer/auth/register',
       form
     )
-    console.log(response)
+    if (response.status === 200 || response.status === 201)
+      router.push('/log-in')
   } catch (error) {
     console.error(error)
   }
@@ -39,9 +80,9 @@ const submitForm = async () => {
 onMounted(() => {
   if (route.query.type !== undefined && route.query.type !== null)
     form.type = route.query.type
-  if (route.query.name) form.name = route.query
+  if (route.query.name) form.name = route.query.name
   if (route.query.contactNo) form.contact_no = route.query.contactNo
-  if (route.query.email) form.email = route.query.contactNo
+  if (route.query.email) form.email = route.query.email
 })
 </script>
 
@@ -131,7 +172,7 @@ onMounted(() => {
                     id="first_name"
                     type="text"
                     placeholder="Your first name"
-                    v-model="form.company_name"
+                    v-model="form.company_address"
                   />
                   <div class="error-list">
                     <div
@@ -318,7 +359,7 @@ onMounted(() => {
                         idx !== 0 ? 'mb-1' : '',
                       ]"
                       v-for="(error, idx) in errorList.filter(
-                        (e) => e.emailAddress
+                        (e) => e.companyEmail
                       )"
                       :key="idx"
                     >

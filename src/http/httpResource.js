@@ -35,7 +35,7 @@ const errorHandler = (error) => {
 
     if (error.response) {
       if (error.response.status === 401) {
-        performLogout()
+        // performLogout()
       }
     }
   }

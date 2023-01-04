@@ -91,15 +91,9 @@
                 </div> -->
       </div>
       <div class="font-semibold">
-        <<<<<<< HEAD
         <routerLink class="font-semibold" :to="'/countries-vehicle-details'"
           >Countries</routerLink
         >
-        =======
-        <a class="font-semibold" :href="url + 'countries-vehicle-details'"
-          >Countries</a
-        >
-        >>>>>>> udaya-admin
       </div>
       <div class="font-semibold">How to Order</div>
       <div class="flex items-center gap-2">
