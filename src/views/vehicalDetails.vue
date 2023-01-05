@@ -201,12 +201,27 @@ const getImageUrl = (name) => {
 
     <div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-3 justify-center mt-3">
       <div class="flex flex-col gap-4 lg:gap-4 lg:w-[50%]">
-        <div class="w-full">
+        <div class="w-full relative h-[529.86px]">
           <div v-if="currentImage">
-            <img class="rounded-lg w-full" :src="currentImage?.name" />
+            <img class="rounded-lg w-full h-[529.86px] object-cover" :src="currentImage?.name" />
           </div>
           <div v-else>
-            <img class="rounded-lg w-full" :src="imagesFromBE[0]?.name" />
+            <img class="rounded-lg w-full h-[529.86px] object-cover" :src="imagesFromBE[0]?.name" />
+          </div>
+          <div class=" absolute w-full bottom-[48%] z-10">
+            <div class="flex flex-row w-full justify-between px-5">
+              <svg class=" cursor-pointer" width="22" height="41" viewBox="0 0 22 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.4639 2.73041L2.17236 20.6395L19.4639 38.5486" stroke="white" stroke-width="4"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg class=" cursor-pointer" width="22" height="41" viewBox="0 0 22 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.47653 2.73041L19.7681 20.6395L2.47653 38.5486" stroke="white" stroke-width="4"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="hidden absolute md:flex w-full bottom-[5%] left-[5%] z-10">
+            <img class="rounded-lg object-cover" src="@/assets/images/vehicalDetails/watermark.svg" />
           </div>
         </div>
         <div class="w-full flex gap-2">
@@ -255,7 +270,7 @@ const getImageUrl = (name) => {
             </div>
           </div>
         </div>
-        <div class="flex flex-col w-full mt-2 lg:p-4">
+        <div class="flex flex-col w-full mt-2 lg:p-3">
           <div>
             <div class="flex gap-3 justify-between w-full">
               <p class="flex-1 font-card-line-title-1">Stock No.</p>
@@ -302,7 +317,7 @@ const getImageUrl = (name) => {
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title-1">Seat</p>
               <p class="flex-1 font-card-line-content">
-                4
+                {{ vehicleData?.seats }}
               </p>
             </div>
             <div class="flex gap-3">
@@ -335,7 +350,7 @@ const getImageUrl = (name) => {
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title-1">Engine</p>
-              <p class="flex-1 font-card-line-content">3,000 CC</p>
+              <p class="flex-1 font-card-line-content">{{ vehicleData?.engine_id?.name}}</p>
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title-1">Odometer</p>
@@ -373,11 +388,16 @@ const getImageUrl = (name) => {
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title-1">Interior Cond.</p>
-              <p class="flex-1 font-card-line-content">D</p>
+              <p class="flex-1 font-card-line-content">   {{ vehicleData?.interior_cond }}</p>
             </div>
           </div>
 
-          <div class="flex flex-col w-full gap-2 justify-center mt-5">
+          
+
+          
+        </div>
+
+        <div class="flex flex-col w-full gap-2 justify-center mt-5">
             <p class="text-black font-freight-lable">Freight Calculator</p>
             <el-dropdown class="w-full">
               <el-button class="w-full">
@@ -397,7 +417,7 @@ const getImageUrl = (name) => {
             </el-dropdown>
           </div>
 
-          <div class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5">
+        <div class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5">
             <div class="font-total-price lg:flex lg:flex-col lg:items-end">
               <p>¥ {{ vehicleData?.market_price }}</p>
               <p class="font-total-price-label">Total Price with Shipping</p>
@@ -417,19 +437,18 @@ const getImageUrl = (name) => {
 
           <div v-if="currentImage">
             <a :href="currentImage?.name" download>
-              <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+              <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-4 px-2 mt-5">
                 Download Images
               </div>
             </a>
           </div>
           <div v-else>
             <a :href="imagesFromBE[0]?.name" download>
-              <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+              <div class="w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-4 px-2 mt-5">
                 Download Images
               </div>
             </a>
           </div>
-        </div>
       </div>
 
       <div class="lg:relative border w-full rounded-md space-y-3 lg:space-y-5 border-[#E7E7E7] p-4 lg:flex-1">
@@ -462,7 +481,7 @@ const getImageUrl = (name) => {
         </div>
         <div>
           <p class="font-quote-form-label">Message (0 / 250)</p>
-          <el-input :autosize="{ minRows: 5, maxRows: 5 }" type="textarea" placeholder="Please input"
+          <el-input :autosize="{ minRows: 5, maxRows: 250 }" type="textarea" placeholder="Please input"
             v-model="postData.message" />
         </div>
 
@@ -473,12 +492,12 @@ const getImageUrl = (name) => {
         <br />
         <br />
         <br />
-        <div class="flex lg:absolute bottom-4 gap-2 w-full lg:right-2 lg:left-0 lg:p-4">
-          <div class="lg:hidden w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-3 px-2 mt-5">
+        <div class="flex lg:absolute bottom-0 gap-2 w-full lg:right-2 lg:left-0 lg:p-4">
+          <div class="lg:hidden w-full font-down-image text-center bg-[#08246C] rounded-md text-white py-4 px-2 mt-5">
             Reset
           </div>
           <div
-            class="w-full font-down-image text-center bg-[#08246C] cursor-pointer rounded-md text-white py-3 px-2 mt-5"
+            class="w-full font-down-image text-center bg-[#08246C] cursor-pointer rounded-md text-white py-4 px-2 mt-5"
             @click="storeInquery">
             Send Inquiry
           </div>
