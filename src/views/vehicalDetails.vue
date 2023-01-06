@@ -12,7 +12,16 @@ import Recapture from '../components/recapture/Recapture.vue'
 import { useRoute } from 'vue-router'
 import httpResource from '../http/httpResource'
 import { useToast } from 'vue-toastification'
+import { mdiShareVariant } from '@mdi/js'
+import { ElNotification } from 'element-plus'
+import { mdiTwitter } from '@mdi/js'
+import { mdiFacebook } from '@mdi/js'
+import { mdiWhatsapp } from '@mdi/js'
+import { mdiFacebookMessenger } from '@mdi/js'
+
 const toast = useToast()
+
+const shareIcon = mdiShareVariant
 
 const input = ref('')
 const timer = ref(null)
@@ -157,8 +166,103 @@ const getImageUrl = (name) => {
   if (!name) return ''
   return name
 }
+const copyToClipboard = () => {
+  const pageURL = location.href
+  navigator.clipboard.writeText(pageURL)
+  ElNotification({
+    title: 'Success',
+    message: 'URL copy to clipboard Successfully',
+    type: 'success',
+  })
+}
+const shareDialogVisible = ref(false)
+const handleClose = () => {
+  shareDialogVisible.value = false
+}
+
+const networks = computed(() => {
+  const currentURL = location.href
+  return [
+    {
+      network: 'twitter',
+      pageURL: currentURL,
+      title: 'Jamex auction house',
+      description: '',
+      quote: '',
+      hashtags: 'JAMEXAUCTIONHOUSE, Vehicle',
+      color: '#1da1f2',
+      icon: mdiTwitter,
+    },
+    {
+      network: 'facebook',
+      pageURL: currentURL,
+      title: 'Jamex auction house',
+      description: '',
+      quote: '',
+      hashtags: 'JAMEXAUCTIONHOUSE, Vehicle',
+      color: '#1877f2',
+      icon: mdiFacebook,
+    },
+    {
+      network: 'whatsapp',
+      pageURL: currentURL,
+      title: 'Jamex auction house',
+      description: '',
+      quote: '',
+      hashtags: 'JAMEXAUCTIONHOUSE, Vehicle',
+      color: '#25d366',
+      icon: mdiWhatsapp,
+    },
+    {
+      network: 'messenger',
+      pageURL: currentURL,
+      title: 'Jamex auction house',
+      description: '',
+      quote: '',
+      hashtags: 'JAMEXAUCTIONHOUSE, Vehicle',
+      color: '#0084ff',
+      icon: mdiFacebookMessenger,
+    },
+  ]
+})
 </script>
 <template>
+  <el-dialog
+    v-model="shareDialogVisible"
+    title="Share with social media"
+    width="35%"
+    :before-close="handleClose"
+  >
+    <div class="flex gap-3 justify-center">
+      <ShareNetwork
+        v-for="(network, idx) in networks"
+        :key="idx"
+        :network="network.network"
+        :url="network.pageURL"
+        :title="network.title"
+        :description="network.description"
+        :quote="network.quote"
+        :style="{ backgroundColor: network.color }"
+      >
+        <div class="flex p-1">
+          <svg
+            viewBox="0 0 24 24"
+            :width="'20px'"
+            :height="'20px'"
+            class="inline-block"
+          >
+            <path fill="#FFF" :d="network.icon" />
+          </svg>
+          <span class="text-white">Share on {{ network.network }}</span>
+        </div>
+      </ShareNetwork>
+    </div>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="shareDialogVisible = false">Cancel</el-button>
+      </span>
+    </template>
+  </el-dialog>
   <div
     class="flex flex-col justify-center items-lcenters gap-2 w-full px-5 md:px-[60px] lg:px-[80px] xl:px-[120px]"
   >
@@ -184,13 +288,29 @@ const getImageUrl = (name) => {
           {{ vehicleData?.model_id?.name }} {{ vehicleData?.model_id?.year }}
         </p>
       </div>
-      <div class="flex grow flex-row justify-between">
+      <div class="flex grow flex-row justify-between items-center">
         <div class="flex items-center justify-center">
           <div
             class="bg-blue-800 rounded-[19px] font-now-on-sales ml-5 px-4 py-1"
           >
             Now on Sale
           </div>
+        </div>
+        <div
+          class="ml-auto color-01 flex justify-end items-center font-semibold font-size-14 md:font-size-18 gap-3 cursor-pointer"
+          @click="shareDialogVisible = true"
+        >
+          <span>Share</span>
+          <span>
+            <svg
+              viewBox="0 0 24 24"
+              :width="'20px'"
+              :height="'20px'"
+              class="inline-block"
+            >
+              <path fill="#000000" :d="shareIcon" />
+            </svg>
+          </span>
         </div>
       </div>
     </div>
@@ -236,13 +356,13 @@ const getImageUrl = (name) => {
           </div>
           <div v-if="currentImage">
             <img
-              class="rounded-lg w-full current-image"
+              class="rounded-lg w-full current-image h-[232px] sm:h-[350px] md:h-[530px]"
               :src="currentImage?.name"
             />
           </div>
           <div v-else>
             <img
-              class="rounded-lg w-full current-image"
+              class="rounded-lg w-full current-image h-[232px] sm:h-[350px] md:h-[530px]"
               :src="imagesFromBE[0]?.name"
             />
           </div>
@@ -306,6 +426,15 @@ const getImageUrl = (name) => {
       <div class="border w-full border-[#E7E7E7] p-4 rounded-md lg:flex-1">
         <div class="flex justify-between items-center">
           <p class="font-card-title-1">Specifications</p>
+          <span
+            class="flex gap-2 ml-auto items-center cursor-pointer"
+            @click="copyToClipboard"
+          >
+            <div>Copy to Clipboard</div>
+            <div>
+              <img src="/clipboard-icon.svg" alt="clipboard-icon" />
+            </div>
+          </span>
           <div class="flex flex-col gap-1 lg:hidden">
             <p class="font-car-price-title">Car Price :</p>
             <p class="font-car-price">¥ {{ vehicleData?.fob_price }}</p>
