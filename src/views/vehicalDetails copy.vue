@@ -371,23 +371,15 @@ const getImageUrl = (name) => {
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Model Code</p>
-              <p class="flex-1 font-card-line-content">{{}}</p>
+              <p class="flex-1 font-card-line-content">GH-BMW-7830i</p>
             </div>
-            //
             <div class="flex gap-3">
-              //
               <p class="flex-1 font-card-line-title">Engine</p>
-              //
               <p class="flex-1 font-card-line-content">3,000 CC</p>
-              //
             </div>
-            //
             <div class="flex gap-3">
-              //
               <p class="flex-1 font-card-line-title">Odometer</p>
-              //
               <p class="flex-1 font-card-line-content">Normal</p>
-              //
             </div>
             <div class="flex gap-3">
               <p class="flex-1 font-card-line-title">Fuel</p>
