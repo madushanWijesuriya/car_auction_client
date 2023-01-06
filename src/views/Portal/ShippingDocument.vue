@@ -6,9 +6,35 @@
                     <img src="../../assets/images/portal/sidebar/image.png" alt="">
                 </div>
                 <div class="flex items-center w-64 mx-5">
-                    <h2 class="text-white text-2xl">Dashboard</h2>
+                    <h2 class="text-primary text-2xl">Shipping Document</h2>
                 </div>
-            </div>   
+            </div>
+            <div class="flex items-center h-full text-sm divide-x-2 h-8">
+                <div class="flex items-center h-full">
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/notifications/icon-calculator.svg" alt="">
+                    </a>
+
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/notifications/new.svg" alt="">
+                    </a>
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/notifications/icon-task.svg" alt="">
+                    </a>
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/notifications/icon-comment.svg" alt="">
+                    </a>
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/notifications/icon-settings.svg" alt="">
+                    </a>
+                </div>
+                <div class="flex items-center h-full">
+                    <a href="#" class="flex items-center text-dark h-full px-4">Admin.M</a>
+                    <a href="#" class="flex items-center text-white h-full px-4">
+                        <img src="../../assets/images/portal/sidebar/avatar/man/Icon/icon-account.svg" alt="">
+                    </a>
+                </div>
+            </div>
         </header>
 
         <div id="main" class="pt-16">
@@ -89,52 +115,94 @@
                     </div> -->
                 </div>
             </div>
-
-            <!-- Content -->
-            <div class="bg-white h-full pt-8">
-                <div class="text-center w-full text-grey-darkest">
-                    <div class="grid grid-cols-4 gap-4">
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/fin_repo.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Financial informtion</h2>
+            <div class="bg-gray-200 p-5">
+                <div class="bg-white p-6 rounded-lg shadow-lg ">
+                    <div class="flex flex-row">
+                        <div class="basis-1/6">
+                            <div class="mb-4 p-1">
+                                <label for="edt_from" class="text-start mb-1">ETD From</label>
+                                <input class="w-full border rounded outline-none focus:shadow-outline" type="date"
+                                    name="edt_from" id="edt_from" placeholder="ETD From">
                             </div>
                         </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/fi.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Shipping Document</h2>
+                        <div class="basis-1/6">
+                            <div class="mb-4 p-1">
+                                <label for="edt_to" class="text-start mb-1">ETD To</label>
+                                <input class="w-full border rounded outline-none focus:shadow-outline" type="date"
+                                    name="edt_to" id="edt_to" placeholder="EDT To ">
                             </div>
                         </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/send_inq.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Send Inquiry</h2>
+                        <div class="basis-1/3">
+                            <div class="mb-4 p-1">
+                                <label for="chassis_number" class="text-start mb-1">Chassis Number</label>
+                                <input class="w-full border rounded outline-none focus:shadow-outline" type="text"
+                                    name="chassis_number" id="chassis_number" placeholder="Enter Chassis Number">
                             </div>
                         </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Make Invoices</h2>
+                        <div class="basis-1/3">
+                            <div class="mb-4 p-1">
+                                <label for="email" class="text-start mb-1">Car Name</label>
+                                <input class="w-full border rounded outline-none focus:shadow-outline" type="text"
+                                    name="email" id="email" placeholder="Enter Car Name">
                             </div>
+                        </div>
+                        <div class="basis-1/6  mx-2">
+                            <button
+                                class="bg-blue-800 w-full py-2 border rounded text-white text-xl mt-7">Search</button>
+                        </div>
+                        <div class="basis-1/6 mx-2"> <button
+                                class="border-blue-800 w-full py-2 border rounded text-blue-800 text-xl mt-7">Clear</button>
                         </div>
                     </div>
-
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
+                    <table class="table-auto">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="block">
+                                        <input class="mr-2 leading-tight" type="checkbox">
+                                    </label>
+                                </th>
+                                <th> Country</th>
+                                <th>Chassis No</th>
+                                <th>ETD</th>
+                                <th>ETA</th>
+                                <th>POL</th>
+                                <th>POD</th>
+                                <th>Consingee Name</th>
+                                <th>Yard Location</th>
+                                <th>Downloads</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label class="block">
+                                        <input class="mr-2 leading-tight" type="checkbox">
+                                    </label>
+                                </td>
+                                <td>Sri Lanka</td>
+                                <td>JZX100-6036994</td>
+                                <td>04/08/2022</td>
+                                <td>24/11/2022</td>
+                                <td>NAGURA</td>
+                                <td>24/11/2022</td>
+                                <td>段ちきぽ写心べが</td>
+                                <td>BREMERHAVEN</td>
+                                <td>Action Sheet</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+
         </div>
     </div>
 </template>
 
 
 <style scoped lang="scss">
-@import "@/assets/scss/clientPortalSidebar.scss";
+@import "@/assets/scss/clientPortalSidebarOther.scss";
 </style>

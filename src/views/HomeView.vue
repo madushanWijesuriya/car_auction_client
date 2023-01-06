@@ -7,7 +7,7 @@ import CardOne from '../components/Cards/CardOne.vue'
 import ButtoneTwo from '../components/Buttons/ButtonTwo.vue'
 import RatingsGroup from '../components/RatingsGroup.vue'
 import { useCarsStore } from '@/stores/cars'
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 
 let latestCarsList = ref([])
@@ -16,8 +16,7 @@ const getAllCars = async () => {
   try {
     const url = `/api/guest/vehicle?paginate=4&sort=-id`
     const response = await httpResource.get(url)
-    latestCarsList = response.data.data
-    console.log(response)
+    latestCarsList.value = response.data.data
   } catch (error) {
     console.error(error)
   }
