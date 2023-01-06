@@ -199,15 +199,55 @@ const getImageUrl = (name) => {
       class="flex flex-col lg:flex-row items-center lg:items-stretch gap-3 justify-center mt-3"
     >
       <div class="flex flex-col gap-4 lg:gap-4 lg:w-[50%]">
-        <div class="w-full">
+        <div class="w-full relative current-image-wrapper">
+          <div class="right-white" @click="changeImage">
+            <svg
+              width="22"
+              height="41"
+              viewBox="0 0 22 41"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.47653 2.73041L19.7681 20.6395L2.47653 38.5486"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="left-white" @click="changeImage('reverse')">
+            <svg
+              width="22"
+              height="41"
+              viewBox="0 0 22 41"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19.4639 2.73041L2.17236 20.6395L19.4639 38.5486"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
           <div v-if="currentImage">
-            <img class="rounded-lg w-full" :src="currentImage?.name" />
+            <img
+              class="rounded-lg w-full current-image"
+              :src="currentImage?.name"
+            />
           </div>
           <div v-else>
-            <img class="rounded-lg w-full" :src="imagesFromBE[0]?.name" />
+            <img
+              class="rounded-lg w-full current-image"
+              :src="imagesFromBE[0]?.name"
+            />
           </div>
         </div>
-        <div class="w-full flex gap-2">
+        <div class="w-full flex gap-2 other-images-list-wrapper">
           <div
             class="flex items-center cursor-pointer"
             @click="changeImage('reverse')"
@@ -418,7 +458,7 @@ const getImageUrl = (name) => {
         </div>
         <div>
           <p class="font-quote-form-label">E-mail ID</p>
-          <el-input  v-model="postData.email" placeholder="Please input" />
+          <el-input v-model="postData.email" placeholder="Please input" />
         </div>
         <div>
           <p class="font-quote-form-label">Phone/Cell Number</p>
