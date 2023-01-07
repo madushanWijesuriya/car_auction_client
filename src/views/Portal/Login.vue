@@ -41,7 +41,7 @@ const loginSubmit = async () => {
     if (error && error.response && error.response.status === 401) {
       errorList.value.push({
         common: true,
-        message: 'Email & Password does not match with our record.',
+        message: error.response.data?.message
           ? error.response.data.message
           : 'Email & Password does not match with our record.',
       })
