@@ -98,12 +98,20 @@
                 </el-form-item>
               </div>
               <div class="inner-group">
-                <el-form-item label="Lot Number">
-                  <el-input
-                    placeholder="Lot Number"
+                <el-form-item label="Lot Numbers">
+                  <el-select
                     v-model="form.lot"
+                    placeholder="Enter Lot Number"
                     style="width: 100%"
-                  ></el-input>
+                    filterable
+                  >
+                    <el-option
+                      v-for="lot in lotList"
+                      :key="lot.id"
+                      :label="lot.label"
+                      :value="lot.label"
+                    ></el-option>
+                  </el-select>
                 </el-form-item>
               </div>
             </div>
@@ -273,6 +281,7 @@ let modelsList = ref([])
 let bodyTypeList = ref([])
 let engineTypeList = ref([])
 let driveTypeList = ref([])
+let lotList = ref([])
 
 const getMakers = async () => {
   try {
@@ -310,8 +319,20 @@ const getEngineTypes = async () => {
     const response = await httpResource.get('/api/resources/engine-types')
     engineTypeList.value = response.data.data.map((d) => ({
       ...d,
-      label: d.name,
+      label: d.name + ' CC',
     }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getLotumbers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/lot_numbers')
+    lotList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.lot_number,
+    }))
+    console.log(chassisList)
   } catch (error) {
     console.error(error)
   }
@@ -340,6 +361,7 @@ onMounted(async () => {
   getBodyTypes()
   getDriverTypes()
   getEngineTypes()
+  getLotumbers()
 })
 </script>
 <style scoped lang="scss">
