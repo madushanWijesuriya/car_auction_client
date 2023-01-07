@@ -11,7 +11,6 @@ const cover_image = computed(() => {
 <template>
   <!-- image url src="@/assets/images/stock-list/vehical-list/list-car-1.svg" -->
   <div
-    @click="$router.push(`/vehical-details/${vehicle?.id}`)"
     class="w-full vehical-deatils-card p-1 md:p-4 rounded-md border space-y-3 border-[#E7E7E7] md:flex md:justify-between md:gap-2"
   >
     <div class="md:w-[500px] flex relative">
@@ -58,7 +57,10 @@ const cover_image = computed(() => {
       </div>
     </div>
 
-    <div class="px-2 py-2 space-y-3 w-full md:relative">
+    <div
+      @click="$router.push(`/vehical-details/${vehicle?.id}`)"
+      class="px-2 py-2 space-y-3 w-full md:relative"
+    >
       <div class="text-center font-vehical-name">
         {{
           `${vehicle?.make_id?.name} ${vehicle?.model_id?.name} ${new Date(
@@ -68,28 +70,18 @@ const cover_image = computed(() => {
       </div>
       <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
         <div class="w-full">
-          <p class="font-vehical-details-title">Body</p>
-          <p class="font-vehical-details-content truncate">
-            {{ vehicle?.body_type_id?.name }}
-          </p>
-        </div>
-        <div class="w-full">
-          <p class="font-vehical-details-title">Condition</p>
-          <p class="font-vehical-details-content truncate">
-            {{ vehicle?.isUsed ? 'Used' : 'New' }}
+          <p class="font-vehical-details-title">Engine Capacity</p>
+          <p class="font-vehical-details-content">
+            {{ vehicle?.engine_id?.name }} CC
           </p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Mileage</p>
-          <p class="font-vehical-details-content truncate">
-            {{ vehicle.mileage }} KM
-          </p>
+          <p class="font-vehical-details-content">{{ vehicle.mileage }} KM</p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Chassis No.</p>
-          <p class="font-vehical-details-content truncate">
-            {{ vehicle.chassis_no }}
-          </p>
+          <p class="font-vehical-details-content">{{ vehicle.chassis_no }}</p>
         </div>
         <div class="w-full">
           <p class="font-vehical-details-title">Now On Sale</p>
@@ -99,7 +91,7 @@ const cover_image = computed(() => {
         </div>
       </div>
       <div class="lg:flex">
-        <div class="flex font-button-row flex-wrap gap-2 justify-start">
+        <div class="mt-10 flex font-button-row flex-wrap gap-2 justify-start">
           <div
             class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow truncate"
           >
@@ -108,7 +100,7 @@ const cover_image = computed(() => {
           <div
             class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow truncate"
           >
-            {{ vehicle?.door_type_id?.name }}
+            {{ vehicle?.gear_box_id?.name }}
           </div>
           <div
             class="px-5 py-1 bg-[#08246C] rounded-lg text-center grow truncate"
@@ -123,8 +115,10 @@ const cover_image = computed(() => {
         </div>
       </div>
     </div>
-
-    <div class="relative md:w-[35vw] lg:w-[55%] px-2 space-y-2">
+    <div
+      @click="$router.push(`/vehical-details/${vehicle?.id}`)"
+      class="relative md:w-[35vw] lg:w-[55%] px-2 space-y-2"
+    >
       <div class="flex flex-col w-full">
         <div class="flex flex-row md:flex-wrap w-full justify-between">
           <div class="w-full flex-col">
@@ -152,7 +146,9 @@ const cover_image = computed(() => {
                     />
                   </svg>
                 </span>
-                Sri Lanka-Hambantota
+                {{ vehicle?.shipping_country_id?.name }}-{{
+                  vehicle?.fort_id?.name
+                }}
               </div>
             </div>
           </div>

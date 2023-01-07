@@ -1,17 +1,34 @@
 <script setup>
 import { toRefs, ref, reactive, onMounted, nextTick } from 'vue'
 import { isEmpty } from 'lodash-es'
+import Slider from '@vueform/slider'
+
 const props = defineProps([
   'makers',
   'models',
   'drives',
   'resultCount',
   'filters',
+  'engines',
+  'chassis',
+  'countries',
+  'forts',
+  'gears',
+  'lot_numbers',
+  'countries',
 ])
 const { makers, models, drives } = toRefs(props)
-const emit = defineEmits(['maker-changed', 'apply-filters', 'reset-filters'])
+const emit = defineEmits([
+  'maker-changed',
+  'country-changed',
+  'apply-filters',
+  'reset-filters',
+])
 const valueChanged = (e) => {
   emit('maker-changed', e)
+}
+const countryChanged = (e) => {
+  emit('country-changed', e)
 }
 const conditions = ref([
   {
@@ -23,26 +40,28 @@ const conditions = ref([
     id: 2,
   },
 ])
-const make_at = ref(0)
 
 const conditionModel = ref()
-const mileageModel = ref([1, 2])
 const initialState = {
   maker: '',
   model: '',
-  region: '',
-  year: [],
-  engine: [],
-  lotNo: '',
-  auctions: '',
   Chassis: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  make_at: [],
-  resource: '',
-  desc: '',
   isUsed: '',
+  make_at: [1900, 2023],
+  mileage: [0, 1000000000],
+  drive: '',
+  // region: '',
+  engine: [100, 1000],
+  gear: '',
+  lot: '',
+  // auctions: '',
+  // date1: '',
+  // date2: '',
+  // delivery: false,
+  // resource: '',
+  // desc: '',
+  shipping_country: '',
+  fort_id: '',
 }
 let form = reactive({ ...initialState })
 let formOne = reactive({ ...initialState })
@@ -104,6 +123,7 @@ onMounted(async () => {
               style="width: 100%"
               placeholder="Any"
               @change="valueChanged"
+              filterable
             >
               <el-option
                 v-for="maker in makers"
@@ -119,6 +139,7 @@ onMounted(async () => {
               multiple
               style="width: 100%"
               placeholder="Any"
+              filterable
             >
               <el-option
                 v-for="model in models"
@@ -134,9 +155,14 @@ onMounted(async () => {
               v-model="form.Chassis"
               placeholder="Any"
               style="width: 100%"
+              filterable
             >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
+              <el-option
+                v-for="chass in chassis"
+                :key="chass.id"
+                :label="chass.label"
+                :value="chass.label"
+              ></el-option>
             </el-select>
           </el-form-item>
 
@@ -157,15 +183,45 @@ onMounted(async () => {
           <div>
             <el-form-item label="Year From - To"> </el-form-item>
             <div class="slider-demo-block">
-              <el-slider max="2023" range v-model="make_at" />
+              <Slider
+                :min="1900"
+                :max="2023"
+                v-model="form.make_at"
+                class="slider-blue"
+                showTooltip="focus"
+              />
             </div>
           </div>
-
+          <div class="mt-5">
+            <el-form-item label="Mileage From - To"> </el-form-item>
+            <div class="slider-demo-block">
+              <Slider
+                :min="0"
+                :max="1000000000"
+                v-model="form.mileage"
+                class="slider-blue"
+                showTooltip="focus"
+              />
+            </div>
+          </div>
+          <div class="mt-5 mb-5">
+            <el-form-item label="Engine From - To"> </el-form-item>
+            <div class="slider-demo-block">
+              <Slider
+                :min="100"
+                :max="1000"
+                v-model="form.engine"
+                class="slider-blue"
+                showTooltip="focus"
+              />
+            </div>
+          </div>
           <el-form-item label="Drive">
             <el-select
               v-model="form.drive"
               placeholder="Select Drive"
               style="width: 100%"
+              filterable
             >
               <el-option
                 v-for="drive in drives"
@@ -178,58 +234,68 @@ onMounted(async () => {
 
           <el-form-item label="Gearbox">
             <el-select
-              v-model="make_at"
+              filterable
+              v-model="gear"
               placeholder="Select Gearbox"
               style="width: 100%"
             >
               <el-option
-                v-for="item in []"
-                :key="item.make_at"
-                :label="item.label"
-                :value="item.make_at"
+                v-for="gear in gears"
+                :key="gear.id"
+                :label="gear.label"
+                :value="gear.id"
               >
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Lot Number">
             <el-select
-              v-model="form.lotNo"
+              v-model="form.lot"
               placeholder="Select Lot Number"
               style="width: 100%"
+              filterable
             >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Auctions">
-            <el-select
-              v-model="form.auctions"
-              placeholder="Select Auctions"
-              style="width: 100%"
-            >
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
+              <el-option
+                v-for="lot in lot_numbers"
+                :key="lot.id"
+                :label="lot.label"
+                :value="lot.label"
+              >
+              </el-option>
             </el-select>
           </el-form-item>
 
-          <el-form-item label="Select Dates">
-            <el-radio-group v-model="form.resource">
-              <el-radio style="width: 100%" :label="1">Monday</el-radio>
-              <el-radio style="width: 100%" :label="2">Tuesday</el-radio>
-              <el-radio style="width: 100%" :label="3">Wednesday</el-radio>
-              <el-radio style="width: 100%" :label="4">Thursday</el-radio>
-              <el-radio style="width: 100%" :label="5">Friday</el-radio>
-              <el-radio style="width: 100%" :label="6">Saturday</el-radio>
-            </el-radio-group>
-          </el-form-item>
           <el-form-item label="Shipping Country">
-            <el-select placeholder="Select Country" style="width: 100%">
-              <el-option label="Sri Lanka" value="shanghai"></el-option>
+            <el-select
+              v-model="form.shipping_country"
+              multiple
+              style="width: 100%"
+              placeholder="Any"
+              @change="countryChanged"
+              filterable
+            >
+              <el-option
+                v-for="country in countries"
+                :key="country.id"
+                :label="country.label"
+                :value="country.id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Fort">
-            <el-select placeholder="Select Fort" style="width: 100%">
-              <el-option label="Hambantota" value="shanghai"></el-option>
+            <el-select
+              v-model="form.fort_id"
+              multiple
+              style="width: 100%"
+              placeholder="Any"
+              filterable
+            >
+              <el-option
+                v-for="fort in forts"
+                :key="fort.id"
+                :label="fort.label"
+                :value="fort.id"
+              ></el-option>
             </el-select>
           </el-form-item>
 
@@ -260,3 +326,4 @@ onMounted(async () => {
 <style scoped lang="scss">
 @import '@/assets/scss/stock-list/filter.scss';
 </style>
+<style src="@vueform/slider/themes/default.css"></style>

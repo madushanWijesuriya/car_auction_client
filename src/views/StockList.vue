@@ -93,43 +93,123 @@ const getDriveTypes = async () => {
   }
 }
 
+let engineTypeList = ref([])
+const getEngineTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/engine-types')
+    engineTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+let chassisList = ref([])
+const getChassis = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/chassis')
+    chassisList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.chassis_no,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+let gearList = ref([])
+const getGears = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/gears')
+    gearList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+let lotList = ref([])
+const getLotumbers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/lot_numbers')
+    lotList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.lot_number,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+let countriesList = ref([])
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countriesList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+
+let fortList = ref([])
+const getForts = async (countryIds) => {
+  try {
+    let list = []
+    for (let x = 0; x < countryIds.length; x++) {
+      const response = await httpResource.get(
+        '/api/resources/forts/' + countryIds[x]
+      )
+      list = [
+        ...list,
+        ...response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        })),
+      ]
+    }
+    fortList.value = list
+  } catch (error) {
+    console.error(error)
+  }
+}
 const changeMaker = (e) => {
   getModels(e)
+}
+const changeCountry = (e) => {
+  getForts(e)
 }
 
 const applyFilters = async (form) => {
   let filterQuery = '/api/guest/vehicle?'
-  if (form.search_text) filterQuery += `filter[search_text]=${form.search_text}`
-  if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
-  if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
-  if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
-  if (form.body_type_id)
-    filterQuery += `&filter[body_type_id]=${form.body_type_id}`
-  if (form.transmission_id)
-    filterQuery += `&filter[transmission_id]=${form.transmission_id}`
-  if (form.streeing_id)
-    filterQuery += `&filter[streeing_id]=${form.streeing_id}`
-  if (form.door_type_id)
-    filterQuery += `&filter[door_type_id]=${form.door_type_id}`
-  if (form.driver_type_id)
-    filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
-  if (form.fuel_type_id)
-    filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
-  if (form.engine) filterQuery += `&filter[engine_id]=${form.engine}`
-  if (form.exterior_color_id)
-    filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
-  if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
-  if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
-  if (form.from || form.to)
-    filterQuery += `&filter[make_at]=${form.from} - ${form.to}`
+  console.log(form)
+  // if (form.search_text) filterQuery += `filter[search_text]=${form.search_text}`
+  if (form.Chassis) filterQuery += `filter[chassis_no]=${form.Chassis}`
+  if (form.drive) filterQuery += `&filter[driver_type_id]=${form.drive}`
+  if (form.engine) filterQuery += `&filter[engine_id_range]=${form.engine}`
+  if (form.fort_id) filterQuery += `&filter[fort_id]=${form.fort_id}`
+  if (form.gear) filterQuery += `&filter[gear_box_id]=${form.gear}`
+  if (form.isUsed) filterQuery += `&filter[isUsed]=${form.isUsed}`
+  if (form.lot) filterQuery += `&filter[lot_number]=${form.lot}`
+  if (form.make_at) {
+    var from = form.make_at[0]
+    var to = form.make_at[1]
+    filterQuery += `&filter[make_at_range]=${from} - ${to}`
+  }
+  if (form.maker) filterQuery += `&filter[make_id]=${form.maker}`
+  if (form.mileage) filterQuery += `&filter[mileage_range]=${form.mileage}`
+  if (form.model) filterQuery += `&filter[model_id]=${form.model}`
+  if (form.shipping_country)
+    filterQuery += `&filter[shipping_country_id]=${form.shipping_country}`
 
   try {
     const response = await httpResource.get(filterQuery)
-    // const response = await httpResource.get(
-    //   `/api/staff/vehicle?filter[make_id]=${form.maker.join(
-    //     ','
-    //   )}&filter[model_id]=${form.model.join(',')}`
-    // )
+
     setCars(response)
   } catch (error) {
     console.error(error)
@@ -158,6 +238,11 @@ let loadedCompleted = ref(false)
 
 onMounted(async () => {
   await getMakers()
+  await getCountries()
+  await getEngineTypes()
+  await getChassis()
+  await getGears()
+  await getLotumbers()
   if (isEmpty(route.query)) {
     await getAllCars()
   } else if (!isEmpty(route.query) && route.query.brands) {
@@ -200,10 +285,17 @@ onMounted(async () => {
           v-if="loadedCompleted"
           :makers="makersList"
           :models="modelsList"
+          :engines="engineTypeList"
+          :chassis="chassisList"
+          :gears="gearList"
+          :lot_numbers="lotList"
           :drives="driveTypeList"
           :resultCount="indexingDetails.total"
           :filters="route.query"
+          :countries="countriesList"
+          :forts="fortList"
           @maker-changed="changeMaker"
+          @country-changed="changeCountry"
           @apply-filters="applyFilters"
           @reset-filters="resetFilters"
         />
