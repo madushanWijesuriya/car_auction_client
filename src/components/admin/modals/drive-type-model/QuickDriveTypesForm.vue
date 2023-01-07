@@ -1,5 +1,4 @@
 <script setup>
-
 import { computed, reactive } from 'vue'
 import { mdiClose } from '@mdi/js'
 import BaseButton from '@/components/admin/BaseButton.vue'
@@ -24,7 +23,10 @@ const resetForm = () => {
   Object.assign(form, initialState)
   // uploaderKey.value += uploaderKey.value + 1
 }
-
+let validation = reactive({ hasValidation: false, message: '' })
+const isNotValid = computed({
+  get: () => validation,
+})
 const submitForm = async () => {
   try {
     console.log(form, 'form')
@@ -42,7 +44,10 @@ const submitForm = async () => {
       emit('quickDriveType')
     }
   } catch (error) {
-    console.error(error?.response?.data?.message)
+    if (error?.response?.status === 422) {
+      validation.hasValidation = true
+      validation.message = error?.response?.data?.data?.errors?.name[0]
+    }
   }
 }
 
@@ -91,28 +96,59 @@ window.addEventListener('keydown', (e) => {
 
 <template>
   <OverlayLayer v-show="value" @overlay-click="cancel">
-    <CardBox v-show="value" class="shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50" is-modal>
+    <CardBox
+      v-show="value"
+      class="shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50"
+      is-modal
+    >
       <CardBoxComponentTitle :title="title">
-        <BaseButton v-if="hasCancel" :icon="mdiClose" color="whiteDark" small rounded-full @click.prevent="cancel" />
+        <BaseButton
+          v-if="hasCancel"
+          :icon="mdiClose"
+          color="whiteDark"
+          small
+          rounded-full
+          @click.prevent="cancel"
+        />
       </CardBoxComponentTitle>
 
       <div class="space-y-3">
         <div class="add-car">
           <SectionMain>
             <CardBox form @submit.prevent="submit">
-              <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Drivetype" main>
+              <SectionTitleLineWithButton
+                :icon="mdiCarEstate"
+                title="Add Drivetype"
+                main
+              >
               </SectionTitleLineWithButton>
               <FormField label="Drivetype" help="">
-                <FormControl v-model="form.name" type="text"  />
+                <FormControl v-model="form.name" type="text" />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
           </SectionMain>
           <SectionMain>
             <CardBox>
               <template #footer>
                 <BaseButtons>
-                  <BaseButton type="submit" color="info" label="Submit" @click="validateForm" />
-                  <BaseButton type="reset" color="info" outline label="Reset" @click="resetForm" />
+                  <BaseButton
+                    type="submit"
+                    color="info"
+                    label="Submit"
+                    @click="validateForm"
+                  />
+                  <BaseButton
+                    type="reset"
+                    color="info"
+                    outline
+                    label="Reset"
+                    @click="resetForm"
+                  />
                 </BaseButtons>
               </template>
             </CardBox>

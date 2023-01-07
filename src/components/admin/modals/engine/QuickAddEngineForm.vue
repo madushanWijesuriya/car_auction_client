@@ -15,6 +15,7 @@ const initialState = {
 }
 let form = reactive({ ...initialState })
 
+let validation = reactive({ hasValidation: false, message: '' })
 const validateForm = () => {
   submitForm()
 }
@@ -33,6 +34,7 @@ const submitForm = async () => {
         name: form?.name,
       }
     )
+    console.log(response, 'response')
     if (response.status === 200) {
       resetForm()
       toast.success('Successfully Added', {
@@ -41,6 +43,10 @@ const submitForm = async () => {
     }
     emit('quickEngineModal')
   } catch (error) {
+    if (error?.response?.status === 422) {
+      validation.hasValidation = true
+      validation.message = error?.response?.data?.data?.errors?.name[0]
+    }
     console.error(error?.response?.data?.message)
   }
 }
@@ -71,7 +77,9 @@ const value = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
-
+const isNotValid = computed({
+  get: () => validation,
+})
 const confirmCancel = (mode) => {
   value.value = false
   emit(mode)
@@ -123,6 +131,11 @@ window.addEventListener('keydown', (e) => {
                   placeholder="Engine"
                 />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
           </SectionMain>
           <SectionMain>

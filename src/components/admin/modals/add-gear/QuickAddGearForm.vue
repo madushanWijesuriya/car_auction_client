@@ -29,7 +29,10 @@ const resetForm = () => {
   Object.assign(form, initialState)
   // uploaderKey.value += uploaderKey.value + 1
 }
-
+let validation = reactive({ hasValidation: false, message: '' })
+const isNotValid = computed({
+  get: () => validation,
+})
 const submitForm = async () => {
   try {
     console.log(form, 'form')
@@ -47,7 +50,10 @@ const submitForm = async () => {
     }
     emit('quickGearModal')
   } catch (error) {
-    console.error(error?.response?.data?.message)
+    if (error?.response?.status === 422) {
+      validation.hasValidation = true
+      validation.message = error?.response?.data?.data?.errors?.name[0]
+    }
   }
 }
 
@@ -127,6 +133,11 @@ window.addEventListener('keydown', (e) => {
                   placeholder="Gear"
                 />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
           </SectionMain>
           <SectionMain>

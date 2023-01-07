@@ -604,16 +604,6 @@ export default {
             label="Add Engine Type"
             @click="addEngine"
           />
-          <FormField label="Country">
-            <FormControl v-model="form.engine_id" :options="engineList" />
-          </FormField>
-          <AddEngineModal ref="engineModel" />
-          <BaseButton
-            type="submit"
-            color="info"
-            label="Add Engine Type"
-            @click="addEngine"
-          />
           <FormField label="Gear">
             <FormControl v-model="form.gear_box_id" :options="gearTypeList" />
           </FormField>

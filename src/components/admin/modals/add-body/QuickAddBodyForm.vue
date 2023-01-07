@@ -24,7 +24,10 @@ const resetForm = () => {
   Object.assign(form, initialState)
   // uploaderKey.value += uploaderKey.value + 1
 }
-
+let validation = reactive({ hasValidation: false, message: '' })
+const isNotValid = computed({
+  get: () => validation,
+})
 const submitForm = async () => {
   try {
     const response = await httpResource.post(
@@ -41,7 +44,10 @@ const submitForm = async () => {
     }
     emit('quickAddBody')
   } catch (error) {
-    console.error(error?.response?.data?.message)
+    if (error?.response?.status === 422) {
+      validation.hasValidation = true
+      validation.message = error?.response?.data?.data?.errors?.name[0]
+    }
   }
 }
 
@@ -101,8 +107,17 @@ window.addEventListener('keydown', (e) => {
               >
               </SectionTitleLineWithButton>
               <FormField label="Name" help="">
-                <FormControl v-model="form.name" type="text" placeholder="Body Type" />
+                <FormControl
+                  v-model="form.name"
+                  type="text"
+                  placeholder="Body Type"
+                />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
           </SectionMain>
           <SectionMain>
