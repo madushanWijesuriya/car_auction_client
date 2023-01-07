@@ -105,7 +105,7 @@ const router = createRouter({
       path: '/stock-list',
       name: 'StockList',
       component: () => import('../views/StockList.vue'),
-      props: true
+      props: true,
     },
     {
       path: '/home-stock-list',
@@ -175,6 +175,46 @@ const router = createRouter({
       path: '/admin/profile',
       name: 'portal-profile',
       component: () => import('../views/Portal/Profile.vue'),
+    },
+    {
+      meta: {
+        title: 'freight invoices',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/freight-invoices',
+      name: 'freight-invoices',
+      component: () => import('../views/Portal/FreightInvoices.vue'),
+    },
+    {
+      meta: {
+        title: 'financial information',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/financial-information',
+      name: 'financial-information',
+      component: () => import('../views/Portal/FinancialInformationTransactions.vue'),
+    },
+    {
+      meta: {
+        title: 'financial information ledger',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/financial-information-ledger',
+      name: 'financial-information-ledger',
+      component: () => import('../views/Portal/FinancialInformationLedger.vue'),
+    },
+    {
+      meta: {
+        title: 'shipping document',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/shipping-document',
+      name: 'shipping-document',
+      component: () => import('../views/Portal/ShippingDocument.vue'),
     },
     {
       meta: {
@@ -377,7 +417,7 @@ const router = createRouter({
     },
     {
       path: '/step-two',
-      name: 'Register Step',
+      name: 'RegisterStep',
       component: () => import('../views/Portal/Register_two.vue'),
     },
   ],

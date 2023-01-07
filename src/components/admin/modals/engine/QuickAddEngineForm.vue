@@ -12,10 +12,10 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 const initialState = {
   name: '',
-  id: '',
 }
 let form = reactive({ ...initialState })
 
+let validation = reactive({ hasValidation: false, message: '' })
 const validateForm = () => {
   submitForm()
 }
@@ -24,32 +24,30 @@ const resetForm = () => {
   Object.assign(form, initialState)
   // uploaderKey.value += uploaderKey.value + 1
 }
-let validation = reactive({ hasValidation: false, message: '' })
-const isNotValid = computed({
-  get: () => validation,
-})
+
 const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/model/quickAdd',
+      '/api/staff/vehicle/engine/quickAdd',
       {
         name: form?.name,
-        make_id: form?.id,
       }
     )
+    console.log(response, 'response')
     if (response.status === 200) {
       resetForm()
       toast.success('Successfully Added', {
         timeout: 2000,
       })
     }
-    emit('quickAddModel')
+    emit('quickEngineModal')
   } catch (error) {
     if (error?.response?.status === 422) {
       validation.hasValidation = true
       validation.message = error?.response?.data?.data?.errors?.name[0]
     }
+    console.error(error?.response?.data?.message)
   }
 }
 
@@ -79,7 +77,9 @@ const value = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
-
+const isNotValid = computed({
+  get: () => validation,
+})
 const confirmCancel = (mode) => {
   value.value = false
   emit(mode)
@@ -120,26 +120,23 @@ window.addEventListener('keydown', (e) => {
             <CardBox form @submit.prevent="submit">
               <SectionTitleLineWithButton
                 :icon="mdiCarEstate"
-                title="Add Vehical Model"
+                title="Add Engine"
                 main
               >
               </SectionTitleLineWithButton>
-              <FormField label="ID" help="">
-                <FormControl v-model="form.id" type="text" placeholder="ID" />
-              </FormField>
-              <FormField label="Vehical Model" help="">
+              <FormField label="Name" help="">
                 <FormControl
                   v-model="form.name"
                   type="text"
-                  placeholder="Vehical Model"
+                  placeholder="Engine"
                 />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
-            <span
-              v-if="isNotValid.hasValidation"
-              style="color: red; font-weight: bold"
-              >{{ isNotValid.message }}</span
-            >
           </SectionMain>
           <SectionMain>
             <CardBox>

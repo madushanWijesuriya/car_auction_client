@@ -29,7 +29,7 @@ const cover_image = computed(() => {
       </div>
       <div class="grid grid-cols-2 gap-5 xl:gap-3 lg:grid-cols-4 w-full">
         <div class="w-full">
-          <p class="font-vehical-details-title">Body</p>
+          <p class="font-vehical-details-title">Engine Capacity</p>
           <p class="font-vehical-details-content">{{ vehicle.displacement }}</p>
         </div>
         <div class="w-full">

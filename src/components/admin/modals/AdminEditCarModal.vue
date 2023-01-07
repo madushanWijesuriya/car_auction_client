@@ -2,6 +2,7 @@
 import { mdiCalendarRange } from '@mdi/js'
 import FormField from '@/components/admin/FormField.vue'
 import FormControl from '@/components/admin/FormControl.vue'
+
 import {
   reactive,
   ref,
@@ -43,6 +44,14 @@ export default {
       default: [],
     },
     bodyTypeList: {
+      type: Array,
+      default: [],
+    },
+    engineList: {
+      type: Array,
+      default: [],
+    },
+    gearList: {
       type: Array,
       default: [],
     },
@@ -88,12 +97,15 @@ export default {
     },
   },
   setup(props, { emit }) {
+    const base_url_api = import.meta.env.VITE_BASE_URL_API
     const {
       makersList,
       modelsList,
       statusList,
       bodyTypeList,
       transmissionList,
+      gearList,
+      engineList,
       streeingList,
       doorTypesList,
       fuleTypeList,
@@ -118,6 +130,7 @@ export default {
       )
 
     const handleImages = (event) => {
+      console.log(event)
       const files = Array.from(event)
       form.photos = [...files]
     }
@@ -140,6 +153,8 @@ export default {
         formData.append('status_id', form?.status?.id)
         formData.append('body_type_id', form?.bodyType?.id)
         formData.append('transmission_id', form?.transmission?.id)
+        formData.append('engine_id', form?.engine_id?.id)
+        formData.append('gear_box_id', form?.gear_box_id?.id)
         formData.append('streeing_id', form?.streeing?.id)
         formData.append('door_type_id', form?.doorTypes?.id)
         formData.append('driver_type_id', form?.driveType?.id)
@@ -148,10 +163,15 @@ export default {
         formData.append('chassis_no', form?.chassisNo)
         formData.append('make_at', `${form?.year}-${form?.month?.id}-01`)
         formData.append('fob_price', form?.fobPrice)
+        formData.append('title', form?.title)
+        formData.append('lot_number', form?.lot_number)
+        formData.append('seats', form?.seats)
         formData.append('displacement', form?.displacement)
         formData.append('isUsed', form?.condition === 'used' ? 1 : 0)
         formData.append('grade', form?.gradeTrim)
         formData.append('cover_image', form.coverImage)
+        formData.append('current_cover_image', form.current_cover_image)
+        formData.append('current_images', form.current_images)
         // formData.append('cover_image', 'cover image')
         formData.append('description', form.description)
         formData.append('private_note', form.privateNote)
@@ -207,6 +227,9 @@ export default {
       model: null,
       chassisNo: '',
       fobPrice: 0,
+      title: '',
+      lot_number: '',
+      seats: 0,
       status: statusList[0],
       year: new Date().getFullYear(),
       month: monthsList[new Date().getMonth()],
@@ -215,6 +238,8 @@ export default {
       bodyType: bodyTypeList[0],
       mileage: 0,
       transmission: transmissionList[0],
+      engine_id: engineList[0],
+      gear_box_id: gearList[0],
       streeing: streeingList[0],
       doorTypes: doorTypesList[0],
       driveType: driveTypeList[0],
@@ -264,6 +289,9 @@ export default {
         (i) => i.id === vehicle.value?.feature_id?.id
       )
       form.fobPrice = vehicle.value?.fob_price
+      form.title = vehicle.value?.title
+      form.lot_number = vehicle.value?.lot_number
+      form.seats = vehicle.value?.seats
       form.fuelType = fuleTypeList.value.find(
         (i) => i.id === vehicle.value?.fuel_type_id?.id
       )
@@ -283,6 +311,12 @@ export default {
       form.status = statusList.value.find(
         (i) => i.id === vehicle.value?.status_id?.id
       )
+      form.gear_box_id = gearList.value.find(
+        (i) => i.id === vehicle.value?.gear_box_id?.id
+      )
+      form.engine_id = engineList.value.find(
+        (i) => i.id === vehicle.value?.engine_id?.id
+      )
       form.streeing = streeingList.value.find(
         (i) => i.id === vehicle.value?.streeing_id?.id
       )
@@ -292,6 +326,9 @@ export default {
       form.transmission = transmissionList.value.find(
         (i) => i.id === vehicle.value?.transmission_id?.id
       )
+
+      form.current_cover_image = vehicle.value?.cover_image_full_url
+      form.current_images = vehicle.value?.images
       setTimeout(() => {
         form.model = modelsList.value.find(
           (i) => i.id === vehicle.value?.model_id?.id
@@ -307,6 +344,8 @@ export default {
       doorTypesList,
       streeingList,
       transmissionList,
+      engineList,
+      gearList,
       bodyTypeList,
       monthsList,
       yearsList,
@@ -324,6 +363,7 @@ export default {
       state,
       vehicle,
       mainKey,
+      base_url_api,
     }
   },
   components: {
@@ -377,12 +417,12 @@ export default {
             :options="makersList"
             @update:modelValue="changeMaker"
           />
-          <BaseButton
+          <!-- <BaseButton
             type="submit"
             color="info"
             label="Add Maker"
             @click="addMaker"
-          />
+          /> -->
         </FormField>
         <FormField label="Model">
           <FormControl v-model="form.model" :options="modelsList" />
@@ -400,6 +440,19 @@ export default {
             type="number"
             placeholder="Price (USD)"
           />
+        </FormField>
+        <FormField label="Title" help="">
+          <FormControl v-model="form.title" type="text" placeholder="Title" />
+        </FormField>
+        <FormField label="Lot Number" help="">
+          <FormControl
+            v-model="form.lot_number"
+            type="text"
+            placeholder="Lot Number"
+          />
+        </FormField>
+        <FormField label="No of Seats" help="">
+          <FormControl v-model="form.seats" type="text" placeholder="Seats" />
         </FormField>
         <FormField label="Status">
           <FormControl v-model="form.status" :options="statusList" />
@@ -444,12 +497,12 @@ export default {
         <FormField label="Body Type">
           <FormControl v-model="form.bodyType" :options="bodyTypeList" />
         </FormField>
-        <BaseButton
+        <!-- <BaseButton
           type="submit"
           color="info"
           label="Add Body Type"
           @click="addBody"
-        />
+        /> -->
         <FormField label="Transmission">
           <FormControl
             v-model="form.transmission"
@@ -457,12 +510,16 @@ export default {
           />
         </FormField>
         <AddTransmitionModal ref="transmitionModal" />
-        <BaseButton
+        <!-- <BaseButton
           type="submit"
           color="info"
           label="Add Transminition"
           @click="addTransmition"
-        />
+        /> -->
+        <FormField label="Engine">
+          <FormControl v-model="form.engine_id" :options="engineList" />
+        </FormField>
+        <AddTransmitionModal ref="engineModal" />
         <FormField label="Streeing">
           <FormControl v-model="form.streeing" :options="streeingList" />
         </FormField>
@@ -492,6 +549,9 @@ export default {
           />
         </FormField>
         <BaseDivider />
+        <FormField label="Current Cover Image">
+          <img :src="base_url_api + form.current_cover_image" />
+        </FormField>
 
         <FormFilePicker v-model="form.coverImage" label="Cover Image" />
 
@@ -499,6 +559,11 @@ export default {
           class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center"
         >
           Upload Images
+        </div>
+        <div class="grid grid-cols-5">
+          <div v-for="(image, key) in form.current_images" :key="key">
+            <img :src="base_url_api + image.full_url" />
+          </div>
         </div>
         <div
           style="height: 400px; width: 55vw; background: #f2f2f2"

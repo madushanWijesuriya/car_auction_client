@@ -210,6 +210,30 @@ const getTransmitions = async () => {
     console.error(error)
   }
 }
+let gearList = ref([])
+const getGears = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/gears')
+    gearList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let engineList = ref([])
+const getEngines = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/engine-types')
+    engineList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
 let streeingList = ref([])
 const getStreeings = async () => {
   try {
@@ -295,6 +319,8 @@ onMounted(async () => {
   getExteriorColors()
   getFeatures()
   getDriveTypeList()
+  getEngines()
+  getGears()
 })
 ///
 </script>
@@ -312,6 +338,8 @@ onMounted(async () => {
         :statusList="statusList"
         :bodyTypeList="bodyTypeList"
         :transmissionList="transmissionList"
+        :engineList="engineList"
+        :gearList="gearList"
         :streeingList="streeingList"
         :doorTypesList="doorTypesList"
         :fuleTypeList="fuleTypeList"

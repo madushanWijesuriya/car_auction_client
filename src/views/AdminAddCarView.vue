@@ -18,6 +18,8 @@ import { useToast } from 'vue-toastification'
 import NotificationBar from '@/components/admin/NotificationBar.vue'
 import AddModal from '@/components/admin/modals/AddModal.vue'
 import AddBodyTypeModel from '@/components/admin/modals/add-body/AddBodyTypeModel.vue'
+import AddGearTypeModel from '@/components/admin/modals/add-gear/AddGearTypeModel.vue'
+import AddEngineModal from '@/components/admin/modals/engine/AddEngineModal.vue'
 import AddTransmitionModal from '@/components/admin/modals/transmition/AddTransmitionModal.vue'
 import AddCarModel from '@/components/admin/modals/add-model/AddCarModel.vue'
 import AddStreeings from '@/components/admin/modals/add-streeings/AddStreeings.vue'
@@ -33,7 +35,6 @@ export default {
     const imageLimit = ref(0) // 0 -> will submit all images / any other number -> will limit image to that number
     const toast = useToast()
     // methods
-
     const range = (start, stop, step) =>
       Array.from(
         { length: (stop - start) / step + 1 },
@@ -62,6 +63,8 @@ export default {
         formData.append('model_id', form?.model?.id)
         formData.append('status_id', form?.status?.id)
         formData.append('body_type_id', form?.bodyType?.id)
+        formData.append('engine_id', form?.engine_id?.id)
+        formData.append('gear_box_id', form?.gear_box_id?.id)
         formData.append('transmission_id', form?.transmission?.id)
         formData.append('streeing_id', form?.streeing?.id)
         formData.append('door_type_id', form?.doorTypes?.id)
@@ -84,6 +87,9 @@ export default {
         formData.append('mileage', form.mileage)
         formData.append('market_price', form.marketPrice)
         formData.append('feature_id', form?.features?.id)
+        formData.append('lot_number', form?.lot_number)
+        formData.append('title', form?.title)
+        formData.append('seats', form?.seats)
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
@@ -178,11 +184,47 @@ export default {
         }),
       }
     })
+    let gearTypeList = ref([])
+    const getGearTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/gears')
+        gearTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
     let bodyTypeList = ref([])
     const getBodyTypes = async () => {
       try {
         const response = await httpResource.get('/api/resources/body-type')
         bodyTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let engineList = ref([])
+    const getEngines = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/engine-types')
+        engineList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let country = ref([])
+    const countryList = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/countries')
+        countryList.value = response.data.data.map((d) => ({
           ...d,
           label: d.name,
         }))
@@ -281,6 +323,7 @@ export default {
     onMounted(async () => {
       getMakers()
       getStatus()
+      getGearTypes()
       getBodyTypes()
       getTransmitions()
       getStreeings()
@@ -289,6 +332,8 @@ export default {
       getfuleTypes()
       getExteriorColors()
       getFeatures()
+      getEngines()
+      getGearTypes()
     })
 
     const initialState = {
@@ -303,6 +348,8 @@ export default {
       condition: 'new',
       bodyType: bodyTypeList[0],
       mileage: 0,
+      gear_box_id: gearTypeList[0],
+      engine_id: engineList[0],
       transmission: transmissionList[0],
       streeing: streeingList[0],
       doorTypes: doorTypesList[0],
@@ -319,6 +366,9 @@ export default {
       supplierPrice: 0,
       supplierURL: '',
       marketPrice: 0,
+      title: '',
+      lot_number: '',
+      seats: null,
     }
 
     let form = reactive({ ...initialState })
@@ -331,7 +381,9 @@ export default {
       driveTypeList,
       doorTypesList,
       streeingList,
+      engineList,
       transmissionList,
+      gearTypeList,
       bodyTypeList,
       monthsList,
       yearsList,
@@ -349,13 +401,16 @@ export default {
       state,
       getMakers,
       getBodyTypes,
+      getGearTypes,
     }
   },
   components: {
     UploadImages,
     editor: Editor,
     AddModal,
+    AddGearTypeModel,
     AddBodyTypeModel,
+    AddEngineModal,
     AddTransmitionModal,
     AddCarModel,
     AddStreeings,
@@ -369,8 +424,14 @@ export default {
     addMaker() {
       this.$refs.makeModal.openMakeModal()
     },
+    addGear() {
+      this.$refs.gearModal.openGearModal()
+    },
     addBody() {
       this.$refs.bodyTypeModel.openBodyModal()
+    },
+    addEngine() {
+      this.$refs.engineModel.openEngineModal()
     },
     addTransmition() {
       this.$refs.transmitionModal.openTransModal()
@@ -430,6 +491,23 @@ export default {
           </div>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
+          <FormField label="Title" help="">
+            <FormControl v-model="form.title" type="text" placeholder="Title" />
+          </FormField>
+          <FormField label="Lot Number" help="">
+            <FormControl
+              v-model="form.lot_number"
+              type="text"
+              placeholder="Lot Number"
+            />
+          </FormField>
+          <FormField label="Seats" help="">
+            <FormControl
+              v-model="form.seats"
+              type="number"
+              placeholder="No of Seats"
+            />
+          </FormField>
           <AddModal ref="makeModal" @triggerParent="getResourcesLists" />
           <FormField label="Maker">
             <FormControl
@@ -507,7 +585,6 @@ export default {
               placeholder="Mileage KM"
             />
           </FormField>
-          <AddBodyTypeModel ref="bodyTypeModel" />
           <FormField label="Body Type">
             <FormControl v-model="form.bodyType" :options="bodyTypeList" />
           </FormField>
@@ -516,6 +593,29 @@ export default {
             color="info"
             label="Add Body Type"
             @click="addBody"
+          />
+          <FormField label="Engine">
+            <FormControl v-model="form.engine_id" :options="engineList" />
+          </FormField>
+          <AddEngineModal ref="engineModel" />
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Engine Type"
+            @click="addEngine"
+          />
+          <FormField label="Gear">
+            <FormControl v-model="form.gear_box_id" :options="gearTypeList" />
+          </FormField>
+          <AddGearTypeModel
+            @quickGearModalParent="getGearTypes"
+            ref="gearModal"
+          />
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Gear Type"
+            @click="addGear"
           />
           <FormField label="Transmission">
             <FormControl

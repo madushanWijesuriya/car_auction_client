@@ -38,7 +38,10 @@ const validateForm = () => {
 const resetForm = () => {
   Object.assign(form, initialState)
 }
-
+let validation = reactive({ hasValidation: false, message: '' })
+const isNotValid = computed({
+  get: () => validation,
+})
 const submitForm = async () => {
   try {
     const response = await httpResource.post(
@@ -57,10 +60,10 @@ const submitForm = async () => {
       emit('quickAddMake')
     }
   } catch (error) {
-    console.error(error?.response?.data?.message)
-    toast.warning(error?.response?.data?.message, {
-      timeout: 2000,
-    })
+    if (error?.response?.status === 422) {
+      validation.hasValidation = true
+      validation.message = error?.response?.data?.data?.errors?.name[0]
+    }
   }
 }
 
@@ -126,6 +129,11 @@ window.addEventListener('keydown', (e) => {
                   placeholder="User Name"
                 />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
           </SectionMain>
           <SectionMain>

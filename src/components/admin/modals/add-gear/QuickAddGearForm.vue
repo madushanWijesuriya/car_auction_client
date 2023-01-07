@@ -9,10 +9,15 @@ import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
 
+const emit = defineEmits([
+  'update:modelValue',
+  'cancel',
+  'confirm',
+  'quickGearModal',
+])
 const toast = useToast()
 const initialState = {
   name: '',
-  id: '',
 }
 let form = reactive({ ...initialState })
 
@@ -32,10 +37,9 @@ const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/model/quickAdd',
+      '/api/staff/vehicle/gear/quickAdd',
       {
         name: form?.name,
-        make_id: form?.id,
       }
     )
     if (response.status === 200) {
@@ -44,7 +48,7 @@ const submitForm = async () => {
         timeout: 2000,
       })
     }
-    emit('quickAddModel')
+    emit('quickGearModal')
   } catch (error) {
     if (error?.response?.status === 422) {
       validation.hasValidation = true
@@ -72,8 +76,6 @@ const props = defineProps({
     default: null,
   },
 })
-
-const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
 
 const value = computed({
   get: () => props.modelValue,
@@ -120,26 +122,23 @@ window.addEventListener('keydown', (e) => {
             <CardBox form @submit.prevent="submit">
               <SectionTitleLineWithButton
                 :icon="mdiCarEstate"
-                title="Add Vehical Model"
+                title="Add Gear"
                 main
               >
               </SectionTitleLineWithButton>
-              <FormField label="ID" help="">
-                <FormControl v-model="form.id" type="text" placeholder="ID" />
-              </FormField>
-              <FormField label="Vehical Model" help="">
+              <FormField label="Name" help="">
                 <FormControl
                   v-model="form.name"
                   type="text"
-                  placeholder="Vehical Model"
+                  placeholder="Gear"
                 />
               </FormField>
+              <span
+                v-if="isNotValid.hasValidation"
+                style="color: red; font-weight: bold"
+                >{{ isNotValid.message }}</span
+              >
             </CardBox>
-            <span
-              v-if="isNotValid.hasValidation"
-              style="color: red; font-weight: bold"
-              >{{ isNotValid.message }}</span
-            >
           </SectionMain>
           <SectionMain>
             <CardBox>
