@@ -55,7 +55,7 @@ const getMakers = async () => {
       ...d,
       label: d.name,
     }))
-  } catch (error) { }
+  } catch (error) {}
 }
 
 let modelsList = ref([])
@@ -98,12 +98,38 @@ const changeMaker = (e) => {
 }
 
 const applyFilters = async (form) => {
+  let filterQuery = '/api/guest/vehicle?'
+  if (form.search_text) filterQuery += `filter[search_text]=${form.search_text}`
+  if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
+  if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
+  if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
+  if (form.body_type_id)
+    filterQuery += `&filter[body_type_id]=${form.body_type_id}`
+  if (form.transmission_id)
+    filterQuery += `&filter[transmission_id]=${form.transmission_id}`
+  if (form.streeing_id)
+    filterQuery += `&filter[streeing_id]=${form.streeing_id}`
+  if (form.door_type_id)
+    filterQuery += `&filter[door_type_id]=${form.door_type_id}`
+  if (form.driver_type_id)
+    filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
+  if (form.fuel_type_id)
+    filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
+  if (form.engine) filterQuery += `&filter[engine_id]=${form.engine}`
+  if (form.exterior_color_id)
+    filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
+  if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
+  if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
+  if (form.from || form.to)
+    filterQuery += `&filter[make_at]=${form.from} - ${form.to}`
+
   try {
-    const response = await httpResource.get(
-      `/api/staff/vehicle?filter[make_id]=${form.maker.join(
-        ','
-      )}&filter[model_id]=${form.model.join(',')}`
-    )
+    const response = await httpResource.get(filterQuery)
+    // const response = await httpResource.get(
+    //   `/api/staff/vehicle?filter[make_id]=${form.maker.join(
+    //     ','
+    //   )}&filter[model_id]=${form.model.join(',')}`
+    // )
     setCars(response)
   } catch (error) {
     console.error(error)
@@ -149,10 +175,16 @@ onMounted(async () => {
   <div class="text-white text-sm p-2">
     <div class="flex flex-col gap-5 w-full m">
       <div class="relative w-full md:px-[8%] xl:mb-[12vh]">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[20%] object-cover"
-          src="@/assets/images/stock-list/vehical-list/stock-list-main.svg" />
-        <div class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[15%]">
-          <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[50%]">
+        <img
+          class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[20%] object-cover"
+          src="@/assets/images/stock-list/vehical-list/stock-list-main.svg"
+        />
+        <div
+          class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[15%]"
+        >
+          <div
+            class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[50%]"
+          >
             <div>
               <h1 class="font-header-photo">Toyota</h1>
               <p class="font-header-photo-2">Gazoo Racing</p>
@@ -160,13 +192,27 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      
-      <div class="flex flex-col pt-2 md:pt-10 px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
-        <Filter v-if="loadedCompleted" :makers="makersList" :models="modelsList" :drives="driveTypeList"
-          :resultCount="indexingDetails.total" :filters="route.query" @maker-changed="changeMaker"
-          @apply-filters="applyFilters" @reset-filters="resetFilters" />
-        <VehicalList :indexingDetails="indexingDetails" @go-to-first-page="goToFirstPage"
-          @go-to-last-page="goToLastPage" @change-page="changePage" />
+
+      <div
+        class="flex flex-col pt-2 md:pt-10 px-4 lg:flex-row gap-2 xl:px-[2vw] w-full"
+      >
+        <Filter
+          v-if="loadedCompleted"
+          :makers="makersList"
+          :models="modelsList"
+          :drives="driveTypeList"
+          :resultCount="indexingDetails.total"
+          :filters="route.query"
+          @maker-changed="changeMaker"
+          @apply-filters="applyFilters"
+          @reset-filters="resetFilters"
+        />
+        <VehicalList
+          :indexingDetails="indexingDetails"
+          @go-to-first-page="goToFirstPage"
+          @go-to-last-page="goToLastPage"
+          @change-page="changePage"
+        />
         <CustomerFeedback />
       </div>
     </div>

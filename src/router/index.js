@@ -418,7 +418,7 @@ const router = createRouter({
       meta: {
         isClientLogin: true,
       },
-      path: '/sing-up',
+      path: '/sign-up',
       name: 'Register',
       component: () => import('../views/Portal/Register.vue'),
     },

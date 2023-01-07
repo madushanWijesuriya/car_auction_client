@@ -23,6 +23,8 @@ const conditions = ref([
     id: 2,
   },
 ])
+const make_at = ref(0)
+
 const conditionModel = ref()
 const mileageModel = ref([1, 2])
 const initialState = {
@@ -37,9 +39,10 @@ const initialState = {
   date1: '',
   date2: '',
   delivery: false,
-  value2: [],
+  make_at: [],
   resource: '',
   desc: '',
+  isUsed: '',
 }
 let form = reactive({ ...initialState })
 let formOne = reactive({ ...initialState })
@@ -139,7 +142,7 @@ onMounted(async () => {
 
           <el-form-item label="Condition">
             <el-select
-              v-model="conditionModel"
+              v-model="form.isUsed"
               placeholder="Any"
               style="width: 100%"
             >
@@ -151,25 +154,12 @@ onMounted(async () => {
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="Year From - To">
-            <div class="block">
-              <el-slider v-model="form.year" range :min="2010" :max="2025">
-              </el-slider>
+          <div>
+            <el-form-item label="Year From - To"> </el-form-item>
+            <div class="slider-demo-block">
+              <el-slider max="2023" range v-model="make_at" />
             </div>
-          </el-form-item>
-          <el-form-item label="Mileage From - To">
-            <div class="block">
-              <el-slider v-model="mileageModel" range :min="1" :max="10">
-              </el-slider>
-            </div>
-          </el-form-item>
-
-          <el-form-item label="Engine From - To">
-            <div class="block">
-              <el-slider v-model="form.engine" range :min="1" :max="10">
-              </el-slider>
-            </div>
-          </el-form-item>
+          </div>
 
           <el-form-item label="Drive">
             <el-select
@@ -188,15 +178,15 @@ onMounted(async () => {
 
           <el-form-item label="Gearbox">
             <el-select
-              v-model="value2"
+              v-model="make_at"
               placeholder="Select Gearbox"
               style="width: 100%"
             >
               <el-option
                 v-for="item in []"
-                :key="item.value2"
+                :key="item.make_at"
                 :label="item.label"
-                :value="item.value2"
+                :value="item.make_at"
               >
               </el-option>
             </el-select>

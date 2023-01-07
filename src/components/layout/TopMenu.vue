@@ -130,7 +130,7 @@ import { computed, onMounted } from '@vue/runtime-core'
           Log in
         </div>
       </a>
-      <a :href="'/log-in'">
+      <a :href="'/sign-up'">
         <div
           class="rounded xl:rounded-lg bg-[#08246C] hover:opacity-80 px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] cursor-pointer text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4"
         >
