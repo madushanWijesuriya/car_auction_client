@@ -37,7 +37,7 @@ const cover_image = computed(() => {
           <p class="font-vehical-details-content">81,000 KM</p>
         </div>
         <div class="w-full">
-          <p class="font-vehical-details-title">Mileage</p>
+          <p class="font-vehical-details-title">Mileassssssge</p>
           <p class="font-vehical-details-content">{{ vehicle.mileage }} KM</p>
         </div>
         <div class="w-full">

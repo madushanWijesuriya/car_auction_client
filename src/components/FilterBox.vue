@@ -49,7 +49,7 @@
                   <el-select
                     v-model="form.maker"
                     style="width: 100%"
-                    placeholder="Any"
+                    placeholder="Select the Brand"
                     @change="changeMaker"
                   >
                     <el-option
@@ -65,7 +65,7 @@
                 <el-form-item label="Model">
                   <el-select
                     v-model="form.model_id"
-                    placeholder="please select your zone"
+                    placeholder="Select the Model"
                     style="width: 100%"
                   >
                     <el-option
@@ -85,23 +85,32 @@
                 <el-form-item label="Engine CC">
                   <el-select
                     v-model="form.engine"
-                    placeholder="please select your zone"
+                    placeholder="Select the Engine CC"
                     style="width: 100%"
                   >
-                    <el-option label="Zone one" value="shanghai"></el-option>
-                    <el-option label="Zone two" value="beijing"></el-option>
+                    <el-option
+                      v-for="engine in engineTypeList"
+                      :key="engine.id"
+                      :label="engine.label"
+                      :value="engine.id"
+                    ></el-option>
                   </el-select>
                 </el-form-item>
               </div>
               <div class="inner-group">
-                <el-form-item label="Lot Number">
+                <el-form-item label="Lot Numbers">
                   <el-select
                     v-model="form.lot"
-                    placeholder="please select your zone"
+                    placeholder="Enter Lot Number"
                     style="width: 100%"
+                    filterable
                   >
-                    <el-option label="Zone one" value="shanghai"></el-option>
-                    <el-option label="Zone two" value="beijing"></el-option>
+                    <el-option
+                      v-for="lot in lotList"
+                      :key="lot.id"
+                      :label="lot.label"
+                      :value="lot.label"
+                    ></el-option>
                   </el-select>
                 </el-form-item>
               </div>
@@ -207,6 +216,7 @@ const applyFilters = async () => {
       filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
     if (form.fuel_type_id)
       filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
+    if (form.engine) filterQuery += `&filter[engine_id]=${form.engine}`
     if (form.exterior_color_id)
       filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
     if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
@@ -216,7 +226,6 @@ const applyFilters = async () => {
 
     console.log(form.from)
     const response = await httpResource.get(filterQuery)
-    setCars(response)
     router.push({
       name: 'StockList',
       query: {
@@ -234,8 +243,8 @@ const applyFilters = async () => {
         // feature_id: form.feature_id,
         // chassis_no: form.chassis_no,
         // make_at: form.make_at,
-        displacement: form.engine
-      }
+        displacement: form.engine,
+      },
     })
   } catch (error) {
     console.error(error)
@@ -272,6 +281,7 @@ let modelsList = ref([])
 let bodyTypeList = ref([])
 let engineTypeList = ref([])
 let driveTypeList = ref([])
+let lotList = ref([])
 
 const getMakers = async () => {
   try {
@@ -309,8 +319,20 @@ const getEngineTypes = async () => {
     const response = await httpResource.get('/api/resources/engine-types')
     engineTypeList.value = response.data.data.map((d) => ({
       ...d,
-      label: d.name,
+      label: d.name + ' CC',
     }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getLotumbers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/lot_numbers')
+    lotList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.lot_number,
+    }))
+    console.log(chassisList)
   } catch (error) {
     console.error(error)
   }
@@ -339,6 +361,7 @@ onMounted(async () => {
   getBodyTypes()
   getDriverTypes()
   getEngineTypes()
+  getLotumbers()
 })
 </script>
 <style scoped lang="scss">

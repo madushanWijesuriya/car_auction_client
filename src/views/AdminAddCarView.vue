@@ -220,18 +220,18 @@ export default {
         console.error(error)
       }
     }
-    let country = ref([])
-    const countryList = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/countries')
-        countryList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
+    // let country = ref([])
+    // const countryList = async () => {
+    //   try {
+    //     const response = await httpResource.get('/api/resources/countries')
+    //     countryList.value = response.data.data.map((d) => ({
+    //       ...d,
+    //       label: d.name,
+    //     }))
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // }
     let transmissionList = ref([])
     const getTransmitions = async () => {
       try {
