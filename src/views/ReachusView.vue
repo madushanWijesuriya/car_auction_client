@@ -3,9 +3,22 @@ import { ref, reactive, computed } from "vue";
 </script>
 
 <template>
+  <div class="hidden lg:block group fixed-group  absolute right-0 top-[-163px]">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-0"
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
   <div
     class="container mx-auto carousel-type-01 sm:px-3 md:px-12 lg:px-12 xl:px-12"
   >
+  
     <div class="">
       <div class="grid grid-rows-3 m-5 lg:grid-rows-6 lg:grid-cols-2 gap-0">
         <div class="row-span-3 lg:row-span-3">

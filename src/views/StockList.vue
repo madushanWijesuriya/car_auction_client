@@ -146,10 +146,22 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="text-white text-sm p-2">
+  <div class="text-white text-sm p-2 relative">
+    <div class="hidden group fixed-group lg:flex absolute right-0 top-[-145px]">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-0"
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
     <div class="flex flex-col gap-5 w-full m">
       <div class="relative w-full md:px-[8%] xl:mb-[12vh]">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[20%] object-cover"
+        <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[800px] object-cover"
           src="@/assets/images/stock-list/vehical-list/stock-list-main.svg" />
         <div class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[15%]">
           <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[50%]">

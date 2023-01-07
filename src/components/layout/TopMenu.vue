@@ -4,7 +4,7 @@ import { computed ,onMounted } from '@vue/runtime-core'
 </script>
 <template>
   <div
-    class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]"
+    class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C]" 
   >
     <div class="visible flex items-center md:hidden" @click="isOpen = !isOpen">
       <svg

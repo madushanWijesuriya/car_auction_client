@@ -9,6 +9,18 @@ const getImageUrl = (name) => {
 
 <template>
   <div class="how-to-ordering">
+    <div class="hidden lg:block group fixed-group  absolute right-0 top-[-152px]">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map "
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
     <div class="content-01 sm:container relative mt-2">
       <img
         :src="
