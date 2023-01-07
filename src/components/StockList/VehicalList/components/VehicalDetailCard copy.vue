@@ -73,7 +73,7 @@ const cover_image = computed(() => {
             class="flex flex-col md:items-end lg:flex-row lg:justify-end lg:gap-3"
           >
             <p class="font-car-price-1">Car Price :</p>
-            <p class="font-car-price-3">¥ {{ vehicle.sup_price }}</p>
+            <p class="font-car-price-3">$ {{ vehicle.sup_price }}</p>
           </div>
 
           <div class="flex w-full items-start md:justify-end">
@@ -81,7 +81,7 @@ const cover_image = computed(() => {
           </div>
         </div>
         <div class="flex w-full flex-col md: items-end">
-          <p class="font-car-price-2">¥ {{ vehicle.sup_price }}</p>
+          <p class="font-car-price-2">$ {{ vehicle.sup_price }}</p>
           <p class="font-shipping-price">Total Price with Shipping</p>
         </div>
       </div>

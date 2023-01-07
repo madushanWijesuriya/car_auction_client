@@ -299,7 +299,7 @@ const getImageUrl = (name) => {
           <p class="font-card-title-1">Specifications</p>
           <div class="flex flex-col gap-1 lg:hidden">
             <p class="font-car-price-title">Car Price :</p>
-            <p class="font-car-price">¥ 147,500.00</p>
+            <p class="font-car-price">$ 147,500.00</p>
           </div>
           <div class="hidden lg:flex">Copy to Clipboard</div>
         </div>
@@ -430,7 +430,7 @@ const getImageUrl = (name) => {
             class="flex lg:flex-col lg:justify-start lg:items-start lg:gap-5 w-full justify-between items-end mt-5"
           >
             <div class="font-total-price lg:flex lg:flex-col lg:items-end">
-              <p>¥ {{ vehicleData?.market_price }}</p>
+              <p>$ {{ vehicleData?.market_price }}</p>
               <p class="font-total-price-label">Total Price with Shipping</p>
             </div>
             <div class="flex items-center gap-2">

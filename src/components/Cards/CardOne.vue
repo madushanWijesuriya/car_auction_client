@@ -24,7 +24,7 @@ defineProps({
       </h1></span
     >
     <h2 class="text-center cardTitleText">Starting at</h2>
-    <h1 class="text-center cardTitlePrice">¥{{ vehicle?.fob_price }}</h1>
+    <h1 class="text-center cardTitlePrice">${{ vehicle?.fob_price }}</h1>
   </div>
 </template>
 <style scoped lang="scss">
