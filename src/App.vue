@@ -19,16 +19,23 @@ const pathMeta = computed(() => route.meta)
       </body>
     </div>
     <div v-else class="layout-01">
-      <header>
-        <Navbar />
-        <Menubar />
-      </header>
-      <body>
-        <RouterView />
-      </body>
-      <footer>
-        <Footer />
-      </footer>
+      <div v-if="pathMeta.isClientLogin">
+        <body>
+          <RouterView />
+        </body>
+      </div>
+      <div>
+        <header>
+          <Navbar />
+          <Menubar />
+        </header>
+        <body>
+          <RouterView />
+        </body>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   </div>
 </template>
