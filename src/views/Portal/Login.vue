@@ -42,6 +42,13 @@ const loginSubmit = async () => {
       errorList.value.push({
         common: true,
         message: 'Email & Password does not match with our record.',
+          ? error.response.data.message
+          : 'Email & Password does not match with our record.',
+      })
+    } else {
+      errorList.value.push({
+        common: true,
+        message: 'Something went wrong',
       })
     }
   }
@@ -150,7 +157,7 @@ const loginSubmit = async () => {
             </button>
             <p class="text-sm mt-2 text-blue-900">
               <span>if you don't have and account?</span>
-              <a href="#" class="underline mr-3">User Registration</a>
+              <a :href="'/sing-up'" class="underline mr-3">User Registration</a>
             </p>
           </div>
         </form>
