@@ -30,6 +30,7 @@ import AddExteriorColorModel from '@/components/admin/modals/add-exterior-color-
 import AddFeatureModel from '@/components/admin/modals/add-feature-model/AddFeatureModel.vue'
 import AddCountryModel from '@/components/admin/modals/add-country/AddCountryModel.vue'
 import AddFortModel from '@/components/admin/modals/add-fort/AddFortModel.vue'
+import AddOdometerModel from '@/components/admin/modals/add-odometer/AddOdometerModel.vue'
 import { Search, Refresh, Loading } from '@element-plus/icons-vue'
 
 export default {
@@ -302,6 +303,19 @@ export default {
       }
     }
 
+    let odometerList = ref([])
+    const getOdometers = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/odometers')
+        odometerList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     let transmissionList = ref([])
     const getTransmitions = async () => {
       try {
@@ -405,6 +419,7 @@ export default {
       getEngines()
       getGearTypes()
       getCountries()
+      getOdometers()
     })
 
     const initialState = {
@@ -458,6 +473,7 @@ export default {
       doorTypesList,
       streeingList,
       engineList,
+      odometerList,
       transmissionList,
       gearTypeList,
       bodyTypeList,
@@ -505,6 +521,7 @@ export default {
     AddFeatureModel,
     AddCountryModel,
     AddFortModel,
+    AddOdometerModel,
   },
   methods: {
     addMaker() {
@@ -518,6 +535,9 @@ export default {
     },
     addEngine() {
       this.$refs.engineModel.openEngineModal()
+    },
+    addOdometer() {
+      this.$refs.odometerModal.openOdometerModal()
     },
     addTransmition() {
       this.$refs.transmitionModal.openTransModal()
@@ -612,6 +632,23 @@ export default {
           <FormField label="Title" help="">
             <FormControl v-model="form.title" type="text" placeholder="Title" />
           </FormField>
+          <FormField label="Interior Condition" help="">
+            <FormControl
+              v-model="form.interior_condition"
+              type="text"
+              placeholder="Interior Condition"
+            />
+          </FormField>
+          <FormField label="Exterior Condition" help="">
+            <FormControl
+              v-model="form.exterior_condition"
+              type="text"
+              placeholder="Exterior Condition"
+            />
+          </FormField>
+          <FormField label="WD" help="">
+            <FormControl v-model="form.wd" type="text" placeholder="WD" />
+          </FormField>
           <FormField label="Lot Number" help="">
             <FormControl
               v-model="form.lot_number"
@@ -667,7 +704,7 @@ export default {
             @click="addCountry"
           />
           <AddFortModel ref="addFortModal" :countryList="countryList" />
-          <FormField label="Model">
+          <FormField label="Fort">
             <FormControl v-model="form.fort_id" :options="fortList" />
           </FormField>
           <BaseButton
@@ -748,6 +785,16 @@ export default {
             color="info"
             label="Add Engine Type"
             @click="addEngine"
+          />
+          <FormField label="Odometer">
+            <FormControl v-model="form.odometer_id" :options="odometerList" />
+          </FormField>
+          <AddOdometerModel ref="odometerModal" />
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Odometer"
+            @click="addOdometer"
           />
           <FormField label="Gear">
             <FormControl v-model="form.gear_box_id" :options="gearTypeList" />
