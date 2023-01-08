@@ -13,6 +13,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^35.4.0",
     "@ckeditor/ckeditor5-vue": "^4.0.1",
+    "@element-plus/icons-vue": "^2.0.10",
     "@mdi/js": "^7.0.96",
     "@rushstack/eslint-patch": "^1.1.4",
     "@tinymce/tinymce-vue": "^4.0.7",

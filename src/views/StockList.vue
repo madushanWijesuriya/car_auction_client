@@ -60,6 +60,7 @@ const getMakers = async () => {
 
 let modelsList = ref([])
 const getModels = async (makersIds) => {
+  console.log(makersIds, 'makersIds')
   try {
     let list = []
     for (let x = 0; x < makersIds.length; x++) {
@@ -101,6 +102,7 @@ const getEngineTypes = async () => {
       ...d,
       label: d.name,
     }))
+    console.log(engineTypeList, 'engineTypeList')
   } catch (error) {
     console.error(error)
   }
@@ -237,12 +239,16 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
+  console.log(route.query, 'route.query')
   await getMakers()
   await getCountries()
   await getEngineTypes()
   await getChassis()
   await getGears()
   await getLotumbers()
+  await getDriveTypes()
+  console.log(route.query.brands, 'route.query.brands')
+
   if (isEmpty(route.query)) {
     await getAllCars()
   } else if (!isEmpty(route.query) && route.query.brands) {
@@ -252,7 +258,6 @@ onMounted(async () => {
       changeMaker([route.query.brands])
     }
   }
-  await getDriveTypes()
   loadedCompleted.value = true
 })
 </script>
