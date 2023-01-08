@@ -183,6 +183,19 @@ export default {
         }
       }
     }
+    const yearsList = range(
+      new Date().getFullYear(),
+      new Date().getFullYear() - 50,
+      -1
+    )
+    const monthsList = Array.from({ length: 12 }, (e, i) => {
+      return {
+        id: i + 1,
+        label: new Date(null, i + 1, null).toLocaleDateString('en', {
+          month: 'short',
+        }),
+      }
+    })
 
     let makersList = ref([])
     const getMakers = async () => {
@@ -208,36 +221,9 @@ export default {
         console.error(error)
       }
     }
-    let countryList = ref([])
-    const getCountries = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/countries')
-        countryList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {}
-    }
-    let fortList = ref([])
-    const getForts = async (countyId) => {
-      try {
-        const response = await httpResource.get(
-          '/api/resources/forts/' + countyId
-        )
-        fortList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
 
     const changeMaker = (e) => {
       getModels(e.id)
-    }
-    const changeCountry = (e) => {
-      getForts(e.id)
     }
 
     let statusList = ref([])
@@ -253,31 +239,6 @@ export default {
       }
     }
 
-    const yearsList = range(
-      new Date().getFullYear(),
-      new Date().getFullYear() - 50,
-      -1
-    )
-    const monthsList = Array.from({ length: 12 }, (e, i) => {
-      return {
-        id: i + 1,
-        label: new Date(null, i + 1, null).toLocaleDateString('en', {
-          month: 'short',
-        }),
-      }
-    })
-    let gearTypeList = ref([])
-    const getGearTypes = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/gears')
-        gearTypeList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
     let bodyTypeList = ref([])
     const getBodyTypes = async () => {
       try {
@@ -290,32 +251,6 @@ export default {
         console.error(error)
       }
     }
-    let engineList = ref([])
-    const getEngines = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/engine-types')
-        engineList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    let odometerList = ref([])
-    const getOdometers = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/odometers')
-        odometerList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
     let transmissionList = ref([])
     const getTransmitions = async () => {
       try {
@@ -352,7 +287,6 @@ export default {
         console.error(error)
       }
     }
-
     let driveTypeList = ref([])
     const getDriverTypes = async () => {
       try {
@@ -403,11 +337,73 @@ export default {
         console.error(error)
       }
     }
+    let countryList = ref([])
+    const getCountries = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/countries')
+        countryList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {}
+    }
+    let fortList = ref([])
+    const getForts = async (countyId) => {
+      try {
+        const response = await httpResource.get(
+          '/api/resources/forts/' + countyId
+        )
+        fortList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    const changeCountry = (e) => {
+      getForts(e.id)
+    }
+    let gearTypeList = ref([])
+    const getGearTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/gears')
+        gearTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let engineList = ref([])
+    const getEngines = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/engine-types')
+        engineList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let odometerList = ref([])
+    const getOdometers = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/odometers')
+        odometerList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     onMounted(async () => {
       getMakers()
       getStatus()
-      getGearTypes()
       getBodyTypes()
       getTransmitions()
       getStreeings()
@@ -453,6 +449,7 @@ export default {
       supplierURL: '',
       marketPrice: 0,
       shipping_country_id: '',
+      odometer_id: '',
       fort_id: '',
       title: '',
       lot_number: '',
