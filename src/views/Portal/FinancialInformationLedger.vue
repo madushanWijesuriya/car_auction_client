@@ -1,3 +1,50 @@
+<script setup>
+import TransactionLedger from '@/components/Tables/ClientPortal/TransactionLedger.vue'
+import { useTransactionsStore } from '../../stores/transanctionLegder'
+import { computed, onMounted, reactive, ref } from 'vue'
+import httpResource from '@/http/httpResource'
+import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
+const transactionsStore = useTransactionsStore()
+const { transactions: items, footerData } = storeToRefs(transactionsStore)
+const headers = computed(() => transactionsStore.tableHeaders)
+
+const decoratedItems = computed(() => {
+  if (!items.value || !Array.isArray(items.value)) return []
+  return items.value.map((i) => {
+    return {
+      id: i?.id,
+      updated_at: i?.updated_at,
+      customer_id: i?.vehicle?.title,
+      updated_at: i?.updated_at,
+      debit: i?.debit,
+      credit: i?.credit,
+      balance: i?.balance,
+    }
+  })
+})
+
+const getAllTransactions = async () => {
+  try {
+    const response = await httpResource.get('api/customer/transaction')
+    transactionsStore.$patch({
+      transactions: response.data,
+      footerData: response.footer,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const handleSearch = (event) => {
+  console.log('abc')
+}
+
+onMounted(async () => {
+  await getAllTransactions()
+})
+</script>
 <template>
   <div class="h-screen">
     <header
@@ -192,6 +239,12 @@
                   <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Transactions</h2>
                   <p class="text-sm text-white">Total Transactions : 81</p>
                 </div>
@@ -206,6 +259,12 @@
                   />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information-ledger'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Ledger</h2>
                   <p class="text-sm text-white">Total Balance : $ 738,373.00</p>
                 </div>
@@ -237,6 +296,7 @@
                   type="text"
                   class="px-4 py-2"
                   placeholder="Search Vehical..."
+                  @change="handleSearch"
                 />
                 <button
                   class="flex items-center justify-center px-4 border-l bg-blue-800"
@@ -255,7 +315,20 @@
               </div>
             </div>
           </div>
-          <table class="table-auto">
+          <TransactionLedger
+            @edit-user="getAllUsers"
+            :items="decoratedItems"
+            :headers="headers"
+            :footer="footerData"
+          >
+          </TransactionLedger>
+          <div class="w-full">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <!-- <table class="table-auto">
             <thead>
               <tr>
                 <th>
@@ -296,7 +369,7 @@
                 <td>0</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>

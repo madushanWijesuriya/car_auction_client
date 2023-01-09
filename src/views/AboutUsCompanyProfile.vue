@@ -1,5 +1,17 @@
 <template>
     <div class="text-white text-sm">
+        <div class="hidden lg:block group fixed-group  absolute right-0 top-[-163px]">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-0"
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full md:px-[5%]" data-aos="zoom-in">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
@@ -24,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="px-3 md:px-[5%] lg:mt-14 xl:mt-20">
+            <div class="px-3 md:px-[5%] lg:mt-14 xl:mt-[150px]">
                 <div class="border md:border-0 p-5 border-color-[#E7E7E7]">
                     <div class="font-h2">
                         Company Profile

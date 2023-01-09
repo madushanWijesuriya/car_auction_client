@@ -172,7 +172,7 @@ const router = createRouter({
         layout: 'LayoutAdmin',
         requiresAuth: false,
       },
-      path: '/admin/profile',
+      path: '/admin/portal-profile',
       name: 'portal-profile',
       component: () => import('../views/Portal/Profile.vue'),
     },
@@ -397,6 +397,16 @@ const router = createRouter({
       component: () => import('../views/AdminAllUserView.vue'),
     },
     {
+      meta: {
+        title: 'User MGT',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/view-all-payments',
+      name: 'all-payments',
+      component: () => import('../views/AdminAllPayments.vue'),
+    },
+    {
       path: '/certifications-eaa',
       name: 'CertificationsEaa',
       component: () => import('../views/CertificationsEaaView.vue'),
@@ -453,30 +463,30 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
-  const styleStore = useStyleStore()
-  if (
-    typeof localStorage !== 'undefined' &&
-    localStorage.getItem(styleKey) === null
-  ) {
-    styleStore.setStyle('white')
-  }
-  if (
-    to.meta.requiresAuth &&
-    to.path !== '/login' &&
-    !authStore.getIsAuthenticated
-  ) {
-    try {
-      const status = await getAuthenticatedUser(authStore)
-      if (status !== 200) next('/login')
-      else next()
-    } catch (error) {
-      next('/login')
-    }
-  } else {
-    next()
-  }
-})
+// router.beforeEach(async (to, from, next) => {
+//   const authStore = useAuthStore()
+//   const styleStore = useStyleStore()
+//   if (
+//     typeof localStorage !== 'undefined' &&
+//     localStorage.getItem(styleKey) === null
+//   ) {
+//     styleStore.setStyle('white')
+//   }
+//   if (
+//     to.meta.requiresAuth &&
+//     to.path !== '/login' &&
+//     !authStore.getIsAuthenticated
+//   ) {
+//     try {
+//       const status = await getAuthenticatedUser(authStore)
+//       if (status !== 200) next('/login')
+//       else next()
+//     } catch (error) {
+//       next('/login')
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

@@ -1,5 +1,17 @@
 <template>
     <div class="text-white text-sm">
+        <div class="hidden lg:block group fixed-group  absolute right-0 top-[-163px]">
+        <img
+          class="back_image"
+          src="/background_image.svg"
+          alt="backfround_image"
+        />
+        <img
+          class="jap_map absolute top-32 right-0"
+          src="/jap_map.svg"
+          alt="jap_map"
+        />
+      </div>
         <div class="flex flex-col gap-5 justify-center items-center w-full md:px-[5%] md:mt-2 xl:mt-3 xl:mb-[15vh]">
             <div class="relative w-full md:px-[5%]">
                 <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[300px] lg:h-[400px] xl:h-[20%] object-cover"
@@ -29,7 +41,7 @@
                 <h1 class="text-left mt-2 ml-3 text-[20px] text-[#08246C] font-bold md:hidden">
                     Process of Ordering
                 </h1>
-                <div class="xl:mt-28">
+                <div class="xl:mt-[200px]">
                     <div class="flex justify-start gap-3 mt-4">
                         <div class="flex w-5 flex-col items-center ml-3">
                             <div class="flex flex-col items-center justify-center text-white">
