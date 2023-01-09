@@ -8,6 +8,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const footerData = ref([])
   const tableHeaders = reactive([
     {
+      name: '',
+      order: 1,
+    },
+    {
       name: 'Reference#',
       order: 1,
     },

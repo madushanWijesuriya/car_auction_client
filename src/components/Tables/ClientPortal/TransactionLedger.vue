@@ -26,6 +26,10 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  footer: {
+    type: Object,
+    default: {},
+  },
   actions: {
     type: Array,
     default: [
@@ -47,7 +51,7 @@ const props = defineProps({
   },
 })
 
-const { items, headers, actions, rowItemsData } = toRefs(props)
+const { items, headers, actions, rowItemsData,footer} = toRefs(props)
 let user = ref(null)
 const toast = useToast()
 const openEditModel = async (vehicleId) => {
@@ -154,20 +158,6 @@ function isValidHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
-///
-
-let transmissionList = ref([])
-const getTransmitions = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/transmission')
-    transmissionList.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 onMounted(async () => {})
 </script>
@@ -219,7 +209,7 @@ onMounted(async () => {})
       <tbody>
         <tr v-for="(row, index) in itemsPaginated" :key="index">
           <TableCheckboxCell
-            v-if="checkable"
+            v-if="true"
             @checked="checked($event, client)"
           />
           <td v-for="dataPoint in row">
@@ -230,6 +220,7 @@ onMounted(async () => {})
               <img :src="dataPoint" alt="img" />
             </span>
           </td>
+          
           <!-- <td class="before:hidden lg:w-1 whitespace-nowrap">
             <BaseButtons type="justify-start lg:justify-end" no-wrap>
               <div v-for="(item, index) in actions" :key="index">
@@ -248,6 +239,20 @@ onMounted(async () => {})
 
               <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> 
           </td> -->
+        </tr>
+        <tr class=" text-[#08246C] border-[#08246C]">
+            <td colspan="4" class=" text-center">
+                Total
+            </td>
+            <td class=" text-start">
+                {{ footer?.debit }}
+            </td>
+            <td class=" text-start">
+                {{ footer?.credit }}
+            </td>
+            <td class=" text-start">
+                {{ footer?.balance }}
+            </td>
         </tr>
       </tbody>
     </table>

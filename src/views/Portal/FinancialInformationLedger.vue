@@ -16,6 +16,8 @@ const transactionsStore = useTransactionsStore()
 const { transactions: items , footerData} = storeToRefs(transactionsStore)
 const headers = computed(() => transactionsStore.tableHeaders)
 
+
+
 let res = {
     "data": [
         {
@@ -521,9 +523,22 @@ onMounted(async () => {
             @edit-user="getAllUsers"
             :items="decoratedItems"
             :headers="headers"
+            :footer = "footerData"
           >
           </TransactionLedger>
-          <div class="">
+          <div class=" w-full ">
+            <div>
+
+            </div>
+            <div>
+              
+            </div>
+            <div>
+              
+            </div>
+            <div>
+              
+            </div>
 
           </div>
           <!-- <table class="table-auto">
