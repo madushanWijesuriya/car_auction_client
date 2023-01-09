@@ -2,111 +2,156 @@
 import { computed, onMounted } from '@vue/runtime-core'
 </script>
 <template>
-    <div class="h-screen">
-        <header class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between">
-            <div class="flex items-center h-full mx-5">
-                <div class="flex items-center text-center h-full w-60 border-grey-dark">
-                    <img src="../../assets/images/portal/sidebar/image.png" alt="">
-                </div>
-                <div class="flex items-center w-64 mx-5">
-                    <h2 class="text-white text-2xl">Dashboard</h2>
-                </div>
-            </div>   
-        </header>
+  <div class="h-screen">
+    <header
+      class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between"
+    >
+      <div class="flex items-center h-full mx-5">
+        <div class="flex items-center text-center h-full w-60 border-grey-dark">
+          <img src="../../assets/images/portal/sidebar/image.png" alt="" />
+        </div>
+        <div class="flex items-center w-64 mx-5">
+          <h2 class="text-white text-2xl">Dashboard</h2>
+        </div>
+      </div>
+    </header>
 
-        <div id="main" class="pt-16">
-            <!-- Sidebar -->
-            <div class="bg-white relative h-full min-h-screen w-full">
-                <div class="xl:py-2">
-                    <div class="group relative sidebar-item with-children py-4">
-                        <div 
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/dashbord.svg" alt="">
-                            <div class="text-dark text-xs mx-2 fs-18"><routerLink
-                            active-class="active"
-                            class="font-semibold cursor-pointer"
-                            :to="'/admin/sample-dashbord'"
-                            >Dashboard</routerLink></div>
-                            </div>
-                    </div>
-                    <div class="group relative sidebar-item with-children">
-                        
-                        <div
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/fin_repo.svg" alt="">
-                            <div class="text-dark text-xs mx-2 fs-18"><routerLink
-                            active-class="active"
-                            class="font-semibold cursor-pointer"
-                            :to="'/admin/financial-information'"
-                            >Financial Information</routerLink></div>
-                            </div>
-                    </div>
-                    <div class="group relative sidebar-item with-children py-3">
-                        <div 
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/fi.svg" alt="">
-                            <div class="text-dark text-xs mx-2 fs-18">
-                                <routerLink
-                                active-class="active"
-                                class="font-semibold cursor-pointer"
-                                :to="'/admin/shipping-document'"
-                                >Shipping Document</routerLink>
-                                
-                                </div>
-                            </div>
-                    </div>
-                    <div class="group relative sidebar-item with-children py-3">
-                        <a href="#"
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/send_inq.svg" alt="">
-                            <div class="text-Financial information
-6 text-xs mx-2 fs-18">Send Inquiry</div>
-                        </a>
-                    </div>
-                    <div class="group relative sidebar-item with-children py-3">
-                        <div 
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
-                            <div class="text-Financial information
-6 text-xs mx-2 fs-18">Make Invoices</div>
-                        </div>
-                    </div>
+    <div id="main" class="pt-16">
+      <!-- Sidebar -->
+      <div class="bg-white relative h-full min-h-screen w-full">
+        <div class="xl:py-2">
+          <div class="group relative sidebar-item with-children py-4">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/dashbord.svg"
+                alt=""
+              />
+              <div class="text-dark text-xs mx-2 fs-18">
+                <routerLink
+                  active-class="active"
+                  class="font-semibold cursor-pointer"
+                  :to="'/admin/sample-dashbord'"
+                  >Dashboard</routerLink
+                >
+              </div>
+            </div>
+          </div>
+          <div class="group relative sidebar-item with-children">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/fin_repo.svg"
+                alt=""
+              />
+              <div class="text-dark text-xs mx-2 fs-18">
+                <routerLink
+                  active-class="active"
+                  class="font-semibold cursor-pointer"
+                  :to="'/admin/financial-information'"
+                  >Financial Information</routerLink
+                >
+              </div>
+            </div>
+          </div>
+          <div class="group relative sidebar-item with-children py-3">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
+              <div class="text-dark text-xs mx-2 fs-18">
+                <routerLink
+                  active-class="active"
+                  class="font-semibold cursor-pointer"
+                  :to="'/admin/shipping-document'"
+                  >Shipping Document</routerLink
+                >
+              </div>
+            </div>
+          </div>
+          <div class="group relative sidebar-item with-children py-3">
+            <a
+              href="#"
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/send_inq.svg"
+                alt=""
+              />
+              <div class="text-Financial information 6 text-xs mx-2 fs-18">
+                Send Inquiry
+              </div>
+            </a>
+          </div>
+          <div class="group relative sidebar-item with-children py-3">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/make_inv.svg"
+                alt=""
+              />
+              <div class="text-Financial information 6 text-xs mx-2 fs-18">
+                Make Invoices
+              </div>
+            </div>
+          </div>
 
-                    <div class="group relative sidebar-item with-children py-3">
-                        <div 
-                                                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
-                            <div class="text-Financial information
-6 text-xs mx-2 fs-18"> <routerLink
-                                active-class="active"
-                                class="font-semibold cursor-pointer"
-                                :to="'/admin/freight-invoices'"
-                                >Freight Invoices</routerLink></div>
-                        </div>
-                    </div>
+          <div class="group relative sidebar-item with-children py-3">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/make_inv.svg"
+                alt=""
+              />
+              <div class="text-Financial information 6 text-xs mx-2 fs-18">
+                <routerLink
+                  active-class="active"
+                  class="font-semibold cursor-pointer"
+                  :to="'/admin/freight-invoices'"
+                  >Freight Invoices</routerLink
+                >
+              </div>
+            </div>
+          </div>
 
-                    <div class="group relative sidebar-item with-children py-3">
-                        <div
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
-                            <div class="text-Financial information
-6 text-xs mx-2 fs-18"> <routerLink
-                                active-class="active"
-                                class="font-semibold cursor-pointer"
-                                :to="'/admin/portal-profile'"
-                                >Profile</routerLink></div>
-                    </div>
-                    </div>
+          <div class="group relative sidebar-item with-children py-3">
+            <div
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/make_inv.svg"
+                alt=""
+              />
+              <div class="text-Financial information 6 text-xs mx-2 fs-18">
+                <routerLink
+                  active-class="active"
+                  class="font-semibold cursor-pointer"
+                  :to="'/admin/portal-profile'"
+                  >Profile</routerLink
+                >
+              </div>
+            </div>
+          </div>
 
-                    <div class="group relative sidebar-item with-children pt-3">
-                        <a href="#"
-                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
-                            <img src="../../assets/images/portal/sidebar/settings.svg" alt="">
-                            <div class="text-Financial information
-6 text-xs mx-2 fs-18">Settings</div>
-                        </a>
-                    </div>
-                    <!-- <div class="group relative sidebar-item with-children">
+          <div class="group relative sidebar-item with-children pt-3">
+            <a
+              href="#"
+              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+            >
+              <img
+                src="../../assets/images/portal/sidebar/settings.svg"
+                alt=""
+              />
+              <div class="text-Financial information 6 text-xs mx-2 fs-18">
+                Settings
+              </div>
+            </a>
+          </div>
+          <!-- <div class="group relative sidebar-item with-children">
                         <a href="#"
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-blue-dark xl:bg-black bg-black xl:opacity-75">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
@@ -133,54 +178,69 @@ import { computed, onMounted } from '@vue/runtime-core'
                             </a>
                         </div>
                     </div> -->
-                </div>
-            </div>
-
-            <!-- Content -->
-            <div class="bg-white h-full pt-8">
-                <div class="text-center w-full text-grey-darkest">
-                    <div class="grid grid-cols-4 gap-4">
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/fin_repo.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Financial informtion</h2>
-                            </div>
-                        </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/fi.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Shipping Document</h2>
-                            </div>
-                        </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/send_inq.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Send Inquiry</h2>
-                            </div>
-                        </div>
-                        <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
-                            <div class="flex justify-items-center content-center">
-                                <div class="shape mx-2">
-                                    <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
-                                </div>
-                                <h2 class="text-xl font-bold text-dash my-auto">Make Invoices</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
+      </div>
+
+      <!-- Content -->
+      <div class="bg-white h-full pt-8">
+        <div class="text-center w-full text-grey-darkest">
+          <div class="grid grid-cols-4 gap-4">
+            <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
+              <div class="flex justify-items-center content-center">
+                <div class="shape mx-2">
+                  <img
+                    src="../../assets/images/portal/sidebar/fin_repo.svg"
+                    alt=""
+                  />
+                </div>
+                <h2 class="text-xl font-bold text-dash my-auto">
+                  Financial informtion
+                </h2>
+              </div>
+            </div>
+            <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
+              <div class="flex justify-items-center content-center">
+                <div class="shape mx-2">
+                  <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
+                </div>
+                <h2 class="text-xl font-bold text-dash my-auto">
+                  Shipping Document
+                </h2>
+              </div>
+            </div>
+            <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
+              <div class="flex justify-items-center content-center">
+                <div class="shape mx-2">
+                  <img
+                    src="../../assets/images/portal/sidebar/send_inq.svg"
+                    alt=""
+                  />
+                </div>
+                <h2 class="text-xl font-bold text-dash my-auto">
+                  Send Inquiry
+                </h2>
+              </div>
+            </div>
+            <div class="bg-gray-400/100 p-6 rounded-lg shadow-lg">
+              <div class="flex justify-items-center content-center">
+                <div class="shape mx-2">
+                  <img
+                    src="../../assets/images/portal/sidebar/make_inv.svg"
+                    alt=""
+                  />
+                </div>
+                <h2 class="text-xl font-bold text-dash my-auto">
+                  Make Invoices
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
-
 <style scoped lang="scss">
-@import "@/assets/scss/clientPortalSidebar.scss";
+@import '@/assets/scss/clientPortalSidebar.scss';
 </style>

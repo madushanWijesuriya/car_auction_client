@@ -1,13 +1,13 @@
 <script setup>
 import TransactionLedger from '@/components/Tables/ClientPortal/TransactionLedger.vue'
-import {useTransactionsStore} from '../../stores/transanctionLegder'
+import { useTransactionsStore } from '../../stores/transanctionLegder'
 import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import { storeToRefs } from 'pinia'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 const transactionsStore = useTransactionsStore()
-const { transactions: items , footerData} = storeToRefs(transactionsStore)
+const { transactions: items, footerData } = storeToRefs(transactionsStore)
 const headers = computed(() => transactionsStore.tableHeaders)
 
 const decoratedItems = computed(() => {
@@ -30,23 +30,20 @@ const getAllTransactions = async () => {
     const response = await httpResource.get('api/customer/transaction')
     transactionsStore.$patch({
       transactions: response.data,
-      footerData: response.footer
+      footerData: response.footer,
     })
   } catch (error) {
     console.error(error)
   }
-
 }
 
-const handleSearch = (event)=>{
-  console.log('abc');
+const handleSearch = (event) => {
+  console.log('abc')
 }
 
 onMounted(async () => {
   await getAllTransactions()
 })
-
-
 </script>
 <template>
   <div class="h-screen">
@@ -242,6 +239,12 @@ onMounted(async () => {
                   <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Transactions</h2>
                   <p class="text-sm text-white">Total Transactions : 81</p>
                 </div>
@@ -256,6 +259,12 @@ onMounted(async () => {
                   />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information-ledger'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Ledger</h2>
                   <p class="text-sm text-white">Total Balance : $ 738,373.00</p>
                 </div>
@@ -310,23 +319,14 @@ onMounted(async () => {
             @edit-user="getAllUsers"
             :items="decoratedItems"
             :headers="headers"
-            :footer = "footerData"
+            :footer="footerData"
           >
           </TransactionLedger>
-          <div class=" w-full ">
-            <div>
-
-            </div>
-            <div>
-              
-            </div>
-            <div>
-              
-            </div>
-            <div>
-              
-            </div>
-
+          <div class="w-full">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
           <!-- <table class="table-auto">
             <thead>
