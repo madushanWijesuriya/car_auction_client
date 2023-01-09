@@ -1,4 +1,12 @@
-import { mdiCarEstate, mdiCarSearch, mdiViewList } from '@mdi/js'
+import {
+  mdiCarEstate,
+  mdiCarSearch,
+  mdiViewList,
+  mdiPlusCircle,
+  mdiCloudUpload,
+  mdiFileDocument,
+  mdiContentCopy,
+} from '@mdi/js'
 
 export default [
   {
@@ -13,7 +21,7 @@ export default [
       {
         to: '/admin/add-car',
         label: 'Add car',
-        icon: mdiCarEstate,
+        icon: mdiPlusCircle,
       },
     ],
   },
@@ -35,7 +43,7 @@ export default [
       {
         to: '/admin/content-mgt',
         label: 'Content-Managment',
-        icon: mdiCarSearch,
+        icon: mdiContentCopy,
       },
       // {
       //   to: '/admin/add-car',
@@ -56,7 +64,23 @@ export default [
       {
         to: '/admin/create-news-letter',
         label: 'Add News Letter',
-        icon: mdiCarEstate,
+        icon: mdiPlusCircle,
+      },
+    ],
+  },
+  {
+    label: 'Shipping Docs',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/all-documents',
+        label: 'All Documentations',
+        icon: mdiFileDocument,
+      },
+      {
+        to: '/admin/add-docs',
+        label: 'Add Documentation',
+        icon: mdiCloudUpload,
       },
     ],
   },

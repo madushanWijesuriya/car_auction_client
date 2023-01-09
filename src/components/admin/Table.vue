@@ -41,6 +41,78 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  makersList: {
+    type: Array,
+    default: [],
+  },
+  modelsList: {
+    type: Array,
+    default: [],
+  },
+  statusList: {
+    type: Array,
+    default: [],
+  },
+  bodyTypeList: {
+    type: Array,
+    default: [],
+  },
+  engineList: {
+    type: Array,
+    default: [],
+  },
+  odometerList: {
+    type: Array,
+    default: [],
+  },
+  countryList: {
+    type: Array,
+    default: [],
+  },
+  fortList: {
+    type: Array,
+    default: [],
+  },
+  gearList: {
+    type: Array,
+    default: [],
+  },
+  transmissionList: {
+    type: Array,
+    default: [],
+  },
+  streeingList: {
+    type: Array,
+    default: [],
+  },
+  doorTypesList: {
+    type: Array,
+    default: [],
+  },
+  fuleTypeList: {
+    type: Array,
+    default: [],
+  },
+  exteriorColorList: {
+    type: Array,
+    default: [],
+  },
+  featuresList: {
+    type: Array,
+    default: [],
+  },
+  monthsList: {
+    type: Array,
+    default: [],
+  },
+  yearsList: {
+    type: Array,
+    default: [],
+  },
+  driveTypeList: {
+    type: Array,
+    default: [],
+  },
 })
 
 const { items, headers, actions, rowItemsData } = toRefs(props)
@@ -309,18 +381,18 @@ const getFeatures = async () => {
 }
 
 onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
-  getEngines()
-  getGears()
+  // getMakers()
+  // getStatus()
+  // getBodyTypes()
+  // getTransmitions()
+  // getStreeings()
+  // getDoorTypes()
+  // getfuleTypes()
+  // getExteriorColors()
+  // getFeatures()
+  // getDriveTypeList()
+  // getEngines()
+  // getGears()
 })
 ///
 </script>
@@ -333,21 +405,21 @@ onMounted(async () => {
       v-if="isModalActive"
     >
       <AdminEditCarModal
-        :makersList="makersList"
-        :modelsList="modelsList"
-        :statusList="statusList"
-        :bodyTypeList="bodyTypeList"
-        :transmissionList="transmissionList"
-        :engineList="engineList"
-        :gearList="gearList"
-        :streeingList="streeingList"
-        :doorTypesList="doorTypesList"
-        :fuleTypeList="fuleTypeList"
-        :exteriorColorList="exteriorColorList"
-        :featuresList="featuresList"
+        :makersList="props.makersList"
+        :modelsList="props.modelsList"
+        :statusList="props.statusList"
+        :bodyTypeList="props.bodyTypeList"
+        :transmissionList="props.transmissionList"
+        :engineList="props.engineList"
+        :gearList="props.gearList"
+        :streeingList="props.streeingList"
+        :doorTypesList="props.doorTypesList"
+        :fuleTypeList="props.fuleTypeList"
+        :exteriorColorList="props.exteriorColorList"
+        :featuresList="props.featuresList"
         :yearsList="yearsList"
         :monthsList="monthsList"
-        :driveTypeList="driveTypeList"
+        :driveTypeList="props.driveTypeList"
         :vehicle="vehicle"
         @changeMaker="changeMaker"
         @closeModal="isModalActive = false"

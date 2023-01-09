@@ -55,11 +55,12 @@ const getMakers = async () => {
       ...d,
       label: d.name,
     }))
-  } catch (error) { }
+  } catch (error) {}
 }
 
 let modelsList = ref([])
 const getModels = async (makersIds) => {
+  console.log(makersIds, 'makersIds')
   try {
     let list = []
     for (let x = 0; x < makersIds.length; x++) {
@@ -93,17 +94,124 @@ const getDriveTypes = async () => {
   }
 }
 
+let engineTypeList = ref([])
+const getEngineTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/engine-types')
+    engineTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+    console.log(engineTypeList, 'engineTypeList')
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+let chassisList = ref([])
+const getChassis = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/chassis')
+    chassisList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.chassis_no,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+let gearList = ref([])
+const getGears = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/gears')
+    gearList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+let lotList = ref([])
+const getLotumbers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/lot_numbers')
+    lotList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.lot_number,
+    }))
+    console.log(chassisList)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+let countriesList = ref([])
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countriesList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+
+let fortList = ref([])
+const getForts = async (countryIds) => {
+  try {
+    let list = []
+    for (let x = 0; x < countryIds.length; x++) {
+      const response = await httpResource.get(
+        '/api/resources/forts/' + countryIds[x]
+      )
+      list = [
+        ...list,
+        ...response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        })),
+      ]
+    }
+    fortList.value = list
+  } catch (error) {
+    console.error(error)
+  }
+}
 const changeMaker = (e) => {
   getModels(e)
 }
+const changeCountry = (e) => {
+  getForts(e)
+}
 
 const applyFilters = async (form) => {
+  let filterQuery = '/api/guest/vehicle?'
+  console.log(form)
+  // if (form.search_text) filterQuery += `filter[search_text]=${form.search_text}`
+  if (form.Chassis) filterQuery += `filter[chassis_no]=${form.Chassis}`
+  if (form.drive) filterQuery += `&filter[driver_type_id]=${form.drive}`
+  if (form.engine) filterQuery += `&filter[engine_id_range]=${form.engine}`
+  if (form.fort_id) filterQuery += `&filter[fort_id]=${form.fort_id}`
+  if (form.gear) filterQuery += `&filter[gear_box_id]=${form.gear}`
+  if (form.isUsed) filterQuery += `&filter[isUsed]=${form.isUsed}`
+  if (form.lot) filterQuery += `&filter[lot_number]=${form.lot}`
+  if (form.make_at) {
+    var from = form.make_at[0]
+    var to = form.make_at[1]
+    filterQuery += `&filter[make_at_range]=${from} - ${to}`
+  }
+  if (form.maker) filterQuery += `&filter[make_id]=${form.maker}`
+  if (form.mileage) filterQuery += `&filter[mileage_range]=${form.mileage}`
+  if (form.model) filterQuery += `&filter[model_id]=${form.model}`
+  if (form.shipping_country)
+    filterQuery += `&filter[shipping_country_id]=${form.shipping_country}`
+
   try {
-    const response = await httpResource.get(
-      `/api/staff/vehicle?filter[make_id]=${form.maker.join(
-        ','
-      )}&filter[model_id]=${form.model.join(',')}`
-    )
+    const response = await httpResource.get(filterQuery)
+
     setCars(response)
   } catch (error) {
     console.error(error)
@@ -131,7 +239,16 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
+  console.log(route.query, 'route.query')
   await getMakers()
+  await getCountries()
+  await getEngineTypes()
+  await getChassis()
+  await getGears()
+  await getLotumbers()
+  await getDriveTypes()
+  console.log(route.query.brands, 'route.query.brands')
+
   if (isEmpty(route.query)) {
     await getAllCars()
   } else if (!isEmpty(route.query) && route.query.brands) {
@@ -141,7 +258,6 @@ onMounted(async () => {
       changeMaker([route.query.brands])
     }
   }
-  await getDriveTypes()
   loadedCompleted.value = true
 })
 </script>
@@ -161,10 +277,16 @@ onMounted(async () => {
       </div>
     <div class="flex flex-col gap-5 w-full m">
       <div class="relative w-full md:px-[8%] xl:mb-[12vh]">
-        <img class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[800px] object-cover"
-          src="@/assets/images/stock-list/vehical-list/stock-list-main.svg" />
-        <div class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[15%]">
-          <div class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[50%]">
+        <img
+          class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[20%] object-cover"
+          src="@/assets/images/stock-list/vehical-list/stock-list-main.svg"
+        />
+        <div
+          class="absolute w-full text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-[15%]"
+        >
+          <div
+            class="flex flex-col gap-3 xl:gap-2 text-white w-full xl:w-[50%]"
+          >
             <div>
               <h1 class="font-header-photo">Toyota</h1>
               <p class="font-header-photo-2">Gazoo Racing</p>
@@ -172,13 +294,34 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-      
-      <div class="flex flex-col pt-2 md:pt-10 px-4 lg:flex-row gap-2 xl:px-[2vw] w-full">
-        <Filter v-if="loadedCompleted" :makers="makersList" :models="modelsList" :drives="driveTypeList"
-          :resultCount="indexingDetails.total" :filters="route.query" @maker-changed="changeMaker"
-          @apply-filters="applyFilters" @reset-filters="resetFilters" />
-        <VehicalList :indexingDetails="indexingDetails" @go-to-first-page="goToFirstPage"
-          @go-to-last-page="goToLastPage" @change-page="changePage" />
+
+      <div
+        class="flex flex-col pt-2 md:pt-10 px-4 lg:flex-row gap-2 xl:px-[2vw] w-full"
+      >
+        <Filter
+          v-if="loadedCompleted"
+          :makers="makersList"
+          :models="modelsList"
+          :engines="engineTypeList"
+          :chassis="chassisList"
+          :gears="gearList"
+          :lot_numbers="lotList"
+          :drives="driveTypeList"
+          :resultCount="indexingDetails.total"
+          :filters="route.query"
+          :countries="countriesList"
+          :forts="fortList"
+          @maker-changed="changeMaker"
+          @country-changed="changeCountry"
+          @apply-filters="applyFilters"
+          @reset-filters="resetFilters"
+        />
+        <VehicalList
+          :indexingDetails="indexingDetails"
+          @go-to-first-page="goToFirstPage"
+          @go-to-last-page="goToLastPage"
+          @change-page="changePage"
+        />
         <CustomerFeedback />
       </div>
     </div>

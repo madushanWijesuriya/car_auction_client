@@ -33,10 +33,10 @@ const decoratedItems = computed(() => {
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/guest/vehicle?noPagination'
+    let filterQuery = '/api/guest/vehicle?'
 
     if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
-    if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
+    if (form.model_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
     if (form.status_id.id)
       filterQuery += `&filter[status_id]=${form.status_id.id}`
     if (form.body_type_id.id)
@@ -437,6 +437,21 @@ let form = reactive({ ...initialState })
             main
           ></SectionTitleLineWithButton>
           <Table
+            :makersList="makersList"
+            :modelsList="modelsList"
+            :statusList="statusList"
+            :bodyTypeList="bodyTypeList"
+            :transmissionList="transmissionList"
+            :engineList="engineList"
+            :gearList="gearList"
+            :streeingList="streeingList"
+            :doorTypesList="doorTypesList"
+            :fuleTypeList="fuleTypeList"
+            :exteriorColorList="exteriorColorList"
+            :featuresList="featuresList"
+            :yearsList="yearsList"
+            :monthsList="monthsList"
+            :driveTypeList="driveTypeList"
             :items="decoratedItems"
             :headers="headers"
             :rowItemsData="items"

@@ -194,7 +194,8 @@ const router = createRouter({
       },
       path: '/admin/financial-information',
       name: 'financial-information',
-      component: () => import('../views/Portal/FinancialInformationTransactions.vue'),
+      component: () =>
+        import('../views/Portal/FinancialInformationTransactions.vue'),
     },
     {
       meta: {
@@ -236,6 +237,16 @@ const router = createRouter({
       path: '/admin/all-cars',
       name: 'all-cars',
       component: () => import('../views/AdminAllCarsView.vue'),
+    },
+    {
+      meta: {
+        title: 'All Documentations',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/all-documents',
+      name: 'all-dccs',
+      component: () => import('../views/AdminAddShippingDoc.vue'),
     },
     {
       meta: {
@@ -406,16 +417,25 @@ const router = createRouter({
       component: () => import('../views/BlankPage.vue'),
     },
     {
+      meta: {
+        isClientLogin: true,
+      },
       path: '/log-in',
       name: 'LogIn',
       component: () => import('../views/Portal/Login.vue'),
     },
     {
-      path: '/sing-up',
+      meta: {
+        isClientLogin: true,
+      },
+      path: '/sign-up',
       name: 'Register',
       component: () => import('../views/Portal/Register.vue'),
     },
     {
+      meta: {
+        isClientLogin: true,
+      },
       path: '/step-two',
       name: 'RegisterStep',
       component: () => import('../views/Portal/Register_two.vue'),

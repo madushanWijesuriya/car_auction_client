@@ -1,24 +1,24 @@
 <template>
-  <QuickAddModelForm
+  <QuickAddFortForm
     v-model="state.dialog"
     title="Add Vehical Model"
     button-label="Confirm"
     has-cancel
-    @quickAddModel="triggerParent"
-    :makerList="props.makerList"
+    @quickAddFort="triggerParent"
+    :countryList="props.countryList"
   >
-  </QuickAddModelForm>
+  </QuickAddFortForm>
 </template>
 <script>
-import QuickAddModelForm from '@/components/admin/modals/add-model/QuickAddModelForm.vue'
+import QuickAddFortForm from '@/components/admin/modals/add-fort/QuickAddFortForm.vue'
 import { reactive } from '@vue/reactivity'
 
 export default {
   components: {
-    QuickAddModelForm,
+    QuickAddFortForm,
   },
   props: {
-    makerList: null,
+    countryList: null,
   },
   setup(props) {
     const state = reactive({ dialog: false })
@@ -31,15 +31,14 @@ export default {
   },
 
   methods: {
-    openAddCarModal() {
+    openAddfortModal() {
       this.state.dialog = true
     },
-    closeModal() {
+    closeAddfortModal() {
       this.state.dialog = false
     },
     triggerParent() {
-      this.closeModal()
-      $emits('quickAddModel')
+      this.closeAddfortModal()
     },
   },
 }

@@ -3,6 +3,7 @@ import { reactive, ref, computed } from 'vue'
 import { isEmpty } from 'lodash-es'
 import httpResource from '@/http/httpResource'
 import { useRouter } from 'vue-router'
+import Recapture from '../../components/recapture/Recapture.vue'
 
 const router = useRouter()
 
@@ -41,7 +42,14 @@ const loginSubmit = async () => {
     if (error && error.response && error.response.status === 401) {
       errorList.value.push({
         common: true,
-        message: 'Email & Password does not match with our record.',
+        message: error.response.data?.message
+          ? error.response.data.message
+          : 'Email & Password does not match with our record.',
+      })
+    } else {
+      errorList.value.push({
+        common: true,
+        message: 'Something went wrong',
       })
     }
   }
@@ -137,7 +145,7 @@ const loginSubmit = async () => {
               >
             </div>
             <div class="recapture mt-6">
-              <img src="../../assets/images/portal/login/image_69.png" alt="" />
+              <Recapture />
             </div>
           </div>
           <div>
@@ -150,7 +158,7 @@ const loginSubmit = async () => {
             </button>
             <p class="text-sm mt-2 text-blue-900">
               <span>if you don't have and account?</span>
-              <a href="#" class="underline mr-3">User Registration</a>
+              <a :href="'/sign-up'" class="underline mr-3">User Registration</a>
             </p>
           </div>
         </form>

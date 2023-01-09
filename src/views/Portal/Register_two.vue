@@ -77,7 +77,21 @@ const submitForm = async () => {
   }
 }
 
+let countryList = ref([])
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 onMounted(() => {
+  getCountries()
   if (route.query.type !== undefined && route.query.type !== null)
     form.type = route.query.type
   if (route.query.name) form.name = route.query.name
@@ -132,18 +146,21 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="w-1/2 ml-1">
-                  <label
-                    class="block text-grey-darker text-sm font-bold mb-2"
-                    for="last_name"
-                    >Select Country</label
-                  >
-                  <input
-                    class="border border-gray-300 rounded w-full py-2 px-3"
-                    id="last_name"
-                    type="text"
-                    placeholder="Your last name"
+                  <p class="font-quote-form-label">Select Country</p>
+                  <el-select
+                    filterable
                     v-model="form.country_id"
-                  />
+                    class="w-full"
+                    placeholder="Select"
+                    size="large"
+                  >
+                    <el-option
+                      v-for="item in countryList"
+                      :key="item.id"
+                      :label="item.label"
+                      :value="item.id"
+                    />
+                  </el-select>
                   <div class="error-list">
                     <div
                       :class="[
@@ -316,7 +333,7 @@ onMounted(() => {
                   <input
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="last_name"
-                    type="text"
+                    type="password"
                     placeholder="Your last name"
                     v-model="form.password"
                   />

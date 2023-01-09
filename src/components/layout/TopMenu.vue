@@ -1,6 +1,5 @@
 <script setup>
-import { computed ,onMounted } from '@vue/runtime-core'
-
+import { computed, onMounted } from '@vue/runtime-core'
 </script>
 <template>
   <div
@@ -33,10 +32,18 @@ import { computed ,onMounted } from '@vue/runtime-core'
       class="hidden md:flex flex-row md:gap-4 xl:gap-[2vw] items-center font-semibold md:text-[12px] lg:text-[15px] xl:text-[20px]"
     >
       <div>
-        <routerLink active-class="active" class="font-semibold cursor-pointer   " :to="'/'">Home</routerLink>
+        <routerLink
+          active-class="active"
+          class="font-semibold cursor-pointer"
+          :to="'/'"
+          >Home</routerLink
+        >
       </div>
       <div class="flex items-center gap-2">
-        <routerLink active-class="active" class=" font-semibold cursor-pointer" :to="'/stock-list'"
+        <routerLink
+          active-class="active"
+          class="font-semibold cursor-pointer"
+          :to="'/stock-list'"
           >Stock List</routerLink
         >
       </div>
@@ -59,7 +66,10 @@ import { computed ,onMounted } from '@vue/runtime-core'
           </svg>
         </div>
       </div>
-      <routerLink active-class="active"  class="font-semibold " :to="'/how-to-ordering'"
+      <routerLink
+        active-class="active"
+        class="font-semibold"
+        :to="'/how-to-ordering'"
         >How to Order</routerLink
       >
       <div class="flex items-center gap-2 sub-menu-list cursor-pointer">
@@ -101,24 +111,32 @@ import { computed ,onMounted } from '@vue/runtime-core'
         </div>
       </div>
       <div class="font-semibold">
-        <routerLink active-class="active"  class="font-semibold cursor-pointer" :to="'/reachus'">Reach Us</routerLink>
+        <routerLink
+          active-class="active"
+          class="font-semibold cursor-pointer"
+          :to="'/reachus'"
+          >Reach Us</routerLink
+        >
       </div>
     </div>
 
     <div
-      class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center "
+      class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center"
     >
-      <div
-        class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center cursor-pointer"
-      >
-        Log in
-      </div>
-      <div
-        class="rounded xl:rounded-lg bg-[#08246C] hover:opacity-80 px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] cursor-pointer text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4"
-      >
-
-        Register
-      </div>
+      <a :href="'/log-in'">
+        <div
+          class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center cursor-pointer"
+        >
+          Log in
+        </div>
+      </a>
+      <a :href="'/sign-up'">
+        <div
+          class="rounded xl:rounded-lg bg-[#08246C] hover:opacity-80 px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] cursor-pointer text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4"
+        >
+          Register
+        </div>
+      </a>
     </div>
     <div class="visible flex items-center md:hidden">
       <svg

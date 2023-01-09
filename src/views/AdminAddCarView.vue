@@ -1,16 +1,16 @@
 <script>
-import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.vue'
-import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
-import SectionMain from '@/components/admin/SectionMain.vue'
-import { mdiCarEstate, mdiCalendarRange } from '@mdi/js'
-import FormField from '@/components/admin/FormField.vue'
-import FormControl from '@/components/admin/FormControl.vue'
+// import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.vue'
+// import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
+// import SectionMain from '@/components/admin/SectionMain.vue'
+// import { mdiCarEstate, mdiCalendarRange } from '@mdi/js'
+// import FormField from '@/components/admin/FormField.vue'
+// import FormControl from '@/components/admin/FormControl.vue'
 import { reactive, ref, onMounted, computed } from 'vue'
-import FormCheckRadioGroup from '@/components/admin/FormCheckRadioGroup.vue'
-import BaseDivider from '@/components/admin/BaseDivider.vue'
-import FormFilePicker from '@/components/admin/FormFilePicker.vue'
-import BaseButtons from '@/components/admin/BaseButtons.vue'
-import BaseButton from '@/components/admin/BaseButton.vue'
+// import FormCheckRadioGroup from '@/components/admin/FormCheckRadioGroup.vue'
+// import BaseDivider from '@/components/admin/BaseDivider.vue'
+// import FormFilePicker from '@/components/admin/FormFilePicker.vue'
+// import BaseButtons from '@/components/admin/BaseButtons.vue'
+// import BaseButton from '@/components/admin/BaseButton.vue'
 import UploadImages from 'vue-upload-drop-images'
 import httpResource from '@/http/httpResource'
 import Editor from '@tinymce/tinymce-vue'
@@ -28,10 +28,18 @@ import AddDrivetypeModel from '@/components/admin/modals/drive-type-model/AddDri
 import AddFuelTypeModel from '@/components/admin/modals/add-fuel-type-model/AddFuelTypeModel.vue'
 import AddExteriorColorModel from '@/components/admin/modals/add-exterior-color-model/AddExteriorColorModel.vue'
 import AddFeatureModel from '@/components/admin/modals/add-feature-model/AddFeatureModel.vue'
+import AddCountryModel from '@/components/admin/modals/add-country/AddCountryModel.vue'
+import AddFortModel from '@/components/admin/modals/add-fort/AddFortModel.vue'
+import AddOdometerModel from '@/components/admin/modals/add-odometer/AddOdometerModel.vue'
+import { Search, Refresh, Loading } from '@element-plus/icons-vue'
 
 export default {
   setup() {
-    const state = reactive({ validationErrors: null, dialogMaker: false })
+    const state = reactive({
+      validationErrors: null,
+      dialogMaker: false,
+      refreshAll: false,
+    })
     const imageLimit = ref(0) // 0 -> will submit all images / any other number -> will limit image to that number
     const toast = useToast()
     // methods
@@ -58,19 +66,47 @@ export default {
 
     const submitForm = async () => {
       try {
+        console.log(form, 'formformform')
         const formData = new FormData()
-        formData.append('make_id', form?.maker?.id)
-        formData.append('model_id', form?.model?.id)
-        formData.append('status_id', form?.status?.id)
-        formData.append('body_type_id', form?.bodyType?.id)
-        formData.append('engine_id', form?.engine_id?.id)
-        formData.append('gear_box_id', form?.gear_box_id?.id)
-        formData.append('transmission_id', form?.transmission?.id)
-        formData.append('streeing_id', form?.streeing?.id)
-        formData.append('door_type_id', form?.doorTypes?.id)
-        formData.append('driver_type_id', form?.driveType?.id)
-        formData.append('fuel_type_id', form?.fuelType?.id)
-        formData.append('exterior_color_id', form?.exteriorColor?.id)
+        formData.append('make_id', form?.maker?.id ? form?.maker?.id : '')
+        formData.append('model_id', form?.model?.id ? form?.model?.id : '')
+        formData.append('status_id', form?.status?.id ? form?.status?.id : '')
+        formData.append(
+          'body_type_id',
+          form?.bodyType?.id ? form?.bodyType?.id : ''
+        )
+        formData.append(
+          'engine_id',
+          form?.engine_id?.id ? form?.engine_id?.id : ''
+        )
+        formData.append(
+          'gear_box_id',
+          form?.gear_box_id?.id ? form?.gear_box_id?.id : ''
+        )
+        formData.append(
+          'transmission_id',
+          form?.transmission?.id ? form?.transmission?.id : ''
+        )
+        formData.append(
+          'streeing_id',
+          form?.streeing?.id ? form?.streeing?.id : ''
+        )
+        formData.append(
+          'door_type_id',
+          form?.doorTypes?.id ? form?.doorTypes?.id : ''
+        )
+        formData.append(
+          'driver_type_id',
+          form?.driveType?.id ? form?.driveType?.id : ''
+        )
+        formData.append(
+          'fuel_type_id',
+          form?.fuelType?.id ? form?.fuelType?.id : ''
+        )
+        formData.append(
+          'exterior_color_id',
+          form?.exteriorColor?.id ? form?.exteriorColor?.id : ''
+        )
         formData.append('chassis_no', form?.chassisNo)
         formData.append('make_at', `${form?.year}-${form?.month?.id}-01`)
         formData.append('fob_price', form?.fobPrice)
@@ -86,10 +122,29 @@ export default {
         formData.append('sup_url', form.supplierURL)
         formData.append('mileage', form.mileage)
         formData.append('market_price', form.marketPrice)
-        formData.append('feature_id', form?.features?.id)
+        formData.append(
+          'feature_id',
+          form?.features?.id ? form?.features?.id : ''
+        )
+        formData.append(
+          'shipping_country_id',
+          form?.shipping_country_id?.id ? form?.shipping_country_id?.id : ''
+        )
+        formData.append('fort_id', form?.fort_id?.id ? form?.fort_id?.id : '')
+        formData.append(
+          'gear_box_id',
+          form?.gear_box_id?.id ? form?.gear_box_id?.id : ''
+        )
+        formData.append(
+          'odometer_id',
+          form?.odometer_id?.id ? form?.odometer_id?.id : ''
+        )
         formData.append('lot_number', form?.lot_number)
         formData.append('title', form?.title)
         formData.append('seats', form?.seats)
+        formData.append('interior_condition', form?.interior_condition)
+        formData.append('wd', form?.wd)
+        formData.append('exterior_condition', form?.exterior_condition)
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
@@ -128,6 +183,19 @@ export default {
         }
       }
     }
+    const yearsList = range(
+      new Date().getFullYear(),
+      new Date().getFullYear() - 50,
+      -1
+    )
+    const monthsList = Array.from({ length: 12 }, (e, i) => {
+      return {
+        id: i + 1,
+        label: new Date(null, i + 1, null).toLocaleDateString('en', {
+          month: 'short',
+        }),
+      }
+    })
 
     let makersList = ref([])
     const getMakers = async () => {
@@ -171,60 +239,11 @@ export default {
       }
     }
 
-    const yearsList = range(
-      new Date().getFullYear(),
-      new Date().getFullYear() - 50,
-      -1
-    )
-    const monthsList = Array.from({ length: 12 }, (e, i) => {
-      return {
-        id: i + 1,
-        label: new Date(null, i + 1, null).toLocaleDateString('en', {
-          month: 'short',
-        }),
-      }
-    })
-    let gearTypeList = ref([])
-    const getGearTypes = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/gears')
-        gearTypeList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
     let bodyTypeList = ref([])
     const getBodyTypes = async () => {
       try {
         const response = await httpResource.get('/api/resources/body-type')
         bodyTypeList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    let engineList = ref([])
-    const getEngines = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/engine-types')
-        engineList.value = response.data.data.map((d) => ({
-          ...d,
-          label: d.name,
-        }))
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    let country = ref([])
-    const countryList = async () => {
-      try {
-        const response = await httpResource.get('/api/resources/countries')
-        countryList.value = response.data.data.map((d) => ({
           ...d,
           label: d.name,
         }))
@@ -268,7 +287,6 @@ export default {
         console.error(error)
       }
     }
-
     let driveTypeList = ref([])
     const getDriverTypes = async () => {
       try {
@@ -319,11 +337,73 @@ export default {
         console.error(error)
       }
     }
+    let countryList = ref([])
+    const getCountries = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/countries')
+        countryList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {}
+    }
+    let fortList = ref([])
+    const getForts = async (countyId) => {
+      try {
+        const response = await httpResource.get(
+          '/api/resources/forts/' + countyId
+        )
+        fortList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    const changeCountry = (e) => {
+      getForts(e.id)
+    }
+    let gearTypeList = ref([])
+    const getGearTypes = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/gears')
+        gearTypeList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let engineList = ref([])
+    const getEngines = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/engine-types')
+        engineList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    let odometerList = ref([])
+    const getOdometers = async () => {
+      try {
+        const response = await httpResource.get('/api/resources/odometers')
+        odometerList.value = response.data.data.map((d) => ({
+          ...d,
+          label: d.name,
+        }))
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
     onMounted(async () => {
       getMakers()
       getStatus()
-      getGearTypes()
       getBodyTypes()
       getTransmitions()
       getStreeings()
@@ -334,28 +414,30 @@ export default {
       getFeatures()
       getEngines()
       getGearTypes()
+      getCountries()
+      getOdometers()
     })
 
     const initialState = {
-      maker: makersList[0],
-      model: null,
+      maker: '',
+      model: '',
       chassisNo: '',
       fobPrice: 0,
-      status: statusList[0],
+      status: '',
       year: new Date().getFullYear(),
       month: monthsList[new Date().getMonth()],
       displacement: '',
       condition: 'new',
-      bodyType: bodyTypeList[0],
+      bodyType: '',
       mileage: 0,
-      gear_box_id: gearTypeList[0],
-      engine_id: engineList[0],
-      transmission: transmissionList[0],
-      streeing: streeingList[0],
-      doorTypes: doorTypesList[0],
-      driveType: driveTypeList[0],
-      fuelType: fuleTypeList[0],
-      exteriorColor: exteriorColorList[0],
+      gear_box_id: '',
+      engine_id: '',
+      transmission: '',
+      streeing: '',
+      doorTypes: '',
+      driveType: '',
+      fuelType: '',
+      exteriorColor: '',
       gradeTrim: '',
       features: '',
       coverImage: null,
@@ -366,9 +448,15 @@ export default {
       supplierPrice: 0,
       supplierURL: '',
       marketPrice: 0,
+      shipping_country_id: '',
+      odometer_id: '',
+      fort_id: '',
       title: '',
       lot_number: '',
-      seats: null,
+      seats: '',
+      interior_condition: '',
+      wd: '',
+      exterior_condition: '',
     }
 
     let form = reactive({ ...initialState })
@@ -382,6 +470,7 @@ export default {
       doorTypesList,
       streeingList,
       engineList,
+      odometerList,
       transmissionList,
       gearTypeList,
       bodyTypeList,
@@ -397,6 +486,11 @@ export default {
       imageUploaderRef,
       uploaderKey,
       changeMaker,
+      getCountries,
+      getForts,
+      countryList,
+      fortList,
+      changeCountry,
       featuresList,
       state,
       getMakers,
@@ -405,6 +499,9 @@ export default {
     }
   },
   components: {
+    Search,
+    Loading,
+    Refresh,
     UploadImages,
     editor: Editor,
     AddModal,
@@ -419,6 +516,9 @@ export default {
     AddFuelTypeModel,
     AddExteriorColorModel,
     AddFeatureModel,
+    AddCountryModel,
+    AddFortModel,
+    AddOdometerModel,
   },
   methods: {
     addMaker() {
@@ -433,12 +533,27 @@ export default {
     addEngine() {
       this.$refs.engineModel.openEngineModal()
     },
+    addOdometer() {
+      this.$refs.odometerModal.openOdometerModal()
+    },
     addTransmition() {
       this.$refs.transmitionModal.openTransModal()
     },
     getResourcesLists() {
-      getMakers()
-      getBodyTypes()
+      this.getMakers()
+      this.getStatus()
+      this.getGearTypes()
+      this.getBodyTypes()
+      this.getTransmitions()
+      this.getStreeings()
+      this.getDoorTypes()
+      this.getDriverTypes()
+      this.getfuleTypes()
+      this.getExteriorColors()
+      this.getFeatures()
+      this.getEngines()
+      this.getGearTypes()
+      this.getCountries()
     },
     addCarModel() {
       this.$refs.addCarModel.openAddCarModal()
@@ -460,6 +575,12 @@ export default {
     },
     addFeatureModel() {
       this.$refs.addFeatureModel.openAddFeatureModel()
+    },
+    addCountry() {
+      this.$refs.addCountryModal.openCountryModal()
+    },
+    addFortModal() {
+      this.$refs.addFortModal.openAddfortModal()
     },
   },
 }
@@ -489,10 +610,41 @@ export default {
               </div>
             </div>
           </div>
+          <v-row>
+            <div class="float-right">
+              <el-button @click="refreshAllLists"
+                >Refresh All
+                <el-icon v-if="!state.refreshAll">
+                  <Refresh />
+                </el-icon>
+                <el-icon v-if="state.refreshAll" class="is-loading">
+                  <Loading />
+                </el-icon>
+              </el-button>
+            </div>
+          </v-row>
           <SectionTitleLineWithButton :icon="mdiCarEstate" title="Add Car" main>
           </SectionTitleLineWithButton>
+
           <FormField label="Title" help="">
             <FormControl v-model="form.title" type="text" placeholder="Title" />
+          </FormField>
+          <FormField label="Interior Condition" help="">
+            <FormControl
+              v-model="form.interior_condition"
+              type="text"
+              placeholder="Interior Condition"
+            />
+          </FormField>
+          <FormField label="Exterior Condition" help="">
+            <FormControl
+              v-model="form.exterior_condition"
+              type="text"
+              placeholder="Exterior Condition"
+            />
+          </FormField>
+          <FormField label="WD" help="">
+            <FormControl v-model="form.wd" type="text" placeholder="WD" />
           </FormField>
           <FormField label="Lot Number" help="">
             <FormControl
@@ -501,6 +653,7 @@ export default {
               placeholder="Lot Number"
             />
           </FormField>
+
           <FormField label="Seats" help="">
             <FormControl
               v-model="form.seats"
@@ -522,7 +675,7 @@ export default {
             label="Add Maker"
             @click="addMaker"
           />
-          <AddCarModel ref="addCarModel" />
+          <AddCarModel ref="addCarModel" :makerList="makersList" />
           <FormField label="Model">
             <FormControl v-model="form.model" :options="modelsList" />
           </FormField>
@@ -532,6 +685,32 @@ export default {
             label="Add Car Model"
             @click="addCarModel"
           />
+          <!--countries and fors-->
+          <AddCountryModel ref="addCountryModal" />
+          <FormField label="Shipping Country">
+            <FormControl
+              v-model="form.shipping_country_id"
+              :options="countryList"
+              @update:modelValue="changeCountry"
+            />
+          </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Country"
+            @click="addCountry"
+          />
+          <AddFortModel ref="addFortModal" :countryList="countryList" />
+          <FormField label="Fort">
+            <FormControl v-model="form.fort_id" :options="fortList" />
+          </FormField>
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Fort "
+            @click="addFortModal"
+          />
+          <!--countries and fors-->
           <FormField label="Chassis No" help="">
             <FormControl
               v-model="form.chassisNo"
@@ -603,6 +782,16 @@ export default {
             color="info"
             label="Add Engine Type"
             @click="addEngine"
+          />
+          <FormField label="Odometer">
+            <FormControl v-model="form.odometer_id" :options="odometerList" />
+          </FormField>
+          <AddOdometerModel ref="odometerModal" />
+          <BaseButton
+            type="submit"
+            color="info"
+            label="Add Odometer"
+            @click="addOdometer"
           />
           <FormField label="Gear">
             <FormControl v-model="form.gear_box_id" :options="gearTypeList" />
