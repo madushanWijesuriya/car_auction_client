@@ -240,17 +240,17 @@ onMounted(async () => {})
               <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> 
           </td> -->
         </tr>
-        <tr class=" text-[#08246C] border-[#08246C]">
-            <td colspan="4" class=" text-center">
+        <tr class=" text-[#08246C] border-[#08246C] font-semibold">
+            <td colspan="4" class=" text-center font-semibold">
                 Total
             </td>
-            <td class=" text-start">
+            <td class=" text-start font-semibold">
                 {{ footer?.debit }}
             </td>
-            <td class=" text-start">
+            <td class=" text-start font-semibold">
                 {{ footer?.credit }}
             </td>
-            <td class=" text-start">
+            <td class=" text-start font-semibold">
                 {{ footer?.balance }}
             </td>
         </tr>
