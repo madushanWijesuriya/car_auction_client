@@ -172,7 +172,7 @@ const router = createRouter({
         layout: 'LayoutAdmin',
         requiresAuth: false,
       },
-      path: '/admin/profile',
+      path: '/admin/portal-profile',
       name: 'portal-profile',
       component: () => import('../views/Portal/Profile.vue'),
     },

@@ -1,3 +1,6 @@
+<script setup>
+import { computed, onMounted } from '@vue/runtime-core'
+</script>
 <template>
     <div class="h-screen">
         <header class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between">
@@ -16,25 +19,41 @@
             <div class="bg-white relative h-full min-h-screen w-full">
                 <div class="xl:py-2">
                     <div class="group relative sidebar-item with-children py-4">
-                        <a href="#"
+                        <div 
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
                             <img src="../../assets/images/portal/sidebar/dashbord.svg" alt="">
-                            <div class="text-primary text-xs mx-2 fs-18">Dashboard</div>
-                        </a>
+                            <div class="text-dark text-xs mx-2 fs-18"><routerLink
+                            active-class="active"
+                            class="font-semibold cursor-pointer"
+                            :to="'/admin/sample-dashbord'"
+                            >Dashboard</routerLink></div>
+                            </div>
                     </div>
                     <div class="group relative sidebar-item with-children">
-                        <a href="#"
+                        
+                        <div
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
                             <img src="../../assets/images/portal/sidebar/fin_repo.svg" alt="">
-                            <div class="text-dark text-xs mx-2 fs-18">Financial Information</div>
-                        </a>
+                            <div class="text-dark text-xs mx-2 fs-18"><routerLink
+                            active-class="active"
+                            class="font-semibold cursor-pointer"
+                            :to="'/admin/financial-information'"
+                            >Financial Information</routerLink></div>
+                            </div>
                     </div>
                     <div class="group relative sidebar-item with-children py-3">
-                        <a href="#"
+                        <div 
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
                             <img src="../../assets/images/portal/sidebar/fi.svg" alt="">
-                            <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-                        </a>
+                            <div class="text-dark text-xs mx-2 fs-18">
+                                <routerLink
+                                active-class="active"
+                                class="font-semibold cursor-pointer"
+                                :to="'/admin/shipping-document'"
+                                >Shipping Document</routerLink>
+                                
+                                </div>
+                            </div>
                     </div>
                     <div class="group relative sidebar-item with-children py-3">
                         <a href="#"
@@ -45,13 +64,40 @@
                         </a>
                     </div>
                     <div class="group relative sidebar-item with-children py-3">
-                        <a href="#"
+                        <div 
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
                             <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
                             <div class="text-Financial information
 6 text-xs mx-2 fs-18">Make Invoices</div>
-                        </a>
+                        </div>
                     </div>
+
+                    <div class="group relative sidebar-item with-children py-3">
+                        <div 
+                                                    class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
+                            <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
+                            <div class="text-Financial information
+6 text-xs mx-2 fs-18"> <routerLink
+                                active-class="active"
+                                class="font-semibold cursor-pointer"
+                                :to="'/admin/freight-invoices'"
+                                >Freight Invoices</routerLink></div>
+                        </div>
+                    </div>
+
+                    <div class="group relative sidebar-item with-children py-3">
+                        <div
+                            class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
+                            <img src="../../assets/images/portal/sidebar/make_inv.svg" alt="">
+                            <div class="text-Financial information
+6 text-xs mx-2 fs-18"> <routerLink
+                                active-class="active"
+                                class="font-semibold cursor-pointer"
+                                :to="'/admin/portal-profile'"
+                                >Profile</routerLink></div>
+                    </div>
+                    </div>
+
                     <div class="group relative sidebar-item with-children pt-3">
                         <a href="#"
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary">
