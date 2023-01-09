@@ -4,7 +4,7 @@ import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithB
 import SectionMain from '@/components/admin/SectionMain.vue'
 import { mdiCarEstate } from '@mdi/js'
 import Table from '@/components/admin/Table.vue'
-import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
+import TransactionLedger from '@/components/Tables/ClientPortal/TransactionLedger.vue'
 import {useTransactionsStore} from '../../stores/transanctionLegder'
 import { computed, onMounted, reactive, ref } from 'vue'
 import httpResource from '@/http/httpResource'
@@ -13,29 +13,240 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 const transactionsStore = useTransactionsStore()
-const { transactions: items } = storeToRefs(transactionsStore)
+const { transactions: items , footerData} = storeToRefs(transactionsStore)
 const headers = computed(() => transactionsStore.tableHeaders)
+
+let res = {
+    "data": [
+        {
+            "id": 3,
+            "agent": "agent 01",
+            "vehicle_id": 1,
+            "customer_id": 3,
+            "paid_amount": 1000,
+            "deleted_at": null,
+            "created_at": "2023-01-09T16:54:49.000000Z",
+            "updated_at": "2023-01-09T16:54:49.000000Z",
+            "vehicle": {
+                "id": 1,
+                "make_id": 2,
+                "model_id": 6,
+                "status_id": 4,
+                "body_type_id": 2,
+                "transmission_id": 1,
+                "streeing_id": 4,
+                "door_type_id": 4,
+                "driver_type_id": 1,
+                "fuel_type_id": 3,
+                "exterior_color_id": 1,
+                "feature_id": 3,
+                "make_at": "1982-02-01",
+                "fob_price": 37,
+                "chassis_no": "Itaque dolore velit",
+                "displacement": "Dolores quo dolore f",
+                "grade": "Dolorum sunt rem si",
+                "cover_image_full_url": "/vehicle/images/1/cover_images/1858450074.jfif",
+                "cover_image_file": "1858450074.jfif",
+                "description": "Consectetur quia mi",
+                "private_note": "Cillum ipsum ut quae",
+                "sup_name": "Est neque sunt con",
+                "sup_url": "Modi accusantium opt",
+                "sup_price": 91,
+                "market_price": 5,
+                "isUsed": 1,
+                "mileage": 8,
+                "engine_id": 2,
+                "shipping_country_id": 1,
+                "fort_id": 6,
+                "gear_box_id": 2,
+                "lot_number": "Consequat Quas veni",
+                "title": "Voluptas facere dese",
+                "seats": 61,
+                "odometer_id": 1,
+                "interior_condition": "Necessitatibus in qu",
+                "wd": 0,
+                "exterior_condition": "Neque ab dolorem aut",
+                "deleted_at": null,
+                "created_at": "2023-01-08T14:38:37.000000Z",
+                "updated_at": "2023-01-08T14:38:37.000000Z"
+            },
+            "debit": -963,
+            "credit": 1000,
+            "balance": -1963
+        },
+        {
+            "id": 4,
+            "agent": "agent 01",
+            "vehicle_id": 2,
+            "customer_id": 3,
+            "paid_amount": 1000,
+            "deleted_at": null,
+            "created_at": "2023-01-09T16:54:53.000000Z",
+            "updated_at": "2023-01-09T16:54:53.000000Z",
+            "vehicle": {
+                "id": 2,
+                "make_id": 1,
+                "model_id": 2,
+                "status_id": 5,
+                "body_type_id": 5,
+                "transmission_id": 1,
+                "streeing_id": 2,
+                "door_type_id": 2,
+                "driver_type_id": 3,
+                "fuel_type_id": 2,
+                "exterior_color_id": 4,
+                "feature_id": 2,
+                "make_at": "2013-07-01",
+                "fob_price": 20,
+                "chassis_no": "Corporis soluta ut m",
+                "displacement": "Delectus vero dolor",
+                "grade": "Commodi architecto e",
+                "cover_image_full_url": "/vehicle/images/2/cover_images/1239305292.jpg",
+                "cover_image_file": "1239305292.jpg",
+                "description": "Veniam modi saepe d",
+                "private_note": "Sed fugiat in vel v",
+                "sup_name": "Consectetur impedit",
+                "sup_url": "Voluptatem voluptat",
+                "sup_price": 100,
+                "market_price": 29,
+                "isUsed": 0,
+                "mileage": 53,
+                "engine_id": 3,
+                "shipping_country_id": 1,
+                "fort_id": 9,
+                "gear_box_id": 2,
+                "lot_number": "Hic autem aperiam qu",
+                "title": "Deleniti placeat qu",
+                "seats": 28,
+                "odometer_id": 1,
+                "interior_condition": "Velit delectus mag",
+                "wd": 0,
+                "exterior_condition": "Non enim dolores vel",
+                "deleted_at": null,
+                "created_at": "2023-01-08T14:41:16.000000Z",
+                "updated_at": "2023-01-08T14:41:16.000000Z"
+            },
+            "debit": -980,
+            "credit": 1000,
+            "balance": -1980
+        },
+        {
+            "id": 5,
+            "agent": "agent 01",
+            "vehicle_id": 3,
+            "customer_id": 3,
+            "paid_amount": 1000,
+            "deleted_at": null,
+            "created_at": "2023-01-09T16:55:04.000000Z",
+            "updated_at": "2023-01-09T16:55:04.000000Z",
+            "vehicle": {
+                "id": 3,
+                "make_id": 2,
+                "model_id": 6,
+                "status_id": 2,
+                "body_type_id": 4,
+                "transmission_id": 1,
+                "streeing_id": 1,
+                "door_type_id": 6,
+                "driver_type_id": 1,
+                "fuel_type_id": 1,
+                "exterior_color_id": 4,
+                "feature_id": 1,
+                "make_at": "1976-08-01",
+                "fob_price": 38,
+                "chassis_no": "Temporibus eius dolo",
+                "displacement": "Deserunt et ullam co",
+                "grade": "Id quo reprehenderit",
+                "cover_image_full_url": "/vehicle/images/3/cover_images/340195647.png",
+                "cover_image_file": "340195647.png",
+                "description": "Fugiat voluptatum e",
+                "private_note": "Magnam officiis quos",
+                "sup_name": "Distinctio Quia ad",
+                "sup_url": "Fugit qui officia s",
+                "sup_price": 61,
+                "market_price": 87,
+                "isUsed": 0,
+                "mileage": 100,
+                "engine_id": 4,
+                "shipping_country_id": 1,
+                "fort_id": 11,
+                "gear_box_id": 1,
+                "lot_number": "Atque incididunt eum",
+                "title": "Aut ut ea accusamus",
+                "seats": 100,
+                "odometer_id": 3,
+                "interior_condition": "Quis cumque eaque cu",
+                "wd": 0,
+                "exterior_condition": "Culpa pariatur Ali",
+                "deleted_at": null,
+                "created_at": "2023-01-08T14:42:29.000000Z",
+                "updated_at": "2023-01-08T14:42:29.000000Z"
+            },
+            "debit": -962,
+            "credit": 1000,
+            "balance": -1962
+        }
+    ],
+    "links": {
+        "first": "http://127.0.0.1:8000/api/customer/ledger?page=1",
+        "last": "http://127.0.0.1:8000/api/customer/ledger?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://127.0.0.1:8000/api/customer/ledger?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://127.0.0.1:8000/api/customer/ledger",
+        "per_page": 15,
+        "to": 3,
+        "total": 3
+    },
+    "footer": {
+        "debit": -2905,
+        "credit": 3000,
+        "balance": 0
+    }
+}
+
 const decoratedItems = computed(() => {
   if (!items.value || !Array.isArray(items.value)) return []
   return items.value.map((i) => {
     return {
       id: i?.id,
-      name: i?.name,
-      email: i?.email,
-      email_verified_at: i?.email_verified_at,
-      created_at: i?.created_at,
       updated_at: i?.updated_at,
-      // deleted_at: i?.deleted_at,
-      roles: i?.roles[0]?.name,
+      customer_id: i?.vehicle?.title,
+      updated_at: i?.updated_at,
+      debit: i?.debit,
+      credit: i?.credit,
+      balance: i?.balance,
     }
   })
 })
 
 const getAllTransactions = async () => {
   try {
-    const response = await httpResource.get('/api/staff/staffuser')
+    // const response = await httpResource.get('/api/staff/staffuser')
     transactionsStore.$patch({
-      transactions: response.data.data,
+      transactions: res.data,
+      footerData: res.footer
     })
   } catch (error) {
     console.error(error)
@@ -306,12 +517,15 @@ onMounted(async () => {
               </div>
             </div>
           </div>
-          <StaffUserTable
+          <TransactionLedger
             @edit-user="getAllUsers"
             :items="decoratedItems"
             :headers="headers"
           >
-          </StaffUserTable>
+          </TransactionLedger>
+          <div class="">
+
+          </div>
           <!-- <table class="table-auto">
             <thead>
               <tr>

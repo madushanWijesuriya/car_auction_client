@@ -5,40 +5,33 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const transactions = ref([])
 
   const filters = ref([])
+  const footerData = ref([])
   const tableHeaders = reactive([
     {
-      name: 'No',
+      name: 'Reference#',
       order: 1,
     },
     {
-      name: 'Photo',
+      name: 'Date',
       order: 2,
     },
     {
-      name: 'Make',
+      name: 'Particulars',
       order: 3,
     },
     {
-      name: 'Model',
+      name: 'Debit',
       order: 4,
     },
     {
-      name: 'FOB',
+      name: 'Credit',
       order: 5,
     },
     {
-      name: 'Status',
+      name: 'Balance',
       order: 6,
-    },
-    {
-      name: 'Inquiry',
-      order: 7,
-    },
-    {
-      name: 'Actions',
-      order: 8,
     },
   ])
 
-  return { transactions, tableHeaders }
+  return { transactions, tableHeaders ,footerData}
 })
