@@ -1,3 +1,54 @@
+<script setup>
+import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.vue'
+import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
+import SectionMain from '@/components/admin/SectionMain.vue'
+import { mdiCarEstate } from '@mdi/js'
+import Table from '@/components/admin/Table.vue'
+import StaffUserTable from '@/components/Tables/Admin/StaffUserTable.vue'
+import {useTransactionsStore} from '../../stores/transanctionLegder'
+import { computed, onMounted, reactive, ref } from 'vue'
+import httpResource from '@/http/httpResource'
+import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
+
+const transactionsStore = useTransactionsStore()
+const { transactions: items } = storeToRefs(transactionsStore)
+const headers = computed(() => transactionsStore.tableHeaders)
+const decoratedItems = computed(() => {
+  if (!items.value || !Array.isArray(items.value)) return []
+  return items.value.map((i) => {
+    return {
+      id: i?.id,
+      name: i?.name,
+      email: i?.email,
+      email_verified_at: i?.email_verified_at,
+      created_at: i?.created_at,
+      updated_at: i?.updated_at,
+      // deleted_at: i?.deleted_at,
+      roles: i?.roles[0]?.name,
+    }
+  })
+})
+
+const getAllTransactions = async () => {
+  try {
+    const response = await httpResource.get('/api/staff/staffuser')
+    transactionsStore.$patch({
+      transactions: response.data.data,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+onMounted(async () => {
+  await getAllTransactions()
+  getRoles()
+})
+
+
+</script>
 <template>
   <div class="h-screen">
     <header
@@ -255,7 +306,13 @@
               </div>
             </div>
           </div>
-          <table class="table-auto">
+          <StaffUserTable
+            @edit-user="getAllUsers"
+            :items="decoratedItems"
+            :headers="headers"
+          >
+          </StaffUserTable>
+          <!-- <table class="table-auto">
             <thead>
               <tr>
                 <th>
@@ -296,7 +353,7 @@
                 <td>0</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
