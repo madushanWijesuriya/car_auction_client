@@ -3,7 +3,9 @@ import { ref, reactive, computed } from "vue";
 </script>
 
 <template>
-   <div class="hidden lg:block group fixed-group  absolute right-0 top-[-163px]">
+   
+  <div class="grid place-items-center m-5 relative lg:ml-24">
+    <div class="hidden group fixed-group lg:flex absolute right-[-20px] top-[-170px] lg:h-[99%] ">
         <img
           class="back_image"
           src="/background_image.svg"
@@ -15,7 +17,6 @@ import { ref, reactive, computed } from "vue";
           alt="jap_map"
         />
       </div>
-  <div class="grid place-items-center m-5 relative lg:ml-24">
    
     <div class="p-4 grid gap-4 lg:grid-cols-2">
       <div class="topic-text-01 color-03 font-semibold lg:mt-10 lg:col-span-2">
