@@ -443,30 +443,30 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
-  const styleStore = useStyleStore()
-  if (
-    typeof localStorage !== 'undefined' &&
-    localStorage.getItem(styleKey) === null
-  ) {
-    styleStore.setStyle('white')
-  }
-  if (
-    to.meta.requiresAuth &&
-    to.path !== '/login' &&
-    !authStore.getIsAuthenticated
-  ) {
-    try {
-      const status = await getAuthenticatedUser(authStore)
-      if (status !== 200) next('/login')
-      else next()
-    } catch (error) {
-      next('/login')
-    }
-  } else {
-    next()
-  }
-})
+// router.beforeEach(async (to, from, next) => {
+//   const authStore = useAuthStore()
+//   const styleStore = useStyleStore()
+//   if (
+//     typeof localStorage !== 'undefined' &&
+//     localStorage.getItem(styleKey) === null
+//   ) {
+//     styleStore.setStyle('white')
+//   }
+//   if (
+//     to.meta.requiresAuth &&
+//     to.path !== '/login' &&
+//     !authStore.getIsAuthenticated
+//   ) {
+//     try {
+//       const status = await getAuthenticatedUser(authStore)
+//       if (status !== 200) next('/login')
+//       else next()
+//     } catch (error) {
+//       next('/login')
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

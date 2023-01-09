@@ -35,11 +35,15 @@ const getAllTransactions = async () => {
   } catch (error) {
     console.error(error)
   }
+
+}
+
+const handleSearch = (event)=>{
+  console.log('abc');
 }
 
 onMounted(async () => {
   await getAllTransactions()
-  getRoles()
 })
 
 
@@ -283,6 +287,7 @@ onMounted(async () => {
                   type="text"
                   class="px-4 py-2"
                   placeholder="Search Vehical..."
+                  @change="handleSearch"
                 />
                 <button
                   class="flex items-center justify-center px-4 border-l bg-blue-800"
