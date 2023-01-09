@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { mdiClose } from '@mdi/js'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import BaseButtons from '@/components/admin/BaseButtons.vue'
@@ -8,12 +8,15 @@ import OverlayLayer from '@/components/admin/OverlayLayer.vue'
 import CardBoxComponentTitle from '@/components/admin/CardBoxComponentTitle.vue'
 import httpResource from '@/http/httpResource'
 import { useToast } from 'vue-toastification'
+import FormField from '@/components/admin/FormField.vue'
+import FormControl from '@/components/admin/FormControl.vue'
 
 const toast = useToast()
 const initialState = {
   name: '',
   id: '',
 }
+
 let form = reactive({ ...initialState })
 
 const validateForm = () => {
@@ -32,10 +35,10 @@ const submitForm = async () => {
   try {
     console.log(form, 'form')
     const response = await httpResource.post(
-      '/api/staff/vehicle/model/quickAdd',
+      '/api/staff/vehicle/fort/quickAdd',
       {
         name: form?.name,
-        make_id: form?.id,
+        country_id: form?.country_id,
       }
     )
     if (response.status === 200) {
@@ -44,7 +47,7 @@ const submitForm = async () => {
         timeout: 2000,
       })
     }
-    emit('quickAddModel')
+    emit('quickAddFort')
   } catch (error) {
     if (error?.response?.status === 422) {
       validation.hasValidation = true
@@ -71,10 +74,15 @@ const props = defineProps({
     type: [String, Number, Boolean],
     default: null,
   },
-  makerList: null,
+  countryList: null,
 })
 
-const emit = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+const emit = defineEmits([
+  'update:modelValue',
+  'cancel',
+  'confirm',
+  'quickAddFort',
+])
 
 const value = computed({
   get: () => props.modelValue,
@@ -121,30 +129,33 @@ window.addEventListener('keydown', (e) => {
             <CardBox form @submit.prevent="submit">
               <SectionTitleLineWithButton
                 :icon="mdiCarEstate"
-                title="Add Vehical Model"
+                title="Add Fort"
                 main
               >
               </SectionTitleLineWithButton>
+              {{ form.country_id }}
               <el-select
                 filterable
-                v-model="form.id"
+                v-model="form.country_id"
                 class="m-2"
-                placeholder="Maker"
+                placeholder="Country"
                 size="large"
               >
                 <el-option
-                  v-for="item in makerList"
+                  v-for="item in countryList"
                   :key="item.id"
                   :label="item.label"
                   :value="item.id"
                 />
               </el-select>
-
-              <FormField label="Vehical Model" help="">
+              <!-- <FormField label="Shipping Country"> -->
+              <!-- <FormControl v-model="form.country_id" :options="countryList" /> -->
+              <!-- </FormField> -->
+              <FormField label="Fort" help="">
                 <FormControl
                   v-model="form.name"
                   type="text"
-                  placeholder="Vehical Model"
+                  placeholder="Fort Model"
                 />
               </FormField>
             </CardBox>

@@ -122,7 +122,7 @@
                 <el-form-item label="Vehicle Type">
                   <el-select
                     v-model="form.body_type_id"
-                    placeholder="please select your zone"
+                    placeholder="Select the Type"
                     style="width: 100%"
                   >
                     <el-option
@@ -138,7 +138,7 @@
                 <el-form-item label="Driver">
                   <el-select
                     v-model="form.drive_type_id"
-                    placeholder="please select your zone"
+                    placeholder="Select the Side"
                     style="width: 100%"
                   >
                     <el-option
@@ -198,52 +198,45 @@ const indexingDetails = reactive({
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/guest/vehicle?'
-    if (form.search_text)
-      filterQuery += `filter[search_text]=${form.search_text}`
-    if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
-    if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
-    if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
-    if (form.body_type_id)
-      filterQuery += `&filter[body_type_id]=${form.body_type_id}`
-    if (form.transmission_id)
-      filterQuery += `&filter[transmission_id]=${form.transmission_id}`
-    if (form.streeing_id)
-      filterQuery += `&filter[streeing_id]=${form.streeing_id}`
-    if (form.door_type_id)
-      filterQuery += `&filter[door_type_id]=${form.door_type_id}`
-    if (form.driver_type_id)
-      filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
-    if (form.fuel_type_id)
-      filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
-    if (form.engine) filterQuery += `&filter[engine_id]=${form.engine}`
-    if (form.exterior_color_id)
-      filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
-    if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
-    if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
-    if (form.from || form.to)
-      filterQuery += `&filter[make_at]=${form.from} - ${form.to}`
+    // let filterQuery = '/api/guest/vehicle?'
+    // if (form.search_text)
+    //   filterQuery += `filter[search_text]=${form.search_text}`
+    // if (form.make_id) filterQuery += `filter[make_id]=${form.make_id}`
+    // if (form.make_id) filterQuery += `&filter[model_id]=${form.model_id}`
+    // if (form.status_id) filterQuery += `&filter[status_id]=${form.status_id}`
+    // if (form.body_type_id)
+    //   filterQuery += `&filter[body_type_id]=${form.body_type_id}`
+    // if (form.transmission_id)
+    //   filterQuery += `&filter[transmission_id]=${form.transmission_id}`
+    // if (form.streeing_id)
+    //   filterQuery += `&filter[streeing_id]=${form.streeing_id}`
+    // if (form.door_type_id)
+    //   filterQuery += `&filter[door_type_id]=${form.door_type_id}`
+    // if (form.driver_type_id)
+    //   filterQuery += `&filter[driver_type_id]=${form.driver_type_id}`
+    // if (form.fuel_type_id)
+    //   filterQuery += `&filter[fuel_type_id]=${form.fuel_type_id}`
+    // if (form.engine) filterQuery += `&filter[engine_id]=${form.engine}`
+    // if (form.exterior_color_id)
+    //   filterQuery += `&filter[exterior_color_id]=${form.exterior_color_id}`
+    // if (form.feature_id) filterQuery += `&filter[feature_id]=${form.feature_id}`
+    // if (form.chassis_no) filterQuery += `&filter[chassis_no]=${form.chassis_no}`
+    // if (form.from || form.to)
+    //   filterQuery += `&filter[make_at]=${form.from} - ${form.to}`
 
-    console.log(form.from)
-    const response = await httpResource.get(filterQuery)
+    // const response = await httpResource.get(filterQuery)
     router.push({
       name: 'StockList',
       query: {
+        body_type_id: form.body_type_id,
+        drive_type_id: form.drive_type_id,
+        engine: form.engine,
+        from: form.from,
+        lot: form.lot,
         brands: [form.maker],
         models: [form.model_id],
         search_text: form.search_text,
-        status_id: form.status_id,
-        body_type_id: form.body_type_id,
-        transmission_id: form.transmission_id,
-        // streeing_id: form.streeing_id,
-        // door_type_id: form.door_type_id,
-        drive_type_id: form.drive_type_id,
-        // fuel_type_id: form.fuel_type_id,
-        exterior_color_id: form.exterior_color_id,
-        // feature_id: form.feature_id,
-        // chassis_no: form.chassis_no,
-        // make_at: form.make_at,
-        displacement: form.engine,
+        to: form.to,
       },
     })
   } catch (error) {
@@ -319,7 +312,7 @@ const getEngineTypes = async () => {
     const response = await httpResource.get('/api/resources/engine-types')
     engineTypeList.value = response.data.data.map((d) => ({
       ...d,
-      label: d.name + ' CC',
+      label: d.name,
     }))
   } catch (error) {
     console.error(error)
@@ -332,7 +325,6 @@ const getLotumbers = async () => {
       ...d,
       label: d.lot_number,
     }))
-    console.log(chassisList)
   } catch (error) {
     console.error(error)
   }

@@ -209,19 +209,140 @@ const getTransmitions = async () => {
     console.error(error)
   }
 }
-
-onMounted(async () => {
-  getMakers()
-  getStatus()
-  getBodyTypes()
-  getTransmitions()
-  getStreeings()
-  getDoorTypes()
-  getfuleTypes()
-  getExteriorColors()
-  getFeatures()
-  getDriveTypeList()
-})
+let countryList = ref([])
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {}
+}
+let fortList = ref([])
+const getForts = async (countyId) => {
+  try {
+    const response = await httpResource.get('/api/resources/forts/' + countyId)
+    fortList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+const changeCountry = (e) => {
+  getForts(e.id)
+}
+let gearTypeList = ref([])
+const getGearTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/gears')
+    gearTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let engineList = ref([])
+const getEngines = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/engine-types')
+    engineList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let odometerList = ref([])
+const getOdometers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/odometers')
+    odometerList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let streeingList = ref([])
+const getStreeings = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/streeings')
+    streeingList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let doorTypesList = ref([])
+const getDoorTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/door-types')
+    doorTypesList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let driveTypeList = ref([])
+const getDriverTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/drive-types')
+    driveTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let fuleTypeList = ref([])
+const getfuleTypes = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/fuel-types')
+    fuleTypeList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let exteriorColorList = ref([])
+const getExteriorColors = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/exterior-colors')
+    exteriorColorList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let featuresList = ref([])
+const getFeatures = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/features')
+    featuresList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+onMounted(async () => {})
 ///
 </script>
 
@@ -247,7 +368,13 @@ onMounted(async () => {
         :monthsList="monthsList"
         :driveTypeList="driveTypeList"
         :vehicle="vehicle"
+        :gearList="gearList"
+        :engineList="engineList"
+        :odometerList="odometerList"
+        :countryList="countryList"
+        :fortList="fortList"
         @changeMaker="changeMaker"
+        @changeCountry="changeCountry"
         @closeModal="isModalActive = false"
       />
     </CardBoxModal>
@@ -272,6 +399,7 @@ onMounted(async () => {
       {{ checkedRow.name }}
     </span>
   </div>
+
   <div class="table-scrollable" style="overflow: auto">
     <table>
       <thead>
@@ -318,6 +446,7 @@ onMounted(async () => {
       </tbody>
     </table>
   </div>
+
   <div class="p-3 lg:px-6 border-t border-gray-100 dark:border-slate-800">
     <BaseLevel>
       <BaseButtons>

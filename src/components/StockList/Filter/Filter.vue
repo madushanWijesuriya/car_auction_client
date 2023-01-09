@@ -82,17 +82,35 @@ onMounted(async () => {
         : props.filters?.brands && !Array.isArray(props.filters?.brands)
         ? [Number(props.filters?.brands)]
         : ''
+
+    form.maker =
+      form.maker.length > 0 ? (form.maker[0] === 0 ? [] : form.maker) : []
+
     form.model =
       props.filters?.models && Array.isArray(props.filters?.models)
         ? props.filters?.models.map(Number)
         : props.filters?.models && !Array.isArray(props.filters?.models)
         ? [Number(props.filters?.models)]
         : ''
+
+    form.model =
+      form.model.length > 0 ? (form.model[0] === 0 ? [] : form.model) : []
+
     if (props.filters?.drive_type_id) {
       form.drive = Number(props.filters?.drive_type_id)
     }
-    if (props.filters?.condition_id) {
-      conditionModel.value = props.filters?.condition_id
+    if (props.filters?.lot) {
+      form.lot = props.filters?.lot
+    }
+    if (props.filters?.engine) {
+      form.engine[0] = 100
+      var engine = props.engines.filter(
+        (q) => q.id === Number(props.filters?.engine)
+      )
+      form.engine[1] = engine.length > 0 ? engine[0].name : form.engine[1]
+      // form.engine[1] = props.engines.filter((q) => {
+      //   q.id = props.filters?.engine
+      // })[0].name
     }
     onSubmit()
   }
@@ -119,9 +137,9 @@ onMounted(async () => {
           <el-form-item label="Brand Name">
             <el-select
               v-model="form.maker"
+              placeholder="Any"
               multiple
               style="width: 100%"
-              placeholder="Any"
               @change="valueChanged"
               filterable
             >
@@ -235,7 +253,7 @@ onMounted(async () => {
           <el-form-item label="Gearbox">
             <el-select
               filterable
-              v-model="gear"
+              v-model="form.gear"
               placeholder="Select Gearbox"
               style="width: 100%"
             >
@@ -248,6 +266,7 @@ onMounted(async () => {
               </el-option>
             </el-select>
           </el-form-item>
+
           <el-form-item label="Lot Number">
             <el-select
               v-model="form.lot"

@@ -51,6 +51,18 @@ export default {
       type: Array,
       default: [],
     },
+    odometerList: {
+      type: Array,
+      default: [],
+    },
+    countryList: {
+      type: Array,
+      default: [],
+    },
+    fortList: {
+      type: Array,
+      default: [],
+    },
     gearList: {
       type: Array,
       default: [],
@@ -99,6 +111,7 @@ export default {
   setup(props, { emit }) {
     const base_url_api = import.meta.env.VITE_BASE_URL_API
     const {
+      countryList,
       makersList,
       modelsList,
       statusList,
@@ -107,6 +120,7 @@ export default {
       gearList,
       engineList,
       streeingList,
+      odometerList,
       doorTypesList,
       fuleTypeList,
       exteriorColorList,
@@ -148,30 +162,52 @@ export default {
     const submitForm = async () => {
       try {
         const formData = new FormData()
-        formData.append('make_id', form?.maker?.id)
-        formData.append('model_id', form?.model?.id)
-        formData.append('status_id', form?.status?.id)
-        formData.append('body_type_id', form?.bodyType?.id)
-        formData.append('transmission_id', form?.transmission?.id)
-        formData.append('engine_id', form?.engine_id?.id)
-        formData.append('gear_box_id', form?.gear_box_id?.id)
-        formData.append('streeing_id', form?.streeing?.id)
-        formData.append('door_type_id', form?.doorTypes?.id)
-        formData.append('driver_type_id', form?.driveType?.id)
-        formData.append('fuel_type_id', form?.fuelType?.id)
-        formData.append('exterior_color_id', form?.exteriorColor?.id)
+        formData.append('make_id', form?.maker?.id ? form?.maker?.id : '')
+        formData.append('model_id', form?.model?.id ? form?.model?.id : '')
+        formData.append('status_id', form?.status?.id ? form?.status?.id : '')
+        formData.append(
+          'body_type_id',
+          form?.bodyType?.id ? form?.bodyType?.id : ''
+        )
+        formData.append(
+          'engine_id',
+          form?.engine_id?.id ? form?.engine_id?.id : ''
+        )
+        formData.append(
+          'gear_box_id',
+          form?.gear_box_id?.id ? form?.gear_box_id?.id : ''
+        )
+        formData.append(
+          'transmission_id',
+          form?.transmission?.id ? form?.transmission?.id : ''
+        )
+        formData.append(
+          'streeing_id',
+          form?.streeing?.id ? form?.streeing?.id : ''
+        )
+        formData.append(
+          'door_type_id',
+          form?.doorTypes?.id ? form?.doorTypes?.id : ''
+        )
+        formData.append(
+          'driver_type_id',
+          form?.driveType?.id ? form?.driveType?.id : ''
+        )
+        formData.append(
+          'fuel_type_id',
+          form?.fuelType?.id ? form?.fuelType?.id : ''
+        )
+        formData.append(
+          'exterior_color_id',
+          form?.exteriorColor?.id ? form?.exteriorColor?.id : ''
+        )
         formData.append('chassis_no', form?.chassisNo)
         formData.append('make_at', `${form?.year}-${form?.month?.id}-01`)
         formData.append('fob_price', form?.fobPrice)
-        formData.append('title', form?.title)
-        formData.append('lot_number', form?.lot_number)
-        formData.append('seats', form?.seats)
         formData.append('displacement', form?.displacement)
         formData.append('isUsed', form?.condition === 'used' ? 1 : 0)
         formData.append('grade', form?.gradeTrim)
         formData.append('cover_image', form.coverImage)
-        formData.append('current_cover_image', form.current_cover_image)
-        formData.append('current_images', form.current_images)
         // formData.append('cover_image', 'cover image')
         formData.append('description', form.description)
         formData.append('private_note', form.privateNote)
@@ -180,7 +216,29 @@ export default {
         formData.append('sup_url', form.supplierURL)
         formData.append('mileage', form.mileage)
         formData.append('market_price', form.marketPrice)
-        formData.append('feature_id', form?.features?.id)
+        formData.append(
+          'feature_id',
+          form?.features?.id ? form?.features?.id : ''
+        )
+        formData.append(
+          'shipping_country_id',
+          form?.shipping_country_id?.id ? form?.shipping_country_id?.id : ''
+        )
+        formData.append('fort_id', form?.fort_id?.id ? form?.fort_id?.id : '')
+        formData.append(
+          'gear_box_id',
+          form?.gear_box_id?.id ? form?.gear_box_id?.id : ''
+        )
+        formData.append(
+          'odometer_id',
+          form?.odometer_id?.id ? form?.odometer_id?.id : ''
+        )
+        formData.append('lot_number', form?.lot_number)
+        formData.append('title', form?.title)
+        formData.append('seats', form?.seats)
+        formData.append('interior_condition', form?.interior_condition)
+        formData.append('wd', form?.wd)
+        formData.append('exterior_condition', form?.exterior_condition)
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
@@ -223,28 +281,25 @@ export default {
     }
 
     const initialState = {
-      maker: makersList[0],
-      model: null,
+      maker: '',
+      model: '',
       chassisNo: '',
       fobPrice: 0,
-      title: '',
-      lot_number: '',
-      seats: 0,
-      status: statusList[0],
+      status: '',
       year: new Date().getFullYear(),
       month: monthsList[new Date().getMonth()],
       displacement: '',
       condition: 'new',
-      bodyType: bodyTypeList[0],
+      bodyType: '',
       mileage: 0,
-      transmission: transmissionList[0],
-      engine_id: engineList[0],
-      gear_box_id: gearList[0],
-      streeing: streeingList[0],
-      doorTypes: doorTypesList[0],
-      driveType: driveTypeList[0],
-      fuelType: fuleTypeList[0],
-      exteriorColor: exteriorColorList[0],
+      gear_box_id: '',
+      engine_id: '',
+      transmission: '',
+      streeing: '',
+      doorTypes: '',
+      driveType: '',
+      fuelType: '',
+      exteriorColor: '',
       gradeTrim: '',
       features: '',
       coverImage: null,
@@ -255,6 +310,15 @@ export default {
       supplierPrice: 0,
       supplierURL: '',
       marketPrice: 0,
+      shipping_country_id: '',
+      odometer_id: '',
+      fort_id: '',
+      title: '',
+      lot_number: '',
+      seats: '',
+      interior_condition: '',
+      wd: '',
+      exterior_condition: '',
     }
 
     let form = reactive({ ...initialState })
@@ -263,6 +327,9 @@ export default {
 
     const changeMaker = (e) => {
       emit('changeMaker', e.id)
+    }
+    const changeCountry = (e) => {
+      emit('changeCountry', e.id)
     }
     let mainKey = ref(1)
 
@@ -290,6 +357,9 @@ export default {
       )
       form.fobPrice = vehicle.value?.fob_price
       form.title = vehicle.value?.title
+      form.wd = vehicle.value?.wd
+      form.interior_condition = vehicle.value?.interior_condition
+      form.exterior_condition = vehicle.value?.exterior_condition
       form.lot_number = vehicle.value?.lot_number
       form.seats = vehicle.value?.seats
       form.fuelType = fuleTypeList.value.find(
@@ -300,6 +370,10 @@ export default {
         (i) => i.id === vehicle.value?.make_id?.id
       )
       emit('changeMaker', vehicle.value?.make_id?.id)
+      form.country_id = countryList.value.find(
+        (i) => i.id === vehicle.value?.shipping_country_id?.id
+      )
+      emit('changeCountry', vehicle.value?.shipping_country_id?.id)
       form.marketPrice = vehicle.value?.market_price
       form.mileage = vehicle.value?.mileage
       form.month = monthsList.value.find(
@@ -319,6 +393,9 @@ export default {
       )
       form.streeing = streeingList.value.find(
         (i) => i.id === vehicle.value?.streeing_id?.id
+      )
+      form.odometer_id = odometerList.value.find(
+        (i) => i.id === vehicle.value?.odometer_id?.id
       )
       form.supplierName = vehicle.value?.sup_name
       form.supplierPrice = vehicle.value?.sup_price
@@ -343,6 +420,7 @@ export default {
       driveTypeList,
       doorTypesList,
       streeingList,
+      odometerList,
       transmissionList,
       engineList,
       gearList,
@@ -352,6 +430,7 @@ export default {
       statusList,
       modelsList,
       makersList,
+      countryList,
       exteriorColorList,
       handleImages,
       validateForm,
@@ -444,6 +523,23 @@ export default {
         <FormField label="Title" help="">
           <FormControl v-model="form.title" type="text" placeholder="Title" />
         </FormField>
+        <FormField label="WD" help="">
+          <FormControl v-model="form.wd" type="text" placeholder="WD" />
+        </FormField>
+        <FormField label="Exterior Condition" help="">
+          <FormControl
+            v-model="form.exterior_condition"
+            type="text"
+            placeholder="Exterior Condition"
+          />
+        </FormField>
+        <FormField label="Interior Condition" help="">
+          <FormControl
+            v-model="form.interior_condition"
+            type="text"
+            placeholder="Interior Condition"
+          />
+        </FormField>
         <FormField label="Lot Number" help="">
           <FormControl
             v-model="form.lot_number"
@@ -492,6 +588,22 @@ export default {
             type="number"
             placeholder="Mileage KM"
           />
+        </FormField>
+        <FormField label="Shipping Country">
+          <FormControl
+            v-model="form.shipping_country_id"
+            :options="countryList"
+            @update:modelValue="changeCountry"
+          />
+          <!-- <BaseButton
+            type="submit"
+            color="info"
+            label="Add Maker"
+            @click="addMaker"
+          /> -->
+        </FormField>
+        <FormField label="Fort">
+          <FormControl v-model="form.fort_id" :options="fortList" />
         </FormField>
         <AddBodyTypeModel ref="bodyTypeModel" />
         <FormField label="Body Type">
