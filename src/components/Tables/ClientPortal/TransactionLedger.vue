@@ -240,7 +240,7 @@ onMounted(async () => {})
               <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> 
           </td> -->
         </tr>
-        <tr class=" text-[#08246C] border-[#08246C] font-semibold">
+        <tr class=" text-[#08246C] border-[#08246C] border-2 font-semibold" style="border-width: 2px; border-bottom-width: 2px;">
             <td colspan="4" class=" text-center font-semibold">
                 Total
             </td>
