@@ -246,6 +246,16 @@ const router = createRouter({
       },
       path: '/admin/all-documents',
       name: 'all-dccs',
+      component: () => import('../views/AdminAllShippingView.vue'),
+    },
+    {
+      meta: {
+        title: 'Add Document',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/add-docs',
+      name: 'add-docs',
       component: () => import('../views/AdminAddShippingDoc.vue'),
     },
     {
