@@ -570,19 +570,12 @@ const networks = computed(() => {
           <p class="text-black font-freight-lable">Freight Calculator</p>
           <el-dropdown class="w-full">
             <el-button class="w-full">
-              Sri Lanka-Hambantota<el-icon class="el-icon--right">
+              {{ vehicleData?.shipping_country_id?.name }} -
+              {{ vehicleData?.fort_id?.name
+              }}<el-icon class="el-icon--right">
                 <ArrowRight />
               </el-icon>
             </el-button>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>Action 1</el-dropdown-item>
-                <el-dropdown-item>Action 2</el-dropdown-item>
-                <el-dropdown-item>Action 3</el-dropdown-item>
-                <el-dropdown-item>Action 4</el-dropdown-item>
-                <el-dropdown-item>Action 5</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
           </el-dropdown>
         </div>
 
@@ -609,7 +602,8 @@ const networks = computed(() => {
                 />
               </svg>
             </div>
-            Japan > Yokohama
+            {{ vehicleData?.shipping_country_id?.name }} >
+            {{ vehicleData?.fort_id?.name }}
           </div>
         </div>
 

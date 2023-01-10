@@ -46,9 +46,10 @@ const getAllUsers = async () => {
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/staff/staffuser?'
-    if (form.email) filterQuery += `filter[email]=${form.email}`
-    if (form.role_id) filterQuery += `filter[roles.id]=${form.role_id.id}`
+    let filterQuery = '/api/staff/shipping?'
+    if (form.vehicle_name)
+      filterQuery += `filter[vehicle_name]=${form.vehicle_name}`
+    if (form.chassis_no) filterQuery += `filter[chassis_no]=${form.chassis_no}`
     const response = await httpResource.get(filterQuery)
     shippingStore.$patch({
       shipping: response.data.data,
@@ -130,23 +131,8 @@ const yearsList = range(
   -1
 )
 const initialState = {
-  fromYear: new Date().getFullYear(),
-  toYear: new Date().getFullYear(),
-  email: '',
-  role_id: '',
-}
-let roleIds = ref([])
-
-const getRoles = async () => {
-  try {
-    const response = await httpResource.get('/api/resources/roles')
-    roleIds.value = response.data.data.map((d) => ({
-      ...d,
-      label: d.name,
-    }))
-  } catch (error) {
-    console.error(error)
-  }
+  vehicle_name: '',
+  chassis_no: '',
 }
 
 let form = reactive({ ...initialState })
@@ -163,29 +149,20 @@ let form = reactive({ ...initialState })
           ></SectionTitleLineWithButton>
           <el-row :gutter="20">
             <el-col :span="8">
-              <FormField label="Email">
+              <FormField label="Vehicle Title">
                 <FormControl
-                  v-model="form.email"
+                  v-model="form.vehicle_name"
                   :icon="mdiCalendarRange"
                   type="text"
                 />
               </FormField>
             </el-col>
             <el-col :span="8">
-              <FormField label="Email">
+              <FormField label="Chassise No">
                 <FormControl
-                  v-model="form.email"
+                  v-model="form.chassis_no"
                   :icon="mdiCalendarRange"
                   type="text"
-                />
-              </FormField>
-            </el-col>
-            <el-col :span="8">
-              <FormField label="Role">
-                <FormControl
-                  v-model="form.role_id"
-                  :icon="mdiCalendarRange"
-                  :options="roleIds"
                 />
               </FormField>
             </el-col>
