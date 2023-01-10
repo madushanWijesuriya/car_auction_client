@@ -210,7 +210,7 @@ const router = createRouter({
     {
       meta: {
         title: 'shipping document',
-        layout: 'LayoutAdmin',
+        layout: 'LayoutPortal',
         requiresAuth: false,
       },
       path: '/admin/shipping-document',
@@ -246,6 +246,16 @@ const router = createRouter({
       },
       path: '/admin/all-documents',
       name: 'all-dccs',
+      component: () => import('../views/AdminAllShippingView.vue'),
+    },
+    {
+      meta: {
+        title: 'Add Document',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/add-docs',
+      name: 'add-docs',
       component: () => import('../views/AdminAddShippingDoc.vue'),
     },
     {

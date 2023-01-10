@@ -46,7 +46,7 @@ export default {
 
         formData.append('consignee_name', form?.consignee_name)
 
-        formData.append('consignee_name', form?.consignee_name)
+        formData.append('yard_location', form?.yard_location)
 
         if (form.photos && form.photos.length > 0) {
           const imgLimit =
@@ -284,12 +284,17 @@ export default {
                 <el-input v-model="form.consignee_name" />
               </el-form-item>
             </FormField>
+            <FormField label="Yard Location">
+              <el-form-item>
+                <el-input v-model="form.yard_location" />
+              </el-form-item>
+            </FormField>
           </div>
 
           <div
             class="text-2xl text-gray-500 dark:text-slate-400 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center"
           >
-            Upload Images
+            Upload Shipping Documents
           </div>
           <div
             style="height: 400px; width: 100%; background: #f2f2f2"
