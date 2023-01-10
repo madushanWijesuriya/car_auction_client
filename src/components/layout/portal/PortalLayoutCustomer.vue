@@ -73,10 +73,11 @@ const url = computed(() => {
           <div class="group relative sidebar-item with-children py-4">
             <a :href="url + 'admin/sample-dashbord'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
+              :to="{ name: 'sample-dashbord' }"
             >
               <img src="@/assets/images/portal/sidebar/dashbord.svg" alt="" />
-              <div class="text-primary text-xs mx-2 fs-18">Dashboard</div>
-            </a>
+              <div class="text-dark text-xs mx-2 fs-18">Dashboard</div>
+            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children">
             <a :href="url + 'admin/financial-information'"
@@ -86,7 +87,7 @@ const url = computed(() => {
               <div class="text-dark text-xs mx-2 fs-18">
                 Financial Information
               </div>
-            </a>
+            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children py-3">
             <a :href="url + 'admin/shipping-document'"
@@ -94,7 +95,7 @@ const url = computed(() => {
             >
               <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />
               <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-            </a>
+            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children py-3">
             <a
@@ -137,3 +138,23 @@ const url = computed(() => {
     </div>
   </div>
 </template>
+<style scoped lang="scss">
+.router-link-active {
+  border: unset;
+  color: #08246c;
+  div {
+    color: #08246c !important;
+    font-weight: 700;
+  }
+  div::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #08246c;
+    position: absolute;
+    right: -20px;
+    top: 40%;
+  }
+}
+</style>

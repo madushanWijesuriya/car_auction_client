@@ -9,7 +9,7 @@ import BaseButtons from '@/components/admin/BaseButtons.vue'
 import BaseButton from '@/components/admin/BaseButton.vue'
 import UserAvatar from '@/components/admin/UserAvatar.vue'
 import httpResource from '@/http/httpResource'
-import AdminContentEdite from '@/components/admin/modals/AdminContentEdite.vue'
+import AdminEditPaymentModal from '@/components/admin/modals/AdminEditPaymentModal.vue'
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 
 const props = defineProps({
@@ -30,32 +30,35 @@ const props = defineProps({
         icon: mdiEye,
         onClick: 'defaultAction',
       },
-      {
-        color: 'danger',
-        icon: mdiTrashCan,
-        onClick: 'defaultAction',
-      },
     ],
   },
   rowItemsData: {
     type: Array,
     default: () => [],
   },
+  vehicleList: {
+    type: Array,
+    default: [],
+  },
+  customerList: {
+    type: Array,
+    default: [],
+  },
 })
 
 const { items, headers, actions, rowItemsData } = toRefs(props)
-let content = ref(null)
+let payment = ref(null)
 const openEditModel = async (vehicleId) => {
   // debugger
   if (items.value && items.value.length > 0) {
-    content.value = items.value.find((v) => v.id === vehicleId)
+    payment.value = items.value.find((v) => v.id === vehicleId)
   }
   await nextTick()
   isModalActive.value = true
 }
 
 function deleteVehicle(vehicleId) {
-  console.log('delete content clicked!', vehicleId)
+  console.log('delete payment clicked!', vehicleId)
 }
 
 const action = {
@@ -129,23 +132,20 @@ function isValidHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
-
-onMounted(async () => {
-  
-})
-///
+onMounted(async () => {})
 </script>
 
 <template>
   <div>
     <CardBoxModal
       v-model="isModalActive"
-      title="Edit content"
+      title="Edit payment"
       v-if="isModalActive"
     >
-      <AdminContentEdite
-        :content="content"
-        @changeMaker="changeMaker"
+      <AdminEditPaymentModal
+        :payment="payment"
+        :customerList="props.customerList"
+        :vehicleList="props.vehicleList"
         @closeModal="isModalActive = false"
       />
     </CardBoxModal>
@@ -194,7 +194,7 @@ onMounted(async () => {
             </span>
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">
-            <!-- <BaseButtons type="justify-start lg:justify-end" no-wrap>
+            <BaseButtons type="justify-start lg:justify-end" no-wrap>
               <div v-for="(item, index) in actions" :key="index">
                 <BaseButton
                   :label="item.label ? item.label : ''"
@@ -204,13 +204,13 @@ onMounted(async () => {
                   v-on="
                     index === 0
                       ? { click: () => openEditModel(row.id) }
-                      : { click: deleteVehicle }
+                      : { click: () => deleteStaffUser(row.id) }
                   "
                 />
-              </div> -->
+              </div>
 
               <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
-            <!-- </BaseButtons> -->
+            </BaseButtons>
           </td>
         </tr>
       </tbody>

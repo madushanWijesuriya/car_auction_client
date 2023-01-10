@@ -222,6 +222,7 @@ const url = computed(() => {
                   Make Invoices
                 </h2>
               </div>
+              <h2 class="text-xl font-bold text-dash my-auto">Make Invoices</h2>
             </div>
           </div>
         </div>

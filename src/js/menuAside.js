@@ -6,6 +6,7 @@ import {
   mdiCloudUpload,
   mdiFileDocument,
   mdiContentCopy,
+  mdiCash,
 } from '@mdi/js'
 
 export default [
@@ -91,10 +92,16 @@ export default [
       {
         to: '/admin/view-all-payments',
         label: 'All Payments',
-        icon: mdiCarSearch,
+        icon: mdiCash,
+      },
+      {
+        to: '/admin/add-payment',
+        label: 'Add Payments',
+        icon: mdiPlusCircle,
       },
     ],
   },
+
   // {
   //   label: 'Dropdown',
   //   icon: mdiViewList,

@@ -28,38 +28,48 @@ const decoratedItems = computed(() => {
       vehicle_id: i?.vehicle?.chassis_no,
       customer_id: i?.customer_id?.email,
       paid_amount: i?.paid_amount,
-      date:i?.updated_at,
-      remaining_amount:i?.remaining_amount
+      date: i?.updated_at,
+      remaining_amount: i?.remaining_amount,
     }
   })
 })
 
 const actions = [
   {
-    color: 'danger',
-    label: 'Block',
-    icon: mdiBlockHelper,
-    onClick: 'defaultAction',
-  },
-  {
     color: 'info',
     icon: mdiEye,
     onClick: 'defaultAction',
   },
-  {
-    color: 'danger',
-    icon: mdiTrashCan,
-    onClick: 'defaultAction',
-  },
 ]
+let vehicleList = ref([])
+const getVehicles = async () => {
+  try {
+    const response = await httpResource.get('/api/staff/vehicle')
+    vehicleList.value = response.data.data.map((d) => ({
+      id: d.id,
+      label: d.chassis_no,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+let customerList = ref([])
+const getCustomers = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/customers')
+    customerList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.email,
+    }))
+  } catch (error) {}
+}
 
 const getAllPayments = async () => {
   try {
     const response = await httpResource.get('/api/staff/payment')
     paymentsStore.$patch({
-        payments: response?.data,
+      payments: response?.data.data,
     })
-
   } catch (error) {
     console.error(error)
   }
@@ -67,16 +77,18 @@ const getAllPayments = async () => {
 
 const applyFilters = async () => {
   try {
-    let filterQuery = '/api/staff/customer?'
+    let filterQuery = '/api/staff/payment?'
 
-    if (form?.country_id?.id)
-      filterQuery += `filter[country_id]=${form.country_id?.id}`
-    if (form?.isActive?.id)
-      filterQuery += `&filter[isActive]=${form?.isActive?.id}`
-    if (form?.email) filterQuery += `&filter[email]=${form?.email}`
+    if (form?.customer_id?.id)
+      filterQuery += `filter[customer_id]=${form.customer_id?.id}`
+    if (form?.vehicle_id?.id)
+      filterQuery += `&filter[vehicle_id]=${form?.vehicle_id?.id}`
+    if (form?.paid_amount)
+      filterQuery += `&filter[paid_amount]=${form?.paid_amount}`
+    if (form?.agent) filterQuery += `&filter[agent]=${form?.agent}`
     const response = await httpResource.get(filterQuery)
-    clientsStore.$patch({
-      clients: response.data.data,
+    paymentsStore.$patch({
+      payments: response.data.data,
     })
   } catch (error) {
     console.error(error)
@@ -85,6 +97,8 @@ const applyFilters = async () => {
 
 onMounted(async () => {
   await getAllPayments()
+  await getVehicles()
+  await getCustomers()
 })
 
 const range = (start, stop, step) =>
@@ -130,51 +144,82 @@ const statusOptions = [
 
 const openModel = () => {
   isModalActive.value = true
-};
-
-// let form = reactive({ ...initialState })
+}
+const initialState = {
+  vehicle_id: '',
+  customer_id: '',
+  agent: '',
+  paid_amount: 0,
+}
+let form = reactive({ ...initialState })
 </script>
 <template>
   <div class="all-cars">
     <LayoutAuthenticated>
       <SectionMain>
         <CardBox>
-          <!-- <SectionTitleLineWithButton :icon="mdiCarEstate" title="Search" main></SectionTitleLineWithButton> -->
-          <!-- <div>
-            <CardBoxModal v-model="isModalActive" title="Send News and Letters" v-if="isModalActive">
-              <AdminSendNewsLetters :content="content" @changeMaker="changeMaker" @closeModal="isModalActive = false" />
-            </CardBoxModal>
-          </div>
+          <SectionTitleLineWithButton
+            title="Search"
+            main
+          ></SectionTitleLineWithButton>
           <el-row :gutter="20">
-            <el-col :span="6">
-              <FormField label="Country">
-                <FormControl v-model="form.country_id" :options="countryList" />
+            <el-col :span="8">
+              <FormField label="Vehicle">
+                <FormControl v-model="form.vehicle_id" :options="vehicleList" />
               </FormField>
             </el-col>
-            <el-col :span="6">
-              <FormField label="Status">
-                <FormControl v-model="form.isActive" :options="statusOptions" />
+            <el-col :span="8">
+              <FormField label="Customer">
+                <FormControl
+                  v-model="form.customer_id"
+                  :options="customerList"
+                />
               </FormField>
             </el-col>
-            <el-col :span="6">
-              <FormField label="Email">
-                <FormControl v-model="form.email" type="text" />
+            <el-col :span="8">
+              <FormField label="Amount">
+                <FormControl v-model="form.paid_amount" type="text" />
               </FormField>
             </el-col>
-          </el-row> -->
+            <el-col :span="8">
+              <FormField label="Agent">
+                <FormControl v-model="form.agent" type="text" />
+              </FormField>
+            </el-col>
+          </el-row>
 
-          <!-- <BaseButtons>
-            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Search" @click="applyFilters"
-              no-wrap />
-            <BaseButton type="reset justify-end lg:justify-end" color="info" outline label="Reset" @click="resetForm"
-              no-wrap />
-            <BaseButton type="submit justify-end lg:justify-end" color="info" label="Send News and Letters"
-              @click="openModel" no-wrap />
-          </BaseButtons> -->
+          <BaseButtons>
+            <BaseButton
+              type="submit justify-end lg:justify-end"
+              color="info"
+              label="Search"
+              @click="applyFilters"
+              no-wrap
+            />
+            <BaseButton
+              type="reset justify-end lg:justify-end"
+              color="info"
+              outline
+              label="Reset"
+              @click="resetForm"
+              no-wrap
+            />
+          </BaseButtons>
         </CardBox>
         <CardBox style="margin-top: 40px">
-          <SectionTitleLineWithButton title="Payments" main></SectionTitleLineWithButton>
-          <PaymentsTable :items="decoratedItems" :headers="headers" :actions="actions" @block-user="getAllClients">
+          <SectionTitleLineWithButton
+            :icon="mdiCarEstate"
+            title="All Payments"
+            main
+          ></SectionTitleLineWithButton>
+          <PaymentsTable
+            :customerList="customerList"
+            :vehicleList="vehicleList"
+            :items="decoratedItems"
+            :headers="headers"
+            :actions="actions"
+            @block-user="getAllClients"
+          >
           </PaymentsTable>
         </CardBox>
       </SectionMain>

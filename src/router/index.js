@@ -159,7 +159,7 @@ const router = createRouter({
     {
       meta: {
         title: 'sample-dashbord',
-        layout: 'LayoutAdmin',
+        layout: 'LayoutPortal',
         requiresAuth: false,
       },
       path: '/admin/sample-dashbord',
@@ -189,24 +189,34 @@ const router = createRouter({
     {
       meta: {
         title: 'financial information',
-        layout: 'LayoutAdmin',
+        layout: 'LayoutPortal',
         requiresAuth: false,
       },
       path: '/admin/financial-information',
-      name: 'financial-information',
-      component: () =>
-        import('../views/Portal/FinancialInformationTransactions.vue'),
+      name: 'financial-information-home',
+      component: () => import('../views/Portal/FinancialInformationHome.vue'),
     },
-    {
-      meta: {
-        title: 'financial information ledger',
-        layout: 'LayoutAdmin',
-        requiresAuth: false,
-      },
-      path: '/admin/financial-information-ledger',
-      name: 'financial-information-ledger',
-      component: () => import('../views/Portal/FinancialInformationLedger.vue'),
-    },
+    // {
+    //   meta: {
+    //     title: 'financial information transaction',
+    //     layout: 'LayoutAdmin',
+    //     requiresAuth: false,
+    //   },
+    //   path: '/admin/financial-information-transaction',
+    //   name: 'financial-information-transaction',
+    //   component: () =>
+    //     import('../views/Portal/FinancialInformationTransactions.vue'),
+    // },
+    // {
+    //   meta: {
+    //     title: 'financial information ledger',
+    //     layout: 'LayoutAdmin',
+    //     requiresAuth: false,
+    //   },
+    //   path: '/admin/financial-information-ledger',
+    //   name: 'financial-information-ledger',
+    //   component: () => import('../views/Portal/FinancialInformationLedger.vue'),
+    // },
     {
       meta: {
         title: 'shipping document',
@@ -398,13 +408,23 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'User MGT',
+        title: 'All Payment',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/view-all-payments',
       name: 'all-payments',
       component: () => import('../views/AdminAllPayments.vue'),
+    },
+    {
+      meta: {
+        title: 'Add Payment',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/add-payment',
+      name: 'add-payment',
+      component: () => import('../views/AdminCreatePayment.vue'),
     },
     {
       path: '/certifications-eaa',
