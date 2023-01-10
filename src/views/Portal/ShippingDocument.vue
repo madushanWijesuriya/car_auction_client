@@ -89,7 +89,7 @@ const downloadDocs = (list) => {
 const tableData = computed(() => {
   if (!shippingDocs.value) return []
   return shippingDocs.value.map((i) => {
-    const countryName = countryList.value.find((c) => c.id === i.countryId)
+    const countryName = countryList.value.find((c) => c.id === i.countryId.id)
     return {
       ...i,
       countryName: countryName?.name,

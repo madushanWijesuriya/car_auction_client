@@ -4,8 +4,11 @@ import { isEmpty } from 'lodash-es'
 import httpResource from '@/http/httpResource'
 import { useRouter } from 'vue-router'
 import Recapture from '../../components/recapture/Recapture.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
+const authStore = useAuthStore()
+const { setIsAuthenticated, setCurrentUser, setIsClient } = authStore
 
 let initialState = {
   email: '',
@@ -35,10 +38,19 @@ const loginSubmit = async () => {
       email: form.email,
       password: form.password,
     })
-    if (response.status === 200 || response.status === 201)
-      router.push({
-        name: 'portal-profile',
-      })
+    if (response.status === 200 || response.status === 201) {
+      {
+        const {
+          data: { data },
+        } = await httpResource.get('/api/auth/checkLogin')
+        setCurrentUser(data)
+        setIsAuthenticated(true)
+        setIsClient(response?.data?.isClient)
+        router.push({
+          name: 'sample-dashbord',
+        })
+      }
+    }
   } catch (error) {
     errorList.value = []
     console.error(error)
