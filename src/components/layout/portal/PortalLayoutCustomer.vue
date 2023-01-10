@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+import { computed, onMounted } from '@vue/runtime-core'
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT
+})
+
+</script>
 
 <template>
   <div class="h-screen">
@@ -65,8 +71,7 @@
       <div class="bg-white relative h-full min-h-screen w-full">
         <div class="xl:py-2">
           <div class="group relative sidebar-item with-children py-4">
-            <a
-              href="#"
+            <a :href="url + 'admin/sample-dashbord'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="@/assets/images/portal/sidebar/dashbord.svg" alt="" />
@@ -74,8 +79,7 @@
             </a>
           </div>
           <div class="group relative sidebar-item with-children">
-            <a
-              href="#"
+            <a :href="url + 'admin/financial-information'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="@/assets/images/portal/sidebar/fin_repo.svg" alt="" />
@@ -85,8 +89,7 @@
             </a>
           </div>
           <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
+            <a :href="url + 'admin/shipping-document'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />

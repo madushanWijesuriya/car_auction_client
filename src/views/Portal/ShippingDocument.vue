@@ -2,6 +2,7 @@
 import { computed, ref, reactive, onMounted } from 'vue'
 import httpResource from '@/http/httpResource'
 import camelCase from 'camelcase'
+import SideBar from './Sidebar.vue'
 import { mdiTrayArrowDown } from '@mdi/js'
 import JSZip from 'jszip'
 import axios from 'axios'

@@ -1,9 +1,13 @@
 <script setup>
 import { computed, onMounted } from '@vue/runtime-core'
+
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT
+})
 </script>
 <template>
   <div class="h-screen">
-    <header
+    <!-- <header
       class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between"
     >
       <div class="flex items-center h-full mx-5">
@@ -14,9 +18,9 @@ import { computed, onMounted } from '@vue/runtime-core'
           <h2 class="text-white text-2xl">Dashboard</h2>
         </div>
       </div>
-    </header>
+    </header> -->
 
-    <div id="main" class="pt-16">
+    <div id="main">
       <!-- Sidebar -->
       <div class="bg-white relative h-full min-h-screen w-full">
         <div class="xl:py-2">
@@ -28,14 +32,9 @@ import { computed, onMounted } from '@vue/runtime-core'
                 src="../../assets/images/portal/sidebar/dashbord.svg"
                 alt=""
               />
-              <div class="text-dark text-xs mx-2 fs-18">
-                <routerLink
-                  active-class="active"
-                  class="font-semibold cursor-pointer"
-                  :to="'/admin/sample-dashbord'"
-                  >Dashboard</routerLink
-                >
-              </div>
+              <a :href="url + 'admin/sample-dashbord'">
+                <div class="text-dark text-xs mx-2 fs-18">Dashboard</div>
+              </a>
             </div>
           </div>
           <div class="group relative sidebar-item with-children">
@@ -46,14 +45,11 @@ import { computed, onMounted } from '@vue/runtime-core'
                 src="../../assets/images/portal/sidebar/fin_repo.svg"
                 alt=""
               />
-              <div class="text-dark text-xs mx-2 fs-18">
-                <routerLink
-                  active-class="active"
-                  class="font-semibold cursor-pointer"
-                  :to="'/admin/financial-information'"
-                  >Financial Information</routerLink
-                >
-              </div>
+              <a :href="url + 'admin/financial-information'">
+                <div class="text-dark text-xs mx-2 fs-18">
+                  Financial Information
+                </div>
+              </a>
             </div>
           </div>
           <div class="group relative sidebar-item with-children py-3">
@@ -61,14 +57,11 @@ import { computed, onMounted } from '@vue/runtime-core'
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">
-                <routerLink
-                  active-class="active"
-                  class="font-semibold cursor-pointer"
-                  :to="'/admin/shipping-document'"
-                  >Shipping Document</routerLink
-                >
-              </div>
+              <a :href="url + 'admin/shipping-document'">
+                <div class="text-dark text-xs mx-2 fs-18">
+                  Shipping Document
+                </div>
+              </a>
             </div>
           </div>
           <div class="group relative sidebar-item with-children py-3">
@@ -108,12 +101,11 @@ import { computed, onMounted } from '@vue/runtime-core'
                 alt=""
               />
               <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                <routerLink
-                  active-class="active"
-                  class="font-semibold cursor-pointer"
-                  :to="'/admin/freight-invoices'"
-                  >Freight Invoices</routerLink
-                >
+                <a :href="url + 'admin/freight-invoices'">
+                  <div class="text-dark text-xs mx-2 fs-18">
+                    Freight Invoices
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -127,12 +119,9 @@ import { computed, onMounted } from '@vue/runtime-core'
                 alt=""
               />
               <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                <routerLink
-                  active-class="active"
-                  class="font-semibold cursor-pointer"
-                  :to="'/admin/portal-profile'"
-                  >Profile</routerLink
-                >
+                <a :href="url + 'admin/portal-profile'">
+                  <div class="text-dark text-xs mx-2 fs-18">Profile</div>
+                </a>
               </div>
             </div>
           </div>
