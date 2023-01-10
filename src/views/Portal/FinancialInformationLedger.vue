@@ -44,6 +44,12 @@ const handleSearch = (event) => {
 onMounted(async () => {
   await getAllTransactions()
 })
+
+
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT;
+});
+
 </script>
 <template>
   <div class="h-screen">
@@ -55,6 +61,7 @@ onMounted(async () => {
           <img src="../../assets/images/portal/sidebar/image.png" alt="" />
         </div>
         <div class="flex items-center w-64 mx-5">
+          <a :href="url + '/admin/financial-information'">How to Order</a>
           <h2 class="text-primary text-2xl">Financial information</h2>
         </div>
       </div>
