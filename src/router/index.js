@@ -210,7 +210,7 @@ const router = createRouter({
     {
       meta: {
         title: 'shipping document',
-        layout: 'LayoutAdmin',
+        layout: 'LayoutPortal',
         requiresAuth: false,
       },
       path: '/admin/shipping-document',

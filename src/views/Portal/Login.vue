@@ -35,7 +35,10 @@ const loginSubmit = async () => {
       email: form.email,
       password: form.password,
     })
-    if (response.status === 200 || response.status === 201) router.push('/')
+    if (response.status === 200 || response.status === 201)
+      router.push({
+        name: 'portal-profile',
+      })
   } catch (error) {
     errorList.value = []
     console.error(error)
