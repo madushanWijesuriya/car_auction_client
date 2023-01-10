@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer.vue'
 import AdminAuthenticated from './components/layout/admin/LayoutAuthenticated.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import PortalLayoutCustomer from '@/components/layout/portal/PortalLayoutCustomer.vue'
 
 const route = useRoute()
 const pathMeta = computed(() => route.meta)
@@ -14,8 +15,19 @@ const pathMeta = computed(() => route.meta)
 <template>
   <div id="app">
     <div v-if="pathMeta.layout" class="layout-02">
-      <body>
+      <body v-if="pathMeta.layout === 'LayoutPortal'">
+        <PortalLayoutCustomer>
+          <div>
+            <RouterView />
+          </div>
+        </PortalLayoutCustomer>
+        <!-- <RouterView /> -->
+      </body>
+      <body v-else-if="pathMeta.layout">
         <RouterView />
+      </body>
+      <body v-else>
+        Loading...
       </body>
     </div>
     <div v-else class="layout-01">
@@ -40,4 +52,6 @@ const pathMeta = computed(() => route.meta)
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@import '@/assets/scss/clientPortalSidebarOther.scss';
+</style>
