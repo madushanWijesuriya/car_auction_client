@@ -398,13 +398,23 @@ const router = createRouter({
     },
     {
       meta: {
-        title: 'User MGT',
+        title: 'All Payment',
         layout: 'LayoutAdmin',
         requiresAuth: true,
       },
       path: '/admin/view-all-payments',
       name: 'all-payments',
       component: () => import('../views/AdminAllPayments.vue'),
+    },
+    {
+      meta: {
+        title: 'Add Payment',
+        layout: 'LayoutAdmin',
+        requiresAuth: true,
+      },
+      path: '/admin/add-payment',
+      name: 'add-payment',
+      component: () => import('../views/AdminCreatePayment.vue'),
     },
     {
       path: '/certifications-eaa',
