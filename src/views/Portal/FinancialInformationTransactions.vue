@@ -192,6 +192,12 @@
                   <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Transactions</h2>
                   <p class="text-sm text-white">Total Transactions : 81</p>
                 </div>
@@ -206,6 +212,12 @@
                   />
                 </div>
                 <div>
+                  <routerLink
+                    active-class="active"
+                    class="font-semibold cursor-pointer"
+                    :to="'/admin/financial-information-ledger'"
+                    >Financial Information</routerLink
+                  >
                   <h2 class="text-xl my-auto text-white">Ledger</h2>
                   <p class="text-sm text-white">Total Balance : $ 738,373.00</p>
                 </div>
@@ -255,6 +267,7 @@
               </div>
             </div>
           </div>
+
           <table class="table-auto">
             <thead>
               <tr>

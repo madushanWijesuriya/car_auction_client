@@ -84,6 +84,17 @@ export default [
       },
     ],
   },
+  {
+    label: 'Payments',
+    icon: mdiViewList,
+    menu: [
+      {
+        to: '/admin/view-all-payments',
+        label: 'All Payments',
+        icon: mdiCarSearch,
+      },
+    ],
+  },
   // {
   //   label: 'Dropdown',
   //   icon: mdiViewList,
