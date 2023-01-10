@@ -2,11 +2,29 @@
 import { computed, ref, reactive, onMounted } from 'vue'
 import httpResource from '@/http/httpResource'
 import camelCase from 'camelcase'
+import { mdiTrayArrowDown } from '@mdi/js'
+import JSZip from 'jszip'
+import axios from 'axios'
+import { saveAs } from 'file-saver'
 
 // data
 const shippingDocs = ref([])
+let countryList = ref([])
+const zip = new JSZip()
 
 // methods
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const getShippingDocs = async () => {
   try {
     const filterStr = '?'
@@ -15,14 +33,46 @@ const getShippingDocs = async () => {
       status,
     } = await httpResource.get(`/api/staff/shipping${filterStr}`)
     if (status === 200) {
-      shippingDocs.value = data.map((obj) => {
-        return camelCaseKeys(obj)
-      })
+      const baseURL = import.meta.env.VITE_BASE_URL_API
+      shippingDocs.value = data
+        .map((obj) => {
+          return camelCaseKeys(obj)
+        })
+        .map((obj) => {
+          return {
+            ...obj,
+            checked: false,
+            downloadsList: [
+              { name: 'file1', url: baseURL + obj.doc1 },
+              { name: 'file2', url: baseURL + obj.doc2 },
+              { name: 'file3', url: baseURL + obj.doc3 },
+            ],
+          }
+        })
     }
     console.log(shippingDocs.value)
   } catch (error) {
     console.error(error)
   }
+}
+const download = (item) => {
+  //download single file as blob and add it to zip archive
+  return httpResource.get(item.url, { responseType: 'blob' }).then((resp) => {
+    zip.file(item.name, resp.data)
+  })
+}
+const downloadAll = (list) => {
+  const arrOfFiles = list.map((item) => download(item)) //create array of promises
+  Promise.all(arrOfFiles)
+    .then(() => {
+      //when all promises resolved - save zip file
+      zip.generateAsync({ type: 'blob' }).then(function (blob) {
+        saveAs(blob, 'shipping_docs.zip')
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 function camelCaseKeys(object) {
   return Object.entries(object).reduce((carry, [key, value]) => {
@@ -31,8 +81,26 @@ function camelCaseKeys(object) {
   }, {})
 }
 
+const downloadDocs = (list) => {
+  // console.log(list)
+  downloadAll(list)
+}
+
+// computed properties
+const tableData = computed(() => {
+  if (!shippingDocs.value) return []
+  return shippingDocs.value.map((i) => {
+    const countryName = countryList.value.find((c) => c.id === i.countryId)
+    return {
+      ...i,
+      countryName: countryName?.name,
+    }
+  })
+})
+
 // LC hooks
 const onCreated = async () => {
+  await getCountries()
   await getShippingDocs()
 }
 
@@ -129,21 +197,42 @@ onCreated()
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="(row, idx) in tableData" :key="idx">
             <td>
               <label class="block">
-                <input class="mr-2 leading-tight" type="checkbox" />
+                <input
+                  class="mr-2 leading-tight"
+                  type="checkbox"
+                  v-model="row.checked"
+                />
               </label>
             </td>
-            <td>Sri Lanka</td>
+            <td>{{ row.countryName }}</td>
             <td>JZX100-6036994</td>
-            <td>04/08/2022</td>
-            <td>24/11/2022</td>
-            <td>NAGURA</td>
-            <td>24/11/2022</td>
-            <td>段ちきぽ写心べが</td>
-            <td>BREMERHAVEN</td>
-            <td>Action Sheet</td>
+            <td>{{ row.etd }}</td>
+            <td>{{ row.eta }}</td>
+            <td>{{ row.pol }}</td>
+            <td>{{ row.pod }}</td>
+            <td>{{ row.consigneeName }}</td>
+            <td>{{ row.yardLocation }}</td>
+            <td>
+              <div class="flex gap-5 items-center">
+                Action Sheet
+                <span
+                  class="cursor-pointer"
+                  @click="downloadDocs(row.downloadsList)"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    :width="'20px'"
+                    :height="'20px'"
+                    class="inline-block"
+                  >
+                    <path fill="#08246C" :d="mdiTrayArrowDown" />
+                  </svg>
+                </span>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
