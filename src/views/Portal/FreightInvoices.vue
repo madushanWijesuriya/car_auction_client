@@ -1,3 +1,6 @@
+<script setup>
+import SideBar from './Sidebar.vue'
+</script>
 <template>
     <div class="h-screen">
         <header class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between">
@@ -38,8 +41,8 @@
         </header>
 
         <div id="main" class="pt-16">
-            <!-- Sidebar -->
-            <div class="bg-white relative h-full min-h-screen w-full">
+            <SideBar/>
+            <!-- <div class="bg-white relative h-full min-h-screen w-full">
                 <div class="xl:py-2">
                     <div class="group relative sidebar-item with-children py-4">
                         <a href="#"
@@ -86,6 +89,7 @@
 6 text-xs mx-2 fs-18">Settings</div>
                         </a>
                     </div>
+                     -->
                     <!-- <div class="group relative sidebar-item with-children">
                         <a href="#"
                             class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-blue-dark xl:bg-black bg-black xl:opacity-75">
@@ -113,8 +117,8 @@
                             </a>
                         </div>
                     </div> -->
-                </div>
-            </div>
+                <!-- </div>
+            </div> -->
             <div class="bg-gray-200 p-5">
                 <div class="bg-white p-6 rounded-lg shadow-lg ">
                     <div class="flex flex-row">

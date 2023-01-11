@@ -1,5 +1,56 @@
 <script setup>
+import TransactionLedger from '@/components/Tables/ClientPortal/TransactionLedger.vue'
+import { useTransactionsStore } from '../../stores/transanctionLegder'
+import { computed, onMounted, reactive, ref } from 'vue'
+import httpResource from '@/http/httpResource'
+import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
 import SideBar from './Sidebar.vue'
+const toast = useToast()
+const transactionsStore = useTransactionsStore()
+const { transactions: items, footerData } = storeToRefs(transactionsStore)
+const headers = computed(() => transactionsStore.tableHeaders)
+
+const decoratedItems = computed(() => {
+  if (!items.value || !Array.isArray(items.value)) return []
+  return items.value.map((i) => {
+    return {
+      id: i?.id,
+      updated_at: i?.updated_at,
+      customer_id: i?.vehicle?.title,
+      updated_at: i?.updated_at,
+      debit: i?.debit,
+      credit: i?.credit,
+      balance: i?.balance,
+    }
+  })
+})
+
+const getAllTransactions = async () => {
+  try {
+    const response = await httpResource.get('api/customer/transaction')
+    transactionsStore.$patch({
+      transactions: response.data,
+      footerData: response.footer,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const handleSearch = (event) => {
+  console.log('abc')
+}
+
+onMounted(async () => {
+  await getAllTransactions()
+})
+
+
+const url = computed(() => {
+  return import.meta.env.VITE_BASE_URL_CLIENT;
+});
+
 </script>
 <template>
   <div class="h-screen">
@@ -11,6 +62,7 @@ import SideBar from './Sidebar.vue'
           <img src="../../assets/images/portal/sidebar/image.png" alt="" />
         </div>
         <div class="flex items-center w-64 mx-5">
+          <a :href="url + '/admin/financial-information'"></a>
           <h2 class="text-primary text-2xl">Financial information</h2>
         </div>
       </div>
@@ -63,10 +115,10 @@ import SideBar from './Sidebar.vue'
     </header>
 
     <div id="main" class="pt-16">
-      <!-- Sidebar -->
       <SideBar/>
-      <!-- <div class="bg-white relative h-full min-h-screen w-full">
-        <div class="xl:py-2">
+      <!-- <div class="bg-white relative h-full min-h-screen w-full"> -->
+       
+        <!-- <div class="xl:py-2">
           <div class="group relative sidebar-item with-children py-4">
             <a
               href="#"
@@ -144,8 +196,8 @@ import SideBar from './Sidebar.vue'
               </div>
             </a>
           </div>
-        </div>
-      </div> -->
+        </div> -->
+      <!-- </div> -->
       <div class="bg-gray-200 p-5">
         <div class="bg-white p-6 rounded-lg shadow-lg">
           <div class="grid grid-cols-4 gap-4">
@@ -216,7 +268,7 @@ import SideBar from './Sidebar.vue'
         <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
           <div class="flex justify-between">
             <div class="">
-              <h2 class="text-xl text-blue-800">Transactions</h2>
+              <h2 class="text-xl text-blue-800">Ledger</h2>
             </div>
             <div
               class="font-sans text-black bg-white flex items-center justify-center"
@@ -226,6 +278,7 @@ import SideBar from './Sidebar.vue'
                   type="text"
                   class="px-4 py-2"
                   placeholder="Search Vehical..."
+                  @change="handleSearch"
                 />
                 <button
                   class="flex items-center justify-center px-4 border-l bg-blue-800"
@@ -244,8 +297,20 @@ import SideBar from './Sidebar.vue'
               </div>
             </div>
           </div>
-
-          <table class="table-auto">
+          <TransactionLedger
+            @edit-user="getAllUsers"
+            :items="decoratedItems"
+            :headers="headers"
+            :footer="footerData"
+          >
+          </TransactionLedger>
+          <div class="w-full">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <!-- <table class="table-auto">
             <thead>
               <tr>
                 <th>
@@ -286,7 +351,7 @@ import SideBar from './Sidebar.vue'
                 <td>0</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
       </div>
     </div>
