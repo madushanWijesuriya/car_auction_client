@@ -3,24 +3,25 @@ import { ref, reactive, computed, Transition } from 'vue'
 const items = reactive([
   {
     id: 1,
-    image: 'carousel/car02.svg',
+    image: 'carousel/car01.svg',
     order: 1,
     alt: 'image-1',
     selected: false,
   },
-  {
-    id: 2,
-    image: 'carousel/car01.svg',
-    order: 2,
-    alt: 'image-2',
-    selected: false,
-  },
+
   {
     id: 3,
-    image: 'carousel/car04.svg',
+    image: 'carousel/car06.svg',
     order: 3,
     alt: 'image-3',
     selected: true,
+  },
+  {
+    id: 2,
+    image: 'carousel/car05.svg',
+    order: 2,
+    alt: 'image-2',
+    selected: false,
   },
 ])
 const activeImageObj = computed(() => {
