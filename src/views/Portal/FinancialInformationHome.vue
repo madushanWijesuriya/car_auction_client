@@ -86,7 +86,7 @@ const getStockList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/stock')
+    } = await httpResource.get('/api/customer/stock')
     if (status === 200) {
       stockList.value = data.map((obj) => {
         return camelCaseKeys(obj)
@@ -103,7 +103,7 @@ const getTransactionList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/transaction')
+    } = await httpResource.get('/api/customer/transaction')
     if (status === 200) {
       transactionList.value = data.map((obj) => {
         return camelCaseKeys(obj)
@@ -120,7 +120,7 @@ const getLedgerList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/ledger')
+    } = await httpResource.get('/api/customer/ledger')
     if (status === 200) {
       ledgerList.value = data.map((obj) => {
         return camelCaseKeys(obj)
