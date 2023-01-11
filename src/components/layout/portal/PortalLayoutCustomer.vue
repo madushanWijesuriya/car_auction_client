@@ -77,7 +77,6 @@ const url = computed(() => {
             >
               <img src="@/assets/images/portal/sidebar/dashbord.svg" alt="" />
               <div class="text-dark text-xs mx-2 fs-18">Dashboard</div>
-            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children">
             <a :href="url + 'admin/financial-information'"
@@ -87,7 +86,6 @@ const url = computed(() => {
               <div class="text-dark text-xs mx-2 fs-18">
                 Financial Information
               </div>
-            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children py-3">
             <a :href="url + 'admin/shipping-document'"
@@ -95,7 +93,6 @@ const url = computed(() => {
             >
               <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />
               <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-            </routerLink>
           </div>
           <div class="group relative sidebar-item with-children py-3">
             <a
