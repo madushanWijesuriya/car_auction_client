@@ -12,14 +12,14 @@ const selections = ref([
     id: 1,
     name: 'My Stock',
     imagePath: '/sidebar/fin_repo.svg',
-    content: 'Total Units : 81',
+    content: '',
     selected: true,
   },
   {
     id: 2,
     name: 'Transactions',
     imagePath: '/sidebar/fi.svg',
-    content: 'Total Transactions : 81',
+    content: '',
     selected: false,
   },
   {
@@ -46,6 +46,17 @@ const selectedSelection = computed(() => {
   const selected = selections.value.find((s) => s.selected)
   if (selected) return selected
   return selections.value[0]
+})
+const selectionComputed = computed(() => {
+  const myStockCount = stockList.value.length
+  const transactionCount = transactionList.value.length
+  const ledgerCount = ledgerList.value.length
+
+  const selectionArray = selections.value
+  selectionArray[0].content = `Total Units : ${myStockCount}`
+  selectionArray[1].content = `Total Transactions : ${transactionCount}`
+
+  return selectionArray
 })
 
 // methods
@@ -75,7 +86,7 @@ const getStockList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/customer/stock')
+    } = await httpResource.get('/api/stock')
     if (status === 200) {
       stockList.value = data.map((obj) => {
         return camelCaseKeys(obj)
@@ -92,7 +103,7 @@ const getTransactionList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/customer/stock')
+    } = await httpResource.get('/api/transaction')
     if (status === 200) {
       transactionList.value = data.map((obj) => {
         return camelCaseKeys(obj)
@@ -109,7 +120,7 @@ const getLedgerList = async () => {
     const {
       data: { data },
       status,
-    } = await httpResource.get('/api/customer/stock')
+    } = await httpResource.get('/api/ledger')
     if (status === 200) {
       ledgerList.value = data.map((obj) => {
         return camelCaseKeys(obj)
@@ -124,6 +135,8 @@ const getLedgerList = async () => {
 // LC hooks
 onMounted(async () => {
   await getStockList()
+  await getTransactionList()
+  await getLedgerList()
 })
 </script>
 
@@ -135,7 +148,7 @@ onMounted(async () => {
           <div
             class="bg-blue-800 p-6 rounded-lg shadow-lg cursor-pointer"
             @click="changeSelection(selection)"
-            v-for="(selection, idx) in selections"
+            v-for="(selection, idx) in selectionComputed"
             :key="idx"
           >
             <div class="flex justify-items-center content-center">
@@ -185,6 +198,7 @@ onMounted(async () => {
                 v-for="(stock, idx) in stockList"
                 :key="idx"
                 class="mb-1"
+                :stock="stock"
               >
               </StockCard>
             </div>

@@ -46,11 +46,11 @@ const { transactionsList } = toRefs(props)
               <td>{{ transaction.agent }}</td>
               <td>{{ transaction.vehicle?.chassis_no }}</td>
               <td>
-                {{ new Date(transaction?.vehicle.make_at).getFullYear() }}
+                {{ new Date(transaction?.makeAt).getFullYear() }}
               </td>
-              <td>Yellow</td>
-              <td>{{ transaction.vehicle.displacement }}</td>
-              <td>{{ transaction.vehicle.fob_price }}</td>
+              <td>{{ transaction?.vehicle?.exterior_color_id?.name }}</td>
+              <td>{{ transaction?.displacement }}</td>
+              <td>{{ transaction?.fobPrice }}</td>
               <td>85,999</td>
               <td>19,999</td>
               <td>{{ transaction?.paidAmount || 0 }}</td>

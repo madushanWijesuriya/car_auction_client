@@ -1,10 +1,23 @@
-<script setup></script>
+<script setup>
+import { ref, reactive, computed, onMounted, toRefs } from 'vue'
+
+// props
+const props = defineProps(['stock'])
+const { stock } = toRefs(props)
+
+const baseUrl = ref(import.meta.env.VITE_BASE_URL_API)
+</script>
 
 <template>
   <div class="stock_card flex flex-nowrap w-full p-4">
     <div class="image-container w-[123px] grow-0 mr-4">
       <div class="flex flex-col h-[132px]">
-        <img src="/placeholderstock.png" alt="image-001" />
+        <!-- <img src="/placeholderstock.png" alt="image-001" /> -->
+        <img
+          :src="baseUrl + stock?.vehicle?.cover_image_full_url"
+          alt="image-001"
+          class="h-[100px] w-[123px]"
+        />
         <span
           class="bg-color-01 text-white flex gap-2 justify-center items-center h-[32px]"
         >
@@ -16,45 +29,140 @@
     <div>
       <div class="flex items-center">
         <div class="font-size-20 color-01 font-bold">
-          Toyota Mark II E-JZX100 1997/08
+          {{
+            `${stock?.vehicle?.make_id?.name} ${
+              stock?.vehicle?.model_id?.name
+            } ${new Date(stock?.vehicle?.make_at).getFullYear()}`
+          }}
         </div>
-        <div
-          class="text-white font-size-16 font-normal bg-[#FF7A00] py-[5px] px-[20px] rounded-3xl ml-6"
-        >
-          Balance : ¥ 8,563.00
+        <div>
+          <div
+            v-if="stock?.status?.balance_amount"
+            class="text-white font-size-16 font-normal bg-[#FF7A00] py-[5px] px-[20px] rounded-3xl ml-6"
+          >
+            Balance : {{ stock?.status?.balance_amount }}
+          </div>
+          <div
+            v-else
+            class="text-white font-size-16 font-normal py-[5px] px-[20px] rounded-3xl ml-6 bg-[#009B63]"
+          >
+            {{ stock?.status?.name }}
+          </div>
         </div>
       </div>
       <div class="flex gap-14 mt-4">
-        <div class="flex gap-6">
+        <div class="flex gap-6 font-size-14">
           <div class="flex flex-col flex-nowrap">
-            <div>Engine Capacity : 2,490 CC</div>
-            <div>Grade : i</div>
-            <div>Year/Month : 1997/08</div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Engine Capacity :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.displacement
+              }}</span>
+            </div>
+            <div class="flex gap-1">
+              <span class="color-01 font-bold"> Grade : </span>
+              <span class="text-black font-extrabold">
+                {{ stock?.vehicle?.grade }}
+              </span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Year/Month : </span>
+              <span class="text-black font-extrabold">{{
+                `${new Date(stock?.vehicle?.make_at).getFullYear()}/${new Date(
+                  stock?.vehicle?.make_at
+                ).getMonth()}`
+              }}</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-nowrap">
-            <div>Mileage : 81,000 KM</div>
-            <div>Transmission : AT</div>
-            <div>Model : ALSIKS</div>
+          <div class="flex flex-col flex-wrap">
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold"> Mileage : </span>
+              <span class="text-black font-extrabold">
+                {{ stock?.vehicle?.mileage }} KM
+              </span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold"> Transmission : </span>
+              <span class="text-black font-extrabold">
+                {{ stock?.vehicle?.transmission_id?.name }}
+              </span>
+            </div>
+            <div flex gap-1 flex-wrap>
+              <span class="color-01 font-bold">Model :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.model_id.name
+              }}</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-nowrap">
-            <div>Chassis No. : JZX100-6036994</div>
-            <div>Seats : 4</div>
-            <div>Odometer : Normal</div>
+          <div class="flex flex-col flex-wrap">
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold"> Chassis No. :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.chassis_no
+              }}</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Seats :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.seats
+              }}</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Odometer :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.odometer_id?.name
+              }}</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-nowrap">
-            <div>Now On Sale : Ref# 22830T</div>
-            <div>2WD/4WD : 2</div>
-            <div>Fuel : Hybrid</div>
+          <div class="flex flex-col flex-wrap">
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Now On Sale :</span>
+              <span class="text-black font-extrabold">Ref# 22830T</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">2WD/4WD :</span>
+              <span class="text-black font-extrabold">2</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Fuel :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.fuel_type_id?.name
+              }}</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-nowrap">
-            <div>Make : BMW</div>
-            <div>Exterior Cond. : 3.5</div>
-            <div>Drive : Right Hand</div>
+          <div class="flex flex-col flex-wrap">
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Make :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.make_id?.name
+              }}</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Exterior Cond. :</span>
+              <span class="text-black font-extrabold">3.5</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Drive :</span>
+              <span class="text-black font-extrabold"> Right Hand</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-nowrap">
-            <div>Type : i8</div>
-            <div>Color : White</div>
-            <div>Interior Cond. : D</div>
+          <div class="flex flex-col flex-wrap">
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Type :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.model_id?.name
+              }}</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Color :</span>
+              <span class="text-black font-extrabold">{{
+                stock?.vehicle?.exterior_color_id?.name
+              }}</span>
+            </div>
+            <div class="flex gap-1 flex-wrap">
+              <span class="color-01 font-bold">Interior Cond. :</span>
+              <span class="text-black font-extrabold">D</span>
+            </div>
           </div>
         </div>
         <button
