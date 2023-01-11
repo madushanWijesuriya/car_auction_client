@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash-es'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
+const loading = ref(false)
 const errorList = ref([])
 const form = reactive({
   name: '',
@@ -23,6 +23,7 @@ const form = reactive({
 })
 
 const submitForm = () => {
+  loading.value = true
   errorList.value = []
   if (isEmpty(form.type))
     errorList.value.push({ message: 'Account type is required.', type: true })
@@ -36,7 +37,10 @@ const submitForm = () => {
   if (isEmpty(form.email))
     errorList.value.push({ message: 'email is required.', email: true })
 
-  if (errorList.value.length) return
+  if (errorList.value.length) {
+    loading.value = false
+    return
+  }
 
   try {
     router.push({
@@ -51,6 +55,7 @@ const submitForm = () => {
   } catch (error) {
     console.error(error)
   }
+  loading.value = false
 }
 </script>
 
@@ -219,6 +224,8 @@ const submitForm = () => {
           </div>
           <div>
             <button
+              v-loading="loading"
+              :disabled="loading"
               type="button"
               class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-900 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
               @click="submitForm"
