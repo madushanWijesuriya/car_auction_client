@@ -46,9 +46,9 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="h-screen">
-    <div id="main" class="pt-16">
-      <div class="bg-gray-200 p-5">
+  <div class="h-screen w-full">
+    <div id="main" class="pt-16 w-full">
+      <div class="bg-gray-200 p-5 w-full">
         <div class="bg-white p-6 rounded-lg shadow-lg"></div>
         <div class="bg-white p-6 rounded-lg shadow-lg mt-4">
           <div class="flex justify-between">
@@ -59,12 +59,12 @@ onMounted(async () => {
               class="font-sans text-black bg-white flex items-center justify-center"
             >
               <div class="border rounded-full overflow-hidden flex">
-                <input
+                <!-- <input
                   type="text"
                   class="px-4 py-2"
                   placeholder="Search Vehical..."
                   @change="handleSearch"
-                />
+                /> -->
                 <button
                   class="flex items-center justify-center px-4 border-l bg-blue-800"
                 >
@@ -89,54 +89,6 @@ onMounted(async () => {
             :footer="footerData"
           >
           </TransactionLedger>
-          <div class="w-full">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <!-- <table class="table-auto">
-            <thead>
-              <tr>
-                <th>
-                  <label class="block">
-                    <input class="mr-2 leading-tight" type="checkbox" />
-                  </label>
-                </th>
-                <th>Stock#</th>
-                <th>Agent</th>
-                <th>Chassis #</th>
-                <th>Year</th>
-                <th>Color</th>
-                <th>CC</th>
-                <th>FOB Price</th>
-                <th>Freight</th>
-                <th>Total Sale</th>
-                <th>Paid Amount</th>
-                <th>Remaining Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <label class="block">
-                    <input class="mr-2 leading-tight" type="checkbox" />
-                  </label>
-                </td>
-                <td>#748409</td>
-                <td>NILEKA</td>
-                <td>JZX100-6036994</td>
-                <td>2018</td>
-                <td>Yellow</td>
-                <td>660</td>
-                <td>201,738</td>
-                <td>85,999</td>
-                <td>19,999</td>
-                <td>342,090</td>
-                <td>0</td>
-              </tr>
-            </tbody>
-          </table> -->
         </div>
       </div>
     </div>
