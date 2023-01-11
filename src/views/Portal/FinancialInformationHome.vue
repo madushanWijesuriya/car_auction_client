@@ -3,6 +3,7 @@ import { ref, reactive, onMounted, computed } from 'vue'
 import httpResource from '@/http/httpResource'
 import camelCase from 'camelcase'
 import StockCard from '../../components/portal/StockCard.vue'
+import FinancialInformationLedger from '../../components/portal/FinancialInformationLedger.vue'
 import FinancialInformationTransactions from '../../components/portal/FinancialInformationTransactions.vue'
 
 // data
@@ -205,6 +206,10 @@ onMounted(async () => {
             <div v-else-if="selectedSelection.id === 2">
               <FinancialInformationTransactions
                 :transactionsList="transactionList"
+              />
+            </div>
+            <div v-else-if="selectedSelection.id === 3">
+              <FinancialInformationLedger
               />
             </div>
           </div>
