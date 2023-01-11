@@ -9,7 +9,7 @@ import { useToast } from 'vue-toastification'
 
 const authStore = useAuthStore()
 const router = useRouter()
-const { setIsAuthenticated, setCurrentUser } = authStore
+const { setIsAuthenticated, setCurrentUser, setIsClient } = authStore
 const toast = useToast()
 
 let loginUser = reactive({
@@ -71,6 +71,7 @@ const login = async () => {
       } = await httpResource.get('/api/auth/checkLogin')
       setCurrentUser(data)
       setIsAuthenticated(true)
+      setIsClient(response?.data?.isClient)
       router.push({
         name: 'dashboard',
       })

@@ -46,11 +46,9 @@ onMounted(async () => {
   await getAllTransactions()
 })
 
-
 const url = computed(() => {
-  return import.meta.env.VITE_BASE_URL_CLIENT;
-});
-
+  return import.meta.env.VITE_BASE_URL_CLIENT
+})
 </script>
 <template>
   <div class="h-screen">
@@ -115,89 +113,6 @@ const url = computed(() => {
     </header>
 
     <div id="main" class="pt-16">
-      <SideBar/>
-      <!-- <div class="bg-white relative h-full min-h-screen w-full"> -->
-       
-        <!-- <div class="xl:py-2">
-          <div class="group relative sidebar-item with-children py-4">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img
-                src="../../assets/images/portal/sidebar/dashbord.svg"
-                alt=""
-              />
-              <div class="text-primary text-xs mx-2 fs-18">Dashboard</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img
-                src="../../assets/images/portal/sidebar/fin_repo.svg"
-                alt=""
-              />
-              <div class="text-dark text-xs mx-2 fs-18">
-                Financial Information
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="../../assets/images/portal/sidebar/fi.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img
-                src="../../assets/images/portal/sidebar/send_inq.svg"
-                alt=""
-              />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Send Inquiry
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img
-                src="../../assets/images/portal/sidebar/make_inv.svg"
-                alt=""
-              />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Make Invoices
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children pt-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img
-                src="../../assets/images/portal/sidebar/settings.svg"
-                alt=""
-              />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Settings
-              </div>
-            </a>
-          </div>
-        </div> -->
-      <!-- </div> -->
       <div class="bg-gray-200 p-5">
         <div class="bg-white p-6 rounded-lg shadow-lg">
           <div class="grid grid-cols-4 gap-4">

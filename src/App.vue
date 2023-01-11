@@ -36,7 +36,7 @@ const pathMeta = computed(() => route.meta)
           <RouterView />
         </body>
       </div>
-      <div>
+      <div v-else>
         <header>
           <Navbar />
           <Menubar />

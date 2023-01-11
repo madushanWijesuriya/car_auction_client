@@ -70,7 +70,7 @@ const url = computed(() => {
         <div class="xl:py-2">
           <div class="group relative sidebar-item with-children py-4">
             <a
-              :href="url + 'admin/sample-dashbord'"
+              :href="url + 'customer/dashbord'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
               :to="{ name: 'sample-dashbord' }"
             >
@@ -80,7 +80,7 @@ const url = computed(() => {
           </div>
           <div class="group relative sidebar-item with-children">
             <a
-              :href="url + 'admin/financial-information'"
+              :href="url + 'customer/financial-information'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="@/assets/images/portal/sidebar/fin_repo.svg" alt="" />
@@ -91,7 +91,7 @@ const url = computed(() => {
           </div>
           <div class="group relative sidebar-item with-children py-3">
             <a
-              :href="url + 'admin/shipping-document'"
+              :href="url + 'customer/shipping-document'"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
               <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />

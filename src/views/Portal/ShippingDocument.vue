@@ -27,11 +27,17 @@ const getCountries = async () => {
 
 const getShippingDocs = async () => {
   try {
-    const filterStr = '?'
+    let filterQuery = ''
+    if (form.vehicle_name)
+      filterQuery += `filter[vehicle_name]=${form.vehicle_name}`
+    if (form.chassis_no) filterQuery += `filter[chassis_no]=${form.chassis_no}`
+    if (form.etd) filterQuery += `filter[etd]=${form.etd}`
+    if (form.eta) filterQuery += `filter[etd]=${form.eta}`
+
     const {
       data: { data },
       status,
-    } = await httpResource.get(`/api/staff/shipping${filterStr}`)
+    } = await httpResource.get(`/api/customer/shipping-doc?${filterQuery}`)
     if (status === 200) {
       const baseURL = import.meta.env.VITE_BASE_URL_API
       shippingDocs.value = data
@@ -55,6 +61,18 @@ const getShippingDocs = async () => {
     console.error(error)
   }
 }
+const initialState = {
+  eta: '',
+  etd: '',
+  vehicle_name: '',
+  chassis_no: '',
+}
+const resetForm = () => {
+  Object.assign(form, initialState)
+  getShippingDocs()
+}
+let form = reactive({ ...initialState })
+
 const download = (item) => {
   //download single file as blob and add it to zip archive
   return httpResource.get(item.url, { responseType: 'blob' }).then((resp) => {
@@ -90,7 +108,7 @@ const downloadDocs = (list) => {
 const tableData = computed(() => {
   if (!shippingDocs.value) return []
   return shippingDocs.value.map((i) => {
-    const countryName = countryList.value.find((c) => c.id === i.countryId)
+    const countryName = countryList.value.find((c) => c.id === i.countryId.id)
     return {
       ...i,
       countryName: countryName?.name,
@@ -114,6 +132,7 @@ onCreated()
           <div class="mb-4 p-1">
             <label for="edt_from" class="text-start mb-1">ETD From</label>
             <input
+              v-model="form.etd"
               class="w-full border rounded outline-none focus:shadow-outline"
               type="date"
               name="edt_from"
@@ -126,6 +145,7 @@ onCreated()
           <div class="mb-4 p-1">
             <label for="edt_to" class="text-start mb-1">ETD To</label>
             <input
+              v-model="form.eta"
               class="w-full border rounded outline-none focus:shadow-outline"
               type="date"
               name="edt_to"
@@ -140,6 +160,7 @@ onCreated()
               >Chassis Number</label
             >
             <input
+              v-model="form.chassis_no"
               class="w-full border rounded outline-none focus:shadow-outline"
               type="text"
               name="chassis_number"
@@ -152,6 +173,7 @@ onCreated()
           <div class="mb-4 p-1">
             <label for="email" class="text-start mb-1">Car Name</label>
             <input
+              v-model="form.vehicle_name"
               class="w-full border rounded outline-none focus:shadow-outline"
               type="text"
               name="email"
@@ -162,6 +184,7 @@ onCreated()
         </div>
         <div class="basis-1/6 mx-2">
           <button
+            @click="getShippingDocs"
             class="bg-blue-800 w-full py-2 border rounded text-white text-xl mt-7"
           >
             Search
@@ -169,6 +192,7 @@ onCreated()
         </div>
         <div class="basis-1/6 mx-2">
           <button
+            @click="resetForm"
             class="border-blue-800 w-full py-2 border rounded text-blue-800 text-xl mt-7"
           >
             Clear
@@ -208,7 +232,7 @@ onCreated()
               </label>
             </td>
             <td>{{ row.countryName }}</td>
-            <td>JZX100-6036994</td>
+            <td>{{ row.vehicleId.chassis_no }}</td>
             <td>{{ row.etd }}</td>
             <td>{{ row.eta }}</td>
             <td>{{ row.pol }}</td>
