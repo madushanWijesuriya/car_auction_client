@@ -52,9 +52,7 @@ const loginSubmit = async () => {
         console.log(data)
         setIsAuthenticated(true)
         setIsClient(true)
-        router.push({
-          name: 'dashbord',
-        })
+        router.push('/customer/portal-profile')
       }
     }
   } catch (error) {
