@@ -169,7 +169,7 @@ const router = createRouter({
     {
       meta: {
         title: 'portal-profile',
-        layout: 'LayoutAdmin',
+        layout: 'LayoutPortal',
         requiresAuth: false,
       },
       path: '/customer/portal-profile',
