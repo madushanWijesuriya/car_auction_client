@@ -48,8 +48,8 @@ const loginSubmit = async () => {
         const {
           data: { data },
         } = await httpResource.get('/api/auth/checkLogin')
-        setCurrentUser(data)
         console.log(data)
+        setCurrentUser(data)
         setIsAuthenticated(true)
         setIsClient(true)
         router.push('/customer/dashbord')

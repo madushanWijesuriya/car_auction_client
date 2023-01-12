@@ -2,6 +2,16 @@
 import { toRefs, ref, reactive, onMounted, nextTick } from 'vue'
 import { isEmpty } from 'lodash-es'
 import Slider from '@vueform/slider'
+import { getAuthenticatedUser } from '../../../util/utils'
+import httpResource from '@/http/httpResource'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
+import { useToast } from 'vue-toastification'
+
+const authStore = useAuthStore()
+const { setIsAuthenticated, setCurrentUser, setIsClient } = authStore
+const toast = useToast()
+const { currentUser } = storeToRefs(authStore)
 
 const props = defineProps([
   'makers',
@@ -24,6 +34,7 @@ const emit = defineEmits([
   'apply-filters',
   'reset-filters',
 ])
+const isSub = ref(0)
 const valueChanged = (e) => {
   emit('maker-changed', e)
 }
@@ -73,7 +84,35 @@ function onReset() {
   emit('reset-filters')
 }
 
+async function checkLogin() {
+  const {
+    data: { data },
+  } = await httpResource.get('/api/auth/checkLogin')
+  console.log(data)
+  isSub.value = data?.isNewsSub
+  setCurrentUser(data)
+  setIsAuthenticated(true)
+  setIsClient(true)
+}
+async function subscribe() {
+  try {
+    const response = await httpResource.get('api/customer/newsLetter/subscribe')
+    if (response.status === 200) {
+      toast.success('Successfully Added', {
+        timeout: 2000,
+      })
+      checkLogin()
+    }
+  } catch (e) {
+    console.error(error?.response?.data?.message)
+    toast.error('Something went wrong', {
+      timeout: 2000,
+    })
+  }
+}
+
 onMounted(async () => {
+  checkLogin()
   await nextTick()
   if (!isEmpty(props.filters)) {
     form.maker =
@@ -335,7 +374,9 @@ onMounted(async () => {
             rhoncus sapien, sed nec aenean at molestie vitae dignissim.
           </div>
           <div class="subscribe mt-4">
-            <button class="btn-subscribe">Subscribe</button>
+            <button @click="subscribe" class="btn-subscribe">
+              {{ isSub === 1 ? 'UnSubscribe' : 'Subscribe' }}
+            </button>
           </div>
         </div>
       </div>
