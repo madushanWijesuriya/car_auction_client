@@ -1,10 +1,11 @@
 <script setup>
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref, computed, nextTick } from 'vue'
 import { isEmpty } from 'lodash-es'
 import httpResource from '@/http/httpResource'
 import { useRouter } from 'vue-router'
 import Recapture from '../../components/recapture/Recapture.vue'
 import { useAuthStore } from '@/stores/auth'
+import { ElLoading } from 'element-plus'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -18,8 +19,26 @@ let initialState = {
 const form = reactive({ ...initialState })
 const errorList = ref([])
 const loading = ref(false)
+const loadingGlob = ref(false)
+
+function toggleLoading(state) {
+  if (state) {
+    loadingGlob.value = ElLoading.service({
+      lock: true,
+      text: 'Loading',
+      background: 'rgba(0, 0, 0, 0.7)',
+    })
+  } else {
+    if (loadingGlob.value !== null && loadingGlob.value !== undefined) {
+      nextTick(() => {
+        loadingGlob.value.close()
+      })
+    }
+  }
+}
 
 const loginSubmit = async () => {
+  toggleLoading(true)
   loading.value = true
   errorList.value = []
   if (isEmpty(form.email)) {
@@ -36,6 +55,7 @@ const loginSubmit = async () => {
   }
   if (errorList.value.length) {
     loading.value = false
+    toggleLoading(false)
     return
   }
   try {
@@ -43,6 +63,7 @@ const loginSubmit = async () => {
       email: form.email,
       password: form.password,
     })
+    toggleLoading(false)
     if (response.status === 200 || response.status === 201) {
       {
         const {
@@ -56,6 +77,7 @@ const loginSubmit = async () => {
       }
     }
   } catch (error) {
+    toggleLoading(false)
     errorList.value = []
     console.error(error)
     if (error && error.response && error.response.status === 401) {
