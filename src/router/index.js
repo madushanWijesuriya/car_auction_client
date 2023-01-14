@@ -160,7 +160,7 @@ const router = createRouter({
       meta: {
         title: 'sample-dashbord',
         layout: 'LayoutPortal',
-        requiresAuth: false,
+        requiresAuth: true,
       },
       path: '/customer/dashbord',
       name: 'dashbord',
@@ -170,7 +170,7 @@ const router = createRouter({
       meta: {
         title: 'portal-profile',
         layout: 'LayoutPortal',
-        requiresAuth: false,
+        requiresAuth: true,
       },
       path: '/customer/portal-profile',
       name: 'portal-profile',
@@ -180,7 +180,7 @@ const router = createRouter({
       meta: {
         title: 'freight invoices',
         layout: 'LayoutAdmin',
-        requiresAuth: false,
+        requiresAuth: true,
       },
       path: '/customer/freight-invoices',
       name: 'freight-invoices',
@@ -190,38 +190,17 @@ const router = createRouter({
       meta: {
         title: 'financial information',
         layout: 'LayoutPortal',
-        requiresAuth: false,
+        requiresAuth: true,
       },
       path: '/customer/financial-information',
       name: 'financial-information-home',
       component: () => import('../views/Portal/FinancialInformationHome.vue'),
     },
-    // {
-    //   meta: {
-    //     title: 'financial information transaction',
-    //     layout: 'LayoutAdmin',
-    //     requiresAuth: false,
-    //   },
-    //   path: '/admin/financial-information-transaction',
-    //   name: 'financial-information-transaction',
-    //   component: () =>
-    //     import('../views/Portal/FinancialInformationTransactions.vue'),
-    // },
-    // {
-    //   meta: {
-    //     title: 'financial information ledger',
-    //     layout: 'LayoutAdmin',
-    //     requiresAuth: false,
-    //   },
-    //   path: '/admin/financial-information-ledger',
-    //   name: 'financial-information-ledger',
-    //   component: () => import('../views/Portal/FinancialInformationLedger.vue'),
-    // },
     {
       meta: {
         title: 'shipping document',
         layout: 'LayoutPortal',
-        requiresAuth: false,
+        requiresAuth: true,
       },
       path: '/customer/shipping-document',
       name: 'shipping-document',
@@ -461,7 +440,7 @@ const router = createRouter({
         isClientLogin: true,
       },
       path: '/log-in',
-      name: 'LogIn',
+      name: 'PortalLogIn',
       component: () => import('../views/Portal/Login.vue'),
     },
     {
@@ -469,7 +448,7 @@ const router = createRouter({
         isClientLogin: true,
       },
       path: '/sign-up',
-      name: 'Register',
+      name: 'PortalRegister',
       component: () => import('../views/Portal/Register.vue'),
     },
     {
@@ -483,30 +462,30 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   const authStore = useAuthStore()
-//   const styleStore = useStyleStore()
-//   if (
-//     typeof localStorage !== 'undefined' &&
-//     localStorage.getItem(styleKey) === null
-//   ) {
-//     styleStore.setStyle('white')
-//   }
-//   if (
-//     to.meta.requiresAuth &&
-//     to.path !== '/login' &&
-//     !authStore.getIsAuthenticated
-//   ) {
-//     try {
-//       const status = await getAuthenticatedUser(authStore)
-//       if (status !== 200) next('/login')
-//       else next()
-//     } catch (error) {
-//       next('/login')
-//     }
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
+  const styleStore = useStyleStore()
+  if (
+    typeof localStorage !== 'undefined' &&
+    localStorage.getItem(styleKey) === null
+  ) {
+    styleStore.setStyle('white')
+  }
+  if (
+    to.meta.requiresAuth &&
+    to.path !== '/login' &&
+    !authStore.getIsAuthenticated
+  ) {
+    try {
+      const status = await getAuthenticatedUser(authStore)
+      if (status !== 200) next('/login')
+      else next()
+    } catch (error) {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

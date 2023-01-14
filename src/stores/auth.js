@@ -9,6 +9,7 @@ export const useAuthStore = defineStore('auth', () => {
     createdAt: '',
     emailVerifiedAt: '',
     isClient: false,
+    name: '',
   })
   const intervalName = ref('')
 
@@ -20,6 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.email = payload.email
     currentUser.createdAt = payload.created_at
     currentUser.emailVerifiedAt = payload.email_verified_at
+    currentUser.name = payload?.name
   }
   function setIntervalName(payload) {
     intervalName.value = payload
@@ -29,6 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.email = ''
     currentUser.createdAt = ''
     currentUser.emailVerifiedAt = ''
+    currentUser.name = ''
     currentUser.isClient = false
   }
   function setIsClient(payload) {
