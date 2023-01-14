@@ -1,5 +1,13 @@
 <script setup>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from 'vue'
+import { useAuthStore } from '../../../stores/auth'
+import { menuItems } from './sideMenus'
+
+// data
+const authStore = useAuthStore()
+const sideMenuItems = reactive({ ...menuItems })
+
+// computed
 const url = computed(() => {
   return import.meta.env.VITE_BASE_URL_CLIENT
 })
@@ -18,7 +26,7 @@ const url = computed(() => {
           <h2 class="text-primary text-2xl">Shipping Document</h2>
         </div>
       </div>
-      <div class="flex items-center h-full text-sm divide-x-2 h-8">
+      <div class="flex items-center h-full text-sm divide-x-2">
         <div class="flex items-center h-full">
           <a href="#" class="flex items-center text-white h-full px-4">
             <img
@@ -53,82 +61,44 @@ const url = computed(() => {
           </a>
         </div>
         <div class="flex items-center h-full">
-          <a href="#" class="flex items-center text-dark h-full px-4"
-            >Admin.M</a
+          <a href="#" class="flex items-center text-dark h-full px-4">{{
+            authStore?.currentUser?.name
+          }}</a>
+          <routerLink
+            :to="{ name: 'portal-profile' }"
+            class="flex items-center text-white h-full px-4"
           >
-          <a href="#" class="flex items-center text-white h-full px-4">
             <img
               src="@/assets/images/portal/sidebar/avatar/man/Icon/icon-account.svg"
               alt=""
             />
-          </a>
+          </routerLink>
         </div>
       </div>
     </header>
     <div id="main" class="pt-16">
       <div class="bg-white relative h-full min-h-screen w-full">
         <div class="xl:py-2">
-          <div class="group relative sidebar-item with-children py-4">
-            <a
-              :href="url + 'customer/dashbord'"
+          <div
+            class="group relative sidebar-item with-children py-4"
+            v-for="(menu, index) in sideMenuItems"
+            :key="index"
+          >
+            <routerLink
+              v-if="menu.routerName"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-              :to="{ name: 'sample-dashbord' }"
+              :to="{ name: menu.routerName }"
             >
-              <img src="@/assets/images/portal/sidebar/dashbord.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">Dashboard</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children">
+              <img :src="menu.iconPath" :alt="`menu icon ${menu.name}`" />
+              <div class="text-dark text-xs mx-2 fs-18">{{ menu.name }}</div>
+            </routerLink>
             <a
-              :href="url + 'customer/financial-information'"
+              v-else
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/fin_repo.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">
-                Financial Information
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              :href="url + 'customer/shipping-document'"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
               href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
-              <img src="@/assets/images/portal/sidebar/send_inq.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Send Inquiry
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/make_inv.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Make Invoices
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children pt-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/settings.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Settings
-              </div>
+              <img :src="menu.iconPath" :alt="`menu icon ${menu.name}`" />
+              <div class="text-dark text-xs mx-2 fs-18">{{ menu.name }}</div>
             </a>
           </div>
         </div>
@@ -140,7 +110,7 @@ const url = computed(() => {
   </div>
 </template>
 <style scoped lang="scss">
-.router-link-active {
+.router-link-exact-active {
   border: unset;
   color: #08246c;
   div {
