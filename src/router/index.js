@@ -481,6 +481,9 @@ router.beforeEach(async (to, from, next) => {
       if (status !== 200) next('/login')
       else next()
     } catch (error) {
+      authStore.setIsAuthenticated(false)
+      authStore.clearCurrentUser()
+      authStore.setIsClient(false)
       next('/login')
     }
   } else {

@@ -32,6 +32,7 @@ export function performLogout(authStore) {
   if (intervalName) clearInterval(intervalName)
   authStore.setIsAuthenticated(false)
   authStore.clearCurrentUser()
+  authStore.setIsClient(false)
 }
 
 export async function getAuthenticatedUser(authStore) {

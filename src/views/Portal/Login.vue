@@ -9,7 +9,6 @@ import { ElLoading } from 'element-plus'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const { setIsAuthenticated, setCurrentUser, setIsClient } = authStore
 
 let initialState = {
   email: '',
@@ -70,10 +69,12 @@ const loginSubmit = async () => {
           data: { data },
         } = await httpResource.get('/api/auth/checkLogin')
         console.log(data)
-        setCurrentUser(data)
-        setIsAuthenticated(true)
-        setIsClient(true)
-        router.push('/customer/dashbord')
+        authStore.setCurrentUser(data)
+        authStore.setIsAuthenticated(true)
+        authStore.setIsClient(true)
+        setTimeout(() => {
+          router.push('/customer/dashbord')
+        }, 1000)
       }
     }
   } catch (error) {

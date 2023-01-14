@@ -7,7 +7,7 @@ const authStore = useAuthStore()
 
 // computed
 const isshowPortalLogins = computed(() => {
-  return authStore.isAuthenticated && authStore.isClient
+  return !authStore.isAuthenticated && !authStore.isClient
 })
 </script>
 <template>

@@ -26,7 +26,7 @@ const url = computed(() => {
           <h2 class="text-primary text-2xl">Shipping Document</h2>
         </div>
       </div>
-      <div class="flex items-center h-full text-sm divide-x-2 h-8">
+      <div class="flex items-center h-full text-sm divide-x-2">
         <div class="flex items-center h-full">
           <a href="#" class="flex items-center text-white h-full px-4">
             <img
@@ -64,12 +64,15 @@ const url = computed(() => {
           <a href="#" class="flex items-center text-dark h-full px-4">{{
             authStore?.currentUser?.name
           }}</a>
-          <a href="#" class="flex items-center text-white h-full px-4">
+          <routerLink
+            :to="{ name: 'portal-profile' }"
+            class="flex items-center text-white h-full px-4"
+          >
             <img
               src="@/assets/images/portal/sidebar/avatar/man/Icon/icon-account.svg"
               alt=""
             />
-          </a>
+          </routerLink>
         </div>
       </div>
     </header>
