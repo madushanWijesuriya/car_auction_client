@@ -1,3 +1,71 @@
+<script setup>
+import { ref } from 'vue'
+import httpResource from '@/http/httpResource'
+import camelCase from 'camelcase'
+
+// data
+const profileData = ref({
+  name: '',
+  contactNo: '',
+  email: '',
+  companyName: '',
+  companyAddress: '',
+  contactPerson: '',
+  companyEmail: '',
+  countryName: '',
+  countryId: 0,
+})
+let countryList = ref([])
+
+//methods
+const getUserProfile = async () => {
+  try {
+    const {
+      data: { data },
+      status,
+    } = await httpResource.get('/api/customer/user')
+    if (status === 200) {
+      profileData.value = camelCaseKeys(data)
+      profileData.value.countryName = countryList.value.find(
+        (c) => c.id === profileData.value.countryId
+      )?.label
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+const getCountries = async () => {
+  try {
+    const response = await httpResource.get('/api/resources/countries')
+    countryList.value = response.data.data.map((d) => ({
+      ...d,
+      label: d.name,
+    }))
+  } catch (error) {
+    console.error(error)
+  }
+}
+function camelCaseKeys(object) {
+  return Object.entries(object).reduce((carry, [key, value]) => {
+    carry[camelCase(key)] = value
+    return carry
+  }, {})
+}
+const updateProfile = async () => {
+  try {
+    //
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// LC hooks
+const onCreated = async () => {
+  await getCountries()
+  await getUserProfile()
+}
+onCreated()
+</script>
 <template>
   <div class="bg-white h-full pt-8">
     <div class="text-start w-full text-grey-darkest">
@@ -37,6 +105,7 @@
               name="email"
               id="email"
               placeholder="Hana Kaito Takashi "
+              v-model="profileData.name"
             />
           </div>
           <div class="mb-4 p-2">
@@ -52,10 +121,11 @@
               </select>
               <input
                 class="w-4/6 mx-2 border rounded outline-none focus:shadow-outline"
-                type="text"
+                type="number"
                 name="email"
                 id="email"
                 placeholder="014 56 7808"
+                v-model="profileData.contactNo"
               />
             </div>
           </div>
@@ -70,6 +140,7 @@
               name="email"
               id="email"
               placeholder="Hanakaito@jamex.com"
+              v-model="profileData.email"
             />
           </div>
           <!--  -->
@@ -81,6 +152,7 @@
               name="email"
               id="email"
               placeholder="JAMEX AUCTION HOUSE"
+              v-model="profileData.companyName"
             />
           </div>
           <!--  -->
@@ -92,6 +164,7 @@
               name="email"
               id="email"
               placeholder="No 44, JAMEX AUCTION HOUSE pvt, Wellawatta, Colombo"
+              v-model="profileData.companyAddress"
             />
           </div>
           <!--  -->
@@ -103,6 +176,7 @@
               name="email"
               id="email"
               placeholder="+94 738 49 3094"
+              v-model="profileData.contactPerson"
             />
           </div>
         </div>
@@ -117,6 +191,7 @@
               name="email"
               id="email"
               placeholder="+94 738 49 3094"
+              v-model="profileData.contactNo"
             />
           </div>
           <!--  -->
@@ -130,6 +205,7 @@
               name="email"
               id="email"
               placeholder="Hanakaito@jamex.com"
+              v-model="profileData.companyEmail"
             />
           </div>
           <!--  -->
@@ -141,6 +217,7 @@
               name="email"
               id="email"
               placeholder="JAMEX AUCTION HOUSE"
+              v-model="profileData.countryName"
             />
           </div>
           <!--  -->
@@ -152,6 +229,7 @@
               name="email"
               id="email"
               placeholder="No 44, JAMEX AUCTION HOUSE pvt, Wellawatta, Colombo"
+              v-model="profileData.port"
             />
           </div>
           <!--  -->
@@ -174,6 +252,7 @@
               name="email"
               id="email"
               placeholder="+94 738 49 3094"
+              v-model="profileData.requestedCar"
             />
           </div>
           <!--  -->
@@ -189,6 +268,12 @@
           </div>
         </div>
       </div>
+      <el-button
+        type="primary"
+        class="ml-2 mb-5 bt-2 px-[60px] py-4 text-black"
+        @click="updateProfile"
+        >Update</el-button
+      >
     </div>
   </div>
 </template>
