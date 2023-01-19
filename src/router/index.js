@@ -192,6 +192,16 @@ const router = createRouter({
     },
     {
       meta: {
+        title: 'responsive-portal',
+        layout: 'LayoutAdmin',
+        requiresAuth: false,
+      },
+      path: '/admin/responsive-portal',
+      name: 'responsive-portal',
+      component: () => import('../views/Portal/Responsive.vue'),
+    },
+    {
+      meta: {
         title: 'inquiry Reply View',
         layout: 'LayoutAdmin',
         requiresAuth: true,
