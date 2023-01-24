@@ -395,6 +395,8 @@ const networks = computed(() => {
             <div v-for="image in visibleImageList" :key="image.id">
               <img
                 class="rounded-lg w-full cursor-pointer"
+                width="88"
+                height="140"
                 :src="getImageUrl(image?.name)"
                 @click="currentId = image.id"
               />
