@@ -269,7 +269,7 @@ const networks = computed(() => {
   >
     <div class="flex flex-col gap-2 lg:gap-2 lg:flex-row">
       <div class="flex gap-3 items-center">
-        <routerLink :to="this.$router.options.history.state.back">
+        <routerLink :to="$router.options.history.state.back">
           <svg
             width="9"
             height="15"
