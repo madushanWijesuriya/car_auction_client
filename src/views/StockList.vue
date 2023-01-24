@@ -239,7 +239,6 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
-  console.log(route.query, 'route.query')
   await getMakers()
   await getCountries()
   await getEngineTypes()
@@ -247,7 +246,6 @@ onMounted(async () => {
   await getGears()
   await getLotumbers()
   await getDriveTypes()
-  console.log(route.query.brands, 'route.query.brands')
 
   if (isEmpty(route.query)) {
     await getAllCars()
@@ -263,21 +261,22 @@ onMounted(async () => {
 </script>
 <template>
   <div class="text-white text-sm p-2 relative">
-    
     <div class="flex flex-col gap-5 w-full m">
       <div class="relative w-full md:px-[8%] xl:mb-[12vh]">
-        <div class="hidden group fixed-group lg:flex absolute right-0 top-[-145px] lg:h-[600px] xl:h-[1200px]">
-        <img
-          class="back_image"
-          src="/background_image.svg"
-          alt="backfround_image"
-        />
-        <img
-          class="jap_map absolute top-32 right-0"
-          src="/jap_map.svg"
-          alt="jap_map"
-        />
-      </div>
+        <div
+          class="hidden group fixed-group lg:flex absolute right-0 top-[-145px] lg:h-[600px] xl:h-[1200px]"
+        >
+          <img
+            class="back_image"
+            src="/background_image.svg"
+            alt="backfround_image"
+          />
+          <img
+            class="jap_map absolute top-32 right-0"
+            src="/jap_map.svg"
+            alt="jap_map"
+          />
+        </div>
         <img
           class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[886px] object-cover"
           src="@/assets/images/stock-list/vehical-list/stock-list-main.svg"
