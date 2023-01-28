@@ -117,7 +117,7 @@ const loginSubmit = async () => {
       </div>
       <div class="p-5 bg-white md:flex-1">
         <div class="img">
-          <img src="../../assets/images/portal/login/image_2.png" alt="" />
+          <img src="@/assets/SVG.svg" alt="" />
         </div>
         <form class="flex flex-col space-y-5">
           <div class="flex flex-col space-y-1">
