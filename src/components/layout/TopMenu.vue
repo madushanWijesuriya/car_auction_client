@@ -31,7 +31,7 @@ const isshowPortalLogins = computed(() => {
     </div>
     <div class="flex items-center cursor-pointer" @click="$router.push('/')">
       <div class="lg:w-[150px] xl:w-[250px] md:w-[120px]">
-        <img class="w-full" src="@/assets/images/logo.svg" />
+        <img class="w-full" src="@/assets/SVG.svg" />
       </div>
     </div>
     <div v-if="isOpen" class="absolute left-0 z-[500] top-12 p-5 bg-white">

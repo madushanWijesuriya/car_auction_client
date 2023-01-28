@@ -62,7 +62,7 @@ const initialState = {
   mileage: [0, 1000000000],
   drive: '',
   // region: '',
-  engine: [100, 1000],
+  engine: [100, 100000],
   gear: '',
   lot: '',
   // auctions: '',
@@ -266,7 +266,7 @@ onMounted(async () => {
             <div class="slider-demo-block">
               <Slider
                 :min="100"
-                :max="1000"
+                :max="100000"
                 v-model="form.engine"
                 class="slider-blue"
                 showTooltip="focus"

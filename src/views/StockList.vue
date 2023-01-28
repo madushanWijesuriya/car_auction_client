@@ -194,7 +194,7 @@ const applyFilters = async (form) => {
   if (form.Chassis) filterQuery += `filter[chassis_no]=${form.Chassis}`
   if (form.drive) filterQuery += `&filter[driver_type_id]=${form.drive}`
   if (form.engine) filterQuery += `&filter[engine_id_range]=${form.engine}`
-  if (form.fort_id) filterQuery += `&filter[fort_id]=${form.fort_id}`
+  if (form.fort_id.length > 0) filterQuery += `&filter[fort_id]=${form.fort_id}`
   if (form.gear) filterQuery += `&filter[gear_box_id]=${form.gear}`
   if (form.isUsed) filterQuery += `&filter[isUsed]=${form.isUsed}`
   if (form.lot) filterQuery += `&filter[lot_number]=${form.lot}`
@@ -203,10 +203,10 @@ const applyFilters = async (form) => {
     var to = form.make_at[1]
     filterQuery += `&filter[make_at_range]=${from} - ${to}`
   }
-  if (form.maker) filterQuery += `&filter[make_id]=${form.maker}`
+  if (form.maker.length > 0) filterQuery += `&filter[make_id]=${form.maker}`
   if (form.mileage) filterQuery += `&filter[mileage_range]=${form.mileage}`
-  if (form.model) filterQuery += `&filter[model_id]=${form.model}`
-  if (form.shipping_country)
+  if (form.model.length > 0) filterQuery += `&filter[model_id]=${form.model}`
+  if (form.shipping_country.length > 0)
     filterQuery += `&filter[shipping_country_id]=${form.shipping_country}`
 
   try {
