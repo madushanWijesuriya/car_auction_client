@@ -2,11 +2,22 @@
 import { computed, onMounted, reactive } from 'vue'
 import { useAuthStore } from '../../../stores/auth'
 import { menuItems } from './sideMenus'
+import moment from 'moment'
+import { ref, onBeforeUnmount } from 'vue'
+
+let japanTimeNow = ref(moment().utcOffset(9).format('h:mm a, dddd'))
+let timer = ref(null)
 
 // data
 const authStore = useAuthStore()
 const sideMenuItems = reactive({ ...menuItems })
+timer.value = setInterval(() => {
+  japanTimeNow.value = moment().utcOffset(9).format('h:mm a, dddd')
+}, 1000)
 
+onBeforeUnmount(() => {
+  clearInterval(timer.value)
+})
 // computed
 const url = computed(() => {
   return import.meta.env.VITE_BASE_URL_CLIENT
@@ -16,14 +27,39 @@ const url = computed(() => {
 <template>
   <div class="h-screen">
     <header
-      class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between"
+      class="text-white fixed z-50 h-20 w-full bg-grey-darker shadow flex items-center justify-between"
+      style="background-color: #08246c"
     >
       <div class="flex items-center h-full mx-5">
-        <div class="flex items-center text-center h-full w-60 border-grey-dark">
+        <div
+          class="flex items-center text-center w-60 border-grey-dark bg-white"
+        >
           <img src="@/assets/SVG.svg" alt="" />
         </div>
         <div class="flex items-center w-64 mx-5">
-          <h2 class="text-primary text-2xl">Shipping Document</h2>
+          <h2 class="text-white text-2xl">Shipping Document</h2>
+        </div>
+      </div>
+      <div class="flex items-center h-full">
+        <div class="date-time md:col-span-1 flex gap-1 justify-start">
+          <span class="loaction-type light-text-01">Japan Time :</span>
+          <span>{{ japanTimeNow }}</span>
+        </div>
+        <div
+          class="align-right grid grid-cols-1 md:grid-cols-3 gap-2 md:col-span-2"
+        >
+          <span class="nav-email hidden md:inline-block">
+            <span class="light-text-01">Email:</span>
+            info@japanautoauctions.jp
+          </span>
+          <span class="part-01">
+            <span class="light-text-01">24/7 Support:</span>
+            +81 3 6712 4147
+          </span>
+          <span class="part-02">
+            <span class="light-text-01"> Language: </span>
+            English
+          </span>
         </div>
       </div>
       <div class="flex items-center h-full text-sm divide-x-2">

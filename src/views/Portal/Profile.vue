@@ -248,7 +248,6 @@ onCreated()
               v-model="profileData.port"
             />
           </div>
-          {{ profileData }}
           <div class="mb-4 p-2">
             <label for="email" class="text-start mb-1">Requested Car</label>
             <input
