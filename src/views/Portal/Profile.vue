@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import httpResource from '@/http/httpResource'
 import camelCase from 'camelcase'
+import { codes } from '@/js/countryCode'
 
 // data
 const profileData = ref({
@@ -72,7 +73,9 @@ onCreated()
       <div class="grid grid-cols-2 gap-4">
         <div>
           <div class="mb-4 p-2">
-            <label for="">Are you an individual or a car dealer?</label>
+            <label for="accountType"
+              >Are you an individual or a car dealer?</label
+            >
             <div class="mb-4">
               <label class="inline-flex items-center">
                 <input
@@ -80,9 +83,9 @@ onCreated()
                   class="form-radio"
                   name="accountType"
                   value="1"
-                  checked
+                  :checked="profileData.type === 'individual'"
                 />
-                <span class="ml-2">Yes</span>
+                <span class="ml-2">Individual</span>
               </label>
               <label class="inline-flex items-center ml-6">
                 <input
@@ -90,42 +93,47 @@ onCreated()
                   class="form-radio"
                   name="accountType"
                   value="2"
+                  :checked="profileData.type !== 'individual'"
                 />
-                <span class="ml-2">No</span>
+                <span class="ml-2">Car Dealer</span>
               </label>
             </div>
           </div>
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1"
+            <label for="name" class="text-start mb-1"
               >Enter Your Full Name</label
             >
             <input
               class="w-full border rounded outline-none focus:shadow-outline"
               type="text"
-              name="email"
-              id="email"
+              name="name"
+              id="name"
               placeholder="Hana Kaito Takashi "
               v-model="profileData.name"
             />
           </div>
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1"
+            <label for="contactNo" class="text-start mb-1"
               >Enter Your Contact Number</label
             >
             <div class="flex">
               <select
                 class="w-2/6 block appearance-none bg-white-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
-                <option selected>Sri Lanka +94</option>
-                <option>With options</option>
+                <option
+                  v-for="item in codes"
+                  :key="item.key"
+                  :label="item.code + '(' + item.dial_code + ')'"
+                  :value="item.dial_code"
+                ></option>
               </select>
               <input
                 class="w-4/6 mx-2 border rounded outline-none focus:shadow-outline"
                 type="number"
-                name="email"
-                id="email"
-                placeholder="014 56 7808"
-                v-model="profileData.contactNo"
+                name="contactNo"
+                id="contactNo"
+                placeholder="contact number"
+                v-model="profileData.tel"
               />
             </div>
           </div>
@@ -139,43 +147,49 @@ onCreated()
               type="email"
               name="email"
               id="email"
-              placeholder="Hanakaito@jamex.com"
+              placeholder="Email"
               v-model="profileData.email"
             />
           </div>
           <!--  -->
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Company Name</label>
+            <label for="companyName" class="text-start mb-1"
+              >Company Name</label
+            >
             <input
               class="w-full border rounded outline-none focus:shadow-outline"
               type="text"
-              name="email"
-              id="email"
+              name="companyName"
+              id="companyName"
               placeholder="JAMEX AUCTION HOUSE"
               v-model="profileData.companyName"
             />
           </div>
           <!--  -->
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Company Address</label>
+            <label for="companyAddress" class="text-start mb-1"
+              >Company Address</label
+            >
             <input
               class="w-full border rounded outline-none focus:shadow-outline"
               type="text"
-              name="email"
-              id="email"
+              name="companyAddress"
+              id="companyAddress"
               placeholder="No 44, JAMEX AUCTION HOUSE pvt, Wellawatta, Colombo"
               v-model="profileData.companyAddress"
             />
           </div>
           <!--  -->
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Contact Person</label>
+            <label for="contactPerson" class="text-start mb-1"
+              >Contact Person</label
+            >
             <input
               class="w-full border rounded outline-none focus:shadow-outline"
               type="tel"
-              name="email"
-              id="email"
-              placeholder="+94 738 49 3094"
+              name="contactPerson"
+              id="contactPerson"
+              placeholder="Contact Person"
               v-model="profileData.contactPerson"
             />
           </div>
@@ -184,13 +198,15 @@ onCreated()
         <div>
           <!--  -->
           <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Contact Number</label>
+            <label for="contactNo" class="text-start mb-1"
+              >Contact Number</label
+            >
             <input
               class="w-full border rounded outline-none focus:shadow-outline"
               type="tel"
-              name="email"
-              id="email"
-              placeholder="+94 738 49 3094"
+              name="contactNo"
+              id="contactNo"
+              placeholder="contact No"
               v-model="profileData.contactNo"
             />
           </div>
@@ -232,7 +248,7 @@ onCreated()
               v-model="profileData.port"
             />
           </div>
-          <!--  -->
+          {{ profileData }}
           <div class="mb-4 p-2">
             <label for="email" class="text-start mb-1">Requested Car</label>
             <input
@@ -241,29 +257,7 @@ onCreated()
               name="email"
               id="email"
               placeholder="+94 738 49 3094"
-            />
-          </div>
-          <!--  -->
-          <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Requested Car</label>
-            <input
-              class="w-full border rounded outline-none focus:shadow-outline"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="+94 738 49 3094"
-              v-model="profileData.requestedCar"
-            />
-          </div>
-          <!--  -->
-          <div class="mb-4 p-2">
-            <label for="email" class="text-start mb-1">Requested Car</label>
-            <input
-              class="w-full border rounded outline-none focus:shadow-outline"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="+94 738 49 3094"
+              v-model="profileData.port"
             />
           </div>
         </div>

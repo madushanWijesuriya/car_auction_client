@@ -3,6 +3,7 @@ import { reactive, ref, computed, onMounted } from 'vue'
 import { isEmpty } from 'lodash-es'
 import httpResource from '@/http/httpResource'
 import { useRouter, useRoute } from 'vue-router'
+import { codes } from '@/js/countryCode'
 
 const router = useRouter()
 const route = useRoute()
@@ -22,6 +23,8 @@ const form = reactive({
   port: '',
   contact_person: '',
   contact_no: '',
+  tel: '',
+  tel_country_code: '',
 })
 
 const submitForm = async () => {
@@ -55,6 +58,11 @@ const submitForm = async () => {
   if (isEmpty(form.contact_no))
     errorList.value.push({
       message: 'Contact number is required.',
+      contactNo: true,
+    })
+  if (isEmpty(form.contact_country_code))
+    errorList.value.push({
+      message: 'Country code is required.',
       contactNo: true,
     })
   if (isEmpty(form.password))
@@ -97,7 +105,9 @@ onMounted(() => {
   if (route.query.type !== undefined && route.query.type !== null)
     form.type = route.query.type
   if (route.query.name) form.name = route.query.name
-  if (route.query.contactNo) form.contact_no = route.query.contactNo
+  if (route.query.tel) form.tel = route.query.tel
+  if (route.query.tel_country_code)
+    form.tel_country_code = route.query.tel_country_code
   if (route.query.email) form.email = route.query.email
 })
 </script>
@@ -111,15 +121,15 @@ onMounted(() => {
         <form action="#" class="">
           <div class="flex flex-col space-y-5 mb-10">
             <div
-              class="ml-3 mt-3 text-2xl text-blue-900 font-bold tracking-wider"
+              class="flex justify-center ml-3 mt-3 text-2xl text-blue-900 font-bold tracking-wider"
             >
               <a href="#">New User Registration</a>
             </div>
           </div>
           <div class="px-5">
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1">
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1">
                   <label
                     class="block text-grey-darker text-sm font-bold mb-2"
                     for="first_name"
@@ -129,7 +139,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="first_name"
                     type="text"
-                    placeholder="Your first name"
+                    placeholder="Your company Name"
                     v-model="form.company_name"
                   />
                   <div class="error-list">
@@ -148,7 +158,9 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="w-1/2 ml-1">
-                  <p class="font-quote-form-label">Select Country</p>
+                  <p class="block text-grey-darker text-sm font-bold mb-2">
+                    Select Country
+                  </p>
                   <el-select
                     filterable
                     v-model="form.country_id"
@@ -179,8 +191,8 @@ onMounted(() => {
               </div>
             </div>
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1">
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1">
                   <label
                     class="block text-grey-darker text-sm font-bold mb-2"
                     for="first_name"
@@ -190,7 +202,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="first_name"
                     type="text"
-                    placeholder="Your first name"
+                    placeholder="Your company Address"
                     v-model="form.company_address"
                   />
                   <div class="error-list">
@@ -237,8 +249,8 @@ onMounted(() => {
               </div>
             </div>
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1">
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1">
                   <label
                     class="block text-grey-darker text-sm font-bold mb-2"
                     for="first_name"
@@ -248,7 +260,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="first_name"
                     type="text"
-                    placeholder="Your first name"
+                    placeholder="Contact Person"
                     v-model="form.contact_person"
                   />
                   <div class="error-list">
@@ -276,7 +288,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="last_name"
                     type="text"
-                    placeholder="Your last name"
+                    placeholder="Requested Car"
                     v-model="form.requested_car"
                   />
                   <div class="error-list">
@@ -297,32 +309,45 @@ onMounted(() => {
               </div>
             </div>
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1">
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1">
                   <label
                     class="block text-grey-darker text-sm font-bold mb-2"
                     for="first_name"
                     >Contact Number</label
                   >
-                  <input
-                    class="border border-gray-300 rounded w-full py-2 px-3"
-                    id="first_name"
-                    type="text"
-                    placeholder="Your first name"
-                    v-model="form.contact_no"
-                  />
-                  <div class="error-list">
-                    <div
-                      :class="[
-                        'error text-red-900 font-bold',
-                        idx !== 0 ? 'mb-1' : '',
-                      ]"
-                      v-for="(error, idx) in errorList.filter(
-                        (e) => e.contactNumber
-                      )"
-                      :key="idx"
+                  <div class="flex">
+                    <select
+                      v-model="form.contact_country_code"
+                      class="mr-2 w-2/6 block appearance-none bg-white-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     >
-                      {{ error.message }}
+                      <option
+                        v-for="item in codes"
+                        :key="item.key"
+                        :label="item.code + '(' + item.dial_code + ')'"
+                        :value="item.dial_code"
+                      ></option>
+                    </select>
+                    <input
+                      class="border border-gray-300 rounded w-full py-2 px-3"
+                      id="contact_no"
+                      type="text"
+                      placeholder="Contact No"
+                      v-model="form.contact_no"
+                    />
+                    <div class="error-list">
+                      <div
+                        :class="[
+                          'error text-red-900 font-bold',
+                          idx !== 0 ? 'mb-1' : '',
+                        ]"
+                        v-for="(error, idx) in errorList.filter(
+                          (e) => e.contactNumber
+                        )"
+                        :key="idx"
+                      >
+                        {{ error.message }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -336,7 +361,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="last_name"
                     type="password"
-                    placeholder="Your last name"
+                    placeholder="Password"
                     v-model="form.password"
                   />
                   <div class="error-list">
@@ -357,8 +382,8 @@ onMounted(() => {
               </div>
             </div>
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1">
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1">
                   <label
                     class="block text-grey-darker text-sm font-bold mb-2"
                     for="first_name"
@@ -368,7 +393,7 @@ onMounted(() => {
                     class="border border-gray-300 rounded w-full py-2 px-3"
                     id="first_name"
                     type="text"
-                    placeholder="Your first name"
+                    placeholder="Company Email Address"
                     v-model="form.company_email"
                   />
                   <div class="error-list">
@@ -415,8 +440,8 @@ onMounted(() => {
               </div>
             </div>
             <div class="flex flex-col space-y-5">
-              <div class="flex mb-4">
-                <div class="w-1/2 mr-1"></div>
+              <div class="flex justify-center mb-4">
+                <div v-if="form.type == 2" class="w-1/2 mr-1"></div>
                 <div class="w-1/2 ml-1">
                   <button
                     :disabled="loading"
