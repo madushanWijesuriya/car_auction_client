@@ -20,7 +20,7 @@ const url = computed(() => {
     >
       <div class="flex items-center h-full mx-5">
         <div class="flex items-center text-center h-full w-60 border-grey-dark">
-          <img src="@/assets/images/portal/sidebar/image.png" alt="" />
+          <img src="@/assets/SVG.svg" alt="" />
         </div>
         <div class="flex items-center w-64 mx-5">
           <h2 class="text-primary text-2xl">Shipping Document</h2>
