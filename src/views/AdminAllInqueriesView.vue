@@ -2,7 +2,7 @@
 import LayoutAuthenticated from '@/components/layout/admin/LayoutAuthenticated.vue'
 import SectionTitleLineWithButton from '@/components/admin/SectionTitleLineWithButton.vue'
 import SectionMain from '@/components/admin/SectionMain.vue'
-import { mdiCarEstate } from '@mdi/js'
+import { mdiCarEstate, mdiReply } from '@mdi/js'
 import InqueryTable from '@/components/Tables/Admin/InqueryTable.vue'
 import { useInqStore } from '@/stores/inqueries'
 import { computed, onMounted, reactive, ref } from 'vue'
@@ -12,6 +12,7 @@ import { mdiEye, mdiTrashCan } from '@mdi/js'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
+const loading = ref(false)
 
 const inqueryStore = useInqStore()
 const router = useRouter()
@@ -48,11 +49,13 @@ const getAllInquiries = async () => {
 }
 
 const applyFilters = async () => {
+  loading.value = true
+
   try {
     let filterQuery = '/api/staff/inquery?'
 
     if (form.make_id.id) filterQuery += `filter[make_id]=${form.make_id.id}`
-    if (form.make_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
+    if (form.model_id.id) filterQuery += `&filter[model_id]=${form.model_id.id}`
     if (form.status_id.id)
       filterQuery += `&filter[status_id]=${form.status_id.id}`
     if (form.body_type_id.id)
@@ -75,9 +78,12 @@ const applyFilters = async () => {
     if (form.make_at) filterQuery += `&filter[make_at]=${form.make_at}`
     const response = await httpResource.get(filterQuery)
     inqueryStore.$patch({
-      cars: response.data.data,
+      inqueries: response.data.data,
     })
+    loading.value = false
   } catch (error) {
+    loading.value = false
+
     console.error(error)
   }
 }
@@ -304,7 +310,7 @@ let form = reactive({ ...initialState })
 let tableActions = reactive([
   {
     color: 'info',
-    icon: mdiEye,
+    icon: mdiReply,
     clickFunc: (id) => {
       router.push({
         name: 'inquiry-reply',
@@ -440,6 +446,8 @@ let tableActions = reactive([
 
           <BaseButtons>
             <BaseButton
+              v-loading="loading"
+              :disabled="loading"
               type="submit justify-end lg:justify-end"
               color="info"
               label="Search"
@@ -462,12 +470,14 @@ let tableActions = reactive([
             title="All Inqueries"
             main
           ></SectionTitleLineWithButton>
-          <InqueryTable
-            :items="decoratedItems"
-            :headers="headers"
-            :actions="tableActions"
-          >
-          </InqueryTable>
+          <v-row v-loading="loading">
+            <InqueryTable
+              :items="decoratedItems"
+              :headers="headers"
+              :actions="tableActions"
+            >
+            </InqueryTable>
+          </v-row>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

@@ -19,11 +19,11 @@ export const useInqStore = defineStore('inqueries', () => {
 
   const tableHeaders = reactive([
     {
-      name: 'id',
+      name: '#',
       order: 1,
     },
     {
-      name: 'type',
+      name: 'Type',
       order: 2,
     },
     {
@@ -31,35 +31,35 @@ export const useInqStore = defineStore('inqueries', () => {
       order: 3,
     },
     {
-      name: 'country_id',
+      name: 'Country',
       order: 4,
     },
     {
-      name: 'name',
+      name: 'Name',
       order: 5,
     },
     {
-      name: 'email',
+      name: 'Email',
       order: 6,
     },
     {
-      name: 'cell_no',
+      name: 'Cell No',
       order: 7,
     },
     {
-      name: 'port_name',
+      name: 'Port',
       order: 8,
     },
     {
-      name: 'mobile_no',
+      name: 'Mobile ',
       order: 9,
     },
     {
-      name: 'created_at',
+      name: 'Created At',
       order: 10,
     },
     {
-      name: 'action',
+      name: 'Actions',
       order: 11,
     },
   ])
