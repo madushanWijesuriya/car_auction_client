@@ -352,7 +352,7 @@ import { computed } from '@vue/runtime-core'
                   Reach us
                 </h1>
                 <br />
-                <h1 class="text-white footer-contect-text">
+                <h1 class="text-white footer-contect-text flex">
                   <div
                     class="flex sm:flex justify-center sm:justify-center md:flex md:justify-center lg:pr-16 xl:pr-16"
                   >
@@ -361,6 +361,28 @@ import { computed } from '@vue/runtime-core'
                       src="@\assets\images\footer\logos_whatsapp-icon.svg"
                     />
                     <div class="lg:pt-2">+81 3 6712 4147</div>
+                  </div>
+                </h1>
+                <br />
+                <h1 class="text-white footer-contect-text flex">
+                  <div class="flex justify-center lg:pr-16 xl:pr-16">
+                    <img
+                      class="inline mr-2"
+                      src="\footer\email_svg.png"
+                      alt="email_svg"
+                    />
+                    <div class="lg:pt-2">info@japanautoauctions.jp</div>
+                  </div>
+                </h1>
+                <br />
+                <h1 class="text-white footer-contect-text flex">
+                  <div class="flex justify-center lg:pr-16 xl:pr-16">
+                    <img
+                      class="inline mr-2"
+                      src="\footer\fax_svg.png"
+                      alt="email_svg"
+                    />
+                    <div class="lg:pt-2">+81 3 6712 4148</div>
                   </div>
                 </h1>
                 <br />
