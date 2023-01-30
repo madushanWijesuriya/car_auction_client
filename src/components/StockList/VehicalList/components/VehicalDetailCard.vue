@@ -1,9 +1,10 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import { computed, toRefs } from 'vue'
 const props = defineProps(['vehicle'])
 const { vehicle } = toRefs(props)
 const base_url_api = import.meta.env.VITE_BASE_URL_API
-
+const router = useRouter()
 const cover_image = computed(() => {
   return base_url_api + props.vehicle.cover_image_full_url
 })
@@ -58,7 +59,7 @@ const cover_image = computed(() => {
     </div>
 
     <div
-      @click="$router.push(`/vehical-details/${vehicle?.id}`)"
+      @click="router.push(`/vehical-details/${vehicle?.id}`)"
       class="px-2 py-2 space-y-3 w-full md:relative"
     >
       <div class="text-center font-vehical-name">
@@ -116,7 +117,7 @@ const cover_image = computed(() => {
       </div>
     </div>
     <div
-      @click="$router.push(`/vehical-details/${vehicle?.id}`)"
+      @click="router.push(`/vehical-details/${vehicle?.id}`)"
       class="relative md:w-[35vw] lg:w-[55%] px-2 space-y-2"
     >
       <div class="flex flex-col w-full">

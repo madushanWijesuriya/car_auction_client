@@ -1,5 +1,4 @@
 <script setup>
-import MenuNavbar from '../components/MenuNavbar.vue'
 import CarouselType01 from '../components/CarouselType01.vue'
 import FilterBox from '../components/FilterBox.vue'
 import CardTwo from '../components/Cards/CardTwo.vue'

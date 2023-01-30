@@ -470,7 +470,7 @@ onMounted(async () => {
               {{ dataPoint }}
             </span>
             <span v-else>
-              <img :src="dataPoint" alt="img" />
+              <img :src="dataPoint" alt="img" width="200" height="200" />
             </span>
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">

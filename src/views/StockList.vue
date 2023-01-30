@@ -194,7 +194,7 @@ const applyFilters = async (form) => {
   if (form.Chassis) filterQuery += `filter[chassis_no]=${form.Chassis}`
   if (form.drive) filterQuery += `&filter[driver_type_id]=${form.drive}`
   if (form.engine) filterQuery += `&filter[engine_id_range]=${form.engine}`
-  if (form.fort_id) filterQuery += `&filter[fort_id]=${form.fort_id}`
+  if (form.fort_id.length > 0) filterQuery += `&filter[fort_id]=${form.fort_id}`
   if (form.gear) filterQuery += `&filter[gear_box_id]=${form.gear}`
   if (form.isUsed) filterQuery += `&filter[isUsed]=${form.isUsed}`
   if (form.lot) filterQuery += `&filter[lot_number]=${form.lot}`
@@ -203,10 +203,10 @@ const applyFilters = async (form) => {
     var to = form.make_at[1]
     filterQuery += `&filter[make_at_range]=${from} - ${to}`
   }
-  if (form.maker) filterQuery += `&filter[make_id]=${form.maker}`
+  if (form.maker.length > 0) filterQuery += `&filter[make_id]=${form.maker}`
   if (form.mileage) filterQuery += `&filter[mileage_range]=${form.mileage}`
-  if (form.model) filterQuery += `&filter[model_id]=${form.model}`
-  if (form.shipping_country)
+  if (form.model.length > 0) filterQuery += `&filter[model_id]=${form.model}`
+  if (form.shipping_country.length > 0)
     filterQuery += `&filter[shipping_country_id]=${form.shipping_country}`
 
   try {
@@ -239,7 +239,6 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
-  console.log(route.query, 'route.query')
   await getMakers()
   await getCountries()
   await getEngineTypes()
@@ -247,7 +246,6 @@ onMounted(async () => {
   await getGears()
   await getLotumbers()
   await getDriveTypes()
-  console.log(route.query.brands, 'route.query.brands')
 
   if (isEmpty(route.query)) {
     await getAllCars()
@@ -263,21 +261,22 @@ onMounted(async () => {
 </script>
 <template>
   <div class="text-white text-sm p-2 relative">
-    
     <div class="flex flex-col gap-5 w-full m">
       <div class="relative w-full md:px-[8%] xl:mb-[12vh]">
-        <div class="hidden group fixed-group lg:flex absolute right-0 top-[-145px] lg:h-[600px] xl:h-[1200px]">
-        <img
-          class="back_image"
-          src="/background_image.svg"
-          alt="backfround_image"
-        />
-        <img
-          class="jap_map absolute top-32 right-0"
-          src="/jap_map.svg"
-          alt="jap_map"
-        />
-      </div>
+        <div
+          class="hidden group fixed-group lg:flex absolute right-0 top-[-145px] lg:h-[600px] xl:h-[1200px]"
+        >
+          <img
+            class="back_image"
+            src="/background_image.svg"
+            alt="backfround_image"
+          />
+          <img
+            class="jap_map absolute top-32 right-0"
+            src="/jap_map.svg"
+            alt="jap_map"
+          />
+        </div>
         <img
           class="lg:rounded-[15px] md:rounded-[10px] w-full h-[70vw] lg:h-[400px] xl:h-[886px] object-cover"
           src="@/assets/images/stock-list/vehical-list/stock-list-main.svg"

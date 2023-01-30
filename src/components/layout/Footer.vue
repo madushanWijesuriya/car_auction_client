@@ -11,11 +11,10 @@ import { computed } from '@vue/runtime-core'
           <div
             class="col-span-2 pt-12 col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-2 xl:col-span-2"
           >
-            <div class="flex justify-center sm:justify-center">
-              <img
-                class="mb-10"
-                src="@/assets\images\footer\footer-image-1.svg"
-              />
+            <div
+              class="flex justify-center sm:justify-center bg-white mb-10 p-2"
+            >
+              <img class="" src="@/assets/SVG.svg" />
             </div>
             <h1
               class="text-left text-center sm:text-center md:text-left lg:text-left xl:text-left text-white footer-contect-text"

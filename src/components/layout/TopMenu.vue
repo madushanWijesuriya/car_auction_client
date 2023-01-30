@@ -1,9 +1,18 @@
 <script setup>
 import { computed, onMounted } from '@vue/runtime-core'
+import { useAuthStore } from '@/stores/auth'
+
+// data
+const authStore = useAuthStore()
+
+// computed
+const isshowPortalLogins = computed(() => {
+  return !authStore.isAuthenticated && !authStore.isClient
+})
 </script>
 <template>
   <div
-    class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C] z-[1000]" 
+    class="flex flex-row filter-form md:p-3 lg:p-10 px-2 md:px-3 lg:px-10 justify-between item-center w-full text-[#08246C] z-[1000]"
   >
     <div class="visible flex items-center md:hidden" @click="isOpen = !isOpen">
       <svg
@@ -22,7 +31,7 @@ import { computed, onMounted } from '@vue/runtime-core'
     </div>
     <div class="flex items-center cursor-pointer" @click="$router.push('/')">
       <div class="lg:w-[150px] xl:w-[250px] md:w-[120px]">
-        <img class="w-full" src="@/assets/images/logo.svg" />
+        <img class="w-full" src="@/assets/SVG.svg" />
       </div>
     </div>
     <div v-if="isOpen" class="absolute left-0 z-[500] top-12 p-5 bg-white">
@@ -123,20 +132,22 @@ import { computed, onMounted } from '@vue/runtime-core'
     <div
       class="hidden md:flex lg:flex flex-row gap-5 items-center justify-center"
     >
-      <a :href="'/log-in'">
+      <routerLink :to="{ name: 'PortalLogIn' }">
         <div
           class="flex flex-row justify-center md:text-[12px] lg:text-[15px] xl:text-[20px] font-semibold items-center cursor-pointer"
+          v-if="isshowPortalLogins"
         >
           Log in
         </div>
-      </a>
-      <a :href="'/sign-up'">
+      </routerLink>
+      <routerLink :to="{ name: 'PortalRegister' }">
         <div
           class="rounded xl:rounded-lg bg-[#08246C] hover:opacity-80 px-5 p-1 md:text-[12px] lg:text-[15px] xl:text-[20px] cursor-pointer text-white lg:p-2 lg:px-8 xl:px-[3vw] xl:py-4"
+          v-if="isshowPortalLogins"
         >
           Register
         </div>
-      </a>
+      </routerLink>
     </div>
     <div class="visible flex items-center md:hidden">
       <svg

@@ -1,5 +1,24 @@
 <script setup>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from 'vue'
+import { useAuthStore } from '../../../stores/auth'
+import { menuItems } from './sideMenus'
+import moment from 'moment'
+import { ref, onBeforeUnmount } from 'vue'
+
+let japanTimeNow = ref(moment().utcOffset(9).format('h:mm a, dddd'))
+let timer = ref(null)
+
+// data
+const authStore = useAuthStore()
+const sideMenuItems = reactive({ ...menuItems })
+timer.value = setInterval(() => {
+  japanTimeNow.value = moment().utcOffset(9).format('h:mm a, dddd')
+}, 1000)
+
+onBeforeUnmount(() => {
+  clearInterval(timer.value)
+})
+// computed
 const url = computed(() => {
   return import.meta.env.VITE_BASE_URL_CLIENT
 })
@@ -8,17 +27,42 @@ const url = computed(() => {
 <template>
   <div class="h-screen">
     <header
-      class="fixed z-50 h-16 w-full bg-grey-darker shadow flex items-center justify-between"
+      class="text-white fixed z-50 h-20 w-full bg-grey-darker shadow flex items-center justify-between"
+      style="background-color: #08246c"
     >
       <div class="flex items-center h-full mx-5">
-        <div class="flex items-center text-center h-full w-60 border-grey-dark">
-          <img src="@/assets/images/portal/sidebar/image.png" alt="" />
+        <div
+          class="flex items-center text-center w-60 border-grey-dark bg-white"
+        >
+          <img src="@/assets/SVG.svg" alt="" />
         </div>
         <div class="flex items-center w-64 mx-5">
-          <h2 class="text-primary text-2xl">Shipping Document</h2>
+          <h2 class="text-white text-2xl">Shipping Document</h2>
         </div>
       </div>
-      <div class="flex items-center h-full text-sm divide-x-2 h-8">
+      <div class="flex items-center h-full">
+        <div class="date-time md:col-span-1 flex gap-1 justify-start">
+          <span class="loaction-type light-text-01">Japan Time :</span>
+          <span>{{ japanTimeNow }}</span>
+        </div>
+        <div
+          class="align-right grid grid-cols-1 md:grid-cols-3 gap-2 md:col-span-2"
+        >
+          <span class="nav-email hidden md:inline-block">
+            <span class="light-text-01">Email:</span>
+            info@japanautoauctions.jp
+          </span>
+          <span class="part-01">
+            <span class="light-text-01">24/7 Support:</span>
+            +81 3 6712 4147
+          </span>
+          <span class="part-02">
+            <span class="light-text-01"> Language: </span>
+            English
+          </span>
+        </div>
+      </div>
+      <div class="flex items-center h-full text-sm divide-x-2">
         <div class="flex items-center h-full">
           <a href="#" class="flex items-center text-white h-full px-4">
             <img
@@ -53,82 +97,44 @@ const url = computed(() => {
           </a>
         </div>
         <div class="flex items-center h-full">
-          <a href="#" class="flex items-center text-dark h-full px-4"
-            >Admin.M</a
+          <a href="#" class="flex items-center text-dark h-full px-4">{{
+            authStore?.currentUser?.name
+          }}</a>
+          <routerLink
+            :to="{ name: 'portal-profile' }"
+            class="flex items-center text-white h-full px-4"
           >
-          <a href="#" class="flex items-center text-white h-full px-4">
             <img
               src="@/assets/images/portal/sidebar/avatar/man/Icon/icon-account.svg"
               alt=""
             />
-          </a>
+          </routerLink>
         </div>
       </div>
     </header>
     <div id="main" class="pt-16">
       <div class="bg-white relative h-full min-h-screen w-full">
         <div class="xl:py-2">
-          <div class="group relative sidebar-item with-children py-4">
-            <a
-              :href="url + 'customer/dashbord'"
+          <div
+            class="group relative sidebar-item with-children py-4"
+            v-for="(menu, index) in sideMenuItems"
+            :key="index"
+          >
+            <routerLink
+              v-if="menu.routerName"
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-              :to="{ name: 'sample-dashbord' }"
+              :to="{ name: menu.routerName }"
             >
-              <img src="@/assets/images/portal/sidebar/dashbord.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">Dashboard</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children">
+              <img :src="menu.iconPath" :alt="`menu icon ${menu.name}`" />
+              <div class="text-dark text-xs mx-2 fs-18">{{ menu.name }}</div>
+            </routerLink>
             <a
-              :href="url + 'customer/financial-information'"
+              v-else
               class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/fin_repo.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">
-                Financial Information
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              :href="url + 'customer/shipping-document'"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/fi.svg" alt="" />
-              <div class="text-dark text-xs mx-2 fs-18">Shipping Document</div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
               href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
             >
-              <img src="@/assets/images/portal/sidebar/send_inq.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Send Inquiry
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children py-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/make_inv.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Make Invoices
-              </div>
-            </a>
-          </div>
-          <div class="group relative sidebar-item with-children pt-3">
-            <a
-              href="#"
-              class="block xl:flex xl:items-center text-center xl:text-left shadow-light xl:shadow-none py-6 xl:py-2 xl:px-4 border-l-4 border-transparent hover:text-primary"
-            >
-              <img src="@/assets/images/portal/sidebar/settings.svg" alt="" />
-              <div class="text-Financial information 6 text-xs mx-2 fs-18">
-                Settings
-              </div>
+              <img :src="menu.iconPath" :alt="`menu icon ${menu.name}`" />
+              <div class="text-dark text-xs mx-2 fs-18">{{ menu.name }}</div>
             </a>
           </div>
         </div>
@@ -140,7 +146,7 @@ const url = computed(() => {
   </div>
 </template>
 <style scoped lang="scss">
-.router-link-active {
+.router-link-exact-active {
   border: unset;
   color: #08246c;
   div {

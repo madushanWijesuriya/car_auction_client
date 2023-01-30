@@ -2,6 +2,7 @@
 import { ref, computed, reactive } from 'vue'
 import { isEmpty } from 'lodash-es'
 import { useRouter } from 'vue-router'
+import { codes } from '@/js/countryCode'
 
 const router = useRouter()
 const loading = ref(false)
@@ -20,6 +21,8 @@ const form = reactive({
   port: '',
   contact_person: '',
   contact_no: '',
+  tel: '',
+  tel_country_code: '',
 })
 
 const submitForm = () => {
@@ -29,10 +32,16 @@ const submitForm = () => {
     errorList.value.push({ message: 'Account type is required.', type: true })
   if (isEmpty(form.name))
     errorList.value.push({ message: 'Full name is required.', name: true })
-  if (!form.contact_no)
+
+  if (!form.tel)
     errorList.value.push({
       message: 'Contact number is required.',
-      contactNo: true,
+      tel: true,
+    })
+  if (!form.tel_country_code)
+    errorList.value.push({
+      message: 'Country code is required.',
+      tel_country_code: true,
     })
   if (isEmpty(form.email))
     errorList.value.push({ message: 'email is required.', email: true })
@@ -43,12 +52,14 @@ const submitForm = () => {
   }
 
   try {
+    console.log(form)
     router.push({
       name: 'RegisterStep',
       query: {
         type: form.type,
         name: form.name,
-        contactNo: form.contact_no,
+        tel: form.tel,
+        tel_country_code: form.tel_country_code,
         email: form.email,
       },
     })
@@ -83,7 +94,7 @@ const submitForm = () => {
       </div>
       <div class="p-5 bg-white md:flex-1">
         <div class="img">
-          <img src="../../assets/images/portal/login/image_2.png" alt="" />
+          <img src="@/assets/SVG.svg" alt="" />
         </div>
         <form action="#" class="flex flex-col space-y-5">
           <div class="flex flex-col space-y-1">
@@ -164,31 +175,45 @@ const submitForm = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-col space-y-1">
-            <label for="email" class="text-sm font-semibold text-gray-500"
+          <div class="mb-4 p-2">
+            <label for="contactNo" class="text-start mb-1"
               >Enter Your Contact Number</label
             >
-            <input
-              type="number"
-              id="contact_no"
-              class="px-4 py-2 transition duration-300 border rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
-              v-model="form.contact_no"
-              :class="
-                errorList.some((e) => e.contactNo)
-                  ? 'border-red-800'
-                  : 'border-gray-300'
-              "
-            />
-            <div class="error-list">
-              <div
-                :class="[
-                  'error text-red-900 font-bold',
-                  idx !== 0 ? 'mb-1' : '',
-                ]"
-                v-for="(error, idx) in errorList.filter((e) => e.contactNo)"
-                :key="idx"
+            <div class="flex">
+              <select
+                searchable
+                v-model="form.tel_country_code"
+                class="w-2/6 block appearance-none bg-white-200 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
-                {{ error.message }}
+                <option
+                  v-for="item in codes"
+                  :key="item.key"
+                  :label="item.code + '(' + item.dial_code + ')'"
+                  :value="item.dial_code"
+                ></option>
+              </select>
+              <input
+                type="number"
+                id="tel"
+                class="ml-2 px-4 py-2 transition duration-300 border rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                v-model="form.tel"
+                :class="
+                  errorList.some((e) => e.tel)
+                    ? 'border-red-800'
+                    : 'border-gray-300'
+                "
+              />
+              <div class="error-list">
+                <div
+                  :class="[
+                    'error text-red-900 font-bold',
+                    idx !== 0 ? 'mb-1' : '',
+                  ]"
+                  v-for="(error, idx) in errorList.filter((e) => e.tel)"
+                  :key="idx"
+                >
+                  {{ error.message }}
+                </div>
               </div>
             </div>
           </div>

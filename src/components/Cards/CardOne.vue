@@ -24,6 +24,9 @@ defineProps({
       >
       <span class="cardTitle"
         ><h1 class="text-center text-white text-lg">
+          {{ vehicle?.make_id?.name }} {{ vehicle?.model_id?.name }}
+        </h1>
+        <h1 class="text-center text-white text-lg">
           {{ vehicle?.title }}
         </h1></span
       >
