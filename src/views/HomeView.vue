@@ -202,7 +202,7 @@ onMounted(async () => {
         </div>
         <div
           data-aos="fade-right"
-          class="mt-14 flex flex-wrap gap-3 md:gap-10 font-size-16 md:font-size-32 justify-center leading-6 md:leading-10"
+          class="mt-14 flex flex-wrap gap-3 md:gap-10 font-size-16 md:font-size-32 justify-center leading-6 md:leading-10 text-[#08246C]"
         >
           <span class="flex"
             >Documentation
