@@ -50,14 +50,14 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/why-us'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text "
                       >Why Choose Us?
                     </routerLink>
                   </div>
                   <div class="mb-5">
                     <routerLink
                       :to="'/company-profile'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Company Profile
                     </routerLink>
                   </div>
@@ -65,7 +65,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/about'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Corporate Philosophy
                     </routerLink>
                   </div>
@@ -73,7 +73,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/ServicesQualityControlView'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Quality Control
                     </routerLink>
                   </div>
@@ -81,7 +81,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/customer-feedback'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Customer Reviews
                     </routerLink>
                   </div>
@@ -89,7 +89,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/reachus'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text "
                       >Contact Us</routerLink
                     >
                   </div>
@@ -104,14 +104,14 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/countries-vehicle-details'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Auction Calendar
                     </routerLink>
                   </div>
                   <div class="mb-5">
                     <routerLink
                       :to="'/services-auction-houses'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Auction Houses
                     </routerLink>
                   </div>
@@ -119,7 +119,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/services-auction-guru'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Auction Guide
                     </routerLink>
                   </div>
@@ -127,7 +127,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/services-auction-vs-stock'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >Auction Vs Stock
                     </routerLink>
                   </div>
@@ -135,7 +135,7 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <routerLink
                       :to="'/how-to-ordering'"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text"
                       >How to order
                     </routerLink>
                   </div>
@@ -143,14 +143,14 @@ import { computed } from '@vue/runtime-core'
                   <div class="mb-5">
                     <a
                       href="#"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text "
                       >Latest News</a
                     >
                   </div>
                   <div class="mb-5">
                     <a
                       href="#"
-                      class="text-left text-white footer-contect-text underline"
+                      class="text-left text-white footer-contect-text "
                       >FAQ</a
                     >
                   </div>
