@@ -3,13 +3,15 @@ import Filter from '../components/StockList/Filter/Filter.vue'
 import CustomerFeedback from '../components/StockList/CustomerFeedback/CustomerFeedback.vue'
 import VehicalList from '../components//StockList/VehicalList/VehicalList.vue'
 import { useCarsStore } from '@/stores/cars'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, nextTick } from 'vue'
 import httpResource from '@/http/httpResource'
 import { useRouter, useRoute } from 'vue-router'
 import { isEmpty } from 'lodash-es'
+import { ElLoading } from 'element-plus'
 
 const router = useRouter()
 const route = useRoute()
+const loadingGlob = ref(false)
 
 const carsStore = useCarsStore()
 const indexingDetails = reactive({
@@ -24,12 +26,31 @@ const indexingDetails = reactive({
   },
 })
 
+function toggleLoading(state) {
+  if (state) {
+    loadingGlob.value = ElLoading.service({
+      lock: true,
+      text: 'Loading',
+      background: 'rgba(0, 0, 0, 0.7)',
+    })
+  } else {
+    if (loadingGlob.value !== null && loadingGlob.value !== undefined) {
+      nextTick(() => {
+        loadingGlob.value.close()
+      })
+    }
+  }
+}
+
 const getAllCars = async (pageId) => {
+  toggleLoading(true)
   try {
     const url = `/api/guest/vehicle?sort=id${pageId ? '&page=' + pageId : ''}`
     const response = await httpResource.get(url)
+    toggleLoading(false)
     setCars(response)
   } catch (error) {
+    toggleLoading(false)
     console.error(error)
   }
 }
@@ -188,6 +209,7 @@ const changeCountry = (e) => {
 }
 
 const applyFilters = async (form) => {
+  toggleLoading(true)
   let filterQuery = '/api/guest/vehicle?'
   console.log(form)
   // if (form.search_text) filterQuery += `filter[search_text]=${form.search_text}`
@@ -211,9 +233,10 @@ const applyFilters = async (form) => {
 
   try {
     const response = await httpResource.get(filterQuery)
-
+    toggleLoading(false)
     setCars(response)
   } catch (error) {
+    toggleLoading(true)
     console.error(error)
   }
 }
@@ -239,6 +262,7 @@ const changePage = (pageId) => {
 let loadedCompleted = ref(false)
 
 onMounted(async () => {
+  toggleLoading(true)
   await getMakers()
   await getCountries()
   await getEngineTypes()
@@ -257,6 +281,7 @@ onMounted(async () => {
     }
   }
   loadedCompleted.value = true
+  toggleLoading(false)
 })
 </script>
 <template>
