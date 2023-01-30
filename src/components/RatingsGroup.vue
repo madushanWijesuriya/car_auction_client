@@ -20,7 +20,7 @@ const value1 = ref(4)
             Hendric
           </div>
           <div class="mx-4 w-2 h-2 rounded bg-color-07"></div>
-          <div><el-rate v-model="value1" /></div>
+          <div><el-rate v-model="value1"  disabled /></div>
         </div>
       </template>
       <template v-slot:body>
@@ -47,7 +47,7 @@ const value1 = ref(4)
             Hendric
           </div>
           <div class="mx-4 w-2 h-2 rounded bg-color-07"></div>
-          <div><el-rate v-model="value1" /></div>
+          <div><el-rate v-model="value1"  disabled /></div>
         </div>
       </template>
       <template v-slot:body>
@@ -74,7 +74,7 @@ const value1 = ref(4)
             Hendric
           </div>
           <div class="mx-4 w-2 h-2 rounded bg-color-07"></div>
-          <div><el-rate v-model="value1" /></div>
+          <div><el-rate v-model="value1"  disabled /></div>
         </div>
       </template>
       <template v-slot:body>
@@ -101,7 +101,7 @@ const value1 = ref(4)
             Hendric
           </div>
           <div class="mx-4 w-2 h-2 rounded bg-color-07"></div>
-          <div><el-rate v-model="value1" /></div>
+          <div><el-rate v-model="value1" disabled/></div>
         </div>
       </template>
       <template v-slot:body>
