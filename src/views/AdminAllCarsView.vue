@@ -15,6 +15,7 @@ const base_url_api = import.meta.env.VITE_BASE_URL_API
 const carsStore = useCarsStore()
 const { cars: items } = storeToRefs(carsStore)
 const headers = computed(() => carsStore.tableHeaders)
+const loading = ref(false)
 
 const decoratedItems = computed(() => {
   if (!items.value || !Array.isArray(items.value)) return []
@@ -22,6 +23,8 @@ const decoratedItems = computed(() => {
     return {
       id: i.id,
       photo: base_url_api + i?.cover_image_full_url,
+      title: i?.title,
+      chassis_no: i?.chassis_no,
       make: i?.make_id?.name,
       model: i?.model_id?.name,
       fob: i?.fob_price,
@@ -32,6 +35,8 @@ const decoratedItems = computed(() => {
 })
 
 const applyFilters = async () => {
+  loading.value = true
+
   try {
     let filterQuery = '/api/guest/vehicle?'
 
@@ -61,7 +66,10 @@ const applyFilters = async () => {
     carsStore.$patch({
       cars: response.data.data,
     })
+
+    loading.value = false
   } catch (error) {
+    loading.value = false
     console.error(error)
   }
 }
@@ -414,6 +422,8 @@ let form = reactive({ ...initialState })
           </el-row>
           <BaseButtons>
             <BaseButton
+              v-loading="loading"
+              :disabled="loading"
               type="submit justify-end lg:justify-end"
               color="info"
               label="Search"
@@ -436,27 +446,29 @@ let form = reactive({ ...initialState })
             title="All Cars"
             main
           ></SectionTitleLineWithButton>
-          <Table
-            :makersList="makersList"
-            :modelsList="modelsList"
-            :statusList="statusList"
-            :bodyTypeList="bodyTypeList"
-            :transmissionList="transmissionList"
-            :engineList="engineList"
-            :gearList="gearList"
-            :streeingList="streeingList"
-            :doorTypesList="doorTypesList"
-            :fuleTypeList="fuleTypeList"
-            :exteriorColorList="exteriorColorList"
-            :featuresList="featuresList"
-            :yearsList="yearsList"
-            :monthsList="monthsList"
-            :driveTypeList="driveTypeList"
-            :items="decoratedItems"
-            :headers="headers"
-            :rowItemsData="items"
-          >
-          </Table>
+          <v-row v-loading="loading">
+            <Table
+              :makersList="makersList"
+              :modelsList="modelsList"
+              :statusList="statusList"
+              :bodyTypeList="bodyTypeList"
+              :transmissionList="transmissionList"
+              :engineList="engineList"
+              :gearList="gearList"
+              :streeingList="streeingList"
+              :doorTypesList="doorTypesList"
+              :fuleTypeList="fuleTypeList"
+              :exteriorColorList="exteriorColorList"
+              :featuresList="featuresList"
+              :yearsList="yearsList"
+              :monthsList="monthsList"
+              :driveTypeList="driveTypeList"
+              :items="decoratedItems"
+              :headers="headers"
+              :rowItemsData="items"
+            >
+            </Table>
+          </v-row>
         </CardBox>
       </SectionMain>
     </LayoutAuthenticated>

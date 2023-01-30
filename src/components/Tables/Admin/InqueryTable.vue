@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, toRefs, reactive, onMounted, nextTick } from 'vue'
 // import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan } from '@mdi/js'
+import { mdiEye, mdiTrashCan, mdiReply } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/admin/TableCheckboxCell.vue'
 import BaseLevel from '@/components/admin/BaseLevel.vue'
@@ -27,12 +27,12 @@ const props = defineProps({
     default: [
       {
         color: 'info',
-        icon: mdiEye,
+        icon: mdiReply,
         onClick: 'defaultAction',
       },
       {
         color: 'danger',
-        icon: mdiTrashCan,
+        icon: mdiReply,
         onClick: 'defaultAction',
       },
     ],

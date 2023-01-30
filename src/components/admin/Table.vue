@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, toRefs, reactive, onMounted, nextTick } from 'vue'
 // import { useMainStore } from '@/stores/main'
-import { mdiEye, mdiTrashCan } from '@mdi/js'
+import { mdiEye, mdiTrashCan, mdiPencil } from '@mdi/js'
 import CardBoxModal from '@/components/admin/CardBoxModal.vue'
 import TableCheckboxCell from '@/components/admin/TableCheckboxCell.vue'
 import BaseLevel from '@/components/admin/BaseLevel.vue'
@@ -29,7 +29,7 @@ const props = defineProps({
     default: [
       {
         color: 'info',
-        icon: mdiEye,
+        icon: mdiPencil,
       },
       {
         color: 'danger',
@@ -475,6 +475,13 @@ onMounted(async () => {
           </td>
           <td class="before:hidden lg:w-1 whitespace-nowrap">
             <BaseButtons type="justify-start lg:justify-end" no-wrap>
+              <BaseButton
+                no-wrap
+                color="success"
+                :icon="mdiEye"
+                small
+                @click="$router.push(`/vehical-details/${row.id}`)"
+              />
               <div v-for="(item, index) in actions" :key="index">
                 <BaseButton
                   :label="item.label ? item.label : ''"
@@ -492,8 +499,6 @@ onMounted(async () => {
                   "
                 />
               </div>
-
-              <!-- <BaseButton color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" /> -->
             </BaseButtons>
           </td>
         </tr>

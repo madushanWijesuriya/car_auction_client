@@ -167,7 +167,7 @@ export default {
           </FormField>
         </div>
       </div>
-      <FormField label="Subject">
+      <FormField label="Amount">
         <FormControl v-model="form.paid_amount" type="number" />
       </FormField>
     </CardBox>

@@ -15,28 +15,37 @@ export const useCarsStore = defineStore('cars', () => {
       order: 2,
     },
     {
-      name: 'Make',
+      name: 'Title',
       order: 3,
     },
     {
-      name: 'Model',
+      name: 'Chassis No',
       order: 4,
     },
+
     {
-      name: 'FOB',
+      name: 'Make',
       order: 5,
     },
     {
-      name: 'Status',
+      name: 'Model',
       order: 6,
     },
     {
-      name: 'Inquiry',
+      name: 'FOB ($)',
       order: 7,
     },
     {
-      name: 'Actions',
+      name: 'Status',
       order: 8,
+    },
+    {
+      name: 'Inquiry',
+      order: 9,
+    },
+    {
+      name: 'Actions',
+      order: 10,
     },
   ])
 
