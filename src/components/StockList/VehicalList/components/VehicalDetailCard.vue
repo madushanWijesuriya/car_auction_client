@@ -1,13 +1,31 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { computed, toRefs } from 'vue'
+import { computed, ref, toRefs } from 'vue'
 const props = defineProps(['vehicle'])
 const { vehicle } = toRefs(props)
 const base_url_api = import.meta.env.VITE_BASE_URL_API
 const router = useRouter()
-const cover_image = computed(() => {
-  return base_url_api + props.vehicle.cover_image_full_url
+const allImages = computed(() => {
+  const images = props.vehicle.images.map((i) => i.full_url)
+  return [...[props.vehicle.cover_image_full_url], ...images]
 })
+const activeIndex = ref(0)
+const activeImage = computed(() => {
+  return base_url_api + allImages.value[activeIndex.value]
+})
+const toPreviousImage = () => {
+  if (activeIndex.value === 0) {
+    activeIndex.value = allImages.value.length - 1
+  }
+  activeIndex.value--
+}
+const toNextImage = () => {
+  if (activeIndex.value === allImages.value.length - 1) {
+    activeIndex.value = 0
+    return
+  }
+  activeIndex.value++
+}
 </script>
 <template>
   <!-- image url src="@/assets/images/stock-list/vehical-list/list-car-1.svg" -->
@@ -17,7 +35,7 @@ const cover_image = computed(() => {
     <div class="md:w-[500px] flex relative">
       <img
         class="lg:rounded-[15px] rounded-[10px] w-full object-cover"
-        :src="cover_image"
+        :src="activeImage"
       />
       <div class="absolute left-0 right-0 top-[45%]">
         <div class="flex flex-row w-full justify-between p-1">
@@ -28,6 +46,7 @@ const cover_image = computed(() => {
             viewBox="0 0 11 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="toPreviousImage"
           >
             <path
               d="M9.03313 1L1.75903 8.2741L9.03313 15.5482"
@@ -45,6 +64,7 @@ const cover_image = computed(() => {
             viewBox="0 0 10 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="toNextImage"
           >
             <path
               d="M1.00007 1L8.27417 8.2741L1.00007 15.5482"
@@ -60,9 +80,10 @@ const cover_image = computed(() => {
 
     <div
       @click="router.push(`/vehical-details/${vehicle?.id}`)"
-      class="px-2 py-2 space-y-3 w-full md:relative"
+      class="px-2 space-y-3 w-full md:relative"
+      style="margin-top: 0px"
     >
-      <div class="text-center font-vehical-name">
+      <div class="text-start font-vehical-name">
         {{
           `${vehicle?.make_id?.name} ${vehicle?.model_id?.name} ${new Date(
             vehicle?.make_at
