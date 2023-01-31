@@ -34,3 +34,31 @@
   position: absolute;
   height: 500px;
 }
+
+.groupping-99 {
+  position: relative;
+  width: 100%;
+  .image-vehicle-park {
+    width: 802px;
+    height: 535px;
+  }
+  .background-009 {
+    position: absolute;
+    left: -11.5vw;
+    bottom: -59px;
+    width: 500px;
+    height: 652px;
+  }
+  @media (max-width: 1024px) {
+    .background-009 {
+      width: 211px;
+      height: 263px;
+      bottom: -12px;
+      left: -13.5vw;
+    }
+    .image-vehicle-park {
+      width: 343px;
+      height: 238px;
+    }
+  }
+}

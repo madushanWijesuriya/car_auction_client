@@ -161,6 +161,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
+
       <div class="content-05 container mt-9 px-4 md:px-20">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16">
           <div
@@ -170,10 +171,18 @@ onMounted(async () => {
           </div>
           <div data-aos="fade-right">
             <div class="shade-window bg-color-05"></div>
-            <img
-              src="@/assets/images/home/asset_002.jpg"
-              alt="photo-two-smart-elegant-men-which-have-deal-about-car-they-are-doing-handshake"
-            />
+            <div class="groupping-99">
+              <img
+                src="/home/background-009.png"
+                alt="backgound-gray"
+                class="background-009"
+              />
+              <img
+                class="image-vehicle-park"
+                src="@/assets/images/home/asset_002.jpg"
+                alt="image-vehicle-park"
+              />
+            </div>
           </div>
           <div data-aos="fade-left">
             <div
